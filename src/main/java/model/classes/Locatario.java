@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.classes;
 
 /**
  *
- * @author BobaNote
+ * @author Milena Macedo - milenasantosmcd@gmail.com
  */
 public class Locatario {
     
