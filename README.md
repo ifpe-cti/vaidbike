@@ -1,47 +1,48 @@
 # VaidBike
 
-O projeto de Aplicação escolhido tem como objetivo intermediar a interação entre os usuários facilitando o aluguel de bicicletas entre locador e locatário.
+O projeto de AplicaÃ§Ã£o escolhido tem como objetivo intermediar a interaÃ§Ã£o entre os usuÃ¡rios facilitando o aluguel de bicicletas entre locador e locatÃ¡rio.
 
 
 
-## Motivação
+## MotivaÃ§Ã£o
 
-A ociosidade pode ser um prejuízo em muitos aspectos, e se você pudesse pegar aquela bike que você não usa mais e ganhar uma grana extra?
-Talvez você queria começar a pedalar, mas não quer gastar uma "fortuna" com uma Bike e acessórios para só depois descobrir se vai se identificar com o ciclismo.
+A ociosidade pode ser um prejuÃ­zo em muitos aspectos, e se vocÃª pudesse pegar aquela bike que vocÃª nÃ£o usa mais e ganhar uma grana extra?
+Talvez vocÃª queria comeÃ§ar a pedalar, mas nÃ£o quer gastar uma "fortuna" com uma Bike e acessÃ³rios para sÃ³ depois descobrir se vai se identificar com o ciclismo.
 
-## Soluções existentes
+## SoluÃ§Ãµes existentes
 
-Bike Itau, Bike santos, ambos utilizam plataformas que possuem suas próprias bicicletas, esses serviços estão disponíveis apenas em capitais.
-
-
-## Inovação
-
-O grande diferencial do VaidBike é que você ou qualquer pessoa pode ganhar uma grana extra alugando a sua bike que fica geralmente jogada na garagem, ou se você pretende sair do sedentarismo e não sabe por onde começar, aqui está uma ótima possibilidade de melhorar sua qualidade de vida alugando a bike de seu vizinho.
+Bike Itau, Bike santos, ambos utilizam plataformas que possuem suas prÃ³prias bicicletas, esses serviÃ§os estÃ£o disponÃ­veis apenas em capitais.
 
 
-## Público alvo
+## InovaÃ§Ã£o
 
-Qualquer pessoa que deseja mudar a rotina ou começar a praticar ciclismo, melhorar a qualidade de vida, ou simplesmente evitar o trânsito.
+O grande diferencial do VaidBike Ã© que vocÃª ou qualquer pessoa pode ganhar uma grana extra alugando a sua bike que fica geralmente jogada na garagem, ou se vocÃª pretende sair do sedentarismo e nÃ£o sabe por onde comeÃ§ar, aqui estÃ¡ uma Ã³tima possibilidade de melhorar sua qualidade de vida alugando a bike de seu vizinho.
 
 
-## Monetização
+## PÃºblico alvo
 
-A monetização virá através de "comissões" pelos aluguéis das bicicletas, e pela intermediação do serviço.
+Qualquer pessoa que deseja mudar a rotina ou comeÃ§ar a praticar ciclismo, melhorar a qualidade de vida, ou simplesmente evitar o trÃ¢nsito.
+
+
+## MonetizaÃ§Ã£o
+
+A monetizaÃ§Ã£o virÃ¡ atravÃ©s de "comissÃµes" pelos aluguÃ©is das bicicletas, e pela intermediaÃ§Ã£o do serviÃ§o.
 
 
 ## Ferramental utilizado
 
-As ferramentas utilizadas na construção do Projeto serão:
+As ferramentas utilizadas na construÃ§Ã£o do Projeto serÃ£o:
 - NetBeans; 
 - Android Studio;  
 - PostgreSQL;
 - Maven;
+- JSF;
+- Hibernate;
 - Gradle.
-- 
-As linguagens de programação escolhidas foram:
+
+As linguagens de programaÃ§Ã£o escolhidas foram:
 - Java;
 - CSS;
-- JSF;
 - HTML.
 
 
@@ -49,9 +50,9 @@ As linguagens de programação escolhidas foram:
 
 - [@vsnepomuceno](https://github.com/vsnepomuceno) como Vilmar Nepomuceno
 - [@milenamaced](https://github.com/milenamaced) como Milena Macedo 
-- [@Lucianocljr](https://github.com/Lucianocljr)  como Luciano Júnior
+- [@Lucianocljr](https://github.com/Lucianocljr)  como Luciano JÃºnior
 - [@CarlosAndreCordeiro](https://github.com/CarlosAndreCordeiro) como Carlos Cordeiro
-- [@Adriellycl](htts://githy.com/Adriellycl) como Adrielly Sales
+- [@adriellycl](https://github.com/adriellycl) como Adrielly Sales
 
 
-## Licença
+## LicenÃ§a
