@@ -35,7 +35,6 @@ public class Cliente {
     private String cpf;
     private String sexo;
     private String dataNasc;
-    private Endereco endereco;
     private String telefone;
     private String email;
     private Usuario usuario;
@@ -44,13 +43,12 @@ public class Cliente {
 
     }
 
-    public Cliente(int codigo, String nome, String cpf, String sexo, String dataNasc, Endereco endereco, String telefone, String email, Usuario usuario) {
+    public Cliente(int codigo, String nome, String cpf, String sexo, String dataNasc, String telefone, String email, Usuario usuario) {
         this.codigo = codigo;
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
         this.dataNasc = dataNasc;
-        this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
         this.usuario = usuario;
@@ -96,13 +94,6 @@ public class Cliente {
         this.dataNasc = dataNasc;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 
     public String getTelefone() {
         return telefone;
@@ -130,7 +121,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", usuario=" + usuario + '}';
+        return "Cliente{" + "codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", telefone=" + telefone + ", email=" + email + ", usuario=" + usuario + '}';
     }
     
     
@@ -143,7 +134,6 @@ public class Cliente {
         hash = 89 * hash + Objects.hashCode(this.cpf);
         hash = 89 * hash + Objects.hashCode(this.sexo);
         hash = 89 * hash + Objects.hashCode(this.dataNasc);
-        hash = 89 * hash + Objects.hashCode(this.endereco);
         hash = 89 * hash + Objects.hashCode(this.telefone);
         hash = 89 * hash + Objects.hashCode(this.email);
         hash = 89 * hash + Objects.hashCode(this.usuario);
@@ -183,9 +173,7 @@ public class Cliente {
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
-        if (!Objects.equals(this.endereco, other.endereco)) {
-            return false;
-        }
+ 
         if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }

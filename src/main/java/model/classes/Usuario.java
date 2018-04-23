@@ -33,16 +33,26 @@ public class Usuario {
    
     
     private int codigo;
+    private Endereco endereco;
     private String login;
     private String senha;
 
     public Usuario() {
     }
-    
-    
-    public Usuario(String login, String senha) {
+
+    public Usuario(int codigo, Endereco endereco, String login, String senha) {
+        this.codigo = codigo;
+        this.endereco = endereco;
         this.login = login;
         this.senha = senha;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
     
      public int getCodigo() {

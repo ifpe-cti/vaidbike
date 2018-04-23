@@ -37,7 +37,6 @@ public class Locatario {
     private String cpf;
     private String sexo;
     private String dataNasc;
-    private Endereco endereco;
     private String telefone;
     private String email;
     private Bike bike;
@@ -46,13 +45,13 @@ public class Locatario {
     public Locatario() {
     }
 
-    public Locatario(int codigo, String nome, String cpf, String sexo, String dataNasc, Endereco endereco, String telefone, String email, Bike bike, Usuario usuario) {
+    public Locatario(int codigo, String nome, String cpf, String sexo, String dataNasc, String telefone, String email, Bike bike, Usuario usuario) {
         this.codigo = codigo;
         this.nome = nome;
         this.cpf = cpf;
         this.sexo = sexo;
         this.dataNasc = dataNasc;
-        this.endereco = endereco;
+     
         this.telefone = telefone;
         this.email = email;
         this.bike = bike;
@@ -99,14 +98,7 @@ public class Locatario {
         this.dataNasc = dataNasc;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
+   
     public String getTelefone() {
         return telefone;
     }
@@ -143,7 +135,7 @@ public class Locatario {
 
     @Override
     public String toString() {
-        return "Locatario{" + "codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", bike=" + bike + ", usuario=" + usuario + '}';
+        return "Locatario{" + "codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc  + ", telefone=" + telefone + ", email=" + email + ", bike=" + bike + ", usuario=" + usuario + '}';
     }
  
     
@@ -155,7 +147,6 @@ public class Locatario {
         hash = 19 * hash + Objects.hashCode(this.cpf);
         hash = 19 * hash + Objects.hashCode(this.sexo);
         hash = 19 * hash + Objects.hashCode(this.dataNasc);
-        hash = 19 * hash + Objects.hashCode(this.endereco);
         hash = 19 * hash + Objects.hashCode(this.telefone);
         hash = 19 * hash + Objects.hashCode(this.email);
         hash = 19 * hash + Objects.hashCode(this.bike);
@@ -196,9 +187,7 @@ public class Locatario {
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
-        if (!Objects.equals(this.endereco, other.endereco)) {
-            return false;
-        }
+       
         if (!Objects.equals(this.bike, other.bike)) {
             return false;
         }
