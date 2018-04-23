@@ -19,7 +19,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
- */
+*/
+
 package model.classes;
 
 import java.util.Objects;
@@ -28,8 +29,9 @@ import java.util.Objects;
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
-public class Cliente {
-
+public class Locatario {
+    
+    
     private int codigo;
     private String nome;
     private String cpf;
@@ -38,13 +40,13 @@ public class Cliente {
     private Endereco endereco;
     private String telefone;
     private String email;
+    private Bike bike;
     private Usuario usuario;
 
-    public Cliente() {
-
+    public Locatario() {
     }
 
-    public Cliente(int codigo, String nome, String cpf, String sexo, String dataNasc, Endereco endereco, String telefone, String email, Usuario usuario) {
+    public Locatario(int codigo, String nome, String cpf, String sexo, String dataNasc, Endereco endereco, String telefone, String email, Bike bike, Usuario usuario) {
         this.codigo = codigo;
         this.nome = nome;
         this.cpf = cpf;
@@ -53,6 +55,7 @@ public class Cliente {
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
+        this.bike = bike;
         this.usuario = usuario;
     }
 
@@ -120,6 +123,14 @@ public class Cliente {
         this.email = email;
     }
 
+    public Bike getBike() {
+        return bike;
+    }
+
+    public void setBike(Bike bike) {
+        this.bike = bike;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -127,26 +138,28 @@ public class Cliente {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+    
+       
 
     @Override
     public String toString() {
-        return "Cliente{" + "codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", usuario=" + usuario + '}';
+        return "Locatario{" + "codigo=" + codigo + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", bike=" + bike + ", usuario=" + usuario + '}';
     }
-    
-    
+ 
     
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + this.codigo;
-        hash = 89 * hash + Objects.hashCode(this.nome);
-        hash = 89 * hash + Objects.hashCode(this.cpf);
-        hash = 89 * hash + Objects.hashCode(this.sexo);
-        hash = 89 * hash + Objects.hashCode(this.dataNasc);
-        hash = 89 * hash + Objects.hashCode(this.endereco);
-        hash = 89 * hash + Objects.hashCode(this.telefone);
-        hash = 89 * hash + Objects.hashCode(this.email);
-        hash = 89 * hash + Objects.hashCode(this.usuario);
+        hash = 19 * hash + this.codigo;
+        hash = 19 * hash + Objects.hashCode(this.nome);
+        hash = 19 * hash + Objects.hashCode(this.cpf);
+        hash = 19 * hash + Objects.hashCode(this.sexo);
+        hash = 19 * hash + Objects.hashCode(this.dataNasc);
+        hash = 19 * hash + Objects.hashCode(this.endereco);
+        hash = 19 * hash + Objects.hashCode(this.telefone);
+        hash = 19 * hash + Objects.hashCode(this.email);
+        hash = 19 * hash + Objects.hashCode(this.bike);
+        hash = 19 * hash + Objects.hashCode(this.usuario);
         return hash;
     }
 
@@ -161,7 +174,7 @@ public class Cliente {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cliente other = (Cliente) obj;
+        final Locatario other = (Locatario) obj;
         if (this.codigo != other.codigo) {
             return false;
         }
@@ -186,11 +199,15 @@ public class Cliente {
         if (!Objects.equals(this.endereco, other.endereco)) {
             return false;
         }
+        if (!Objects.equals(this.bike, other.bike)) {
+            return false;
+        }
         if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
         return true;
     }
     
-
+    
+    
 }
