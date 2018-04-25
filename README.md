@@ -28,6 +28,10 @@ Qualquer pessoa que deseja mudar a rotina ou começar a praticar ciclismo, melho
 
 A monetização virá através de "comissões" pelos aluguéis das bicicletas, e pela intermediação do serviço.
 
+## Diagrama de Classe
+
+![DiagramaClasse](docs/Diagrama-Classe.JPG)
+
 
 ## Ferramental utilizado
 
