@@ -19,8 +19,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
-
+ */
 package model.classes;
 
 import java.util.Objects;
@@ -30,22 +29,21 @@ import java.util.Objects;
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
 public class Pagamento {
-    
-    
+
     private int codigo;
     private String tipo;
     private double valor;
 
     public Pagamento() {
-    
+
     }
+
     public Pagamento(int codigo, String tipo, double valor) {
         this.codigo = codigo;
         this.tipo = tipo;
         this.valor = valor;
     }
 
-    
     public int getCodigo() {
         return codigo;
     }
@@ -107,5 +105,5 @@ public class Pagamento {
     public String toString() {
         return "Pagamento{" + "codigo=" + codigo + ", tipo=" + tipo + ", valor=" + valor + '}';
     }
-
+    
 }

@@ -19,8 +19,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
-
+ */
 package model.classes;
 
 import java.util.Objects;
@@ -30,7 +29,7 @@ import java.util.Objects;
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
 public class Bike {
-    
+
     private int codigo;
     private String modelo;
     private String tipo;
@@ -39,7 +38,6 @@ public class Bike {
     public Bike() {
     }
 
-    
     public Bike(int codigo, String modelo, String tipo, String cor) {
         this.codigo = codigo;
         this.modelo = modelo;
@@ -77,14 +75,13 @@ public class Bike {
 
     public void setCor(String cor) {
         this.cor = cor;
-    } 
+    }
 
     @Override
     public String toString() {
         return "Bike{" + "codigo=" + codigo + ", modelo=" + modelo + ", tipo=" + tipo + ", cor=" + cor + '}';
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -121,7 +118,5 @@ public class Bike {
         }
         return true;
     }
-    
-    
-    
+
 }
