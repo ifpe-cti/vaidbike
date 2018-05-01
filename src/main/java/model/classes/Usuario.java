@@ -25,60 +25,37 @@ package model.classes;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
-
-@Entity 
 public class Usuario {
-    
-    @Id
-    @GeneratedValue
+
     private int codigo;
-    
-    @Column
+
     private String login;
-    
+
     private String senha;
-    
-    @Column
+
     private String nome;
-    
-    @Column
+
     private String cpf;
-    
-    @Column
+
     private String sexo;
-    
-    @Column
+
     private Date dataNasc;
-    
-    @OneToOne(cascade = CascadeType.ALL)
+
     private Endereco endereco;
-    
-    @Column
+
     private String telefone;
-    
-    @Column
+
     private String email;
-    
-    @OneToMany(mappedBy = "bike", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+
     private List<Bike> bike;
-    
-    @Deprecated
+
     public Usuario() {
-        this.endereco = new Endereco();
-        
+
     }
 
     public Usuario(int codigo, String login, String senha, String nome, String cpf, String sexo, Date dataNasc, Endereco endereco, String telefone, String email, List<Bike> bike) {
@@ -253,5 +230,4 @@ public class Usuario {
         return "Usuario{" + "codigo=" + codigo + ", login=" + login + ", senha=" + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", bike=" + bike + '}';
     }
 
-    
 }
