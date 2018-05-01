@@ -34,25 +34,26 @@ import javax.persistence.Id;
  */
 @Entity
 public class Endereco {
+
     @Id
     @GeneratedValue
     private int codigo;
-    
+
     @Column
     private String estado;
-    
+
     @Column
     private String cidade;
-    
+
     @Column
     private String cep;
-    
+
     @Column
     private String bairro;
-    
+
     @Column
     private String rua;
-    
+
     @Column
     private String numero;
 
@@ -177,5 +178,5 @@ public class Endereco {
     public String toString() {
         return "Endereco{" + "codigo=" + codigo + ", estado=" + estado + ", cidade=" + cidade + ", cep=" + cep + ", bairro=" + bairro + ", rua=" + rua + ", numero=" + numero + '}';
     }
-    
+
 }

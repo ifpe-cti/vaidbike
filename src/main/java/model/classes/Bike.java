@@ -34,17 +34,17 @@ import javax.persistence.Id;
  */
 @Entity
 public class Bike {
-    
+
     @Id
     @GeneratedValue
     private int codigo;
-    
+
     @Column
     private String modelo;
-    
+
     @Column
     private String tipo;
-    
+
     @Column
     private String cor;
 

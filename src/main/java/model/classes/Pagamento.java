@@ -23,8 +23,6 @@ SOFTWARE.
 package model.classes;
 
 import java.util.Objects;
-
-
 /**
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
