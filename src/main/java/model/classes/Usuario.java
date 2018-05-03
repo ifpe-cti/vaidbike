@@ -55,7 +55,6 @@ public class Usuario {
     private String sexo;
     @Column(length = 8)
     private Date dataNasc;
-   
     @OneToOne
     @JoinColumn(name ="cod_endereco",referencedColumnName ="id_endereco")
     private Endereco endereco;

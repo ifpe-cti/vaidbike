@@ -33,6 +33,6 @@ public interface UsuarioDao extends  Dao<Usuario>{
         
         public boolean logarUsuario(String login,String senha); 
         public Usuario recuperarCpf(String cpf);
-        public Usuario recuperarBike(int codigo);
+        //public Usuario recuperarBike(int codigo);
     
 }

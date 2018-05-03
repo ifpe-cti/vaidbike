@@ -21,33 +21,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package model.classes;
-
-import junit.framework.Assert;
-import org.junit.Test;
+package controller;
 
 /**
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
-public class BikeTeste {
+public class UsuarioController {
 
-    @Test
-    public void bikeTest(){
-        Bike b = new Bike();
-        b.setModelo("Monake");
-        b.setCor("Vermelha");
-        b.setTipo("Comum");
-        
-        Assert.assertEquals("Monake", b.getModelo());
-        Assert.assertEquals("Vermelha", b.getCor());
-        Assert.assertEquals("Comum", b.getTipo());
-    }
-   
-    
-    
-    
-    
-    
-    
 }
