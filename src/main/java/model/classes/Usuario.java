@@ -25,23 +25,41 @@ package model.classes;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
 public class Usuario {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    
     private int codigo;
+    @Column(length = 20)
     private String login;
+    @Column(length = 20)
     private String senha;
+    @Column(length = 50)
     private String nome;
+    @Column(length = 15)
     private String cpf;
+    @Column(length = 10)
     private String sexo;
+    @Column(length = 8)
     private Date dataNasc;
+    @Column(length = 50)
     private Endereco endereco;
+    @Column(length = 12)
     private String telefone;
+    @Column(length = 30)
     private String email;
+    @OneToMany (mappedBy = "usuario", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private List<Bike> bike;
 
     public Usuario() {
