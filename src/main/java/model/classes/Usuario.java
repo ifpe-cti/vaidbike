@@ -31,7 +31,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -53,7 +55,9 @@ public class Usuario {
     private String sexo;
     @Column(length = 8)
     private Date dataNasc;
-    @Column(length = 50)
+   
+    @OneToOne
+    @JoinColumn(name ="cod_endereco",referencedColumnName ="id_endereco")
     private Endereco endereco;
     @Column(length = 12)
     private String telefone;
