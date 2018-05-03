@@ -30,5 +30,9 @@ import model.classes.Usuario;
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
 public interface UsuarioDao extends  Dao<Usuario>{
-
+        
+        public boolean logarUsuario(String login,String senha); 
+        public Usuario recuperarCpf(String cpf);
+        public Usuario recuperarBike(int codigo);
+    
 }

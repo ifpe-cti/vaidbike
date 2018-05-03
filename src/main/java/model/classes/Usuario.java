@@ -169,18 +169,18 @@ public class Usuario {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.codigo;
-        hash = 67 * hash + Objects.hashCode(this.login);
-        hash = 67 * hash + Objects.hashCode(this.senha);
-        hash = 67 * hash + Objects.hashCode(this.nome);
-        hash = 67 * hash + Objects.hashCode(this.cpf);
-        hash = 67 * hash + Objects.hashCode(this.sexo);
-        hash = 67 * hash + Objects.hashCode(this.dataNasc);
-        hash = 67 * hash + Objects.hashCode(this.endereco);
-        hash = 67 * hash + Objects.hashCode(this.telefone);
-        hash = 67 * hash + Objects.hashCode(this.email);
-        hash = 67 * hash + Objects.hashCode(this.bike);
+        int hash = 3;
+        hash = 37 * hash + this.codigo;
+        hash = 37 * hash + Objects.hashCode(this.login);
+        hash = 37 * hash + Objects.hashCode(this.senha);
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.cpf);
+        hash = 37 * hash + Objects.hashCode(this.sexo);
+        hash = 37 * hash + Objects.hashCode(this.dataNasc);
+        hash = 37 * hash + Objects.hashCode(this.endereco);
+        hash = 37 * hash + Objects.hashCode(this.telefone);
+        hash = 37 * hash + Objects.hashCode(this.email);
+        hash = 37 * hash + Objects.hashCode(this.bike);
         return hash;
     }
 
@@ -236,6 +236,7 @@ public class Usuario {
     public String toString() {
         return "Usuario{" + "codigo=" + codigo + ", login=" + login + ", senha=" + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", bike=" + bike + '}';
     }
+
 
     
 }
