@@ -1,0 +1,60 @@
+@startuml
+
+left to right direction
+skinparam classAttributeIconSize 0
+
+class Bike {
+  -int codigo
+  -String modelo
+  -String cor
+  -String tipo
+}
+
+class Pagamento {
+  -int codigo
+  -String tipo
+  -double valor
+}
+
+class Usuario {
+  -int codigo
+  -String login
+  -String senha
+  -String nome
+  -String cpf
+  -String sexo
+  -LocalDate nascimento
+  -String telefone
+  -String email
+}
+
+class Endereco {
+  -int codigo
+  -String estado    
+  -String cidade
+  -String cep
+  -String bairro
+  -String logradouro
+  -String numero
+  -String complemento      
+}
+
+class Locacao {
+  -int codigo
+  -LocalDateTime retirada
+  -LocalDateTime devolucao
+}
+
+class Pagamento {
+  -int codigo
+  -String tipo
+  -double valor    
+}
+
+Bike "0..*" o-- "1" Usuario
+Usuario --> Endereco
+Locacao --> "-locatario" Usuario
+Locacao --> "-cliente" Usuario
+Locacao --> Pagamento
+
+@enduml
