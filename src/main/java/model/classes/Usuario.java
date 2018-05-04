@@ -66,6 +66,7 @@ public class Usuario {
     private List<Bike> bike;
 
     public Usuario() {
+
     }
 
     public Usuario(int codigo, String login, String senha, String nome, String cpf, String sexo, Date dataNasc, Endereco endereco, String telefone, String email, List<Bike> bike) {
@@ -239,7 +240,4 @@ public class Usuario {
     public String toString() {
         return "Usuario{" + "codigo=" + codigo + ", login=" + login + ", senha=" + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", bike=" + bike + '}';
     }
-
-
-    
 }

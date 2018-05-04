@@ -23,15 +23,17 @@ SOFTWARE.
 package model.classes;
 
 import java.util.Objects;
-
 /**
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
+
 public class Pagamento {
 
     private int codigo;
+    
     private String tipo;
+    
     private double valor;
 
     public Pagamento() {

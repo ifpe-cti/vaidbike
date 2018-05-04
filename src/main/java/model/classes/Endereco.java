@@ -23,20 +23,38 @@ SOFTWARE.
 package model.classes;
 
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
-
+@Entity
 public class Endereco {
 
+    @Id
+    @GeneratedValue
     private int codigo;
+
+    @Column
     private String estado;
+
+    @Column
     private String cidade;
+
+    @Column
     private String cep;
+
+    @Column
     private String bairro;
+
+    @Column
     private String rua;
+
+    @Column
     private String numero;
 
     public Endereco() {
@@ -160,5 +178,5 @@ public class Endereco {
     public String toString() {
         return "Endereco{" + "codigo=" + codigo + ", estado=" + estado + ", cidade=" + cidade + ", cep=" + cep + ", bairro=" + bairro + ", rua=" + rua + ", numero=" + numero + '}';
     }
-    
+
 }
