@@ -22,11 +22,13 @@ SOFTWARE.
  */
 package model.interfacesDao;
 
+import model.classes.Locacao;
+
 /**
  *
  * @author User
  */
-public interface LocacaoDao extends Dao {
+public interface LocacaoDao extends Dao<Locacao> {
     
     /*Local reservado para implementação de métodos especificos da classe.*/
     
