@@ -32,6 +32,7 @@ import model.classes.Usuario;
 public interface UsuarioDao extends Dao<Usuario>{
     
     public Usuario recuperar(String cpf);
+    public Usuario recuperar(String login,String senha);
   
 
 }

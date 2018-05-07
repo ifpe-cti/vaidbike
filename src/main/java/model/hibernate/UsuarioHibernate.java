@@ -22,6 +22,7 @@ SOFTWARE.
  */
 package model.hibernate;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.classes.Usuario;
 import model.interfacesDao.UsuarioDao;
@@ -64,7 +65,27 @@ public class UsuarioHibernate implements UsuarioDao {
         } finally {
             session.close();
         }
+        return null;
+    }
 
+    @Override
+    public Usuario recuperar(String login, String senha) {
+        Session session = this.sessions.openSession();
+        List<Usuario> usuarios = new ArrayList<>();
+        try {
+
+            usuarios = session.createQuery("From Usuario where login = '" + login + "' and senha = '" + senha + "'").list();
+            if (usuarios.size() > 0) {
+                return usuarios.get(0);
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("Erro ao recuperar o Usuário pelo loigin e pela senha no banco de dados. \n" + e);
+
+        } finally {
+            session.close();
+        }
         return null;
 
     }
