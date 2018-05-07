@@ -70,11 +70,6 @@ public class UsuarioHibernate implements UsuarioDao {
     }
 
     @Override
-    public Usuario recuperar(String login, String senha) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void inserir(Usuario usuario) {
         Session session = this.sessions.openSession();
         Transaction transaction = session.beginTransaction();
