@@ -25,40 +25,52 @@ package model.classes;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
- * @author Milena Macedo - milenasantosmcd@gmail.com
+ * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
 public class Usuario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
-
+    @Column(length = 50)
     private String login;
-
+    @Column(length = 50)
     private String senha;
-
+    @Column(length = 20)
     private String nome;
-
+    @Column(length = 15)
     private String cpf;
-
+    @Column(length = 5)
     private String sexo;
-
+    @Column(length = 10)
     private Date dataNasc;
-
+    @OneToOne
+    @JoinColumn(name = "cod_endereco", referencedColumnName = "id_endereco")
     private Endereco endereco;
-
+    @Column(length = 15)
     private String telefone;
-
+    @Column(length = 20)
     private String email;
-
-    private List<Bike> bike;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    private List<Bike> bikes;
 
     public Usuario() {
 
     }
 
-    public Usuario(int codigo, String login, String senha, String nome, String cpf, String sexo, Date dataNasc, Endereco endereco, String telefone, String email, List<Bike> bike) {
+    public Usuario(int codigo, String login, String senha, String nome, String cpf, String sexo, Date dataNasc, Endereco endereco, String telefone, String email, List<Bike> bikes) {
         this.codigo = codigo;
         this.login = login;
         this.senha = senha;
@@ -69,7 +81,7 @@ public class Usuario {
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
-        this.bike = bike;
+        this.bikes = bikes;
     }
 
     public int getCodigo() {
@@ -152,12 +164,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public List<Bike> getBike() {
-        return bike;
+    public List<Bike> getBikes() {
+        return bikes;
     }
 
-    public void setBike(List<Bike> bike) {
-        this.bike = bike;
+    public void setBikes(List<Bike> bikes) {
+        this.bikes = bikes;
     }
 
     @Override
@@ -173,7 +185,7 @@ public class Usuario {
         hash = 67 * hash + Objects.hashCode(this.endereco);
         hash = 67 * hash + Objects.hashCode(this.telefone);
         hash = 67 * hash + Objects.hashCode(this.email);
-        hash = 67 * hash + Objects.hashCode(this.bike);
+        hash = 67 * hash + Objects.hashCode(this.bikes);
         return hash;
     }
 
@@ -219,7 +231,7 @@ public class Usuario {
         if (!Objects.equals(this.endereco, other.endereco)) {
             return false;
         }
-        if (!Objects.equals(this.bike, other.bike)) {
+        if (!Objects.equals(this.bikes, other.bikes)) {
             return false;
         }
         return true;
@@ -227,7 +239,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "codigo=" + codigo + ", login=" + login + ", senha=" + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", bike=" + bike + '}';
+        return "Usuario{" + "codigo=" + codigo + ", login=" + login + ", senha=" + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", bikes=" + bikes + '}';
     }
 
 }
