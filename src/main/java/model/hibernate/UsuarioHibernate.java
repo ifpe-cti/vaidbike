@@ -19,13 +19,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
-
+ */
 package model.hibernate;
 
 import java.util.List;
 import model.classes.Usuario;
 import model.interfacesDao.UsuarioDao;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 /**
  *
@@ -33,9 +36,37 @@ import model.interfacesDao.UsuarioDao;
  */
 public class UsuarioHibernate implements UsuarioDao {
 
+    private SessionFactory sessions;
+    private static UsuarioHibernate instance;
+
+    public static UsuarioHibernate getInstance() {
+        if (instance != null) {
+            instance = new UsuarioHibernate();
+        }
+        return instance;
+    }
+
+    public UsuarioHibernate() {
+        Configuration cfg = new Configuration().configure();
+        this.sessions = cfg.buildSessionFactory();
+    }
+
     @Override
     public Usuario recuperar(String cpf) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Session session = this.sessions.openSession();
+
+        try {
+            return (Usuario) session.createQuery("From Usuario where cpf = '" + cpf + "'").list().get(0);
+        } catch (Exception e) {
+            System.out.println("Erro ao recuperar o Usuário pelo cpf no banco de dados. \n" + e);
+            //lembtrar de tratar essa excessao posteriormente.
+
+        } finally {
+            session.close();
+        }
+
+        return null;
+
     }
 
     @Override
@@ -44,28 +75,91 @@ public class UsuarioHibernate implements UsuarioDao {
     }
 
     @Override
-    public void inserir(Usuario d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void inserir(Usuario usuario) {
+        Session session = this.sessions.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.save(usuario);
+            transaction.commit();
+        } catch (Exception e) {
+            System.out.println("Erro ao Inserir Usuário no banco de dados. \n" + e);
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+
     }
 
     @Override
-    public void alterar(Usuario d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void alterar(Usuario usuario) {
+        Session session = this.sessions.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.update(usuario);
+            transaction.commit();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao alterar o Usuário no banco de dados. \n" + e);
+            //lembtrar de tratar essa excessao posteriormente.
+            transaction.rollback();
+
+        } finally {
+            session.close();
+        }
     }
 
     @Override
-    public Usuario recuperar(Usuario d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario recuperar(int codigo) {
+        Session session = this.sessions.openSession();
+
+        try {
+
+            return (Usuario) session.createQuery("From Usuario where codigo=" + codigo).list().get(0);
+
+        } catch (Exception e) {
+            System.out.println("Erro ao recuperar o código do Usuário no banco de dados. \n" + e);
+            //lembtrar de tratar essa excessao posteriormente.
+        } finally {
+            session.close();
+        }
+        return null;
+
     }
 
     @Override
-    public void deletar(Usuario d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void deletar(Usuario usuario) {
+        Session session = this.sessions.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            session.delete(usuario);
+
+        } catch (Exception e) {
+
+            System.out.println("Erro ao deletar o Usuário no banco de dados. \n" + e);
+            //lembtrar de tratar essa excessao posteriormente.
+            transaction.rollback();
+
+        } finally {
+            session.close();
+        }
+
     }
 
     @Override
     public List<Usuario> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Session session = this.sessions.openSession();
+        try {
+            return (List) session.createQuery("from Usuario").list();
+        } catch (Exception e) {
+            System.out.println("Erro ao listar todoos os Usuários no banco de dados. \n" + e);
+            //lembtrar de tratar essa excessao posteriormente.
+
+        } finally {
+            session.close();
+        }
+        return null;
+
     }
 
 }
