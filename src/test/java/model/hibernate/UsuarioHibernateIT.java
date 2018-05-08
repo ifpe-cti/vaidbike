@@ -22,10 +22,9 @@ SOFTWARE.
  */
 package model.hibernate;
 
-import java.util.List;
-import model.classes.Usuario;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+
 
 /**
  *
@@ -41,12 +40,7 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testGetInstance() {
-        System.out.println("getInstance");
-        UsuarioHibernate expResult = null;
-        UsuarioHibernate result = UsuarioHibernate.getInstance();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    
     }
 
     /**
@@ -54,30 +48,14 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testRecuperar_String() {
-        System.out.println("recuperar");
-        String cpf = "";
-        UsuarioHibernate instance = new UsuarioHibernate();
-        Usuario expResult = null;
-        Usuario result = instance.recuperar(cpf);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+       }
 
     /**
      * Test of recuperar method, of class UsuarioHibernate.
      */
     @Test
     public void testRecuperar_String_String() {
-        System.out.println("recuperar");
-        String login = "";
-        String senha = "";
-        UsuarioHibernate instance = new UsuarioHibernate();
-        Usuario expResult = null;
-        Usuario result = instance.recuperar(login, senha);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      
     }
 
     /**
@@ -85,12 +63,7 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testInserir() {
-        System.out.println("inserir");
-        Usuario usuario = null;
-        UsuarioHibernate instance = new UsuarioHibernate();
-        instance.inserir(usuario);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      
     }
 
     /**
@@ -98,12 +71,7 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testAlterar() {
-        System.out.println("alterar");
-        Usuario usuario = null;
-        UsuarioHibernate instance = new UsuarioHibernate();
-        instance.alterar(usuario);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -111,14 +79,7 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testRecuperar_int() {
-        System.out.println("recuperar");
-        int codigo = 0;
-        UsuarioHibernate instance = new UsuarioHibernate();
-        Usuario expResult = null;
-        Usuario result = instance.recuperar(codigo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+  
     }
 
     /**
@@ -126,12 +87,7 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testDeletar() {
-        System.out.println("deletar");
-        Usuario usuario = null;
-        UsuarioHibernate instance = new UsuarioHibernate();
-        instance.deletar(usuario);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**
@@ -139,13 +95,7 @@ public class UsuarioHibernateIT {
      */
     @Test
     public void testListarTodos() {
-        System.out.println("listarTodos");
-        UsuarioHibernate instance = new UsuarioHibernate();
-        List<Usuario> expResult = null;
-        List<Usuario> result = instance.listarTodos();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
     
 }
