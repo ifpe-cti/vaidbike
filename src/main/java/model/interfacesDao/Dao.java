@@ -34,7 +34,7 @@ public interface Dao<D> {
 
     public void alterar(D d);
 
-    public D recuperar(D d);
+    public D recuperar(int codigo);
 
     public void deletar(D d);
 
