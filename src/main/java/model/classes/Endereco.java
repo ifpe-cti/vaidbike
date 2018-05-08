@@ -56,7 +56,8 @@ public class Endereco {
 
     @Column
     private String numero;
-
+    
+    @Deprecated
     public Endereco() {
     }
 
