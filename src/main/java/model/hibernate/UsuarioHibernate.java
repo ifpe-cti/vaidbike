@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -74,7 +75,8 @@ public class UsuarioHibernate implements UsuarioDao {
         List<Usuario> usuarios = new ArrayList<>();
         try {
 
-            usuarios = session.createQuery("From Usuario where login = '" + login + "' and senha = '" + senha + "'").list();
+            usuarios = session.createQuery("From Usuario where login = '" + 
+                    login + "' and senha = '" + senha + "'").list();
             if (usuarios.size() > 0) {
                 return usuarios.get(0);
 
