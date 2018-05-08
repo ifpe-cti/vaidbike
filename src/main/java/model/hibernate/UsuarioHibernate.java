@@ -71,15 +71,17 @@ public class UsuarioHibernate implements UsuarioDao {
 
     @Override
     public Usuario recuperar(String login, String senha) {
+        
         Session session = this.sessions.openSession();
+        
         List<Usuario> usuarios = new ArrayList<>();
+        
         try {
 
             usuarios = session.createQuery("From Usuario where login = '"
                     + login + "' and senha = '" + senha + "'").list();
             if (usuarios.size() > 0) {
                 return usuarios.get(0);
-
             }
 
         } catch (Exception e) {
@@ -89,7 +91,6 @@ public class UsuarioHibernate implements UsuarioDao {
             session.close();
         }
         return null;
-
     }
 
     @Override
