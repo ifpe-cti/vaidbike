@@ -19,8 +19,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
-
+ */
 package model.interfacesDao;
 
 import model.classes.Usuario;
@@ -29,10 +28,10 @@ import model.classes.Usuario;
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
-public interface UsuarioDao extends Dao<Usuario>{
-    
+public interface UsuarioDao extends Dao<Usuario> {
+
     public Usuario recuperar(String cpf);
-    public Usuario recuperar(String login,String senha);
-  
+
+    public Usuario recuperar(String login, String senha);
 
 }

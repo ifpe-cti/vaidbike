@@ -41,7 +41,7 @@ public class Locacao {
     public Locacao() {
     }
 
-    public Locacao(int codigo, Usuario cliente, Usuario locatario, 
+    public Locacao(int codigo, Usuario cliente, Usuario locatario,
             Date retirada, Date devolucao, Pagamento pagamento) {
         this.codigo = codigo;
         this.cliente = cliente;
@@ -146,8 +146,8 @@ public class Locacao {
 
     @Override
     public String toString() {
-        return "Locacao{" + "codigo=" + codigo + ", cliente=" + cliente + 
-                ", locatario=" + locatario + ", retirada=" + retirada + 
-                ", devolucao=" + devolucao + ", pagamento=" + pagamento + '}';
+        return "Locacao{" + "codigo=" + codigo + ", cliente=" + cliente
+                + ", locatario=" + locatario + ", retirada=" + retirada
+                + ", devolucao=" + devolucao + ", pagamento=" + pagamento + '}';
     }
 }

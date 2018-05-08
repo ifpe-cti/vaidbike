@@ -23,6 +23,7 @@ SOFTWARE.
 package model.classes;
 
 import java.util.Objects;
+
 /**
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
@@ -31,9 +32,9 @@ import java.util.Objects;
 public class Pagamento {
 
     private int codigo;
-    
+
     private String tipo;
-    
+
     private double valor;
 
     public Pagamento() {
@@ -107,5 +108,5 @@ public class Pagamento {
     public String toString() {
         return "Pagamento{" + "codigo=" + codigo + ", tipo=" + tipo + ", valor=" + valor + '}';
     }
-    
+
 }

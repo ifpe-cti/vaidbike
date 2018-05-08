@@ -75,8 +75,8 @@ public class UsuarioHibernate implements UsuarioDao {
         List<Usuario> usuarios = new ArrayList<>();
         try {
 
-            usuarios = session.createQuery("From Usuario where login = '" + 
-                    login + "' and senha = '" + senha + "'").list();
+            usuarios = session.createQuery("From Usuario where login = '"
+                    + login + "' and senha = '" + senha + "'").list();
             if (usuarios.size() > 0) {
                 return usuarios.get(0);
 
