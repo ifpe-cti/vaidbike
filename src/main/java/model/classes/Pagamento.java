@@ -23,18 +23,24 @@ SOFTWARE.
 package model.classes;
 
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
-
+@Entity
 public class Pagamento {
 
+    @Id
+    @GeneratedValue
     private int codigo;
-
+    @Column(length=50)
     private String tipo;
-
+    @Column(length=10)
     private double valor;
 
     public Pagamento() {

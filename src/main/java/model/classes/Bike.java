@@ -39,10 +39,10 @@ public class Bike {
     @GeneratedValue
     private int codigo;
 
-    @Column
+    @Column(length=50)
     private String modelo;
 
-    @Column
+    @Column(length=50)
     private String tipo;
 
     @Column
