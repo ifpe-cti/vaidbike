@@ -9,7 +9,7 @@ import java.util.InputMismatchException;
 
 /**
  *
- * @author BobaNote
+ * @author Copiado de: https://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
  */
 public class ValidarCpf {
    
@@ -73,6 +73,6 @@ public class ValidarCpf {
     return(CPF.substring(0, 3) + "." + CPF.substring(3, 6) + "." +
       CPF.substring(6, 9) + "-" + CPF.substring(9, 11));
   }
-//Copiado de: https://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
+
     
 }
