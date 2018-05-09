@@ -84,7 +84,7 @@ public class UsuarioModel {
     public Usuario recuperar(String cpf) throws Exception {
 
         if (cpf == null) {
-            throw new Exception("Erro ao alterar o usuário no UsuarioModel!");
+            throw new Exception("Erro ao recuperar o usuário no UsuarioModel!");
         }
         return ((UsuarioDao) dao).recuperar(cpf);
     }
