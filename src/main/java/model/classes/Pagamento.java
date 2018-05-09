@@ -38,9 +38,9 @@ public class Pagamento {
     @Id
     @GeneratedValue
     private int codigo;
-    @Column
+    @Column(length=50)
     private String tipo;
-    @Column
+    @Column(length=10)
     private double valor;
 
     public Pagamento() {
