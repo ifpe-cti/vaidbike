@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,6 +40,7 @@ import javax.persistence.OneToOne;
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
+@Entity
 public class Usuario {
 
     @Id
@@ -57,21 +59,25 @@ public class Usuario {
     @Column(length = 10)
     private Date dataNasc;
     @OneToOne
-    @JoinColumn(name = "cod_endereco", referencedColumnName = "id_endereco")
+    @JoinColumn(name = "cod_endereco", referencedColumnName = "codigo")
     private Endereco endereco;
     @Column(length = 15)
     private String telefone;
     @Column(length = 20)
     private String email;
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.MERGE,
+            fetch = FetchType.EAGER)
     private List<Bike> bikes;
 
     public Usuario() {
 
     }
 
-    public Usuario(int codigo, String login, String senha, String nome, String cpf, String sexo, Date dataNasc, Endereco endereco, String telefone, String email, List<Bike> bikes) {
-        this.codigo = codigo;
+    public Usuario(String login, String senha, String nome, String cpf,
+            String sexo, Date dataNasc, Endereco endereco, String telefone,
+            String email, List<Bike> bikes) {
+//      this.codigo = codigo;
         this.login = login;
         this.senha = senha;
         this.nome = nome;
@@ -87,10 +93,10 @@ public class Usuario {
     public int getCodigo() {
         return codigo;
     }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
+//
+//    public void setCodigo(int codigo) {
+//        this.codigo = codigo;
+//    }
 
     public String getLogin() {
         return login;
@@ -239,7 +245,11 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "codigo=" + codigo + ", login=" + login + ", senha=" + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo + ", dataNasc=" + dataNasc + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", bikes=" + bikes + '}';
+        return "Usuario{" + "codigo=" + codigo + ", login=" + login + ", senha="
+                + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo
+                + ", dataNasc=" + dataNasc + ", endereco=" + endereco
+                + ", telefone=" + telefone + ", email=" + email + ", bikes="
+                + bikes + '}';
     }
 
 }

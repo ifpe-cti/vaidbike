@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +27,10 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -36,7 +40,7 @@ import javax.persistence.Id;
 public class Bike {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
 
     @Column(length=50)
@@ -48,11 +52,17 @@ public class Bike {
     @Column
     private String cor;
 
+    @OneToOne
+    @JoinColumn(name = "cod_asuario", referencedColumnName = "codigo")
+    private Usuario usuario;
+
+       
+    @Deprecated
     public Bike() {
     }
 
-    public Bike(int codigo, String modelo, String tipo, String cor) {
-        this.codigo = codigo;
+    public Bike(String modelo, String tipo, String cor) {
+//        this.codigo = codigo;
         this.modelo = modelo;
         this.tipo = tipo;
         this.cor = cor;
@@ -61,10 +71,10 @@ public class Bike {
     public int getCodigo() {
         return codigo;
     }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
+//
+//    public void setCodigo(int codigo) {
+//        this.codigo = codigo;
+//    }
 
     public String getModelo() {
         return modelo;

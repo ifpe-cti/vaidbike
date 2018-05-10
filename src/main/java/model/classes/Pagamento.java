@@ -38,17 +38,19 @@ public class Pagamento {
     @Id
     @GeneratedValue
     private int codigo;
+  
     @Column(length=50)
     private String tipo;
     @Column(length=10)
+
     private double valor;
 
     public Pagamento() {
 
     }
 
-    public Pagamento(int codigo, String tipo, double valor) {
-        this.codigo = codigo;
+    public Pagamento(String tipo, double valor) {
+//      this.codigo = codigo;
         this.tipo = tipo;
         this.valor = valor;
     }
@@ -56,10 +58,10 @@ public class Pagamento {
     public int getCodigo() {
         return codigo;
     }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
+//
+//    public void setCodigo(int codigo) {
+//        this.codigo = codigo;
+//    }
 
     public String getTipo() {
         return tipo;
