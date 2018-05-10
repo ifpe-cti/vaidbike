@@ -113,6 +113,9 @@ public class UsuarioController {
        }
        
        
+//       Verificar se é necessario geters an setters
+       
+       
     public UsuarioHibernate getUsuarioHibernate() {
         return usuarioHibernate;
     }
