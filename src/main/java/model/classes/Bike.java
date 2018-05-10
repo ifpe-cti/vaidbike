@@ -43,10 +43,10 @@ public class Bike {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
 
-    @Column
+    @Column(length=50)
     private String modelo;
 
-    @Column
+    @Column(length=50)
     private String tipo;
 
     @Column

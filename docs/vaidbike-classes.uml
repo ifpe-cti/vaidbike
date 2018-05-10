@@ -45,11 +45,6 @@ class Locacao {
   -LocalDateTime devolucao
 }
 
-class Pagamento {
-  -int codigo
-  -String tipo
-  -double valor    
-}
 
 Bike "0..*" o-- "1" Usuario
 Usuario --> Endereco
