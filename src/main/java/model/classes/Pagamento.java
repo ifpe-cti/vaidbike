@@ -23,26 +23,32 @@ SOFTWARE.
 package model.classes;
 
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
-
+@Entity
 public class Pagamento {
 
+    @Id
+    @GeneratedValue
     private int codigo;
-
+    @Column
     private String tipo;
-
+    @Column
     private double valor;
 
     public Pagamento() {
 
     }
 
-    public Pagamento(int codigo, String tipo, double valor) {
-        this.codigo = codigo;
+    public Pagamento(String tipo, double valor) {
+//      this.codigo = codigo;
         this.tipo = tipo;
         this.valor = valor;
     }
@@ -50,10 +56,10 @@ public class Pagamento {
     public int getCodigo() {
         return codigo;
     }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
+//
+//    public void setCodigo(int codigo) {
+//        this.codigo = codigo;
+//    }
 
     public String getTipo() {
         return tipo;

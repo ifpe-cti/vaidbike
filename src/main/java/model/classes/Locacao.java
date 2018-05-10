@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,26 +25,44 @@ package model.classes;
 
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
+@Entity
 public class Locacao {
-
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    @OneToOne
+    @JoinColumn(name = "cod_cliente", referencedColumnName = "codigo")
     private Usuario cliente;
+    @OneToOne
+    @JoinColumn(name = "cod_locatario", referencedColumnName = "codigo")
     private Usuario locatario;
+    @Column
     private Date retirada;
+    @Column
     private Date devolucao;
+    @OneToOne
+    @JoinColumn(name = "cod_pagamento", referencedColumnName = "codigo")
     private Pagamento pagamento;
 
     public Locacao() {
     }
 
-    public Locacao(int codigo, Usuario cliente, Usuario locatario,
+    public Locacao( Usuario cliente, Usuario locatario,
             Date retirada, Date devolucao, Pagamento pagamento) {
-        this.codigo = codigo;
+      //  this.codigo = codigo;
         this.cliente = cliente;
         this.locatario = locatario;
         this.retirada = retirada;
@@ -55,9 +74,9 @@ public class Locacao {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
+//    public void setCodigo(int codigo) {
+//        this.codigo = codigo;
+//    }
 
     public Usuario getCliente() {
         return cliente;
