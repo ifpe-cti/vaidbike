@@ -24,10 +24,121 @@ SOFTWARE.
 
 package controller;
 
+import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import model.classes.Usuario;
+import model.hibernate.UsuarioHibernate;
+
 /**
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
+
+@ManagedBean(name = "usuarioController")
+//@ViewScoped
+@SessionScoped
 public class UsuarioController {
+    
+    private UsuarioHibernate usuarioHibernate;
+    private Usuario cadUsuario;
+    private Usuario selectedUsuario = (Usuario) FacesContext.
+            getCurrentInstance().getExternalContext().getSessionMap().
+            get("usuarioLogado");
+
+    public UsuarioController() {
+        this.usuarioHibernate = new UsuarioHibernate();
+        this.cadUsuario = new Usuario();
+    }
+    
+    
+    public String inserir(){
+        this.usuarioHibernate.inserir(this.cadUsuario);
+        
+        this.cadUsuario = new Usuario();
+        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+        ("Usuario cadastrado com sucesso!"));    
+        
+        return ".xhtml";
+    }
+    
+     public String alterar(){
+        this.usuarioHibernate.alterar(this.selectedUsuario);
+        
+        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+        ("Usuario alterado com sucesso!"));
+        this.cadUsuario = new Usuario();
+        
+        return ".xhtml";
+        
+    }
+    
+    
+     public String deletar(){
+        this.usuarioHibernate.deletar(this.selectedUsuario);
+        
+        this.cadUsuario = new Usuario();
+        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+        ("Usuario deletado com sucesso!"));
+        
+        return "index.xhtml";
+    
+     }
+    
+     
+      public String recuperar(){
+        this.usuarioHibernate.recuperar(this.selectedUsuario.getCodigo());
+        this.cadUsuario = new Usuario();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+        ("Usuario alterado com sucesso!"));
+        return ".xhtml";   
+      }
+      
+      public String recuperarCpf(){
+        this.usuarioHibernate.recuperar(this.selectedUsuario.getCpf());
+        this.cadUsuario = new Usuario();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage
+        ("Usuario alterado com sucesso!"));
+        return ".xhtml";   
+      }
+      
+      
+       public List<Usuario> recuperarTodos(){
+        return this.usuarioHibernate.listarTodos(); 
+       }
+       
+       
+    public UsuarioHibernate getUsuarioHibernate() {
+        return usuarioHibernate;
+    }
+
+    public void setUsuarioHibernate(UsuarioHibernate usuarioHibernate) {
+        this.usuarioHibernate = usuarioHibernate;
+    }
+
+    public Usuario getCadUsuario() {
+        return cadUsuario;
+    }
+
+    public void setCadUsuario(Usuario cadUsuario) {
+        this.cadUsuario = cadUsuario;
+    }
+
+    public Usuario getSelectedUsuario() {
+        return selectedUsuario;
+    }
+
+    public void setSelectedUsuario(Usuario selectedUsuario) {
+        this.selectedUsuario = selectedUsuario;
+    }
+    
+       
+       
+       
 
 }
