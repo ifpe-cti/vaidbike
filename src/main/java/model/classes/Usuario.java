@@ -58,8 +58,7 @@ public class Usuario {
     private String sexo;
     @Column(length = 10)
     private Date dataNasc;
-    @OneToOne
-    @JoinColumn(name = "cod_endereco", referencedColumnName = "codigo")
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
     @Column(length = 15)
     private String telefone;
@@ -77,7 +76,7 @@ public class Usuario {
     public Usuario(String login, String senha, String nome, String cpf,
             String sexo, Date dataNasc, Endereco endereco, String telefone,
             String email, List<Bike> bikes) {
-//      this.codigo = codigo;
+       
         this.login = login;
         this.senha = senha;
         this.nome = nome;
@@ -93,10 +92,6 @@ public class Usuario {
     public int getCodigo() {
         return codigo;
     }
-//
-//    public void setCodigo(int codigo) {
-//        this.codigo = codigo;
-//    }
 
     public String getLogin() {
         return login;

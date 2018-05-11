@@ -24,7 +24,6 @@ SOFTWARE.
 package view;
 
 import java.util.Date;
-import model.classes.Bike;
 import model.classes.Endereco;
 import model.classes.Pagamento;
 import model.classes.Usuario;
@@ -38,8 +37,9 @@ import model.hibernate.UsuarioHibernate;
 public class TesteMain {
     public static void main (String args[]){     
      
+    Endereco end = new Endereco("casa","casa","casa","casa","casa","cas");    
     UsuarioHibernate uh = new UsuarioHibernate();
-    Usuario u = new Usuario("Milena", "mirassica", "123", "cpf", "sexo", new Date(), null, "telefone", "email", null);
+    Usuario u = new Usuario("Milena", "mirassica", "123", "cpf", "sexo", new Date(), end, "telefone", "email", null);
     uh.inserir(u);
     
     
