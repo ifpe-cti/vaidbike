@@ -19,34 +19,46 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-*/
-
+ */
 package view;
 
-import java.util.Date;
-import model.classes.Endereco;
-import model.classes.Pagamento;
-import model.classes.Usuario;
-import model.hibernate.PagamentoHibernate;
-import model.hibernate.UsuarioHibernate;
+//import java.util.ArrayList;
+//import java.util.Date;
+//import java.util.List;
+//import model.classes.Bike;
+//import model.classes.Endereco;
+//import model.classes.Pagamento;
+//import model.classes.Usuario;
+//import model.hibernate.PagamentoHibernate;
+//import model.hibernate.UsuarioHibernate;
+//import model.validation.UsuarioModel;
 
 /**
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
 public class TesteMain {
-    public static void main (String args[]){     
-     
-    Endereco end = new Endereco("casa","casa","casa","casa","casa","cas");    
-    UsuarioHibernate uh = new UsuarioHibernate();
-    Usuario u = new Usuario("Milena", "mirassica", "123", "cpf", "sexo", new Date(), end, "telefone", "email", null);
-    uh.inserir(u);
-    
-    
-    PagamentoHibernate ph = new PagamentoHibernate();
-    Pagamento p = new Pagamento("tipo Fiado", 100.0);
-    ph.inserir(p);
-    
-    
-   }
+
+    public static void main(String args[]) throws Exception {
+
+//        UsuarioHibernate uh = new UsuarioHibernate();
+//        List<Bike> bikes = new ArrayList<>();
+//          UsuarioModel um =  new UsuarioModel();
+//        Endereco end = new Endereco("casa", "casa", "casa", "casa", "casa", "cas");
+//
+//        Usuario u = new Usuario("Milena", "mirassica", "123", "75008513400",
+//                "sexo", new Date(), end, "telefone", "email", bikes);
+//        
+//     
+//        um.inserir(u);
+//
+//        u = um.listarTodos().get(0);
+//
+//        Bike bike = new Bike("cor", "tipo", "ufre", u);
+//        bikes.add(bike);
+//
+//        u.setBikes(bikes);
+//        um.alterar(u);
+
+    }
 }

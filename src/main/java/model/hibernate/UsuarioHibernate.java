@@ -71,11 +71,11 @@ public class UsuarioHibernate implements UsuarioDao {
 
     @Override
     public Usuario recuperar(String login, String senha) {
-        
+
         Session session = this.sessions.openSession();
-        
+
         List<Usuario> usuarios = new ArrayList<>();
-        
+
         try {
 
             usuarios = session.createQuery("From Usuario where login = '"

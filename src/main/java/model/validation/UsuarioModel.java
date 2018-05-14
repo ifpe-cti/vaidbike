@@ -33,14 +33,11 @@ SOFTWARE.
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
-
 public class UsuarioModel {
 
     ValidarCpf validacaoCpf = new ValidarCpf();
     Dao<Usuario> dao = new UsuarioHibernate();
 
-    
-    
     public void inserir(Usuario usuario) throws Exception {
         if (validacaoCpf.isCPF(usuario.getCpf()) == true) {
             if (((UsuarioDao) dao).recuperar(usuario.getCpf()) == null) {
@@ -53,7 +50,6 @@ public class UsuarioModel {
             throw new Exception("Erro na validação de Cpf!");
         }
     }
-    
 
     public void alterar(Usuario usuario) throws Exception {
         if (((UsuarioDao) dao).recuperar(usuario.getCodigo()) != null) {
@@ -62,7 +58,6 @@ public class UsuarioModel {
             throw new Exception("Erro ao alterar o usuário, no UsuarioModel!");
         }
     }
-    
 
     public Usuario recuperar(Integer codigo) throws Exception {
         if (codigo == null) {
@@ -70,8 +65,7 @@ public class UsuarioModel {
         }
         return ((UsuarioDao) dao).recuperar(codigo);
     }
-    
-    
+
     public void deletar(Usuario usuario) throws Exception {
         if (((UsuarioDao) dao).recuperar(usuario.getCodigo()) != null) {
             dao.deletar(usuario);
@@ -80,36 +74,33 @@ public class UsuarioModel {
         }
     }
 
-
     public Usuario recuperar(String cpf) throws Exception {
 
         if (cpf == null) {
-            throw new Exception("Erro ao recuperar o usuário no UsuarioModel!");
+            throw new Exception("CPF não existe. Classe UsuarioModel!");
         }
         return ((UsuarioDao) dao).recuperar(cpf);
     }
 
-
     public List<Usuario> listarTodos() throws Exception {
-        
+
         List<Usuario> usuarios = ((UsuarioDao) dao).listarTodos();
-       
-        if( usuarios == null){
-            throw new Exception ("Erro ao recuperar a lista de usuários no model");
-        } else{
+
+        if (usuarios == null) {
+            throw new Exception("Erro ao recuperar a lista de usuários no model");
+        } else {
             return usuarios;
         }
     }
 
-    
     public Usuario recuperar(String login, String senha) throws Exception {
-       
-        Usuario usuario = ((UsuarioDao) dao ).recuperar(login, senha);
-        
-        if(usuario == null){    
+
+        Usuario usuario = ((UsuarioDao) dao).recuperar(login, senha);
+
+        if (usuario == null) {
             throw new Exception("Erro ao recuperar o Login do usuário no UsuarioModel!");
-        }else{ 
+        } else {
             return usuario;
-        }          
+        }
     }
 }
