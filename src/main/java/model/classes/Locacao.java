@@ -39,20 +39,25 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Locacao {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
+    
     @OneToOne
     @JoinColumn(name = "cod_cliente", referencedColumnName = "codigo")
     private Usuario cliente;
+    
     @OneToOne
     @JoinColumn(name = "cod_locatario", referencedColumnName = "codigo")
     private Usuario locatario;
+    
     @Column
     private Date retirada;
+    
     @Column
     private Date devolucao;
+    
     @OneToOne
     @JoinColumn(name = "cod_pagamento", referencedColumnName = "codigo")
     private Pagamento pagamento;
@@ -60,9 +65,9 @@ public class Locacao {
     public Locacao() {
     }
 
-    public Locacao( Usuario cliente, Usuario locatario,
+    public Locacao(Usuario cliente, Usuario locatario,
             Date retirada, Date devolucao, Pagamento pagamento) {
-      //  this.codigo = codigo;
+        //  this.codigo = codigo;
         this.cliente = cliente;
         this.locatario = locatario;
         this.retirada = retirada;
@@ -77,7 +82,6 @@ public class Locacao {
 //    public void setCodigo(int codigo) {
 //        this.codigo = codigo;
 //    }
-
     public Usuario getCliente() {
         return cliente;
     }

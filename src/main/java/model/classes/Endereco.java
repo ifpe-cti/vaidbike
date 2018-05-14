@@ -41,22 +41,22 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
 
-    @Column(length=10)
+    @Column(length = 10)
     private String estado;
 
-    @Column(length=30)
+    @Column(length = 30)
     private String cidade;
 
-    @Column(length=12)
+    @Column(length = 12)
     private String cep;
 
-    @Column(length=50)
+    @Column(length = 50)
     private String bairro;
 
-    @Column(length=50)
+    @Column(length = 50)
     private String rua;
 
-    @Column(length=10)
+    @Column(length = 10)
     private String numero;
 
     @Deprecated
@@ -75,7 +75,7 @@ public class Endereco {
     public int getCodigo() {
         return codigo;
     }
-    
+
     public String getEstado() {
         return estado;
     }
