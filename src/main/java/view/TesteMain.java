@@ -3,7 +3,7 @@
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
+of this software and associated docuhentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -22,16 +22,17 @@ SOFTWARE.
  */
 package view;
 
-//import java.util.ArrayList;
-//import java.util.Date;
-//import java.util.List;
-//import model.classes.Bike;
-//import model.classes.Endereco;
-//import model.classes.Pagamento;
-//import model.classes.Usuario;
-//import model.hibernate.PagamentoHibernate;
-//import model.hibernate.UsuarioHibernate;
-//import model.validation.UsuarioModel;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import model.classes.Bike;
+import model.classes.Endereco;
+import model.classes.Locacao;
+import model.classes.Pagamento;
+import model.classes.Usuario;
+import model.hibernate.LocacaoHibernate;
+import model.hibernate.PagamentoHibernate;
+import model.hibernate.UsuarioHibernate;
 
 /**
  *
@@ -41,24 +42,37 @@ public class TesteMain {
 
     public static void main(String args[]) throws Exception {
 
-//        UsuarioHibernate uh = new UsuarioHibernate();
-//        List<Bike> bikes = new ArrayList<>();
-//          UsuarioModel um =  new UsuarioModel();
-//        Endereco end = new Endereco("casa", "casa", "casa", "casa", "casa", "cas");
-//
-//        Usuario u = new Usuario("Milena", "mirassica", "123", "75008513400",
-//                "sexo", new Date(), end, "telefone", "email", bikes);
-//        
-//     
-//        um.inserir(u);
-//
-//        u = um.listarTodos().get(0);
-//
-//        Bike bike = new Bike("cor", "tipo", "ufre", u);
-//        bikes.add(bike);
-//
-//        u.setBikes(bikes);
-//        um.alterar(u);
+        UsuarioHibernate uh = new UsuarioHibernate();
+        List<Bike> bikes = new ArrayList<>();
+
+        Endereco end = new Endereco("casa", "casa", "casa", "casa", "casa", "cas");
+
+        Usuario u = new Usuario("Milena", "mirassica", "123", "75008513400",
+                "sexo", new Date(), end, "telefone", "email", bikes);
+
+        uh.inserir(u);
+
+        u = uh.listarTodos().get(0);
+
+        Bike bike = new Bike("cor", "tipo", "ufre", u);
+        bikes.add(bike);
+
+        u.setBikes(bikes);
+        uh.alterar(u);
+
+        Pagamento p = new Pagamento("CAsa", 56);
+
+        PagamentoHibernate ph = new PagamentoHibernate();
+
+        ph.inserir(p);
+
+        Locacao l = new Locacao(u, u, new Date(), new Date(), p);
+        LocacaoHibernate lh = new LocacaoHibernate();
+
+      u =  uh.recuperar(6);
+        l.setCliente(u);
+
+        lh.alterar(l);
 
     }
 }
