@@ -52,7 +52,6 @@ public class Pagamento {
     }
 
     public Pagamento(String tipo, double valor) {
-//      this.codigo = codigo;
         this.tipo = tipo;
         this.valor = valor;
     }
@@ -60,10 +59,6 @@ public class Pagamento {
     public int getCodigo() {
         return codigo;
     }
-//
-//    public void setCodigo(int codigo) {
-//        this.codigo = codigo;
-//    }
 
     public String getTipo() {
         return tipo;

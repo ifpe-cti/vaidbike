@@ -76,7 +76,7 @@ public class Usuario {
     private String email;
     
     @OneToMany(mappedBy = "usuario", targetEntity = Bike.class,
-            fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Bike> bikes;
 
     @Deprecated
