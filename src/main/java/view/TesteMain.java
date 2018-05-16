@@ -23,6 +23,10 @@ SOFTWARE.
 package view;
 
 //import java.util.ArrayList;
+
+import model.classes.Pagamento;
+import model.validation.PagamentoModel;
+
 //import java.util.Date;
 //import java.util.List;
 //import model.classes.Bike;
@@ -60,5 +64,10 @@ public class TesteMain {
 //        u.setBikes(bikes);
 //        um.alterar(u);
 
+//       PagamentoModel pagamentoModel = new PagamentoModel();
+//          Pagamento p = new Pagamento("Pago", 100);
+//          pagamentoModel.inserir(p);
+           
+           
     }
 }
