@@ -80,8 +80,7 @@ public class PagamentoController {
     public void setSelectPagamento(Pagamento selectPagamento) {
         this.selectPagamento = selectPagamento;
     }
-// ------------------------------------------------------
-
+    
     public Pagamento recuperar(Integer codigo) throws Exception {
         return this.instance.recuperar(codigo);
     }
