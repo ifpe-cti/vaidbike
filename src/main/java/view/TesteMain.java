@@ -22,6 +22,7 @@ SOFTWARE.
  */
 package view;
 
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +34,7 @@ import model.classes.Usuario;
 import model.hibernate.LocacaoHibernate;
 import model.hibernate.PagamentoHibernate;
 import model.hibernate.UsuarioHibernate;
+
 
 /**
  *
@@ -74,5 +76,8 @@ public class TesteMain {
 
         lh.alterar(l);
 
+
+           
+           
     }
 }

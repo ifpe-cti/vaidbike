@@ -46,7 +46,6 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/VaidBike</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">ifpe</property>
-   
     <property name="hibernate.hbm2ddl.auto">create</property>
     
     <mapping class="model.classes.Bike"/>
