@@ -58,9 +58,11 @@ public class UsuarioHibernate implements UsuarioDao {
         Session session = this.sessions.openSession();
 
         try {
-            return (Usuario) session.createQuery("From Usuario where cpf = '" + cpf + "'").list().get(0);
+            return (Usuario) session.createQuery("From Usuario where cpf = '"
+                    + cpf + "'").list().get(0);
         } catch (Exception e) {
-            System.out.println("Erro ao recuperar o Usuário pelo cpf no banco de dados. \n" + e);
+            System.out.println
+        ("Erro ao recuperar o Usuário pelo cpf no banco de dados. \n" + e);
             //lembtrar de tratar essa excessao posteriormente.
 
         } finally {
