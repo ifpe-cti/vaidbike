@@ -152,7 +152,7 @@ public class UsuarioHibernate implements UsuarioDao {
         Transaction transaction = session.beginTransaction();
         try {
             session.delete(usuario);
-
+            transaction.commit();
         } catch (Exception e) {
 
             System.out.println("Erro ao deletar o Usuário no banco de dados. \n" + e);
