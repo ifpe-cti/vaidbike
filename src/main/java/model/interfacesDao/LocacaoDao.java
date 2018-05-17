@@ -32,10 +32,8 @@ import model.classes.Usuario;
  */
 public interface LocacaoDao extends Dao<Locacao> {
 
-    public Usuario retornarCliente(Usuario cliente);
-
-    public Usuario retornarLocatario(Usuario locatario);
-
     public List<Locacao> retornarListaLocacao(Usuario cliente);
+    public List<Locacao> retornarListaLocatario(Usuario locatario);
+
 
 }

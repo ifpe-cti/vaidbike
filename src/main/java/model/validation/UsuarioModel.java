@@ -1,11 +1,3 @@
-package model.validation;
-
-import java.util.List;
-import model.classes.Usuario;
-import model.hibernate.UsuarioHibernate;
-import model.interfacesDao.Dao;
-import model.interfacesDao.UsuarioDao;
-
 /*MIT License
 
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
@@ -29,6 +21,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
+package model.validation;
+
+import java.util.List;
+import model.classes.Usuario;
+import model.hibernate.UsuarioHibernate;
+import model.interfacesDao.Dao;
+import model.interfacesDao.UsuarioDao;
+
 /**
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com

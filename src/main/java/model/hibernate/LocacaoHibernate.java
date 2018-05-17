@@ -53,26 +53,37 @@ public class LocacaoHibernate implements LocacaoDao {
     }
 
     @Override
-    public Usuario retornarCliente(Usuario cliente) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Usuario retornarLocatario(Usuario locatario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Locacao> retornarListaLocacao(Usuario usuario) {
+    public List<Locacao> retornarListaLocacao(Usuario cliente) {
         Session session = this.sessions.openSession();
         Transaction transaction = session.beginTransaction();
         try {
 
-            return session.createQuery("from Locacao where codigo="
-                    + usuario.getCodigo()).list();
+            return session.createQuery("from Locacao where cliente_codigo="
+                    + cliente.getCodigo()).list();
 
         } catch (Exception e) {
-            System.out.println("Erro ao inserir a Locação no banco de dados.");
+            System.out.println("Erro ao inserir a Locação"
+                    + " lado cliente no banco de dados.");
+            transaction.rollback();
+        } finally {
+
+            session.close();
+        }
+        return null;
+    }
+    
+    @Override
+    public List<Locacao> retornarListaLocatario(Usuario locatario) {
+        Session session = this.sessions.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+
+            return session.createQuery("from Locacao where locatario_codigo="
+                    + locatario.getCodigo()).list();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao inserir a Locação lado locatario"
+                    + "no banco de dados.");
             transaction.rollback();
         } finally {
 
@@ -136,11 +147,12 @@ public class LocacaoHibernate implements LocacaoDao {
     }
 
     @Override
-    public void deletar(Locacao locação) {
+    public void deletar(Locacao locacao) {
         Session session = this.sessions.openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            session.delete(locação);
+            session.delete(locacao);
+            transaction.commit();
 
         } catch (Exception e) {
 
@@ -166,5 +178,7 @@ public class LocacaoHibernate implements LocacaoDao {
         return null;
 
     }
+
+    
 
 }
