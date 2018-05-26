@@ -24,7 +24,6 @@ package br.edu.ifpe.model.classes;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,36 +44,26 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigo;
-    
-    @Column(length = 50)
+    @Column(name = "id_usuario")
+    private Integer codigo;
+    @Column(length = 15,nullable = false)
     private String login;
-    
-    @Column(length = 50)
+    @Column(length = 12,nullable = false)
     private String senha;
-    
-    @Column(length = 20)
+    @Column(length = 20,nullable = false)
     private String nome;
-    
-    @Column(length = 15)
+    @Column(length = 15,nullable = false,unique = true)
     private String cpf;
-    
-    @Column(length = 5)
+    @Column(length = 5,nullable = false)
     private String sexo;
-    
-    @Column(length = 10)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNasc;
-    
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
-    
-    @Column(length = 15)
+    @Column(length = 15,unique = true,nullable = false)
     private String telefone;
-    
-    @Column(length = 20)
+    @Column(length = 20,unique = true,nullable = false)
     private String email;
-    
     @OneToMany(mappedBy = "usuario", targetEntity = Bike.class,
             fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Bike> bikes;
@@ -87,7 +76,6 @@ public class Usuario {
     public Usuario(String login, String senha, String nome, String cpf,
             String sexo, Date dataNasc, Endereco endereco, String telefone,
             String email, List<Bike> bikes) {
-
         this.login = login;
         this.senha = senha;
         this.nome = nome;
@@ -132,10 +120,6 @@ public class Usuario {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     public String getSexo() {
         return sexo;
     }
@@ -146,10 +130,6 @@ public class Usuario {
 
     public Date getDataNasc() {
         return dataNasc;
-    }
-
-    public void setDataNasc(Date dataNasc) {
-        this.dataNasc = dataNasc;
     }
 
     public Endereco getEndereco() {
@@ -186,67 +166,57 @@ public class Usuario {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.codigo;
-        hash = 67 * hash + Objects.hashCode(this.login);
-        hash = 67 * hash + Objects.hashCode(this.senha);
-        hash = 67 * hash + Objects.hashCode(this.nome);
-        hash = 67 * hash + Objects.hashCode(this.cpf);
-        hash = 67 * hash + Objects.hashCode(this.sexo);
-        hash = 67 * hash + Objects.hashCode(this.dataNasc);
-        hash = 67 * hash + Objects.hashCode(this.endereco);
-        hash = 67 * hash + Objects.hashCode(this.telefone);
-        hash = 67 * hash + Objects.hashCode(this.email);
-        hash = 67 * hash + Objects.hashCode(this.bikes);
-        return hash;
+        final int HASH = 13;
+        int result = 1;
+        result = (HASH * result) + codigo.hashCode();
+        result = (HASH * result) + login.hashCode();
+        result = (HASH * result) + senha.hashCode();
+        result = (HASH * result) + nome.hashCode();
+        result = (HASH * result) + cpf.hashCode();
+        result = (HASH * result) + sexo.hashCode();
+        result = (HASH * result) + dataNasc.hashCode();
+        result = (HASH * result) + endereco.hashCode();
+        result = (HASH * result) + telefone.hashCode();
+        result = (HASH * result) + email.hashCode();
+        return result = (HASH * result) + bikes.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+        if(!(obj instanceof Usuario))
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        
+        if(!((Usuario) obj).codigo.equals(this.codigo))
             return false;
-        }
-        final Usuario other = (Usuario) obj;
-        if (this.codigo != other.codigo) {
+        
+        if(!((Usuario) obj).login.equals(this.login))
             return false;
-        }
-        if (!Objects.equals(this.login, other.login)) {
+        
+        if(!((Usuario) obj).senha.equals(this.senha))
             return false;
-        }
-        if (!Objects.equals(this.senha, other.senha)) {
+        
+        if(!((Usuario) obj).nome.equals(this.nome))
             return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
+        
+        if(!((Usuario) obj).cpf.equals(this.cpf))
             return false;
-        }
-        if (!Objects.equals(this.cpf, other.cpf)) {
+        
+        if(!((Usuario) obj).sexo.equals(this.sexo))
             return false;
-        }
-        if (!Objects.equals(this.sexo, other.sexo)) {
+        
+        if(!((Usuario) obj).dataNasc.equals(this.dataNasc))
             return false;
-        }
-        if (!Objects.equals(this.telefone, other.telefone)) {
+        
+        if(!((Usuario) obj).endereco.equals(this.endereco))
             return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
+        
+        if(!((Usuario) obj).telefone.equals(this.telefone))
             return false;
-        }
-        if (!Objects.equals(this.dataNasc, other.dataNasc)) {
+        
+        if(!((Usuario) obj).email.equals(this.email))
             return false;
-        }
-        if (!Objects.equals(this.endereco, other.endereco)) {
-            return false;
-        }
-        if (!Objects.equals(this.bikes, other.bikes)) {
-            return false;
-        }
-        return true;
+        
+        return (((Usuario) obj).equals(this.bikes));
     }
 
     @Override
@@ -257,5 +227,4 @@ public class Usuario {
                 + ", telefone=" + telefone + ", email=" + email + ", bikes="
                 + bikes + '}';
     }
-
 }
