@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package br.edu.ifpe.model.classes;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -39,44 +40,38 @@ import javax.persistence.Temporal;
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
 @Entity
-public class Locacao {
-
+public class Locacao implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigo;
-    
+    @Column(name = "id_locacao")
+    private Integer codigo;
     @OneToOne
+    @JoinColumn(name = "cod_cliente")
     private Usuario cliente;
-    
     @OneToOne
+    @JoinColumn(name = "cod_locatario")
     private Usuario locatario;
-    
     @Column
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date retirada;
-    
     @Column
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date devolucao;
-    
-    @OneToOne
-    private Pagamento pagamento;
 
     @Deprecated
     public Locacao() {
     }
 
     public Locacao(Usuario cliente, Usuario locatario,
-            Date retirada, Date devolucao, Pagamento pagamento) {
-        
+            Date retirada, Date devolucao) {
         this.cliente = cliente;
         this.locatario = locatario;
         this.retirada = retirada;
         this.devolucao = devolucao;
-        this.pagamento = pagamento;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
@@ -84,16 +79,8 @@ public class Locacao {
         return cliente;
     }
 
-    public void setCliente(Usuario cliente) {
-        this.cliente = cliente;
-    }
-
     public Usuario getLocatario() {
         return locatario;
-    }
-
-    public void setLocatario(Usuario locatario) {
-        this.locatario = locatario;
     }
 
     public Date getRetirada() {
@@ -112,63 +99,41 @@ public class Locacao {
         this.devolucao = devolucao;
     }
 
-    public Pagamento getPagamento() {
-        return pagamento;
-    }
-
-    public void setPagamento(Pagamento pagamento) {
-        this.pagamento = pagamento;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + this.codigo;
-        hash = 89 * hash + Objects.hashCode(this.cliente);
-        hash = 89 * hash + Objects.hashCode(this.locatario);
-        hash = 89 * hash + Objects.hashCode(this.retirada);
-        hash = 89 * hash + Objects.hashCode(this.devolucao);
-        hash = 89 * hash + Objects.hashCode(this.pagamento);
-        return hash;
+        final int HASH = 11;
+        int result = 1;
+        result = (HASH * result) + codigo.hashCode();
+        result = (HASH * result) + cliente.hashCode();
+        result = (HASH * result) + locatario.hashCode();
+        result = (HASH * result) + retirada.hashCode();
+        return (HASH * result) + devolucao.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+        if(!(obj instanceof Locacao))
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        
+        if(!((Locacao) obj).codigo.equals(this.codigo))
             return false;
-        }
-        final Locacao other = (Locacao) obj;
-        if (this.codigo != other.codigo) {
+        
+        if(!((Locacao) obj).cliente.equals(this.cliente))
             return false;
-        }
-        if (!Objects.equals(this.cliente, other.cliente)) {
+        
+        if(!((Locacao) obj).locatario.equals(this.locatario))
             return false;
-        }
-        if (!Objects.equals(this.locatario, other.locatario)) {
+        
+        if(!((Locacao) obj).retirada.equals(this.retirada))
             return false;
-        }
-        if (!Objects.equals(this.retirada, other.retirada)) {
-            return false;
-        }
-        if (!Objects.equals(this.devolucao, other.devolucao)) {
-            return false;
-        }
-        if (!Objects.equals(this.pagamento, other.pagamento)) {
-            return false;
-        }
-        return true;
+        
+        return (((Locacao) obj).devolucao.equals(this.devolucao));
     }
 
     @Override
     public String toString() {
-        return "Locacao{" + "codigo=" + codigo + ", cliente=" + cliente
-                + ", locatario=" + locatario + ", retirada=" + retirada
-                + ", devolucao=" + devolucao + ", pagamento=" + pagamento + '}';
-    }
+        return "Locacao{" + "codigo=" + codigo + ", cliente="
+                + cliente + ", locatario=" + locatario +
+                    ", retirada=" + retirada + ", devolucao=" + devolucao + '}';
+    }  
 }
