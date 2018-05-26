@@ -38,6 +38,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Bike implements Serializable {
+   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_bike")
@@ -99,8 +100,7 @@ public class Bike implements Serializable {
         result = (HASH * result) + ((modelo == null) ? 0 : modelo.hashCode());
         result = (HASH * result) + ((tipo == null) ? 0 : tipo.hashCode());
         result = (HASH * result) + ((cor == null) ? 0 : cor.hashCode());
-        result = (HASH * result) + usuario.hashCode();
-        return result;
+        return (HASH * result) + usuario.hashCode() ;
     }
 
     @Override
