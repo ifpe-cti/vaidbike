@@ -22,38 +22,44 @@ SOFTWARE.
  */
 package br.edu.ifpe.model.classes;
 
-import java.util.Objects;
+import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
 @Entity
-public class Pagamento {
+public class Pagamento implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigo;
-
-    @Column(length = 50)
+    @Column(name = "id_pagamento")
+    private Integer codigo;
+    @Column(length = 15,nullable = false)
     private String tipo;
-
-    @Column(length = 10)
+    @Column(length = 10,scale = 2,precision = 10,nullable = false)
     private double valor;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cod_locacao",nullable = false)
+    private Locacao locacao;
+    
     @Deprecated
     public Pagamento() {
 
     }
 
-    public Pagamento(String tipo, double valor) {
+    public Pagamento(String tipo, double valor, Locacao locacao) {
         this.tipo = tipo;
         this.valor = valor;
+        this.locacao = locacao;
     }
 
     public int getCodigo() {
@@ -76,42 +82,40 @@ public class Pagamento {
         this.valor = valor;
     }
 
+    public Locacao getLocacao() {
+        return locacao;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + this.codigo;
-        hash = 67 * hash + Objects.hashCode(this.tipo);
-        hash = 67 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
-        return hash;
+        final int HASH = 17;
+        int result = 1;
+        result = (HASH * result) + codigo.hashCode();
+        result = (HASH * result) + tipo.hashCode();
+        result = (int) valor + (HASH * result);
+        return (HASH * result) + locacao.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+        if(!(obj instanceof Pagamento))
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        
+        if(!((Pagamento) obj).codigo.equals(this.codigo))
             return false;
-        }
-        final Pagamento other = (Pagamento) obj;
-        if (this.codigo != other.codigo) {
+        
+        if(!((Pagamento) obj).tipo.equals(this.tipo))
             return false;
-        }
-        if (Double.doubleToLongBits(this.valor) != Double.doubleToLongBits(other.valor)) {
+        
+        if(((Pagamento) obj).valor != this.valor)
             return false;
-        }
-        if (!Objects.equals(this.tipo, other.tipo)) {
-            return false;
-        }
-        return true;
+        
+        return (((Pagamento) obj).locacao.equals(this.locacao)); 
     }
 
     @Override
     public String toString() {
-        return "Pagamento{" + "codigo=" + codigo + ", tipo=" + tipo + ", valor=" + valor + '}';
-    }
-
+        return "Pagamento{" + "codigo=" + codigo + ", tipo=" +
+                tipo + ", valor=" + valor + ", locacao=" + locacao + '}';
+    }  
 }
