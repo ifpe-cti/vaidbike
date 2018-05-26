@@ -39,22 +39,18 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Bike {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int codigo;
-
-    @Column(length = 50)
+    @Column(name = "id_bike")
+    private Integer codigo;
+    @Column(length = 18)
     private String modelo;
-
-    @Column(length = 50)
+    @Column(length = 20)
     private String tipo;
-
-    @Column
+    @Column(length = 10)
     private String cor;
-
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "cod_usuario")
     private Usuario usuario;
 
     @Deprecated
@@ -76,16 +72,8 @@ public class Bike {
         return modelo;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
     public String getTipo() {
         return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public String getCor() {
@@ -104,4 +92,42 @@ public class Bike {
         this.usuario = usuario;
     }
 
+    @Override
+    public int hashCode() {
+        final int HASH = 7;
+        int result = 1;
+        result = (HASH * result) + codigo.hashCode();
+        result = (HASH * result) + ((modelo == null) ? 0 : modelo.hashCode());
+        result = (HASH * result) + ((tipo == null) ? 0 : tipo.hashCode());
+        result = (HASH * result) + ((cor == null) ? 0 : cor.hashCode());
+        result = (HASH * result) + usuario.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Bike)) 
+            return false;
+        
+        if(!((Bike)obj).codigo.equals(this.codigo))
+                return false;
+        
+        if(!((Bike)obj).modelo.equals(this.modelo))
+                return false;
+        
+        if(!((Bike)obj).tipo.equals(this.tipo))
+                return false;
+        
+        if(!((Bike)obj).cor.equals(this.cor))
+                return false;
+        
+        return (((Bike) obj).usuario.equals(this.usuario));
+    }
+
+    @Override
+        public String toString() {
+        return "Bike{" + "codigo=" + codigo + 
+                ", modelo=" + modelo + ", tipo=" + tipo +
+                    ", cor=" + cor + ", usuario=" + usuario + '}';
+    }   
 }
