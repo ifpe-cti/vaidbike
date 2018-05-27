@@ -23,6 +23,7 @@ SOFTWARE.
 package br.edu.ifpe.model.classes;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -46,7 +47,7 @@ public class Pagamento implements Serializable {
     @Column(length = 15,nullable = false)
     private String tipo;
     @Column(length = 10,scale = 2,precision = 10,nullable = false)
-    private double valor;
+    private BigDecimal valor;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cod_locacao",nullable = false)
     private Locacao locacao;
@@ -56,13 +57,13 @@ public class Pagamento implements Serializable {
 
     }
 
-    public Pagamento(String tipo, double valor, Locacao locacao) {
+    public Pagamento(String tipo, BigDecimal valor, Locacao locacao) {
         this.tipo = tipo;
         this.valor = valor;
         this.locacao = locacao;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
@@ -70,15 +71,11 @@ public class Pagamento implements Serializable {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
 
@@ -92,7 +89,7 @@ public class Pagamento implements Serializable {
         int result = 1;
         result = (HASH * result) + codigo.hashCode();
         result = (HASH * result) + tipo.hashCode();
-        result = (int) valor + (HASH * result);
+        result = (HASH * result) + valor.hashCode();
         return (HASH * result) + locacao.hashCode();
     }
 
@@ -107,7 +104,7 @@ public class Pagamento implements Serializable {
         if(!((Pagamento) obj).tipo.equals(this.tipo))
             return false;
         
-        if(((Pagamento) obj).valor != this.valor)
+        if(this.valor != ((Pagamento) obj).valor)
             return false;
         
         return (((Pagamento) obj).locacao.equals(this.locacao)); 

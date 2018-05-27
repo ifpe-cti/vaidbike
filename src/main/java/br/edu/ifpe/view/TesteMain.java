@@ -35,6 +35,7 @@ import br.edu.ifpe.model.hibernate.LocacaoHibernate;
 import br.edu.ifpe.model.hibernate.PagamentoHibernate;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
 import br.edu.ifpe.model.validation.LocacaoModel;
+import java.math.BigDecimal;
 
 
 /**
@@ -44,11 +45,11 @@ import br.edu.ifpe.model.validation.LocacaoModel;
 public class TesteMain {
 
     public static void main(String args[]) throws Exception {
-//
+
 //        UsuarioHibernate uh = new UsuarioHibernate();
 //        List<Bike> bikes = new ArrayList<>();
 //
-//        Endereco end = new Endereco("casa", "casa", "casa", "casa", "casa", "cas");
+//        Endereco end = new Endereco("estado", "cidade", "cep", "bairro", "logradouro");
 //
 //        Usuario u = new Usuario("Milena", "mirassica", "123", "75008513400",
 //                "sexo", new Date(), end, "telefone", "email", bikes);
@@ -62,25 +63,23 @@ public class TesteMain {
 //
 //        u.setBikes(bikes);
 //        uh.alterar(u);
-//
-//        Pagamento p = new Pagamento("CAsa", 56);
+//        
+//        Locacao locacao = new Locacao(u, u, new Date(),new Date());
+//        Pagamento p = new Pagamento("tipo", new BigDecimal("2.33"), locacao);
 //
 //        PagamentoHibernate ph = new PagamentoHibernate();
 //
 //        ph.inserir(p);
-
-        Locacao l =null; //new Locacao(u, u, new Date(), new Date(), p);
-       // LocacaoHibernate lh = new LocacaoHibernate();
-        LocacaoModel lm = new LocacaoModel();
-        
-        
-       
-        l = lm.recuperar(2);
-        //lm.inserir(l);
-        lm.deletar(l);
-
-
-           
-           
+//
+//        Locacao l = new Locacao(u, u, new Date(), new Date());
+//        LocacaoHibernate lh = new LocacaoHibernate();
+//        LocacaoModel lm = new LocacaoModel();
+//        
+//        
+//       
+//        l = lm.recuperar(2);
+//        lm.inserir(l);
+//        lm.deletar(l);
+//    
     }
 }
