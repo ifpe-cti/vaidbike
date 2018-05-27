@@ -41,19 +41,20 @@ Contributor(s):
 -->
 <hibernate-configuration>
   <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/VaidBike</property>
+    <property name="hibernate.dialect">
+        org.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.connection.driver_class">
+        org.postgresql.Driver</property>
+    <property name="hibernate.connection.url">
+        jdbc:postgresql://localhost:5432/VaidBike</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">ifpe</property>
-    <property name="hibernate.hbm2ddl.auto">create</property>
-    
-    <mapping class="model.classes.Bike"/>
-    <mapping class="model.classes.Endereco"/>
-    <mapping class="model.classes.Usuario"/>
-    <mapping class="model.classes.Locacao"/>
-    <mapping class="model.classes.Pagamento"/>
-   
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <mapping class="br.edu.ifpe.model.classes.Bike"/>
+    <mapping class="br.edu.ifpe.model.classes.Endereco"/>
+    <mapping class="br.edu.ifpe.model.classes.Usuario"/>
+    <mapping class="br.edu.ifpe.model.classes.Locacao"/>
+    <mapping class="br.edu.ifpe.model.classes.Pagamento"/>
   </session-factory>
 </hibernate-configuration>
 
