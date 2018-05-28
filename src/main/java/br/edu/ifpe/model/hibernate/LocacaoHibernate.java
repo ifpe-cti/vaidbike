@@ -26,6 +26,7 @@ import java.util.List;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.interfacesDao.LocacaoDao;
+import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -37,7 +38,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class LocacaoHibernate implements LocacaoDao {
 
-    private SessionFactory sessions;
+    private final SessionFactory SESSIONS;
     private static LocacaoHibernate instance;
 
     public static LocacaoHibernate getInstance() {
@@ -49,52 +50,46 @@ public class LocacaoHibernate implements LocacaoDao {
 
     public LocacaoHibernate() {
         Configuration cfg = new Configuration().configure();
-        this.sessions = cfg.buildSessionFactory();
+        this.SESSIONS = cfg.buildSessionFactory();
     }
 
     @Override
     public List<Locacao> retornarListaLocacao(Usuario cliente) {
-        Session session = this.sessions.openSession();
-        Transaction transaction = session.beginTransaction();
+        Session session = this.SESSIONS.openSession();
+        List<Locacao> locacoes = new ArrayList();
+
         try {
-
-            return session.createQuery("from Locacao where cliente_codigo="
+            locacoes = session.createQuery("from Locacao where cod_cliente="
                     + cliente.getCodigo()).list();
-
         } catch (Exception e) {
-            System.out.println("Erro ao inserir a Locação"
-                    + " lado cliente no banco de dados.");
-            transaction.rollback();
+            System.out.println("Algo inesperado aconteceu ao recuperar"
+                + " todas as locações");
         } finally {
-
             session.close();
+            return locacoes;
         }
-        return null;
     }
-    
+
     @Override
     public List<Locacao> retornarListaLocatario(Usuario locatario) {
-        Session session = this.sessions.openSession();
-        Transaction transaction = session.beginTransaction();
+        Session session = this.SESSIONS.openSession();
+        List<Locacao> locacoes = new ArrayList();
+        
         try {
-
-            return session.createQuery("from Locacao where locatario_codigo="
+            locacoes = session.createQuery("from Locacao where cod_locatario="
                     + locatario.getCodigo()).list();
-
         } catch (Exception e) {
-            System.out.println("Erro ao inserir a Locação lado locatario"
-                    + "no banco de dados.");
-            transaction.rollback();
+            System.out.println("Algo inesperado aconteceu ao recuperar"
+                + " todas as locações");
         } finally {
-
             session.close();
+            return locacoes;
         }
-        return null;
     }
 
     @Override
     public void inserir(Locacao locacao) {
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
         Transaction transaction = session.beginTransaction();
 
         try {
@@ -106,59 +101,54 @@ public class LocacaoHibernate implements LocacaoDao {
         } finally {
             session.close();
         }
-
     }
 
     @Override
     public void alterar(Locacao locacao) {
-
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
         Transaction transaction = session.beginTransaction();
 
         try {
             session.update(locacao);
             transaction.commit();
-
         } catch (Exception e) {
-            System.out.println("Erro ao alterar a Locação no banco de dados. \n" + e);
+            System.out.println
+                ("Erro ao alterar a Locação no banco de dados.");
             transaction.rollback();
-
         } finally {
             session.close();
         }
-
     }
 
     @Override
     public Locacao recuperar(int codigo) {
-
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
 
         try {
-
-            return (Locacao) session.createQuery("From Locacao where codigo=" + codigo).list().get(0);
-
+            return (Locacao) 
+                    session.createQuery
+                        ("From Locacao where codigo=" + codigo).list().get(0);
         } catch (Exception e) {
-            System.out.println("Erro ao recuperar o código da Locação no banco de dados. \n" + e);
+            System.out.println
+                ("Erro ao recuperar o código da Locação no banco de dados. ");
+            return null;
         } finally {
             session.close();
         }
-        return null;
     }
 
     @Override
     public void deletar(Locacao locacao) {
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
         Transaction transaction = session.beginTransaction();
+
         try {
             session.delete(locacao);
             transaction.commit();
-
         } catch (Exception e) {
-
-            System.out.println("Erro ao deletar a Locação no banco de dados. \n" + e);
+            System.out.println(
+                    "Erro ao deletar a Locação no banco de dados. \n");
             transaction.rollback();
-
         } finally {
             session.close();
         }
@@ -166,19 +156,18 @@ public class LocacaoHibernate implements LocacaoDao {
 
     @Override
     public List<Locacao> listarTodos() {
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
+        List<Locacao> locacoes = new ArrayList();
+        
         try {
-            return (List) session.createQuery("from Locacao").list();
+            locacoes = (List) session.createQuery("from Locacao").list();
         } catch (Exception e) {
-            System.out.println("Erro ao listar todoos as Locações no banco de dados. \n" + e);
-
+            System.out.println
+                ("Erro ao listar todas as Locações no banco de dados.");
         } finally {
             session.close();
+            return locacoes;
         }
-        return null;
-
     }
-
-    
 
 }
