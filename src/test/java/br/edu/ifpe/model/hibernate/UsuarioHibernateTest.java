@@ -38,7 +38,7 @@ import org.junit.Test;
 
 /**
  *
- * @author Jarvis
+ * @author Lucas Mendes <lucas.mendes147@live.com>
  */
 public class UsuarioHibernateTest {
 
@@ -46,9 +46,9 @@ public class UsuarioHibernateTest {
     private static UsuarioHibernate usuarioHibernate;
 
     public UsuarioHibernateTest() {
-        this.endereco = new Endereco("estado", "cidade",
+        UsuarioHibernateTest.endereco = new Endereco("estado", "cidade",
                 "cep", "bairro", "logradouro");
-        this.usuarioHibernate = new UsuarioHibernate();
+        UsuarioHibernateTest.usuarioHibernate = new UsuarioHibernate();
     }
 
     @BeforeClass
@@ -60,13 +60,13 @@ public class UsuarioHibernateTest {
 
             Usuario usuario1 = new Usuario(
                     "login", "senha", "nome", "cpf", "sexo",
-                        data, endereco, "telefone", "email",
-                            new ArrayList<Bike>());
+                    data, endereco, "telefone", "email",
+                    new ArrayList<Bike>());
 
             Usuario usuario2 = new Usuario(
                     "login1", "senha1", "nome1", "cpf1", "sexo1",
-                        data, endereco, "telefone1", "email1",
-                            new ArrayList<Bike>());
+                    data, endereco, "telefone1", "email1",
+                    new ArrayList<Bike>());
 
             usuarioHibernate.inserir(usuario1);
             usuarioHibernate.inserir(usuario2);
@@ -84,11 +84,11 @@ public class UsuarioHibernateTest {
 
             Usuario usuario = new Usuario(
                     "login", "senha", "nome", "cpf", "sexo",
-                        data, endereco, "telefone", "email",
-                            new ArrayList<Bike>());
+                    data, endereco, "telefone", "email",
+                    new ArrayList<Bike>());
 
-            Usuario esperado = usuarioHibernate.recuperar("cpf");
-            Assert.assertEquals("TC001", usuario, esperado);
+            Assert.assertEquals
+                ("TC001", usuario, usuarioHibernate.recuperar("cpf"));
         } catch (ParseException parse) {
         }
 
@@ -110,9 +110,7 @@ public class UsuarioHibernateTest {
             Assert.assertEquals("TC002", usuarioOld,
                     usuarioHibernate.recuperar("cpf"));
         } catch (ParseException parse) {
-
         }
-
     }
 
     @Test
@@ -126,13 +124,11 @@ public class UsuarioHibernateTest {
                     "login1", "senha1", "nome", "cpf", "sexo",
                         data, endereco, "telefone", "email",
                             new ArrayList<Bike>());
-
-            Usuario usuarioRecupera
-                    = usuarioHibernate.recuperar("login1", "senha1");
-
             usuarioHibernate.alterar(usuarioOld);
-            Assert.assertEquals("TC003", usuarioOld,
-                    usuarioHibernate.recuperar("cpf"));
+            
+            Assert.assertEquals
+                ("TC003", usuarioOld, 
+                            usuarioHibernate.recuperar("login1", "senha1"));
         } catch (ParseException parse) {
         }
     }
@@ -140,6 +136,7 @@ public class UsuarioHibernateTest {
     @Test
     public void recuperarTodosUsuariosTest() {
         List<Usuario> usuarios = new ArrayList();
+        
         try {
             DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
             String sdata = "28-04-2018";
@@ -166,6 +163,7 @@ public class UsuarioHibernateTest {
     @Test
     public void deletarUsuarioTest() {
         List<Usuario> usuarios = new ArrayList();
+        
         try {
             DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
             String sdata = "28-04-2018";
@@ -202,7 +200,14 @@ public class UsuarioHibernateTest {
                     "login", "senha", "nome", "cpf", "sexo",
                     data, endereco, "telefone", "email",
                     new ArrayList<Bike>());
+
+            Usuario usuario2 = new Usuario(
+                    "login1", "senha1", "nome1", "cpf1", "sexo1",
+                    data, endereco, "telefone1", "email1",
+                    new ArrayList<Bike>());
+            
             usuarioHibernate.deletar(usuario1);
+            usuarioHibernate.deletar(usuario2);
         } catch (ParseException parse) {
         }
     }
