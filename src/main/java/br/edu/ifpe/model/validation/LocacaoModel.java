@@ -33,58 +33,66 @@ import br.edu.ifpe.model.interfacesDao.LocacaoDao;
  *
  * @author Milena Macedo - milenasantosmcd@gmail.com
  */
-public class LocacaoModel {
+public class LocacaoModel  {
 
-    Dao<Locacao> dao = new LocacaoHibernate();
+    private final Dao<Locacao> DAO = new LocacaoHibernate();
 
     public void inserir(Locacao locacao) throws Exception {
-        if (((LocacaoDao) dao).recuperar(locacao.getCodigo()) == null) {
-            dao.inserir(locacao);
-
+        
+        if (((LocacaoDao) DAO).recuperar(locacao.getCodigo()) == null) {
+            DAO.inserir(locacao);
         } else {
-            throw new Exception("Erro ao inserir a Locação na classe LocacaoModel");
+            throw new Exception
+                ("Erro ao inserir a Locação na classe LocacaoModel");
         }
     }
 
     public void alterar(Locacao locacao) throws Exception {
-        if (((LocacaoDao) dao).recuperar(locacao.getCodigo()) != null) {
-            dao.alterar(locacao);
-
+        
+        if (((LocacaoDao) DAO).recuperar(locacao.getCodigo()) != null) {
+            DAO.alterar(locacao);
         } else {
-            throw new Exception("Erro ao alterar a Locação na classe LocacaoModel");
+            throw new Exception
+                ("Erro ao alterar a Locação na classe LocacaoModel");
         }
-
     }
 
     public Locacao recuperar(Integer codigo) throws Exception {
+        
         if (codigo == null) {
-            throw new Exception("Codigo da Locação não existe na classe LocacaoModel");
+            throw new Exception
+                ("Codigo da Locação não existe na classe LocacaoModel");
         }
-        return ((LocacaoDao) dao).recuperar(codigo);
+        return ((LocacaoDao) DAO).recuperar(codigo);
     }
 
     public void deletar(Locacao locacao) throws Exception {
-        if (((LocacaoDao) dao).recuperar(locacao.getCodigo()) != null) {
-            dao.deletar(locacao);
+        
+        if (((LocacaoDao) DAO).recuperar(locacao.getCodigo()) != null) {
+            DAO.deletar(locacao);
         } else {
-            throw new Exception("Erro ao deletar o usuário na classe LocacaoModel!");
+            throw new Exception
+                ("Erro ao deletar o usuário na classe LocacaoModel!");
         }
     }
 
     public List<Locacao> listarTodos() throws Exception {
-
-        List<Locacao> locacao = ((LocacaoDao) dao).listarTodos();
+        
+        List<Locacao> locacao = ((LocacaoDao) DAO).listarTodos();
 
         if (locacao == null) {
-            throw new Exception("Erro ao recuperar a lista de Locação no model");
+            throw new Exception
+                ("Erro ao recuperar a lista de Locação no model");
         } else {
             return locacao;
         }
     }
 
-    public List<Locacao> retornarListaLocacao(Usuario cliente) throws Exception {
+    public List<Locacao> retornarListaLocacao(Usuario cliente) 
+                                                    throws Exception {
 
-        List<Locacao> locacaoCliente = ((LocacaoDao) dao).retornarListaLocacao(cliente);
+        List<Locacao> locacaoCliente = 
+                    ((LocacaoDao) DAO).retornarListaLocacao(cliente);
         if (locacaoCliente == null) {
             throw new Exception("Erro ao recuperar a lista  de "
                     + "locações do cliente no model");
@@ -93,15 +101,18 @@ public class LocacaoModel {
         }
     }
 
-    public List<Locacao> retornarListaLocatario(Usuario locatario) throws Exception {
-        List<Locacao> locacaoLocatario = ((LocacaoDao) dao).retornarListaLocacao(locatario);
+    public List<Locacao> retornarListaLocatario(Usuario locatario)
+                                                        throws Exception {
+        
+        List<Locacao> locacaoLocatario = 
+                        ((LocacaoDao) DAO).retornarListaLocacao(locatario);
+        
         if (locacaoLocatario == null) {
             throw new Exception("Erro ao recuperar a lista  de "
                     + "locações do locatario no model");
         } else {
             return locacaoLocatario;
         }
-
     }
-
+    
 }
