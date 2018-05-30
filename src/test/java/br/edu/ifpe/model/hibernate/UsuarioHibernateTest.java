@@ -52,7 +52,7 @@ public class UsuarioHibernateTest {
     }
 
     @BeforeClass
-    public static void inserirUsuario() throws ParseException {
+    public static void inserirUsuario() {
         try {
             DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
             String sdata = "28-04-2018";
@@ -104,7 +104,7 @@ public class UsuarioHibernateTest {
             Usuario usuarioOld = usuarioHibernate.recuperar("cpf");
             usuarioOld.setEmail("ALTERADO");
             usuarioOld.setLogin("ALTERADO");
-            usuarioOld.setLogin("ALTERADO");
+            usuarioOld.setSenha("ALTERADO");
 
             usuarioHibernate.alterar(usuarioOld);
             Assert.assertEquals("TC002", usuarioOld,
@@ -124,7 +124,6 @@ public class UsuarioHibernateTest {
                     "login1", "senha1", "nome", "cpf", "sexo",
                         data, endereco, "telefone", "email",
                             new ArrayList<Bike>());
-            usuarioHibernate.alterar(usuarioOld);
             
             Assert.assertEquals
                 ("TC003", usuarioOld, 
