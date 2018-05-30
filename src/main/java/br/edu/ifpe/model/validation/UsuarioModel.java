@@ -35,13 +35,13 @@ import br.edu.ifpe.model.interfacesDao.UsuarioDao;
  */
 public class UsuarioModel {
 
-    ValidarCpf validacaoCpf = new ValidarCpf();
-    Dao<Usuario> dao = new UsuarioHibernate();
+    private final ValidarCpf VALIDACAOCPF = new ValidarCpf();
+    private final Dao<Usuario> DAO = new UsuarioHibernate();
 
     public void inserir(Usuario usuario) throws Exception {
-        if (validacaoCpf.isCPF(usuario.getCpf()) == true) {
-            if (((UsuarioDao) dao).recuperar(usuario.getCpf()) == null) {
-                dao.inserir(usuario);
+        if (VALIDACAOCPF.isCPF(usuario.getCpf()) == true) {
+            if (((UsuarioDao) DAO).recuperar(usuario.getCpf()) == null) {
+                DAO.inserir(usuario);
             } else {
                 throw new Exception("Erro ao inserir o usuário, no UsuarioModel!");
             }
@@ -52,8 +52,8 @@ public class UsuarioModel {
     }
 
     public void alterar(Usuario usuario) throws Exception {
-        if (((UsuarioDao) dao).recuperar(usuario.getCodigo()) != null) {
-            dao.alterar(usuario);
+        if (((UsuarioDao) DAO).recuperar(usuario.getCodigo()) != null) {
+            DAO.alterar(usuario);
         } else {
             throw new Exception("Erro ao alterar o usuário, no UsuarioModel!");
         }
@@ -63,12 +63,12 @@ public class UsuarioModel {
         if (codigo == null) {
             throw new Exception("Codigo do Usuário não existe, no UsuarioModel");
         }
-        return ((UsuarioDao) dao).recuperar(codigo);
+        return ((UsuarioDao) DAO).recuperar(codigo);
     }
 
     public void deletar(Usuario usuario) throws Exception {
-        if (((UsuarioDao) dao).recuperar(usuario.getCodigo()) != null) {
-            dao.deletar(usuario);
+        if (((UsuarioDao) DAO).recuperar(usuario.getCodigo()) != null) {
+            DAO.deletar(usuario);
         } else {
             throw new Exception("Erro ao deletar o usuário, no UsuarioModel!");
         }
@@ -79,12 +79,12 @@ public class UsuarioModel {
         if (cpf == null) {
             throw new Exception("CPF não existe. Classe UsuarioModel!");
         }
-        return ((UsuarioDao) dao).recuperar(cpf);
+        return ((UsuarioDao) DAO).recuperar(cpf);
     }
 
     public List<Usuario> listarTodos() throws Exception {
 
-        List<Usuario> usuarios = ((UsuarioDao) dao).listarTodos();
+        List<Usuario> usuarios = ((UsuarioDao) DAO).listarTodos();
 
         if (usuarios == null) {
             throw new Exception("Erro ao recuperar a lista de usuários no model");
@@ -95,7 +95,7 @@ public class UsuarioModel {
 
     public Usuario recuperar(String login, String senha) throws Exception {
 
-        Usuario usuario = ((UsuarioDao) dao).recuperar(login, senha);
+        Usuario usuario = ((UsuarioDao) DAO).recuperar(login, senha);
 
         if (usuario == null) {
             throw new Exception("Erro ao recuperar o Login do usuário no UsuarioModel!");

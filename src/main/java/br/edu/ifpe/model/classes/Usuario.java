@@ -31,6 +31,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -59,6 +60,7 @@ public class Usuario {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNasc;
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cod_endereco",nullable = false)
     private Endereco endereco;
     @Column(length = 15,unique = true,nullable = false)
     private String telefone;
