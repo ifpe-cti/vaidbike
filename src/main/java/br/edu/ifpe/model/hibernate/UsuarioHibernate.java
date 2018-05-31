@@ -64,7 +64,7 @@ public class UsuarioHibernate implements UsuarioDao {
             return (Usuario) session.createQuery
                     ("From Usuario where cpf = '" + cpf + "'").list().get(0);
         } catch (Exception e) {
-            LOGGER.warn("Ocorreu um problema ao recuperar o Usuario por cpf"
+            LOGGER.error("Ocorreu um problema ao recuperar o Usuario por cpf"
                         + "\n" + e.getMessage());
             return null;
         } finally {
@@ -82,7 +82,7 @@ public class UsuarioHibernate implements UsuarioDao {
                     "From Usuario where login = '" + login +
                             "' and senha = '" + senha + "'").list().get(0);        
         } catch (Exception e) {
-            LOGGER.warn("Ocorreu um problema ao recuperar o Usuario por login"
+            LOGGER.error("Ocorreu um problema ao recuperar o Usuario por login"
                         + "\n" + e.getMessage());
         } finally {
             session.close();
@@ -99,7 +99,7 @@ public class UsuarioHibernate implements UsuarioDao {
             session.save(usuario);
             transaction.commit();
         } catch (Exception e) {
-            LOGGER.warn("Ocorreu um problema ao inserir um Usuario "
+            LOGGER.error("Ocorreu um problema ao inserir um Usuario "
                         + "\n" + e.getMessage());
         } finally {
             session.close();
@@ -115,7 +115,7 @@ public class UsuarioHibernate implements UsuarioDao {
             transaction.commit();
 
         } catch (Exception e) {
-            LOGGER.warn("Ocorreu um problema ao alterar um Usuario "
+            LOGGER.error("Ocorreu um problema ao alterar um Usuario "
                         + "\n" + e.getMessage());
             transaction.rollback();
         } finally {
@@ -132,7 +132,7 @@ public class UsuarioHibernate implements UsuarioDao {
                     session.createQuery
                         ("From Usuario where codigo=" + codigo).list().get(0);
         } catch (Exception e) {
-            LOGGER.warn("Ocorreu um problema ao recuperar o Usuario por cpf"
+            LOGGER.error("Ocorreu um problema ao recuperar o Usuario por cpf"
                         + "\n" + e.getMessage());
             return null;
         } finally {
@@ -149,7 +149,7 @@ public class UsuarioHibernate implements UsuarioDao {
             session.delete(usuario);
             transaction.commit();
         } catch (Exception e) {
-            LOGGER.warn("Ocorreu um problema ao deletar um Usuario "
+            LOGGER.error("Ocorreu um problema ao deletar um Usuario "
                     + "\n" + e.getMessage());
             transaction.rollback();
         } finally {
@@ -165,7 +165,7 @@ public class UsuarioHibernate implements UsuarioDao {
         try {
             return (ArrayList) session.createQuery("from Usuario").list();
         } catch (Exception e) {
-            LOGGER.warn("Ocorreu um problema ao recuperar todos os Usuarios "
+            LOGGER.error("Ocorreu um problema ao recuperar todos os Usuarios "
                     + "\n" + e.getMessage());
         } finally {
             session.close();

@@ -67,7 +67,7 @@ public class TesteMain {
 //        lh.inserir(l);
         
         Usuario usuario = new Usuario("login", "senha", "nome",
-                "cpf", "sexo",null, end, "telefone", "email"
+                null, "sexo",null, end, "telefone", "email"
                 , new ArrayList<Bike>());
         
         UsuarioHibernate uh = new UsuarioHibernate();

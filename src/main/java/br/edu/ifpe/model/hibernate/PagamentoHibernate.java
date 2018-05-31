@@ -25,6 +25,7 @@ package br.edu.ifpe.model.hibernate;
 import java.util.List;
 import br.edu.ifpe.model.classes.Pagamento;
 import br.edu.ifpe.model.interfacesDao.PagamentoDao;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -38,6 +39,7 @@ public class PagamentoHibernate implements PagamentoDao {
 
     private SessionFactory sessions;
     private static PagamentoHibernate instance;
+    private final Logger LOGGER;
 
     public static PagamentoHibernate getInstance() {
 
@@ -51,6 +53,7 @@ public class PagamentoHibernate implements PagamentoDao {
     public PagamentoHibernate() {
         Configuration cfg = new Configuration().configure();
         this.sessions = cfg.buildSessionFactory();
+        this.LOGGER = Logger.getLogger(PagamentoHibernate.class);
     }
 
     @Override
@@ -61,7 +64,8 @@ public class PagamentoHibernate implements PagamentoDao {
             session.save(pagamento);
             transaction.commit();
         } catch (Exception e) {
-            System.out.println("Erro ao Inserir Pagamento no banco de dados. \n" + e);
+            LOGGER.error("Ocorreu um erro ao inserir um pagamento"
+                            + "\n" + e.getMessage());
             transaction.rollback();
         } finally {
             session.close();
@@ -70,16 +74,17 @@ public class PagamentoHibernate implements PagamentoDao {
 
     @Override
     public Pagamento recuperar(int codigo) {
-
         Session session = this.sessions.openSession();
 
         try {
 
-            return (Pagamento) session.createQuery("From Pagamento where codigo=" + codigo).list().get(0);
+            return (Pagamento) 
+                session.createQuery
+                    ("From Pagamento where codigo=" + codigo).list().get(0);
 
         } catch (Exception e) {
-            System.out.println("Erro ao recuperar o código do Pagamento no banco de dados. \n" + e);
-            //lembtrar de tratar essa excessao posteriormente.
+            LOGGER.error("Ocorreu um erro ao recuperar um pagamento"
+                            + "\n" + e.getMessage());
         } finally {
             session.close();
         }
@@ -93,8 +98,8 @@ public class PagamentoHibernate implements PagamentoDao {
         try {
             return (List) session.createQuery("from Pagamento").list();
         } catch (Exception e) {
-            System.out.println("Erro ao listar todoos os Pagamentos no banco de dados. \n" + e);
-            //lembtrar de tratar essa excessao posteriormente.
+            LOGGER.error("Ocorreu um erro ao listar todos os pagamentos"
+                            + "\n" + e.getMessage());
 
         } finally {
             session.close();
@@ -106,12 +111,12 @@ public class PagamentoHibernate implements PagamentoDao {
     //Não serão utilizados.
     @Override
     public void alterar(Pagamento d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void deletar(Pagamento d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

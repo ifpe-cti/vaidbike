@@ -27,6 +27,7 @@ import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.interfacesDao.LocacaoDao;
 import java.util.ArrayList;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -40,7 +41,8 @@ public class LocacaoHibernate implements LocacaoDao {
 
     private final SessionFactory SESSIONS;
     private static LocacaoHibernate instance;
-
+    private final Logger LOGGER;
+    
     public static LocacaoHibernate getInstance() {
         if (instance != null) {
             instance = new LocacaoHibernate();
@@ -51,6 +53,7 @@ public class LocacaoHibernate implements LocacaoDao {
     public LocacaoHibernate() {
         Configuration cfg = new Configuration().configure();
         this.SESSIONS = cfg.buildSessionFactory();
+        this.LOGGER = Logger.getLogger(LocacaoHibernate.class);
     }
 
     @Override
@@ -62,8 +65,8 @@ public class LocacaoHibernate implements LocacaoDao {
             locacoes = session.createQuery("from Locacao where cod_cliente="
                     + cliente.getCodigo()).list();
         } catch (Exception e) {
-            System.out.println("Algo inesperado aconteceu ao recuperar"
-                + " todas as locações");
+            LOGGER.error("Ocorreu um erro ao listar todas as locações"
+                        + "\n" + e.getMessage());        
         } finally {
             session.close();
             return locacoes;
@@ -79,8 +82,8 @@ public class LocacaoHibernate implements LocacaoDao {
             locacoes = session.createQuery("from Locacao where cod_locatario="
                     + locatario.getCodigo()).list();
         } catch (Exception e) {
-            System.out.println("Algo inesperado aconteceu ao recuperar"
-                + " todas as locações");
+            LOGGER.error("Ocorreu um erro ao listar todas as locações"
+                        + "\n" + e.getMessage()); 
         } finally {
             session.close();
             return locacoes;
@@ -96,7 +99,8 @@ public class LocacaoHibernate implements LocacaoDao {
             session.save(locacao);
             transaction.commit();
         } catch (Exception e) {
-            System.out.println("Erro ao inserir a Locação no banco de dados.");
+            LOGGER.error("Ocorreu um erro ao inserir uma locação"
+                        + "\n" + e.getMessage()); 
             transaction.rollback();
         } finally {
             session.close();
@@ -112,8 +116,8 @@ public class LocacaoHibernate implements LocacaoDao {
             session.update(locacao);
             transaction.commit();
         } catch (Exception e) {
-            System.out.println
-                ("Erro ao alterar a Locação no banco de dados.");
+            LOGGER.error("Ocorreu um erro ao alterar uma locação"
+                        + "\n" + e.getMessage());
             transaction.rollback();
         } finally {
             session.close();
@@ -129,8 +133,8 @@ public class LocacaoHibernate implements LocacaoDao {
                     session.createQuery
                         ("From Locacao where codigo=" + codigo).list().get(0);
         } catch (Exception e) {
-            System.out.println
-                ("Erro ao recuperar o código da Locação no banco de dados. ");
+            LOGGER.error("Ocorreu um erro ao recuperar uma locação"
+                        + "\n" + e.getMessage());
             return null;
         } finally {
             session.close();
@@ -146,8 +150,8 @@ public class LocacaoHibernate implements LocacaoDao {
             session.delete(locacao);
             transaction.commit();
         } catch (Exception e) {
-            System.out.println(
-                    "Erro ao deletar a Locação no banco de dados. \n");
+            LOGGER.error("Ocorreu um erro ao deletar uma locação"
+                        + "\n" + e.getMessage());
             transaction.rollback();
         } finally {
             session.close();
@@ -162,8 +166,8 @@ public class LocacaoHibernate implements LocacaoDao {
         try {
             locacoes = (List) session.createQuery("from Locacao").list();
         } catch (Exception e) {
-            System.out.println
-                ("Erro ao listar todas as Locações no banco de dados.");
+            LOGGER.error("Ocorreu um erro ao listar todas as locações"
+                        + "\n" + e.getMessage());
         } finally {
             session.close();
             return locacoes;
