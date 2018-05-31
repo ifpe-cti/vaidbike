@@ -25,10 +25,8 @@ package br.edu.ifpe.view;
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Usuario;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import br.edu.ifpe.model.hibernate.UsuarioHibernate;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -67,14 +65,13 @@ public class TesteMain {
 //        LocacaoHibernate lh = new LocacaoHibernate();
 //
 //        lh.inserir(l);
-        DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
-        DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");
-        String sdata = "2008-04-01";
-        Date data = df2.parse(sdata);
         
         Usuario usuario = new Usuario("login", "senha", "nome",
-                "cpf", "sexo",data, end, "telefone", "email"
+                "cpf", "sexo",null, end, "telefone", "email"
                 , new ArrayList<Bike>());
+        
+        UsuarioHibernate uh = new UsuarioHibernate();
+        uh.inserir(usuario);
 
     }
 }

@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.interfacesDao.UsuarioDao;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -38,9 +39,10 @@ import org.hibernate.cfg.Configuration;
  */
 public class UsuarioHibernate implements UsuarioDao {
 
-    private SessionFactory sessions;
+    private final SessionFactory SESSIONS;
     private static UsuarioHibernate instance;
-
+    private final Logger LOGGER;
+    
     public static UsuarioHibernate getInstance() {
         if (instance != null) {
             instance = new UsuarioHibernate();
@@ -50,79 +52,72 @@ public class UsuarioHibernate implements UsuarioDao {
 
     public UsuarioHibernate() {
         Configuration cfg = new Configuration().configure();
-        this.sessions = cfg.buildSessionFactory();
+        this.SESSIONS = cfg.buildSessionFactory();
+        this.LOGGER = Logger.getLogger(UsuarioHibernate.class);
     }
 
     @Override
     public Usuario recuperar(String cpf) {
-        Session session = this.sessions.openSession();
-
+        Session session = this.SESSIONS.openSession();
+        
         try {
-            return (Usuario) session.createQuery("From Usuario where cpf = '" + cpf + "'").list().get(0);
+            return (Usuario) session.createQuery
+                    ("From Usuario where cpf = '" + cpf + "'").list().get(0);
         } catch (Exception e) {
-            System.out.println("Erro ao recuperar o Usuário pelo cpf no banco de dados. \n" + e);
-            //lembtrar de tratar essa excessao posteriormente.
-
+            LOGGER.warn("Ocorreu um problema ao recuperar o Usuario por cpf"
+                        + "\n" + e.getMessage());
+            return null;
         } finally {
             session.close();
         }
-        return null;
     }
 
     @Override
     public Usuario recuperar(String login, String senha) {
-
-        Session session = this.sessions.openSession();
-
-        List<Usuario> usuarios = new ArrayList<>();
-
+        Session session = this.SESSIONS.openSession();
+        Usuario usuario = null;
+        
         try {
-
-            usuarios = session.createQuery("From Usuario where login = '"
-                    + login + "' and senha = '" + senha + "'").list();
-            if (usuarios.size() > 0) {
-                return usuarios.get(0);
-            }
-
+            usuario = (Usuario) session.createQuery(
+                    "From Usuario where login = '" + login +
+                            "' and senha = '" + senha + "'").list().get(0);        
         } catch (Exception e) {
-            System.out.println("Erro ao recuperar o Usuário pelo loigin e pela senha no banco de dados. \n" + e);
-
+            LOGGER.warn("Ocorreu um problema ao recuperar o Usuario por login"
+                        + "\n" + e.getMessage());
         } finally {
             session.close();
+            return usuario;
         }
-        return null;
     }
 
     @Override
     public void inserir(Usuario usuario) {
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
         Transaction transaction = session.beginTransaction();
+        
         try {
             session.save(usuario);
             transaction.commit();
         } catch (Exception e) {
-            System.out.println("Erro ao Inserir Usuário no banco de dados. \n" + e);
-            transaction.rollback();
+            LOGGER.warn("Ocorreu um problema ao inserir um Usuario "
+                        + "\n" + e.getMessage());
         } finally {
             session.close();
         }
-
     }
 
     @Override
     public void alterar(Usuario usuario) {
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
         Transaction transaction = session.beginTransaction();
-
         try {
             session.update(usuario);
             transaction.commit();
 
         } catch (Exception e) {
-            System.out.println("Erro ao alterar o Usuário no banco de dados. \n" + e);
-            //lembtrar de tratar essa excessao posteriormente.
+            LOGGER.warn("Ocorreu um problema ao alterar um Usuario "
+                        + "\n" + e.getMessage());
             transaction.rollback();
-
         } finally {
             session.close();
         }
@@ -130,55 +125,52 @@ public class UsuarioHibernate implements UsuarioDao {
 
     @Override
     public Usuario recuperar(int codigo) {
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
 
         try {
-
-            return (Usuario) session.createQuery("From Usuario where codigo=" + codigo).list().get(0);
-
+            return (Usuario) 
+                    session.createQuery
+                        ("From Usuario where codigo=" + codigo).list().get(0);
         } catch (Exception e) {
-            System.out.println("Erro ao recuperar o código do Usuário no banco de dados. \n" + e);
-            //lembtrar de tratar essa excessao posteriormente.
+            LOGGER.warn("Ocorreu um problema ao recuperar o Usuario por cpf"
+                        + "\n" + e.getMessage());
+            return null;
         } finally {
             session.close();
         }
-        return null;
-
     }
 
     @Override
     public void deletar(Usuario usuario) {
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
         Transaction transaction = session.beginTransaction();
+        
         try {
             session.delete(usuario);
             transaction.commit();
         } catch (Exception e) {
-
-            System.out.println("Erro ao deletar o Usuário no banco de dados. \n" + e);
-            //lembtrar de tratar essa excessao posteriormente.
+            LOGGER.warn("Ocorreu um problema ao deletar um Usuario "
+                    + "\n" + e.getMessage());
             transaction.rollback();
-
         } finally {
             session.close();
         }
-
     }
 
     @Override
     public List<Usuario> listarTodos() {
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
+        List<Usuario> usuarios = new ArrayList();
+        
         try {
-            return (List) session.createQuery("from Usuario").list();
+            return (ArrayList) session.createQuery("from Usuario").list();
         } catch (Exception e) {
-            System.out.println("Erro ao listar todoos os Usuários no banco de dados. \n" + e);
-            //lembtrar de tratar essa excessao posteriormente.
-
+            LOGGER.warn("Ocorreu um problema ao recuperar todos os Usuarios "
+                    + "\n" + e.getMessage());
         } finally {
             session.close();
+            return usuarios;
         }
-        return null;
-
     }
-
+    
 }
