@@ -34,7 +34,7 @@ import br.edu.ifpe.model.interfacesDao.PagamentoDao;
  */
 public class PagamentoModel {
 
-    Dao<Pagamento> dao = new PagamentoHibernate();
+    Dao<Pagamento> dao = PagamentoHibernate.getInstance();
 
     public void inserir(Pagamento pagamento) {
         try {
