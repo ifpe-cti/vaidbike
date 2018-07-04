@@ -106,9 +106,6 @@ public class Endereco implements Serializable {
       if(!((obj) instanceof Endereco))
           return false;
       
-      if(!((Endereco)obj).codigo.equals(this.codigo))
-          return false;
-      
       if(!((Endereco)obj).estado.equals(this.estado))
           return false;
       
