@@ -36,6 +36,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
+
+
 /**
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
@@ -47,24 +49,24 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer codigo;
-    @Column(length = 15,nullable = false)
+    @Column(length = 15,nullable = true)
     private String login;
-    @Column(length = 12,nullable = false)
+    @Column(length = 12,nullable = true)
     private String senha;
-    @Column(length = 20,nullable = false)
+    @Column(length = 20,nullable = true)
     private String nome;
-    @Column(length = 15,nullable = false,unique = true)
+    @Column(length = 15,nullable = true,unique = true)
     private String cpf;
-    @Column(length = 5,nullable = false)
+    @Column(length = 5,nullable = true)
     private String sexo;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNasc;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cod_endereco",nullable = false)
+    @JoinColumn(name = "cod_endereco",nullable = true)
     private Endereco endereco;
-    @Column(length = 15,unique = true,nullable = false)
+    @Column(length = 15,unique = true,nullable = true)
     private String telefone;
-    @Column(length = 20,unique = true,nullable = false)
+    @Column(length = 20,unique = true,nullable = true)
     private String email;
     @OneToMany(mappedBy = "usuario", targetEntity = Bike.class,
             fetch = FetchType.EAGER, cascade = CascadeType.ALL)
