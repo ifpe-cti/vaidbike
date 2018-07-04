@@ -106,6 +106,9 @@ public class Endereco implements Serializable {
       if(!((obj) instanceof Endereco))
           return false;
       
+      if(!((Endereco)obj).codigo.equals(this.codigo))
+          return false;
+      
       if(!((Endereco)obj).estado.equals(this.estado))
           return false;
       
@@ -120,7 +123,7 @@ public class Endereco implements Serializable {
       
       return ((Endereco)obj).logradouro.equals(this.logradouro);
     }
-
+    
     @Override
     public String toString() {
         return "Endereco{" + "codigo=" + codigo + ", estado=" 
