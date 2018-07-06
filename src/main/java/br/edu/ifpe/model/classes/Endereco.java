@@ -123,7 +123,7 @@ public class Endereco implements Serializable {
       
       return ((Endereco)obj).logradouro.equals(this.logradouro);
     }
-
+    
     @Override
     public String toString() {
         return "Endereco{" + "codigo=" + codigo + ", estado=" 

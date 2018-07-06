@@ -1,5 +1,6 @@
 /*MIT License
 
+
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
 Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
@@ -51,7 +52,7 @@ public class PagamentoHibernate implements PagamentoDao {
 
     }
 
-    public PagamentoHibernate() {
+    private PagamentoHibernate() {
         Configuration cfg = new Configuration().configure();
         this.sessions = cfg.buildSessionFactory();
         this.LOGGER = Logger.getLogger(PagamentoHibernate.class);

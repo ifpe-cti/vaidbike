@@ -22,40 +22,30 @@ SOFTWARE.
  */
 package br.edu.ifpe.model.validation;
 
-import java.util.List;
-import br.edu.ifpe.model.classes.Pagamento;
-import br.edu.ifpe.model.hibernate.PagamentoHibernate;
-import br.edu.ifpe.model.interfacesDao.Dao;
-import br.edu.ifpe.model.interfacesDao.PagamentoDao;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+
 
 /**
  *
- * @author Adrielly Calado - adriellysales015@outlook.com
+ * @author Lucas Mendes <lucas.mendes147@live.com>
  */
-public class PagamentoModel {
-
-    Dao<Pagamento> dao = PagamentoHibernate.getInstance();
-
-    public void inserir(Pagamento pagamento) {
-        try {
-             dao.inserir(pagamento);
-            
-        } catch (Exception e) {
-            System.out.println("Erro ao inserir o Pagamento, na classe PagamentoModel");
-        }
+public class ValidarCpfTest {
+    @Test
+    public void testarCpfInvalido(){
+        assertFalse(ValidarCpf.isCPF("5226623135"));
     }
-    public Pagamento recuperar(Integer codigo) throws Exception {
-        return ((PagamentoModel) dao).recuperar(codigo);
+    
+    @Test
+    public void testarCpfValido(){
+        assertTrue(ValidarCpf.isCPF("37621958030"));
     }
-
-    public List<Pagamento> listarTodos() throws Exception {
-
-        List<Pagamento> pagamento = ((PagamentoDao) dao).listarTodos();
-
-        if (pagamento == null) {
-            throw new Exception("Erro ao recuperar a lista de pagamentos no model");
-        } else {
-            return pagamento;
-        }
+    
+    @Test
+    public void testarImprimirCpf(){
+        String cpf = ValidarCpf.imprimeCPF("37621958030");
+        assertEquals("TC001","376.219.580-30",cpf);
     }
 }
