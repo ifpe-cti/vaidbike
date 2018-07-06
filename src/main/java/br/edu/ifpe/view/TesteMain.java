@@ -19,7 +19,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
- */
+
 package br.edu.ifpe.view;
 
 import br.edu.ifpe.model.classes.Bike;
@@ -62,22 +62,22 @@ public class TesteMain {
 //        uh.alterar(u);
 //
 //        Locacao locacao = new Locacao(u, u, new Date(), new Date());
-        Pagamento p = new Pagamento("tipo", new BigDecimal(50), new Locacao());
-
-       PagamentoModel pm = new PagamentoModel();
-   //    PagamentoHibernate ph = new PagamentoHibernate();
-
-//        ph.inserir(p);
-
-       
-        Usuario cliente = new Usuario("sadasd", "asdf", "cu",
-
-        pm.inserir(p);
-        
-     // ph.inserir(p);
-        System.out.println( pm.recuperar(1));
-        System.out.println(pm.listarTodos());
-        
+//        Pagamento p = new Pagamento("tipo", new BigDecimal(50), new Locacao());
+//
+//       PagamentoModel pm = new PagamentoModel();
+//   //    PagamentoHibernate ph = new PagamentoHibernate();
+//
+////        ph.inserir(p);
+//
+//       
+//        Usuario cliente = new Usuario("sadasd", "asdf", "cu",
+//
+//        pm.inserir(p);
+//        
+//     // ph.inserir(p);
+//        System.out.println( pm.recuperar(1));
+//        System.out.println(pm.listarTodos());
+//        
         
       
       

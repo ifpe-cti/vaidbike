@@ -44,7 +44,7 @@ public class PagamentoHibernateTest {
     public PagamentoHibernateTest() {
         
         this.pagamento = new Pagamento();
-        this.pagamentoHibernate = new PagamentoHibernate();
+       // this.pagamentoHibernate = new PagamentoHibernate();
     }
 
    @Test
