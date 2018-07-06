@@ -24,9 +24,12 @@ package br.edu.ifpe.view;
 
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
+import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
+import br.edu.ifpe.model.hibernate.LocacaoHibernate;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -60,18 +63,31 @@ public class TesteMain {
 //        PagamentoHibernate ph = new PagamentoHibernate();
 //
 //        ph.inserir(p);
-//
-//        Locacao l = new Locacao(u, u, new Date(), new Date());
-//        LocacaoHibernate lh = new LocacaoHibernate();
-//
-//        lh.inserir(l);
-        
-        Usuario usuario = new Usuario("login", "senha", "nome",
+
+       
+        Usuario cliente = new Usuario("sadasd", "asdf", "cu",
                 null, "sexo",null, end, "telefone", "email"
                 , new ArrayList<Bike>());
         
         UsuarioHibernate uh = new UsuarioHibernate();
-        uh.inserir(usuario);
+        uh.inserir(cliente);
+        
+         Usuario locatario = new Usuario("teste", "teste", "testesw",
+                null, "sexo",null, end, "telefone", "email"
+                , new ArrayList<Bike>());
+        uh.inserir(locatario);
+        
+        
+        
+        cliente = uh.recuperar(1);
+        locatario = uh.recuperar(1);
+        
+        Locacao l = new Locacao(cliente, locatario, null, null);
+        LocacaoHibernate lh = new LocacaoHibernate();
+
+        lh.inserir(l);
+        
+       
 
     }
 }
