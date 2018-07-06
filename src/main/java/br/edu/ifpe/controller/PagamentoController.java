@@ -86,7 +86,7 @@ public class PagamentoController {
     }
 
     public List<Pagamento> ListarTodos() throws Exception {
-        return this.instance.ListarTodos();
+        return this.instance.listarTodos();
     }
 
 }
