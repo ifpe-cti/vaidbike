@@ -38,25 +38,17 @@ public class PagamentoModel {
 
     public void inserir(Pagamento pagamento) {
         try {
-            if (((PagamentoDao) dao).recuperar(pagamento.getCodigo()) == null) {
-                dao.inserir(pagamento);
-            }
+             dao.inserir(pagamento);
+            
         } catch (Exception e) {
             System.out.println("Erro ao inserir o Pagamento, na classe PagamentoModel");
         }
     }
-
     public Pagamento recuperar(Integer codigo) throws Exception {
-
-        if (codigo == null) {
-            throw new Exception("Código de Pagamento não existe, no PagamentoModel");
-        }
-
         return ((PagamentoModel) dao).recuperar(codigo);
-
     }
 
-    public List<Pagamento> ListarTodos() throws Exception {
+    public List<Pagamento> listarTodos() throws Exception {
 
         List<Pagamento> pagamento = ((PagamentoDao) dao).listarTodos();
 
@@ -65,8 +57,5 @@ public class PagamentoModel {
         } else {
             return pagamento;
         }
-
     }
-   
-
 }

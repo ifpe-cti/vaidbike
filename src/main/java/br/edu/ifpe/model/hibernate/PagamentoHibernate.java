@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -61,11 +62,11 @@ public class PagamentoHibernate implements PagamentoDao {
         Session session = this.sessions.openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            session.save(pagamento);
+            session.saveOrUpdate(pagamento);
             transaction.commit();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao inserir um pagamento"
-                            + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
             transaction.rollback();
         } finally {
             session.close();
@@ -78,13 +79,11 @@ public class PagamentoHibernate implements PagamentoDao {
 
         try {
 
-            return (Pagamento) 
-                session.createQuery
-                    ("From Pagamento where codigo=" + codigo).list().get(0);
+            return (Pagamento) session.createQuery("From Pagamento where id_pagamento=" + codigo).list().get(0);
 
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao recuperar um pagamento"
-                            + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
         } finally {
             session.close();
         }
@@ -99,7 +98,7 @@ public class PagamentoHibernate implements PagamentoDao {
             return (List) session.createQuery("from Pagamento").list();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao listar todos os pagamentos"
-                            + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
 
         } finally {
             session.close();
@@ -108,15 +107,26 @@ public class PagamentoHibernate implements PagamentoDao {
 
     }
 
-    //Não serão utilizados.
     @Override
     public void alterar(Pagamento d) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void deletar(Pagamento d) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    public void deletar(Pagamento pagamento) {
 
+        Session session = this.sessions.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            session.delete(pagamento);
+            transaction.commit();
+        } catch (Exception e) {
+            LOGGER.error("Ocorreu um problema ao deletar um Pagamento "
+                    + "\n" + e.getMessage());
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+    }
 }
