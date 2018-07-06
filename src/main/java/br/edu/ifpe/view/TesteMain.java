@@ -25,6 +25,7 @@ package br.edu.ifpe.view;
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
+import br.edu.ifpe.model.hibernate.LocacaoHibernate;
 import br.edu.ifpe.model.classes.Pagamento;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.hibernate.PagamentoHibernate;
@@ -32,6 +33,7 @@ import br.edu.ifpe.model.hibernate.UsuarioHibernate;
 import br.edu.ifpe.model.validation.PagamentoModel;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -64,7 +66,12 @@ public class TesteMain {
 
        PagamentoModel pm = new PagamentoModel();
    //    PagamentoHibernate ph = new PagamentoHibernate();
-//
+
+//        ph.inserir(p);
+
+       
+        Usuario cliente = new Usuario("sadasd", "asdf", "cu",
+
         pm.inserir(p);
         
      // ph.inserir(p);
@@ -81,11 +88,33 @@ public class TesteMain {
 //        lh.inserir(l);
         
        /* Usuario usuario = new Usuario("login", "senha", "nome",
+
                 null, "sexo",null, end, "telefone", "email"
                 , new ArrayList<Bike>());
         
         UsuarioHibernate uh = new UsuarioHibernate();
+
+        uh.inserir(cliente);
+        
+         Usuario locatario = new Usuario("teste", "teste", "testesw",
+                null, "sexo",null, end, "telefone", "email"
+                , new ArrayList<Bike>());
+        uh.inserir(locatario);
+        
+        
+        
+        cliente = uh.recuperar(1);
+        locatario = uh.recuperar(1);
+        
+        Locacao l = new Locacao(cliente, locatario, null, null);
+        LocacaoHibernate lh = new LocacaoHibernate();
+
+        lh.inserir(l);
+        
+       
+
         uh.inserir(usuario);*/
+
 
     }
 }

@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,73 +23,59 @@ SOFTWARE.
  */
 package br.edu.ifpe.model.hibernate;
 
+import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
+import java.util.ArrayList;
+import java.util.Date;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author Carlos André - carloscordeiroconsultor@gmail.com
  */
-public class LocacaoHibernateTest {
-    private  Usuario cliente;
-    private  Usuario locatario;
-    private  LocacaoHibernate locacaoHibernate;
-    
-        public LocacaoHibernateTest() {        
-            cliente = new Usuario("login", "senha", "nome", "cpf", "sexo", null, null, "telefone", "email", null);
-            locatario = new Usuario("1", "1", "3", "33", "sexo", null, null, "telefone", "email", null);
-            locacaoHibernate = new LocacaoHibernate();
-    }
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
-        @BeforeClass
-        
-        public static void InserirLocacao(){
-               Usuario locatario = new Usuario("1", "1", "3", "33", "sexo", null, null, "telefone", "email", null);
-               Usuario cliente = new Usuario("login", "senha", "nome", "cpf", "sexo", null, null, "telefone", "email", null);
-               Locacao locacao = new Locacao(cliente, locatario, null, null);
-               LocacaoHibernate locacaoHibernate  = new LocacaoHibernate();
-               locacaoHibernate.inserir(locacao);
-        }
- 
-    @Test
-    public void testarInsersaoLocacao(){
-         Locacao locacao = new Locacao(cliente, locatario, null, null);
-               locacaoHibernate.inserir(locacao);
-               assertEquals(locacao, locacaoHibernate.recuperar(1));
+public class LocacaoHibernateTest {
+    public static final Usuario cliente
+            = new Usuario("login", "senha", "nome", "91492519022", "sexo",
+                    null, null, "telefone", "email", new ArrayList<Bike>());
+    public static final Usuario locatario
+            = new Usuario("login1", "senha1", "nome1", "93708394020", "sexo1",
+                    null, null, "telefone1", "email1", new ArrayList<Bike>());
+    public static final Locacao locacao = new Locacao(cliente, locatario, null, null);
+    
+    public static final LocacaoHibernate locacaoHibernate = new LocacaoHibernate();
+
+    @BeforeClass
+    public static void deveInserirLocacaoNoBanco(){
+        UsuarioHibernate usuarioHibernate = new UsuarioHibernate();
+        LocacaoHibernateTest.locacaoHibernate.inserir(locacao);
     }
     
+    @Test
+    public void deveRecuperarLocacaoDoBanco(){
+        Assert.assertNotNull(locacaoHibernate.recuperar(1));
+    }
     
+    @Test
+    public void deveAlterarLocacaoDoBanco(){
+        Locacao locacaoAlterada = locacaoHibernate.recuperar(1);
+        locacaoAlterada.setDevolucao(new Date());
+        locacaoHibernate.alterar(locacaoAlterada);
+        Assert.assertNotEquals(locacaoAlterada,locacaoHibernate.recuperar(1));
+    }
+    
+    @Test
+    public void deveDeletarDoBanco(){
+        Locacao locacaoDeletada = locacaoHibernate.recuperar(1);
+        locacaoHibernate.deletar(locacaoDeletada);
+        Assert.assertNull(locacaoHibernate.recuperar(1));
+    }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

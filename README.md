@@ -1,4 +1,4 @@
-# VaidBike
+﻿# VaidBike
 O projeto de Aplicação escolhido tem como objetivo intermediar a interação
 entre os usuários facilitando o aluguel de bicicletas entre locador e
 locatário.
@@ -47,7 +47,7 @@ pela intermediação do serviço.
 ## Contribuidores
 - [@vsnepomuceno](https://github.com/vsnepomuceno) como Vilmar Nepomuceno
 - [@milenamaced](https://github.com/milenamaced) como Milena Macedo
-- [@Lucianocljr](https://github.com/Lucianocljr)  como Luciano Júnior
+- [@lucasmendesc](https://github.com/lucasmendesc)  como Lucas Mendes
 - [@CarlosAndreCordeiro](https://github.com/CarlosAndreCordeiro) como Carlos
  Cordeiro
 - [@adriellycl](https://github.com/adriellycl) como Adrielly Sales
