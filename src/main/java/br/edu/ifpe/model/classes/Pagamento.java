@@ -24,6 +24,7 @@ package br.edu.ifpe.model.classes;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -95,20 +96,23 @@ public class Pagamento implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Pagamento))
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
-        
-        if(!((Pagamento) obj).codigo.equals(this.codigo))
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-        
-        if(!((Pagamento) obj).tipo.equals(this.tipo))
+        }
+        final Pagamento other = (Pagamento) obj;
+        if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
-        
-        if(this.valor != ((Pagamento) obj).valor)
-            return false;
-        
-        return (((Pagamento) obj).locacao.equals(this.locacao)); 
+        }
+        return true;
     }
+
+   
 
     @Override
     public String toString() {

@@ -25,9 +25,13 @@ package br.edu.ifpe.view;
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
-import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.hibernate.LocacaoHibernate;
+import br.edu.ifpe.model.classes.Pagamento;
+import br.edu.ifpe.model.classes.Usuario;
+import br.edu.ifpe.model.hibernate.PagamentoHibernate;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
+import br.edu.ifpe.model.validation.PagamentoModel;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -42,7 +46,7 @@ public class TesteMain {
 //        UsuarioHibernate uh = new UsuarioHibernate();
 //        List<Bike> bikes = new ArrayList<>();
 //
-       Endereco end = new Endereco("estado", "cidade", "cep", "bairro", "logradouro");
+ //      Endereco end = new Endereco("estado", "cidade", "cep", "bairro", "logradouro");
 //
 //        Usuario u = new Usuario("Milena", "mirassica", "123", "75008513400",
 //                "sexo", new Date(), end, "telefone", "email", bikes);
@@ -58,18 +62,38 @@ public class TesteMain {
 //        uh.alterar(u);
 //
 //        Locacao locacao = new Locacao(u, u, new Date(), new Date());
-//        Pagamento p = new Pagamento("tipo", new BigDecimal("2.33"), locacao);
-//
-//        PagamentoHibernate ph = new PagamentoHibernate();
-//
+        Pagamento p = new Pagamento("tipo", new BigDecimal(50), new Locacao());
+
+       PagamentoModel pm = new PagamentoModel();
+   //    PagamentoHibernate ph = new PagamentoHibernate();
+
 //        ph.inserir(p);
 
        
         Usuario cliente = new Usuario("sadasd", "asdf", "cu",
+
+        pm.inserir(p);
+        
+     // ph.inserir(p);
+        System.out.println( pm.recuperar(1));
+        System.out.println(pm.listarTodos());
+        
+        
+      
+      
+//
+//        Locacao l = new Locacao(u, u, new Date(), new Date());
+//        LocacaoHibernate lh = new LocacaoHibernate();
+//
+//        lh.inserir(l);
+        
+       /* Usuario usuario = new Usuario("login", "senha", "nome",
+
                 null, "sexo",null, end, "telefone", "email"
                 , new ArrayList<Bike>());
         
         UsuarioHibernate uh = new UsuarioHibernate();
+
         uh.inserir(cliente);
         
          Usuario locatario = new Usuario("teste", "teste", "testesw",
@@ -88,6 +112,9 @@ public class TesteMain {
         lh.inserir(l);
         
        
+
+        uh.inserir(usuario);*/
+
 
     }
 }
