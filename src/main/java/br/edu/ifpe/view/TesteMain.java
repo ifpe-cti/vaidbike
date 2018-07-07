@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated docuhentation files (the "Software"), to deal
@@ -19,7 +20,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
+ */
+/*
 package br.edu.ifpe.view;
 
 import br.edu.ifpe.model.classes.Bike;
@@ -39,14 +41,16 @@ import java.util.Date;
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
+/*
 public class TesteMain {
 
     public static void main(String args[]) throws Exception {
 
 //        UsuarioHibernate uh = new UsuarioHibernate();
 //        List<Bike> bikes = new ArrayList<>();
-//
- //      Endereco end = new Endereco("estado", "cidade", "cep", "bairro", "logradouro");
+//      Endereco end = new Endereco("estado", "cidade", "cep", "bairro",
+        //      Endereco end = new Endereco("estado", "cidade", "cep", "bairro",
+//"logradouro");
 //
 //        Usuario u = new Usuario("Milena", "mirassica", "123", "75008513400",
 //                "sexo", new Date(), end, "telefone", "email", bikes);
@@ -62,14 +66,19 @@ public class TesteMain {
 //        uh.alterar(u);
 //
 //        Locacao locacao = new Locacao(u, u, new Date(), new Date());
-//        Pagamento p = new Pagamento("tipo", new BigDecimal(50), new Locacao());
+        Pagamento p = new Pagamento("tipo", new BigDecimal(50), new Locacao());
 //
-//       PagamentoModel pm = new PagamentoModel();
-//   //    PagamentoHibernate ph = new PagamentoHibernate();
+        PagamentoModel pm = new PagamentoModel();
+        PagamentoHibernate ph = new PagamentoHibernate();
 //
-////        ph.inserir(p);
+        pm.inserir(p);
+
+        System.out.println(pm.recuperar(1));
+
+//        ph.deletar(ph.recuperar(4));
+        //System.out.println(pm.listarTodos());
 //
-//       
+
 //        Usuario cliente = new Usuario("sadasd", "asdf", "cu",
 //
 //        pm.inserir(p);
@@ -78,16 +87,12 @@ public class TesteMain {
 //        System.out.println( pm.recuperar(1));
 //        System.out.println(pm.listarTodos());
 //        
-        
-      
-      
 //
 //        Locacao l = new Locacao(u, u, new Date(), new Date());
 //        LocacaoHibernate lh = new LocacaoHibernate();
 //
 //        lh.inserir(l);
-        
-       /* Usuario usuario = new Usuario("login", "senha", "nome",
+        /* Usuario usuario = new Usuario("login", "senha", "nome",
 
                 null, "sexo",null, end, "telefone", "email"
                 , new ArrayList<Bike>());
@@ -113,8 +118,7 @@ public class TesteMain {
         
        
 
-        uh.inserir(usuario);*/
-
-
+        uh.inserir(usuario);
     }
 }
+*/

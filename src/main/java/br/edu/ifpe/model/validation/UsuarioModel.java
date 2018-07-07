@@ -31,7 +31,7 @@ import br.edu.ifpe.model.interfacesDao.UsuarioDao;
 
 /**
  *
- * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
+ * @author Carlos Cordeiro <carloscordeiroconsultor@gmail.com>
  */
 public class UsuarioModel {
 
@@ -43,8 +43,7 @@ public class UsuarioModel {
             if (((UsuarioDao) DAO).recuperar(usuario.getCpf()) == null) {
                 DAO.inserir(usuario);
             } else {
-                throw new Exception
-                        ("Erro ao inserir o usuário, no UsuarioModel!");
+                throw new Exception("Erro ao inserir o usuário, no UsuarioModel!");
             }
             //verifiar depois se essa validação está correta.
         } else {
@@ -62,8 +61,7 @@ public class UsuarioModel {
 
     public Usuario recuperar(Integer codigo) throws Exception {
         if (codigo == null) {
-            throw new Exception
-                ("Codigo do Usuário não existe, no UsuarioModel");
+            throw new Exception("Codigo do Usuário não existe, no UsuarioModel");
         }
         return ((UsuarioDao) DAO).recuperar(codigo);
     }
@@ -89,8 +87,7 @@ public class UsuarioModel {
         List<Usuario> usuarios = ((UsuarioDao) DAO).listarTodos();
 
         if (usuarios == null) {
-            throw new Exception
-                ("Erro ao recuperar a lista de usuários no model");
+            throw new Exception("Erro ao recuperar a lista de usuários no model");
         } else {
             return usuarios;
         }
@@ -101,8 +98,8 @@ public class UsuarioModel {
         Usuario usuario = ((UsuarioDao) DAO).recuperar(login, senha);
 
         if (usuario == null) {
-            throw new Exception
-                ("Erro ao recuperar o Login do usuário no UsuarioModel!");
+            throw new Exception("Erro ao recuperar o Login do"
+                    + " usuário no UsuarioModel!");
         } else {
             return usuario;
         }

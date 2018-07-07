@@ -32,7 +32,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Milena Macedo - milenasantosmcd@gmail.com
+ * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 @Entity
 public class Endereco implements Serializable {
@@ -103,31 +103,37 @@ public class Endereco implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-      if(!((obj) instanceof Endereco))
-          return false;
-      
-      if(!((Endereco)obj).codigo.equals(this.codigo))
-          return false;
-      
-      if(!((Endereco)obj).estado.equals(this.estado))
-          return false;
-      
-      if(!((Endereco)obj).cidade.equals(this.cidade))
-          return false;
-      
-      if(!((Endereco)obj).cep.equals(this.cep))
-          return false;
-      
-      if(!((Endereco)obj).bairro.equals(this.bairro))
-          return false;
-      
-      return ((Endereco)obj).logradouro.equals(this.logradouro);
+        if (!((obj) instanceof Endereco)) {
+            return false;
+        }
+
+        if (!((Endereco) obj).codigo.equals(this.codigo)) {
+            return false;
+        }
+
+        if (!((Endereco) obj).estado.equals(this.estado)) {
+            return false;
+        }
+
+        if (!((Endereco) obj).cidade.equals(this.cidade)) {
+            return false;
+        }
+
+        if (!((Endereco) obj).cep.equals(this.cep)) {
+            return false;
+        }
+
+        if (!((Endereco) obj).bairro.equals(this.bairro)) {
+            return false;
+        }
+
+        return ((Endereco) obj).logradouro.equals(this.logradouro);
     }
-    
+
     @Override
     public String toString() {
-        return "Endereco{" + "codigo=" + codigo + ", estado=" 
-                + estado + ", cidade=" + cidade + ", cep=" + cep +
-                ", bairro=" + bairro + ", logradouro=" + logradouro + '}';
+        return "Endereco{" + "codigo=" + codigo + ", estado="
+                + estado + ", cidade=" + cidade + ", cep=" + cep
+                + ", bairro=" + bairro + ", logradouro=" + logradouro + '}';
     }
 }

@@ -26,7 +26,7 @@ import java.util.List;
 
 /**
  *
- * @author Milena Macedo - milenasantosmcd@gmail.com
+ * @author Milena Macedo  <milenasantosmcd@gmail.com>
  */
 public interface Dao<D> {
 
@@ -34,7 +34,7 @@ public interface Dao<D> {
 
     public void alterar(D d);
 
-    public D recuperar(int codigo);
+    public D recuperar(Integer codigo);
 
     public void deletar(D d);
 

@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifpe.model.validation;
 
 import java.util.InputMismatchException;
 
 /**
  *
- * @author Copiado de: https://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097
+ * @author Copiado de: <https://www.devmedia.com.br/validando-o-cpf-em-uma-aplicacao-java/22097>
  */
 public class ValidarCpf {
    

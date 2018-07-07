@@ -35,7 +35,7 @@ import org.hibernate.cfg.Configuration;
 
 /**
  *
- * @author Adrielly Calado - adriellysales015@outlook.com
+ * @author Adrielly Calado <adriellysales015@outlook.com>
  */
 public class PagamentoHibernate implements PagamentoDao {
 
@@ -52,7 +52,7 @@ public class PagamentoHibernate implements PagamentoDao {
 
     }
 
-    private PagamentoHibernate() {
+    public PagamentoHibernate() {
         Configuration cfg = new Configuration().configure();
         this.sessions = cfg.buildSessionFactory();
         this.LOGGER = Logger.getLogger(PagamentoHibernate.class);
@@ -63,7 +63,7 @@ public class PagamentoHibernate implements PagamentoDao {
         Session session = this.sessions.openSession();
         Transaction transaction = session.beginTransaction();
         try {
-            session.saveOrUpdate(pagamento);
+            session.save(pagamento);
             transaction.commit();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao inserir um pagamento"
@@ -75,12 +75,13 @@ public class PagamentoHibernate implements PagamentoDao {
     }
 
     @Override
-    public Pagamento recuperar(int codigo) {
+    public Pagamento recuperar(Integer codigo) {
         Session session = this.sessions.openSession();
 
         try {
 
-            return (Pagamento) session.createQuery("From Pagamento where id_pagamento=" + codigo).list().get(0);
+            return (Pagamento) session.createQuery("From Pagamento where"
+                    + " id_pagamento=" + codigo).list().get(0);
 
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao recuperar um pagamento"
@@ -109,11 +110,6 @@ public class PagamentoHibernate implements PagamentoDao {
     }
 
     @Override
-    public void alterar(Pagamento d) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public void deletar(Pagamento pagamento) {
 
         Session session = this.sessions.openSession();
@@ -130,4 +126,10 @@ public class PagamentoHibernate implements PagamentoDao {
             session.close();
         }
     }
+
+    @Override
+    public void alterar(Pagamento d) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

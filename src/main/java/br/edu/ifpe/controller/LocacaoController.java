@@ -32,7 +32,7 @@ import br.edu.ifpe.model.validation.LocacaoModel;
 
 /**
  *
- * @author Milena Macedo - milenasantosmcd@gmail.com
+ * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 @ManagedBean
 @SessionScoped

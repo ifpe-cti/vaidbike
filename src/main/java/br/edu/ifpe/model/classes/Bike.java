@@ -34,11 +34,11 @@ import javax.persistence.ManyToOne;
 
 /**
  *
- * @author Milena Macedo - milenasantosmcd@gmail.com
+ * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 @Entity
 public class Bike implements Serializable {
-   
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_bike")
@@ -100,33 +100,38 @@ public class Bike implements Serializable {
         result = (HASH * result) + ((modelo == null) ? 0 : modelo.hashCode());
         result = (HASH * result) + ((tipo == null) ? 0 : tipo.hashCode());
         result = (HASH * result) + ((cor == null) ? 0 : cor.hashCode());
-        return (HASH * result) + usuario.hashCode() ;
+        return (HASH * result) + usuario.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Bike)) 
+        if (!(obj instanceof Bike)) {
             return false;
-        
-        if(!((Bike)obj).codigo.equals(this.codigo))
-                return false;
-        
-        if(!((Bike)obj).modelo.equals(this.modelo))
-                return false;
-        
-        if(!((Bike)obj).tipo.equals(this.tipo))
-                return false;
-        
-        if(!((Bike)obj).cor.equals(this.cor))
-                return false;
-        
+        }
+
+        if (!((Bike) obj).codigo.equals(this.codigo)) {
+            return false;
+        }
+
+        if (!((Bike) obj).modelo.equals(this.modelo)) {
+            return false;
+        }
+
+        if (!((Bike) obj).tipo.equals(this.tipo)) {
+            return false;
+        }
+
+        if (!((Bike) obj).cor.equals(this.cor)) {
+            return false;
+        }
+
         return (((Bike) obj).usuario.equals(this.usuario));
     }
 
     @Override
-        public String toString() {
-        return "Bike{" + "codigo=" + codigo + 
-                ", modelo=" + modelo + ", tipo=" + tipo +
-                    ", cor=" + cor + ", usuario=" + usuario + '}';
-    }   
+    public String toString() {
+        return "Bike{" + "codigo=" + codigo
+                + ", modelo=" + modelo + ", tipo=" + tipo
+                + ", cor=" + cor + ", usuario=" + usuario + '}';
+    }
 }

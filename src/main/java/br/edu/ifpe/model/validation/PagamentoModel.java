@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,32 +31,42 @@ import br.edu.ifpe.model.interfacesDao.PagamentoDao;
 
 /**
  *
- * @author Adrielly Calado - adriellysales015@outlook.com
+ * @author Adrielly Calado <adriellysales015@outlook.com>
  */
 public class PagamentoModel {
 
-    Dao<Pagamento> dao = PagamentoHibernate.getInstance();
+    private final Dao<Pagamento> DAO = new PagamentoHibernate();
 
-    public void inserir(Pagamento pagamento) {
-        try {
-             dao.inserir(pagamento);
-            
-        } catch (Exception e) {
-            System.out.println("Erro ao inserir o Pagamento, na classe PagamentoModel");
+    public void inserir(Pagamento pagamento) throws Exception {
+
+        if (((PagamentoDao) DAO).recuperar(pagamento.getCodigo()) == null) {
+            DAO.inserir(pagamento);
+        } else {
+            throw new Exception("Erro ao inserir Pagamento, na classe "
+                    + "PagamentoModel!");
         }
+
     }
+
     public Pagamento recuperar(Integer codigo) throws Exception {
-        return ((PagamentoModel) dao).recuperar(codigo);
+
+        if (codigo == null) {
+            throw new Exception("Código do Pagamento não existe, erro na classe"
+                    + "PagamentoModel");
+        }
+        return ((PagamentoDao) DAO).recuperar(codigo);
     }
 
     public List<Pagamento> listarTodos() throws Exception {
 
-        List<Pagamento> pagamento = ((PagamentoDao) dao).listarTodos();
+        List<Pagamento> pagamentos = ((PagamentoDao) DAO).listarTodos();
 
-        if (pagamento == null) {
-            throw new Exception("Erro ao recuperar a lista de pagamentos no model");
+        if (pagamentos == null) {
+            throw new Exception("Erro ao recuperar, à lista de pagamentos na "
+                    + "classe PagamentoModel.");
         } else {
-            return pagamento;
+            return pagamentos;
         }
+
     }
 }
