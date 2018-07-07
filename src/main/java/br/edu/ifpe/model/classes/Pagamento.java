@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +37,7 @@ import javax.persistence.OneToOne;
 
 /**
  *
- * @author Milena Macedo - milenasantosmcd@gmail.com
+ * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 @Entity
 public class Pagamento implements Serializable {
@@ -45,14 +46,17 @@ public class Pagamento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pagamento")
     private Integer codigo;
-    @Column(length = 15,nullable = false)
+
+    @Column(length = 15, nullable = true)
     private String tipo;
-    @Column(length = 10,scale = 2,precision = 10,nullable = false)
+
+    @Column(length = 10, scale = 2, precision = 10, nullable = true)
     private BigDecimal valor;
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cod_locacao",nullable = false)
+    @JoinColumn(name = "cod_locacao", nullable = true)
     private Locacao locacao;
-    
+
     @Deprecated
     public Pagamento() {
 
@@ -112,11 +116,9 @@ public class Pagamento implements Serializable {
         return true;
     }
 
-   
-
     @Override
     public String toString() {
-        return "Pagamento{" + "codigo=" + codigo + ", tipo=" +
-                tipo + ", valor=" + valor + ", locacao=" + locacao + '}';
-    }  
+        return "Pagamento{" + "codigo=" + codigo + ", tipo="
+                + tipo + ", valor=" + valor + ", locacao=" + locacao + '}';
+    }
 }

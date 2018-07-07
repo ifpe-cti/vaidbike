@@ -27,12 +27,11 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import br.edu.ifpe.model.classes.Pagamento;
-import br.edu.ifpe.model.hibernate.PagamentoHibernate;
 import br.edu.ifpe.model.validation.PagamentoModel;
 
 /**
  *
- * @author Adrielly Calado - adriellysales015@outlook.com
+ * @author Adrielly Calado <adriellysales015@outlook.com>
  */
 public class PagamentoController {
 
@@ -47,16 +46,15 @@ public class PagamentoController {
 
     }
 
-    public String inserir() {
+    public String inserir() throws Exception {
         this.instance.inserir(this.cadPagamento);
         this.cadPagamento = new Pagamento();
-        FacesContext.getCurrentInstance().addMessage(null, 
+        FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Pagamento cadastrado com sucesso"));
 
         return "";
     }
 
-    //---------------------------------------------------
     public PagamentoModel getInstance() {
         return instance;
     }
@@ -80,7 +78,7 @@ public class PagamentoController {
     public void setSelectPagamento(Pagamento selectPagamento) {
         this.selectPagamento = selectPagamento;
     }
-    
+
     public Pagamento recuperar(Integer codigo) throws Exception {
         return this.instance.recuperar(codigo);
     }

@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -35,14 +36,14 @@ import org.hibernate.cfg.Configuration;
 
 /**
  *
- * @author Milena Macedo - milenasantosmcd@gmail.com
+ * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 public class LocacaoHibernate implements LocacaoDao {
 
     private final SessionFactory SESSIONS;
     private static LocacaoHibernate instance;
     private final Logger LOGGER;
-    
+
     public static LocacaoHibernate getInstance() {
         if (instance != null) {
             instance = new LocacaoHibernate();
@@ -66,7 +67,7 @@ public class LocacaoHibernate implements LocacaoDao {
                     + cliente.getCodigo()).list();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao listar todas as locações"
-                        + "\n" + e.getMessage());        
+                    + "\n" + e.getMessage());
         } finally {
             session.close();
             return locacoes;
@@ -77,13 +78,13 @@ public class LocacaoHibernate implements LocacaoDao {
     public List<Locacao> retornarListaLocatario(Usuario locatario) {
         Session session = this.SESSIONS.openSession();
         List<Locacao> locacoes = new ArrayList();
-        
+
         try {
             locacoes = session.createQuery("from Locacao where cod_locatario="
                     + locatario.getCodigo()).list();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao listar todas as locações"
-                        + "\n" + e.getMessage()); 
+                    + "\n" + e.getMessage());
         } finally {
             session.close();
             return locacoes;
@@ -100,7 +101,7 @@ public class LocacaoHibernate implements LocacaoDao {
             transaction.commit();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao inserir uma locação"
-                        + "\n" + e.getMessage()); 
+                    + "\n" + e.getMessage());
             transaction.rollback();
         } finally {
             session.close();
@@ -117,7 +118,7 @@ public class LocacaoHibernate implements LocacaoDao {
             transaction.commit();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao alterar uma locação"
-                        + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
             transaction.rollback();
         } finally {
             session.close();
@@ -125,16 +126,15 @@ public class LocacaoHibernate implements LocacaoDao {
     }
 
     @Override
-    public Locacao recuperar(int codigo) {
+    public Locacao recuperar(Integer codigo) {
         Session session = this.SESSIONS.openSession();
 
         try {
-            return (Locacao) 
-                    session.createQuery
-                        ("From Locacao where codigo=" + codigo).list().get(0);
+            return (Locacao) session.createQuery("From Locacao where id_locacao="
+                    + codigo).list().get(0);
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao recuperar uma locação"
-                        + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
             return null;
         } finally {
             session.close();
@@ -151,7 +151,7 @@ public class LocacaoHibernate implements LocacaoDao {
             transaction.commit();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao deletar uma locação"
-                        + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
             transaction.rollback();
         } finally {
             session.close();
@@ -162,12 +162,12 @@ public class LocacaoHibernate implements LocacaoDao {
     public List<Locacao> listarTodos() {
         Session session = this.SESSIONS.openSession();
         List<Locacao> locacoes = new ArrayList();
-        
+
         try {
             locacoes = (List) session.createQuery("from Locacao").list();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao listar todas as locações"
-                        + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
         } finally {
             session.close();
             return locacoes;

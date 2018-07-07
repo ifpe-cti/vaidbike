@@ -21,6 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
+
 package br.edu.ifpe.model.validation;
 
 import br.edu.ifpe.model.classes.Locacao;
@@ -30,11 +31,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 /**
  *
- * @author Milena Macedo
+ * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 public class PagamentoModelTest {
     
@@ -50,16 +50,12 @@ public class PagamentoModelTest {
     @Test
     public void testInserir() throws Exception{
         pagamento = new Pagamento("tipo",new BigDecimal (10.5) , new Locacao());
-         pagamentoModel = new PagamentoModel();
+        pagamentoModel = new PagamentoModel();
         pagamentoModel.inserir(pagamento);
        
     }
 
-    /**
-     * Test of recuperar method, of class PagamentoModel.
-     */
     @Test
-  @Ignore
     public void testRecuperar() throws Exception {
         
         pagamento = new Pagamento("tipo",new BigDecimal (10.5) , new Locacao());
@@ -69,10 +65,8 @@ public class PagamentoModelTest {
        
     }
 
-    /**
-     * Test of ListarTodos method, of class PagamentoModel.
-     */
     @Test
+    @Ignore
     public void testListarTodos() throws Exception {
          List<Pagamento> pagamentos = new ArrayList();
         pagamento = new Pagamento("tipo",new BigDecimal (10.5) , new Locacao());

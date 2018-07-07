@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,12 +29,12 @@ import br.edu.ifpe.model.classes.Usuario;
 
 /**
  *
- * @author Milena Macedo - milenasantosmcd@gmail.com
+ * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 public interface LocacaoDao extends Dao<Locacao> {
 
     public List<Locacao> retornarListaLocacao(Usuario cliente);
-    public List<Locacao> retornarListaLocatario(Usuario locatario);
 
+    public List<Locacao> retornarListaLocatario(Usuario locatario);
 
 }

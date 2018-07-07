@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,11 +37,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
-
-
 /**
  *
- * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
+ * @author Carlos Cordeiro <carloscordeiroconsultor@gmail.com>
  */
 @Entity
 public class Usuario {
@@ -49,24 +48,24 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer codigo;
-    @Column(length = 15,nullable = true)
+    @Column(length = 15, nullable = true)
     private String login;
-    @Column(length = 12,nullable = true)
+    @Column(length = 12, nullable = true)
     private String senha;
-    @Column(length = 20,nullable = true)
+    @Column(length = 20, nullable = true)
     private String nome;
-    @Column(length = 15,nullable = true,unique = true)
+    @Column(length = 15, nullable = true, unique = true)
     private String cpf;
-    @Column(length = 5,nullable = true)
+    @Column(length = 5, nullable = true)
     private String sexo;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataNasc;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cod_endereco",nullable = true)
+    @JoinColumn(name = "cod_endereco", nullable = true)
     private Endereco endereco;
-    @Column(length = 15,unique = true,nullable = true)
+    @Column(length = 15, unique = true, nullable = true)
     private String telefone;
-    @Column(length = 20,unique = true,nullable = true)
+    @Column(length = 20, unique = true, nullable = true)
     private String email;
     @OneToMany(mappedBy = "usuario", targetEntity = Bike.class,
             fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -187,39 +186,50 @@ public class Usuario {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Usuario))
+        if (!(obj instanceof Usuario)) {
             return false;
-        
-        if(!((Usuario) obj).codigo.equals(this.codigo))
+        }
+
+        if (!((Usuario) obj).codigo.equals(this.codigo)) {
             return false;
-        
-        if(!((Usuario) obj).login.equals(this.login))
+        }
+
+        if (!((Usuario) obj).login.equals(this.login)) {
             return false;
-        
-        if(!((Usuario) obj).senha.equals(this.senha))
+        }
+
+        if (!((Usuario) obj).senha.equals(this.senha)) {
             return false;
-        
-        if(!((Usuario) obj).nome.equals(this.nome))
+        }
+
+        if (!((Usuario) obj).nome.equals(this.nome)) {
             return false;
-        
-        if(!((Usuario) obj).cpf.equals(this.cpf))
+        }
+
+        if (!((Usuario) obj).cpf.equals(this.cpf)) {
             return false;
-        
-        if(!((Usuario) obj).sexo.equals(this.sexo))
+        }
+
+        if (!((Usuario) obj).sexo.equals(this.sexo)) {
             return false;
-        
-        if(!((Usuario) obj).dataNasc.equals(this.dataNasc))
+        }
+
+        if (!((Usuario) obj).dataNasc.equals(this.dataNasc)) {
             return false;
-        
-        if(!((Usuario) obj).endereco.equals(this.endereco))
+        }
+
+        if (!((Usuario) obj).endereco.equals(this.endereco)) {
             return false;
-        
-        if(!((Usuario) obj).telefone.equals(this.telefone))
+        }
+
+        if (!((Usuario) obj).telefone.equals(this.telefone)) {
             return false;
-        
-        if(!((Usuario) obj).email.equals(this.email))
+        }
+
+        if (!((Usuario) obj).email.equals(this.email)) {
             return false;
-        
+        }
+
         return (((Usuario) obj).equals(this.bikes));
     }
 

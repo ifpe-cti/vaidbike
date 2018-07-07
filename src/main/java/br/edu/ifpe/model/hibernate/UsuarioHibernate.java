@@ -42,7 +42,7 @@ public class UsuarioHibernate implements UsuarioDao {
     private final SessionFactory SESSIONS;
     private static UsuarioHibernate instance;
     private final Logger LOGGER;
-    
+
     public static UsuarioHibernate getInstance() {
         if (instance != null) {
             instance = new UsuarioHibernate();
@@ -59,13 +59,13 @@ public class UsuarioHibernate implements UsuarioDao {
     @Override
     public Usuario recuperar(String cpf) {
         Session session = this.SESSIONS.openSession();
-        
+
         try {
-            return (Usuario) session.createQuery
-                    ("From Usuario where cpf = '" + cpf + "'").list().get(0);
+            return (Usuario) session.createQuery("From Usuario where cpf = '"
+                    + cpf + "'").list().get(0);
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao recuperar o Usuario por cpf"
-                        + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
             return null;
         } finally {
             session.close();
@@ -76,14 +76,14 @@ public class UsuarioHibernate implements UsuarioDao {
     public Usuario recuperar(String login, String senha) {
         Session session = this.SESSIONS.openSession();
         Usuario usuario = null;
-        
+
         try {
             usuario = (Usuario) session.createQuery(
-                    "From Usuario where login = '" + login +
-                            "' and senha = '" + senha + "'").list().get(0);        
+                    "From Usuario where login = '" + login
+                    + "' and senha = '" + senha + "'").list().get(0);
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao recuperar o Usuario por login"
-                        + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
         } finally {
             session.close();
             return usuario;
@@ -94,13 +94,13 @@ public class UsuarioHibernate implements UsuarioDao {
     public void inserir(Usuario usuario) {
         Session session = this.SESSIONS.openSession();
         Transaction transaction = session.beginTransaction();
-        
+
         try {
             session.save(usuario);
             transaction.commit();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao inserir um Usuario "
-                        + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
         } finally {
             session.close();
         }
@@ -116,7 +116,7 @@ public class UsuarioHibernate implements UsuarioDao {
 
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao alterar um Usuario "
-                        + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
             transaction.rollback();
         } finally {
             session.close();
@@ -124,16 +124,15 @@ public class UsuarioHibernate implements UsuarioDao {
     }
 
     @Override
-    public Usuario recuperar(int codigo) {
+    public Usuario recuperar(Integer codigo) {
         Session session = this.SESSIONS.openSession();
 
         try {
-            return (Usuario) 
-                    session.createQuery
-                        ("From Usuario where codigo=" + codigo).list().get(0);
+            return (Usuario) session.createQuery("From Usuario where id_usuario="
+                    + codigo).list().get(0);
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao recuperar o Usuario por cpf"
-                        + "\n" + e.getMessage());
+                    + "\n" + e.getMessage());
             return null;
         } finally {
             session.close();
@@ -144,7 +143,7 @@ public class UsuarioHibernate implements UsuarioDao {
     public void deletar(Usuario usuario) {
         Session session = this.SESSIONS.openSession();
         Transaction transaction = session.beginTransaction();
-        
+
         try {
             session.delete(usuario);
             transaction.commit();
@@ -161,7 +160,7 @@ public class UsuarioHibernate implements UsuarioDao {
     public List<Usuario> listarTodos() {
         Session session = this.SESSIONS.openSession();
         List<Usuario> usuarios = new ArrayList();
-        
+
         try {
             return (ArrayList) session.createQuery("from Usuario").list();
         } catch (Exception e) {
@@ -172,5 +171,5 @@ public class UsuarioHibernate implements UsuarioDao {
             return usuarios;
         }
     }
-    
+
 }

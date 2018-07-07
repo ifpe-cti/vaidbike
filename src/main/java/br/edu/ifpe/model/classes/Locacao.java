@@ -25,7 +25,6 @@ package br.edu.ifpe.model.classes;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,11 +36,11 @@ import javax.persistence.Temporal;
 
 /**
  *
- * @author Milena Macedo - milenasantosmcd@gmail.com
+ * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 @Entity
 public class Locacao implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_locacao")
@@ -112,28 +111,33 @@ public class Locacao implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Locacao))
+        if (!(obj instanceof Locacao)) {
             return false;
-        
-        if(!((Locacao) obj).codigo.equals(this.codigo))
+        }
+
+        if (!((Locacao) obj).codigo.equals(this.codigo)) {
             return false;
-        
-        if(!((Locacao) obj).cliente.equals(this.cliente))
+        }
+
+        if (!((Locacao) obj).cliente.equals(this.cliente)) {
             return false;
-        
-        if(!((Locacao) obj).locatario.equals(this.locatario))
+        }
+
+        if (!((Locacao) obj).locatario.equals(this.locatario)) {
             return false;
-        
-        if(!((Locacao) obj).retirada.equals(this.retirada))
+        }
+
+        if (!((Locacao) obj).retirada.equals(this.retirada)) {
             return false;
-        
+        }
+
         return (((Locacao) obj).devolucao.equals(this.devolucao));
     }
 
     @Override
     public String toString() {
         return "Locacao{" + "codigo=" + codigo + ", cliente="
-                + cliente + ", locatario=" + locatario +
-                    ", retirada=" + retirada + ", devolucao=" + devolucao + '}';
-    }  
+                + cliente + ", locatario=" + locatario
+                + ", retirada=" + retirada + ", devolucao=" + devolucao + '}';
+    }
 }

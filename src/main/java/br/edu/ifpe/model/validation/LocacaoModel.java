@@ -1,6 +1,7 @@
 /*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
+Adrielly Calado Sales, Luciano Campos de Lima Júnior.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,68 +32,67 @@ import br.edu.ifpe.model.interfacesDao.LocacaoDao;
 
 /**
  *
- * @author Milena Macedo - milenasantosmcd@gmail.com
+ * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
-public class LocacaoModel  {
+public class LocacaoModel {
 
     private final Dao<Locacao> DAO = new LocacaoHibernate();
 
     public void inserir(Locacao locacao) throws Exception {
-        
+
         if (((LocacaoDao) DAO).recuperar(locacao.getCodigo()) == null) {
             DAO.inserir(locacao);
         } else {
-            throw new Exception
-                ("Erro ao inserir a Locação na classe LocacaoModel");
+            throw new Exception("Erro ao inserir a Locação na classe"
+                    + " LocacaoModel");
         }
     }
 
     public void alterar(Locacao locacao) throws Exception {
-        
+
         if (((LocacaoDao) DAO).recuperar(locacao.getCodigo()) != null) {
             DAO.alterar(locacao);
         } else {
-            throw new Exception
-                ("Erro ao alterar a Locação na classe LocacaoModel");
+            throw new Exception("Erro ao alterar a Locação na classe"
+                    + " LocacaoModel");
         }
     }
 
     public Locacao recuperar(Integer codigo) throws Exception {
-        
+
         if (codigo == null) {
-            throw new Exception
-                ("Codigo da Locação não existe na classe LocacaoModel");
+            throw new Exception("Codigo da Locação não existe na classe"
+                    + " LocacaoModel");
         }
         return ((LocacaoDao) DAO).recuperar(codigo);
     }
 
     public void deletar(Locacao locacao) throws Exception {
-        
+
         if (((LocacaoDao) DAO).recuperar(locacao.getCodigo()) != null) {
             DAO.deletar(locacao);
         } else {
-            throw new Exception
-                ("Erro ao deletar o usuário na classe LocacaoModel!");
+            throw new Exception("Erro ao deletar o usuário na classe"
+                    + " LocacaoModel!");
         }
     }
 
     public List<Locacao> listarTodos() throws Exception {
-        
+
         List<Locacao> locacao = ((LocacaoDao) DAO).listarTodos();
 
         if (locacao == null) {
-            throw new Exception
-                ("Erro ao recuperar a lista de Locação no model");
+            throw new Exception("Erro ao recuperar a lista de Locação no model");
         } else {
             return locacao;
         }
     }
 
-    public List<Locacao> retornarListaLocacao(Usuario cliente) 
-                                                    throws Exception {
+    public List<Locacao> retornarListaLocacao(Usuario cliente)
+            throws Exception {
 
-        List<Locacao> locacaoCliente = 
-                    ((LocacaoDao) DAO).retornarListaLocacao(cliente);
+        List<Locacao> locacaoCliente
+                = ((LocacaoDao) DAO).retornarListaLocacao(cliente);
         if (locacaoCliente == null) {
             throw new Exception("Erro ao recuperar a lista  de "
                     + "locações do cliente no model");
@@ -102,11 +102,11 @@ public class LocacaoModel  {
     }
 
     public List<Locacao> retornarListaLocatario(Usuario locatario)
-                                                        throws Exception {
-        
-        List<Locacao> locacaoLocatario = 
-                        ((LocacaoDao) DAO).retornarListaLocacao(locatario);
-        
+            throws Exception {
+
+        List<Locacao> locacaoLocatario
+                = ((LocacaoDao) DAO).retornarListaLocacao(locatario);
+
         if (locacaoLocatario == null) {
             throw new Exception("Erro ao recuperar a lista  de "
                     + "locações do locatario no model");
@@ -114,5 +114,5 @@ public class LocacaoModel  {
             return locacaoLocatario;
         }
     }
-    
+
 }

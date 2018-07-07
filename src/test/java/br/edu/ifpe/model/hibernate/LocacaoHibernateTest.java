@@ -31,51 +31,57 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.runners.MethodSorters;
 
 /**
  *
- * @author Carlos André - carloscordeiroconsultor@gmail.com
+ * @author Carlos André <carloscordeiroconsultor@gmail.com>
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class LocacaoHibernateTest {
+
     public static final Usuario cliente
             = new Usuario("login", "senha", "nome", "91492519022", "sexo",
                     null, null, "telefone", "email", new ArrayList<Bike>());
     public static final Usuario locatario
             = new Usuario("login1", "senha1", "nome1", "93708394020", "sexo1",
                     null, null, "telefone1", "email1", new ArrayList<Bike>());
-    public static final Locacao locacao = new Locacao(cliente, locatario, null, null);
-    
+    public static final Locacao locacao = new Locacao(cliente, locatario, null,
+            null);
+
     public static final LocacaoHibernate locacaoHibernate = new LocacaoHibernate();
 
     @BeforeClass
-    public static void deveInserirLocacaoNoBanco(){
+     @Ignore
+    public static void deveInserirLocacaoNoBanco() {
         UsuarioHibernate usuarioHibernate = new UsuarioHibernate();
         LocacaoHibernateTest.locacaoHibernate.inserir(locacao);
     }
-    
+
     @Test
-    public void deveRecuperarLocacaoDoBanco(){
+     @Ignore
+    public void deveRecuperarLocacaoDoBanco() {
         Assert.assertNotNull(locacaoHibernate.recuperar(1));
     }
-    
+
     @Test
-    public void deveAlterarLocacaoDoBanco(){
+     @Ignore
+    public void deveAlterarLocacaoDoBanco() {
         Locacao locacaoAlterada = locacaoHibernate.recuperar(1);
         locacaoAlterada.setDevolucao(new Date());
         locacaoHibernate.alterar(locacaoAlterada);
-        Assert.assertNotEquals(locacaoAlterada,locacaoHibernate.recuperar(1));
+        Assert.assertNotEquals(locacaoAlterada, locacaoHibernate.recuperar(1));
     }
-    
+
     @Test
-    public void deveDeletarDoBanco(){
+     @Ignore
+    public void deveDeletarDoBanco() {
         Locacao locacaoDeletada = locacaoHibernate.recuperar(1);
         locacaoHibernate.deletar(locacaoDeletada);
         Assert.assertNull(locacaoHibernate.recuperar(1));
     }
-    
+
 }
