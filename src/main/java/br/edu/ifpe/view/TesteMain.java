@@ -21,7 +21,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-/*
+
 package br.edu.ifpe.view;
 
 import br.edu.ifpe.model.classes.Bike;
@@ -41,7 +41,7 @@ import java.util.Date;
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
-/*
+
 public class TesteMain {
 
     public static void main(String args[]) throws Exception {
@@ -119,6 +119,6 @@ public class TesteMain {
        
 
         uh.inserir(usuario);
+*/
     }
 }
-*/
