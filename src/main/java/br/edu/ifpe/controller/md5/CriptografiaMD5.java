@@ -31,7 +31,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
-public class MD5_Criptografia {
+public class CriptografiaMD5 {
 
     public static String md5(String senha) {
 
