@@ -32,6 +32,7 @@ import javax.faces.bean.SessionScoped;
  *
  * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
+
 @ManagedBean
 @SessionScoped
 public class UsuarioController {
