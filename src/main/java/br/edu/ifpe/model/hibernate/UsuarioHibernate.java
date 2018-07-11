@@ -44,13 +44,13 @@ public class UsuarioHibernate implements UsuarioDao {
     private final Logger LOGGER;
 
     public static UsuarioHibernate getInstance() {
-        if (instance != null) {
+        if (instance == null) {
             instance = new UsuarioHibernate();
         }
         return instance;
     }
 
-    public UsuarioHibernate() {
+    private UsuarioHibernate() {
         Configuration cfg = new Configuration().configure();
         this.SESSIONS = cfg.buildSessionFactory();
         this.LOGGER = Logger.getLogger(UsuarioHibernate.class);

@@ -26,16 +26,10 @@ package br.edu.ifpe.view;
 
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
-import br.edu.ifpe.model.classes.Locacao;
-import br.edu.ifpe.model.hibernate.LocacaoHibernate;
-import br.edu.ifpe.model.classes.Pagamento;
 import br.edu.ifpe.model.classes.Usuario;
-import br.edu.ifpe.model.hibernate.PagamentoHibernate;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
-import br.edu.ifpe.model.validation.PagamentoModel;
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -66,14 +60,14 @@ public class TesteMain {
 //        uh.alterar(u);
 //
 //        Locacao locacao = new Locacao(u, u, new Date(), new Date());
-        Pagamento p = new Pagamento("tipo", new BigDecimal(50), new Locacao());
+//        Pagamento p = new Pagamento("tipo", new BigDecimal(50), new Locacao());
+////
+//        PagamentoModel pm = new PagamentoModel();
+//        PagamentoHibernate ph = new PagamentoHibernate();
+////
+//        pm.inserir(p);
 //
-        PagamentoModel pm = new PagamentoModel();
-        PagamentoHibernate ph = new PagamentoHibernate();
-//
-        pm.inserir(p);
-
-        System.out.println(pm.recuperar(1));
+//        System.out.println(pm.recuperar(1));
 
 //        ph.deletar(ph.recuperar(4));
         //System.out.println(pm.listarTodos());
@@ -119,6 +113,14 @@ public class TesteMain {
        
 
         uh.inserir(usuario);
+
+        Endereco ENDERECO = new Endereco("estado", "cidade",
+            "cep", "bairro", "logradouro");
+        
+      Endereco ENDERECO1 = new Endereco("estado", "cidade",
+            "cep", "bairro", "logradouro");
+      
+        System.out.println(ENDERECO.equals(ENDERECO1));
 */
     }
 }
