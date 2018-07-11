@@ -29,6 +29,8 @@ import javax.faces.bean.SessionScoped;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.validation.LocacaoModel;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -48,7 +50,18 @@ public class LocacaoController {
 
     }
 
-    public void inserir() {
+    public String inserir() throws Exception {
+        try {
+            this.instance.inserir(this.cadLocacao);
+            this.cadLocacao = new Locacao();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Pagamento cadastrado com sucesso"));
+            return "";
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Pagamento cadastrado com sucesso"));
+            return "";
+        }
 
     }
 
