@@ -36,7 +36,7 @@ import br.edu.ifpe.model.interfacesDao.LocacaoDao;
  */
 public class LocacaoModel {
 
-    private final Dao<Locacao> DAO = new LocacaoHibernate();
+    private final Dao<Locacao> DAO = LocacaoHibernate.getInstance();
 
     public void inserir(Locacao locacao) throws Exception {
 

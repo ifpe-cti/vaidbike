@@ -45,13 +45,13 @@ public class LocacaoHibernate implements LocacaoDao {
     private final Logger LOGGER;
 
     public static LocacaoHibernate getInstance() {
-        if (instance != null) {
+        if (instance == null) {
             instance = new LocacaoHibernate();
         }
         return instance;
     }
 
-    public LocacaoHibernate() {
+    private LocacaoHibernate() {
         Configuration cfg = new Configuration().configure();
         this.SESSIONS = cfg.buildSessionFactory();
         this.LOGGER = Logger.getLogger(LocacaoHibernate.class);
@@ -130,8 +130,8 @@ public class LocacaoHibernate implements LocacaoDao {
         Session session = this.SESSIONS.openSession();
 
         try {
-            return (Locacao) session.createQuery("From Locacao where id_locacao="
-                    + codigo).list().get(0);
+            return (Locacao) session.createQuery
+                ("From Locacao where id_locacao = " +  codigo).list().get(0);
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao recuperar uma locação"
                     + "\n" + e.getMessage());

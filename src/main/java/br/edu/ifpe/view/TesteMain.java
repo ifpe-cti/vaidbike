@@ -21,30 +21,26 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-
 package br.edu.ifpe.view;
 
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
+import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
+import br.edu.ifpe.model.hibernate.LocacaoHibernate;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-import java.util.Date;
-
-import java.util.List;
 
 /**
  *
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
-
 public class TesteMain {
-
+    
     public static void main(String args[]) throws Exception {
 
-
+        /*
         Usuario u = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
                "sexo", new Date(), end, "telefone", "email", bikes);
         Usuario u2 = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
@@ -89,8 +85,26 @@ public class TesteMain {
       UsuarioHibernate.getInstance().inserir(usuario);
       Usuario us = (Usuario) UsuarioHibernate.getInstance().recuperar("08558176400");
         System.out.println(us.getBikes().equals(bikes));
-*/
-
-
+         */
+        Endereco ENDERECO = new Endereco("estado", "cidade",
+                "cep", "bairro", "logradouro");
+        
+        Usuario USUARIO1 = new Usuario(
+                "login", "senha", "nome", "28961303066", "sexo",
+                LocalDate.now(), ENDERECO, "telefone", "email",
+                new ArrayList<Bike>());
+        
+        Usuario USUARIO2 = new Usuario(
+                "login1", "senha1", "nome1", "28952871049", "sexo1",
+                LocalDate.now(), ENDERECO, "telefone1", "email1",
+                new ArrayList<Bike>());
+        
+        Locacao LOCACAO
+                = new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now());
+        UsuarioHibernate.getInstance().inserir(USUARIO1);
+        UsuarioHibernate.getInstance().inserir(USUARIO2);
+        LocacaoHibernate.getInstance().inserir(LOCACAO);
+        
+        System.out.println(LocacaoHibernate.getInstance().recuperar(2).equals(LOCACAO));
     }
 }
