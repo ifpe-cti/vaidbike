@@ -36,6 +36,7 @@ import br.edu.ifpe.model.validation.PagamentoModel;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -46,79 +47,42 @@ public class TesteMain {
 
     public static void main(String args[]) throws Exception {
 
-//        UsuarioHibernate uh = new UsuarioHibernate();
-//        List<Bike> bikes = new ArrayList<>();
-//      Endereco end = new Endereco("estado", "cidade", "cep", "bairro",
-        //      Endereco end = new Endereco("estado", "cidade", "cep", "bairro",
-//"logradouro");
-//
-//        Usuario u = new Usuario("Milena", "mirassica", "123", "75008513400",
-//                "sexo", new Date(), end, "telefone", "email", bikes);
-//
-//        uh.inserir(u);
-//
-//        u = uh.listarTodos().get(0);
-//
-//        Bike bike = new Bike("cor", "tipo", "ufre", u);
-//        bikes.add(bike);
-//
-//        u.setBikes(bikes);
-//        uh.alterar(u);
-//
-//        Locacao locacao = new Locacao(u, u, new Date(), new Date());
-        Pagamento p = new Pagamento("tipo", new BigDecimal(50), new Locacao());
-//
-        PagamentoModel pm = new PagamentoModel();
-        PagamentoHibernate ph = new PagamentoHibernate();
-//
-        pm.inserir(p);
-
-        System.out.println(pm.recuperar(1));
-
-//        ph.deletar(ph.recuperar(4));
-        //System.out.println(pm.listarTodos());
-//
-
-//        Usuario cliente = new Usuario("sadasd", "asdf", "cu",
-//
-//        pm.inserir(p);
-//        
-//     // ph.inserir(p);
-//        System.out.println( pm.recuperar(1));
-//        System.out.println(pm.listarTodos());
-//        
-//
-//        Locacao l = new Locacao(u, u, new Date(), new Date());
-//        LocacaoHibernate lh = new LocacaoHibernate();
-//
-//        lh.inserir(l);
-        /* Usuario usuario = new Usuario("login", "senha", "nome",
-
-                null, "sexo",null, end, "telefone", "email"
-                , new ArrayList<Bike>());
-        
         UsuarioHibernate uh = new UsuarioHibernate();
+        List<Bike> bikes = new ArrayList<>();
+        
+        
+        Endereco end = new Endereco("estado", "cidade", "cep", "bairro","logradouro");
+        Endereco end2 = new Endereco("estado", "cidade", "cep", "bairro","logradouro");
 
-        uh.inserir(cliente);
+        Usuario u = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
+               "sexo", new Date(), end, "telefone", "email", bikes);
+        Bike bike = new Bike("bmx", "gaytipo", "verdecor", u);
+        bikes.add(bike);
         
-         Usuario locatario = new Usuario("teste", "teste", "testesw",
-                null, "sexo",null, end, "telefone", "email"
-                , new ArrayList<Bike>());
-        uh.inserir(locatario);
-        
-        
-        
-        cliente = uh.recuperar(1);
-        locatario = uh.recuperar(1);
-        
-        Locacao l = new Locacao(cliente, locatario, null, null);
+        uh.inserir(u);
+
+
+        Usuario cliente = uh.recuperar(1);
+        Usuario locatario = uh.recuperar("cpfnovo");
         LocacaoHibernate lh = new LocacaoHibernate();
-
-        lh.inserir(l);
+        Locacao locacao = new Locacao(cliente, locatario, new Date(), new Date());
         
+        lh.inserir(locacao);
+        
+        
+        locacao = lh.recuperar(4);
+        
+        PagamentoHibernate ph = new PagamentoHibernate();
+        Pagamento pagamento = new Pagamento("com a bunda", BigDecimal.ZERO, locacao);
+        ph.inserir(pagamento);
+        
+        
+        
+
        
 
         uh.inserir(usuario);
 */
+
     }
 }
