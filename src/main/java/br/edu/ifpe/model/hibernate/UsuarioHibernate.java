@@ -1,7 +1,7 @@
 /*MIT License
 
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
-Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Adrielly Calado Sales, Lucas Mendes Cavalcanti.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -44,13 +44,13 @@ public class UsuarioHibernate implements UsuarioDao {
     private final Logger LOGGER;
 
     public static UsuarioHibernate getInstance() {
-        if (instance != null) {
+        if (instance == null) {
             instance = new UsuarioHibernate();
         }
         return instance;
     }
 
-    public UsuarioHibernate() {
+    private UsuarioHibernate() {
         Configuration cfg = new Configuration().configure();
         this.SESSIONS = cfg.buildSessionFactory();
         this.LOGGER = Logger.getLogger(UsuarioHibernate.class);

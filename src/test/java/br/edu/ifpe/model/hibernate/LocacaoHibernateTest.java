@@ -1,6 +1,8 @@
 /*MIT License
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
 Adrielly Calado Sales, Lucas Mendes Cavalcanti.
+
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -41,6 +43,7 @@ import org.junit.runners.MethodSorters;
 public class LocacaoHibernateTest {
 
 
+
     LocacaoHibernate lh = new LocacaoHibernate();
   
     
@@ -58,7 +61,8 @@ public void deveInserirLocacaoDoBanco() {
 
         Assert.assertNotNull(lh.recuperar(1));
 }
- 
+
+
 
     @Test
     public void deveRecuperarLocacaoDoBanco() {

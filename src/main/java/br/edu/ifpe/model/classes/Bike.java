@@ -1,7 +1,7 @@
 /*MIT License
 
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
-Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Adrielly Calado Sales, Lucas Mendes Cavalcanti.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -105,27 +105,16 @@ public class Bike implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Bike)) {
+        if (!(obj instanceof Bike)) 
             return false;
-        }
 
-        if (!((Bike) obj).codigo.equals(this.codigo)) {
+        if (!((Bike) obj).modelo.equals(this.modelo)) 
             return false;
-        }
 
-        if (!((Bike) obj).modelo.equals(this.modelo)) {
+        if (!((Bike) obj).tipo.equals(this.tipo)) 
             return false;
-        }
 
-        if (!((Bike) obj).tipo.equals(this.tipo)) {
-            return false;
-        }
-
-        if (!((Bike) obj).cor.equals(this.cor)) {
-            return false;
-        }
-
-        return (((Bike) obj).usuario.equals(this.usuario));
+        return (((Bike) obj).cor.equals(this.cor));
     }
 
     @Override

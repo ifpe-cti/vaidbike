@@ -1,7 +1,7 @@
 /*MIT License
 
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
-Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Adrielly Calado Sales, Lucas Mendes Cavalcanti.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@ import br.edu.ifpe.model.interfacesDao.UsuarioDao;
 public class UsuarioModel {
 
     private final ValidarCpf VALIDACAOCPF = new ValidarCpf();
-    private final Dao<Usuario> DAO = new UsuarioHibernate();
+    private final Dao<Usuario> DAO = UsuarioHibernate.getInstance();
 
     public void inserir(Usuario usuario) throws Exception {
         if (VALIDACAOCPF.isCPF(usuario.getCpf()) == true) {
@@ -45,7 +45,6 @@ public class UsuarioModel {
             } else {
                 throw new Exception("Erro ao inserir o usuário, no UsuarioModel!");
             }
-            //verifiar depois se essa validação está correta.
         } else {
             throw new Exception("Erro na validação de Cpf!");
         }

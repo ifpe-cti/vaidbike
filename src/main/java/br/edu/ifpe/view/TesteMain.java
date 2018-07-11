@@ -1,7 +1,7 @@
 /*MIT License
 
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
-Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Adrielly Calado Sales, Lucas Mendes Cavalcanti.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated docuhentation files (the "Software"), to deal
@@ -26,16 +26,13 @@ package br.edu.ifpe.view;
 
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
-import br.edu.ifpe.model.classes.Locacao;
-import br.edu.ifpe.model.hibernate.LocacaoHibernate;
-import br.edu.ifpe.model.classes.Pagamento;
 import br.edu.ifpe.model.classes.Usuario;
-import br.edu.ifpe.model.hibernate.PagamentoHibernate;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
-import br.edu.ifpe.model.validation.PagamentoModel;
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
+
 import java.util.Date;
+
 import java.util.List;
 
 /**
@@ -47,12 +44,6 @@ public class TesteMain {
 
     public static void main(String args[]) throws Exception {
 
-        UsuarioHibernate uh = new UsuarioHibernate();
-        List<Bike> bikes = new ArrayList<>();
-        
-        
-        Endereco end = new Endereco("estado", "cidade", "cep", "bairro","logradouro");
-        Endereco end2 = new Endereco("estado", "cidade", "cep", "bairro","logradouro");
 
         Usuario u = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
                "sexo", new Date(), end, "telefone", "email", bikes);
@@ -81,5 +72,25 @@ public class TesteMain {
         
         
         
+
+       
+
+        uh.inserir(usuario);
+
+        Endereco ENDERECO = new Endereco("estado", "cidade",
+            "cep", "bairro", "logradouro");
+        ArrayList<Bike> bikes = new ArrayList();
+        bikes.add(new Bike("modelo", "tipo", "cor", null));
+      Usuario usuario = new Usuario(
+            "login", "senha", "nome", "08558176400", "sexo",
+            LocalDate.now(), ENDERECO, "telefone", "email", 
+              bikes);
+      
+      UsuarioHibernate.getInstance().inserir(usuario);
+      Usuario us = (Usuario) UsuarioHibernate.getInstance().recuperar("08558176400");
+        System.out.println(us.getBikes().equals(bikes));
+*/
+
+
     }
 }

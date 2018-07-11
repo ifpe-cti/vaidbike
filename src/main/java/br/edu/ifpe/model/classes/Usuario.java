@@ -1,7 +1,7 @@
 /*MIT License
 
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
-Adrielly Calado Sales, Luciano Campos de Lima Júnior.
+Adrielly Calado Sales, Lucas Mendes Cavalcanti.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,8 @@ SOFTWARE.
  */
 package br.edu.ifpe.model.classes;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -35,39 +36,41 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
 
 /**
  *
  * @author Carlos Cordeiro <carloscordeiroconsultor@gmail.com>
  */
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer codigo;
-    @Column(length = 15, nullable = true)
+    @Column(length = 15, nullable = false, unique = true)
     private String login;
-    @Column(length = 12, nullable = true)
+    @Column(length = 12, nullable = false)
     private String senha;
-    @Column(length = 20, nullable = true)
+    @Column(length = 20, nullable = false)
     private String nome;
+
     @Column(length = 15, nullable = true, unique = false)
+
     private String cpf;
     @Column(length = 5, nullable = true)
     private String sexo;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dataNasc;
+    private LocalDate dataNasc;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cod_endereco", nullable = true)
+    @JoinColumn(name = "cod_endereco", nullable = false)
     private Endereco endereco;
+
     @Column(length = 15, unique = false, nullable = true)
     private String telefone;
     @Column(length = 20, unique = false, nullable = true)
+
     private String email;
-    @OneToMany(mappedBy = "usuario", targetEntity = Bike.class,
+    @OneToMany(targetEntity = Bike.class,
             fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Bike> bikes;
 
@@ -77,7 +80,7 @@ public class Usuario {
     }
 
     public Usuario(String login, String senha, String nome, String cpf,
-            String sexo, Date dataNasc, Endereco endereco, String telefone,
+            String sexo, LocalDate dataNasc, Endereco endereco, String telefone,
             String email, List<Bike> bikes) {
         this.login = login;
         this.senha = senha;
@@ -131,7 +134,7 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public Date getDataNasc() {
+    public LocalDate getDataNasc() {
         return dataNasc;
     }
 
@@ -181,7 +184,7 @@ public class Usuario {
         result = (HASH * result) + endereco.hashCode();
         result = (HASH * result) + telefone.hashCode();
         result = (HASH * result) + email.hashCode();
-        return result = (HASH * result) + bikes.hashCode();
+        return result += (HASH * result) + bikes.hashCode();
     }
 
     @Override
@@ -190,47 +193,31 @@ public class Usuario {
             return false;
         }
 
-        if (!((Usuario) obj).codigo.equals(this.codigo)) {
+        if (!((Usuario) obj).login.equals(this.login)) 
             return false;
-        }
 
-        if (!((Usuario) obj).login.equals(this.login)) {
+        if (!((Usuario) obj).senha.equals(this.senha))
             return false;
-        }
 
-        if (!((Usuario) obj).senha.equals(this.senha)) {
+        if (!((Usuario) obj).nome.equals(this.nome)) 
             return false;
-        }
 
-        if (!((Usuario) obj).nome.equals(this.nome)) {
+        if (!((Usuario) obj).cpf.equals(this.cpf)) 
             return false;
-        }
 
-        if (!((Usuario) obj).cpf.equals(this.cpf)) {
+        if (!((Usuario) obj).sexo.equals(this.sexo)) 
             return false;
-        }
 
-        if (!((Usuario) obj).sexo.equals(this.sexo)) {
+        if (!((Usuario) obj).dataNasc.equals(this.dataNasc)) 
             return false;
-        }
 
-        if (!((Usuario) obj).dataNasc.equals(this.dataNasc)) {
+        if (!((Usuario) obj).endereco.equals(this.endereco)) 
             return false;
-        }
 
-        if (!((Usuario) obj).endereco.equals(this.endereco)) {
+        if (!((Usuario) obj).telefone.equals(this.telefone)) 
             return false;
-        }
 
-        if (!((Usuario) obj).telefone.equals(this.telefone)) {
-            return false;
-        }
-
-        if (!((Usuario) obj).email.equals(this.email)) {
-            return false;
-        }
-
-        return (((Usuario) obj).equals(this.bikes));
+        return (((Usuario) obj).email.equals(this.email));
     }
 
     @Override
