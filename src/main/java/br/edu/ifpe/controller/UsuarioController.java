@@ -23,10 +23,13 @@ SOFTWARE.
  */
 package br.edu.ifpe.controller;
 
+import br.edu.ifpe.controller.md5.CriptografiaMD5;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.validation.UsuarioModel;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -46,9 +49,53 @@ public class UsuarioController {
 
     }
 
-    public String adicionarUsuario() throws Exception {
+    public Usuario getUsuarioLogado() {
+        return (Usuario) FacesContext.getCurrentInstance().getExternalContext()
+                .getSessionMap().get("usuaioLogado");
+    }
 
+    public void setUsuarioLogado(Usuario usuarioLogado) {
+        FacesContext.getCurrentInstance().getExternalContext()
+                .getSessionMap().put("usuaioLogado", usuarioLogado);
+    }
+
+    public String realizarLogin(String senha, String login) throws Exception {
+        Usuario user = null;
+        String rediricionarPagina = "";
+        user = instaceUsuarioModel.recuperar(login, senha);
+        if (user != null) {
+            senha = CriptografiaMD5.md5(senha);
+            if (user.getSenha().equals(senha)) {
+                this.setUsuarioLogado(user);
+                rediricionarPagina = " ";
+
+            } else {
+                user = null;
+                FacesContext.getCurrentInstance().addMessage(null, new
+                    FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no Login!",
+                        "Senha ou Login Inválidos"));
+
+            }
+        } else {
+            user = null;
+            FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no Login!",
+                    "Senha ou Login Inválidos"));
+        }
+
+        return rediricionarPagina;
+    }
+
+    public String realizarLogout(){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "";
+    }
+    
+    
+    public String adicionarUsuario(String senha) throws Exception {
+        cadUsuario.setSenha(CriptografiaMD5.md5(senha));
         this.instaceUsuarioModel.inserir(this.cadUsuario);
+        this.cadUsuario = new Usuario();
         return " ";
 
     }
@@ -80,6 +127,9 @@ public class UsuarioController {
         return "";
     }
 
+    public void listarTodosUsuarios() throws Exception{
+        instaceUsuarioModel.listarTodos();
+    }
     public UsuarioModel getInstaceUsuarioModel() {
         return instaceUsuarioModel;
     }
