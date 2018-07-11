@@ -54,7 +54,7 @@ public class Usuario {
     private String senha;
     @Column(length = 20, nullable = true)
     private String nome;
-    @Column(length = 15, nullable = true, unique = true)
+    @Column(length = 15, nullable = true, unique = false)
     private String cpf;
     @Column(length = 5, nullable = true)
     private String sexo;
@@ -63,9 +63,9 @@ public class Usuario {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cod_endereco", nullable = true)
     private Endereco endereco;
-    @Column(length = 15, unique = true, nullable = true)
+    @Column(length = 15, unique = false, nullable = true)
     private String telefone;
-    @Column(length = 20, unique = true, nullable = true)
+    @Column(length = 20, unique = false, nullable = true)
     private String email;
     @OneToMany(mappedBy = "usuario", targetEntity = Bike.class,
             fetch = FetchType.EAGER, cascade = CascadeType.ALL)

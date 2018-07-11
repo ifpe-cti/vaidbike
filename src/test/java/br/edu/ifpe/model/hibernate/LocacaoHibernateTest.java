@@ -43,45 +43,30 @@ import org.junit.runners.MethodSorters;
 
 public class LocacaoHibernateTest {
 
-    public static final Usuario cliente
-            = new Usuario("login", "senha", "nome", "91492519022", "sexo",
-                    null, null, "telefone", "email", new ArrayList<Bike>());
-    public static final Usuario locatario
-            = new Usuario("login1", "senha1", "nome1", "93708394020", "sexo1",
-                    null, null, "telefone1", "email1", new ArrayList<Bike>());
-    public static final Locacao locacao = new Locacao(cliente, locatario, null,
-            null);
-
-    public static final LocacaoHibernate locacaoHibernate = new LocacaoHibernate();
-
-    @BeforeClass
-     @Ignore
-    public static void deveInserirLocacaoNoBanco() {
-        UsuarioHibernate usuarioHibernate = new UsuarioHibernate();
-        LocacaoHibernateTest.locacaoHibernate.inserir(locacao);
-    }
-
+    LocacaoHibernate lh = new LocacaoHibernate();
+    
+    
     @Test
-     @Ignore
     public void deveRecuperarLocacaoDoBanco() {
-        Assert.assertNotNull(locacaoHibernate.recuperar(1));
+        
+        Assert.assertNotNull(lh.recuperar(1));
     }
 
     @Test
-     @Ignore
+
     public void deveAlterarLocacaoDoBanco() {
-        Locacao locacaoAlterada = locacaoHibernate.recuperar(1);
+        Locacao locacaoAlterada = lh.recuperar(1);
+        Locacao locacaoAntiga = locacaoAlterada;
         locacaoAlterada.setDevolucao(new Date());
-        locacaoHibernate.alterar(locacaoAlterada);
-        Assert.assertNotEquals(locacaoAlterada, locacaoHibernate.recuperar(1));
+        lh.alterar(locacaoAlterada);
+        Assert.assertNotEquals(locacaoAntiga, lh.recuperar(1));
     }
 
     @Test
-     @Ignore
     public void deveDeletarDoBanco() {
-        Locacao locacaoDeletada = locacaoHibernate.recuperar(1);
-        locacaoHibernate.deletar(locacaoDeletada);
-        Assert.assertNull(locacaoHibernate.recuperar(1));
+        Locacao locacaoDeletada = lh.recuperar(3);
+        lh.deletar(locacaoDeletada);
+        Assert.assertNull(lh.recuperar(3));
     }
 
 }
