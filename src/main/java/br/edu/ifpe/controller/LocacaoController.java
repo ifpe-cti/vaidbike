@@ -86,7 +86,7 @@ public class LocacaoController {
         return this.instanceLocacaoModel.retornarListaLocacao(cliente);
     }
 
-    public List<Locacao> retornarListaLocatarioLocatorio(Usuario locatario) throws Exception {
+    public List<Locacao> retornarListaLocatario(Usuario locatario) throws Exception {
         return this.instanceLocacaoModel.retornarListaLocatario(locatario);
     }
 
