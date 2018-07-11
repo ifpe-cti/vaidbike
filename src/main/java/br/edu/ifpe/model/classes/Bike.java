@@ -105,27 +105,16 @@ public class Bike implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Bike)) {
+        if (!(obj instanceof Bike)) 
             return false;
-        }
 
-        if (!((Bike) obj).codigo.equals(this.codigo)) {
+        if (!((Bike) obj).modelo.equals(this.modelo)) 
             return false;
-        }
 
-        if (!((Bike) obj).modelo.equals(this.modelo)) {
+        if (!((Bike) obj).tipo.equals(this.tipo)) 
             return false;
-        }
 
-        if (!((Bike) obj).tipo.equals(this.tipo)) {
-            return false;
-        }
-
-        if (!((Bike) obj).cor.equals(this.cor)) {
-            return false;
-        }
-
-        return (((Bike) obj).usuario.equals(this.usuario));
+        return (((Bike) obj).cor.equals(this.cor));
     }
 
     @Override

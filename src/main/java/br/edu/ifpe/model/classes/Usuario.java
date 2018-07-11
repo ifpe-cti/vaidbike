@@ -66,7 +66,7 @@ public class Usuario implements Serializable {
     private String telefone;
     @Column(length = 20, unique = true, nullable = false)
     private String email;
-    @OneToMany(mappedBy = "usuario", targetEntity = Bike.class,
+    @OneToMany(targetEntity = Bike.class,
             fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Bike> bikes;
 
@@ -180,7 +180,7 @@ public class Usuario implements Serializable {
         result = (HASH * result) + endereco.hashCode();
         result = (HASH * result) + telefone.hashCode();
         result = (HASH * result) + email.hashCode();
-        return result = (HASH * result) + bikes.hashCode();
+        return result += (HASH * result) + bikes.hashCode();
     }
 
     @Override
@@ -213,10 +213,7 @@ public class Usuario implements Serializable {
         if (!((Usuario) obj).telefone.equals(this.telefone)) 
             return false;
 
-        if (!((Usuario) obj).email.equals(this.email)) 
-            return false;
-
-        return (((Usuario) obj).bikes.equals(this.bikes));
+        return (((Usuario) obj).email.equals(this.email));
     }
 
     @Override
