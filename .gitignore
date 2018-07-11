@@ -6,5 +6,5 @@ target/
 .settings
 .classpath
 .recommenders
-*.log
 /nbproject/
+*.log

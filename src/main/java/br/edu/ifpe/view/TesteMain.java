@@ -56,10 +56,13 @@ public class TesteMain {
 
         Usuario u = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
                "sexo", new Date(), end, "telefone", "email", bikes);
+        Usuario u2 = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
+               "sexo", new Date(), end2, "telefone", "email", bikes);
         Bike bike = new Bike("bmx", "gaytipo", "verdecor", u);
         bikes.add(bike);
         
         uh.inserir(u);
+        uh.inserir(u2);
 
 
         Usuario cliente = uh.recuperar(1);

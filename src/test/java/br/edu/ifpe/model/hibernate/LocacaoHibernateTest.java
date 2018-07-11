@@ -20,6 +20,7 @@ SOFTWARE.
 package br.edu.ifpe.model.hibernate;
 
 import br.edu.ifpe.model.classes.Bike;
+import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
 import java.util.ArrayList;
@@ -38,44 +39,58 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class LocacaoHibernateTest {
-    UsuarioHibernate uh = new UsuarioHibernate();
+
+
     LocacaoHibernate lh = new LocacaoHibernate();
-    Usuario locatario = new Usuario("", "", "", "", "", null, null, "", "", null);
-    Usuario cliente = new Usuario("", "", "", "", "", null, null, "", "", null);
-    
-      
-    
-    Locacao locacao = new Locacao(cliente, locatario, null, null);
   
     
-    @Test
-    public void deveInserirLocacaoDoBanco() {
-        uh.inserir(locatario);
-        uh.inserir(cliente);
+    Locacao locacao = new Locacao(null, null, null, null);
+
+        
+ 
+
+    
+@Test
+public void deveInserirLocacaoDoBanco() {
+ 
+
         lh.inserir(locacao);
-    }
-  
+
+        Assert.assertNotNull(lh.recuperar(1));
+}
+ 
+
     @Test
     public void deveRecuperarLocacaoDoBanco() {
-       
+
+        lh.inserir(locacao);
         Assert.assertNotNull(lh.recuperar(1));
     }
 
-    @Test
 
+    
+
+    @Test
     public void deveAlterarLocacaoDoBanco() {
-        Locacao locacaoAntiga = lh.recuperar(1);
-       
-        locacaoAntiga.setDevolucao(new Date());
-        lh.alterar(locacaoAntiga);
-        Assert.assertNotEquals(locacaoAntiga, lh.recuperar(1));
+ 
+        lh.inserir(locacao);
+        
+        Locacao locacaonova = lh.recuperar(1);
+        locacaonova.setRetirada(new Date());
+        lh.alterar(locacaonova);
+        locacaonova = lh.recuperar(1);
+        Assert.assertNotNull(locacaonova.getRetirada());
     }
+   
+    
 
     @Test
     public void deveDeletarDoBanco() {
-        Locacao locacaoDeletada = lh.recuperar(3);
+        lh.inserir(locacao);
+        lh.inserir(locacao);
+        Locacao locacaoDeletada = lh.recuperar(2);
         lh.deletar(locacaoDeletada);
-        Assert.assertNull(lh.recuperar(3));
+        Assert.assertNull(lh.recuperar(2));
     }
 
 }
