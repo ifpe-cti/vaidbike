@@ -66,8 +66,8 @@ public class UsuarioHibernateTest {
 
     @Test
     public void deveRecuperarUsuarioTest() {
-        assertEquals("TC001", USUARIO1.toString(), 
-                USUARIOHIBERNATE.recuperar(1).toString());
+        assertEquals("TC001", USUARIO1, 
+                USUARIOHIBERNATE.recuperar(1));
     }
 
     @Test
@@ -76,14 +76,14 @@ public class UsuarioHibernateTest {
         USUARIO1.setLogin("login alterado");
         USUARIOHIBERNATE.alterar(USUARIO1);
         
-        assertEquals("TC002",USUARIO1.toString(),
-                USUARIOHIBERNATE.recuperar("28961303066").toString());
+        assertEquals("TC002",USUARIO1,
+                USUARIOHIBERNATE.recuperar("28961303066"));
     }
 
     @Test
     public void deveRecuperarPorCpfUsuarioTest() {
-        assertEquals("TC003", USUARIO2.toString(), 
-                USUARIOHIBERNATE.recuperar("28952871049").toString());
+        assertEquals("TC003", USUARIO2, 
+                USUARIOHIBERNATE.recuperar("28952871049"));
     }
 
     @Test
@@ -93,8 +93,7 @@ public class UsuarioHibernateTest {
         usuarios.add(USUARIO1);
         usuarios.add(USUARIO2);
         
-        assertEquals("TC004",usuarios.toString()
-                ,USUARIOHIBERNATE.listarTodos().toString());
+        assertEquals("TC004",usuarios,USUARIOHIBERNATE.listarTodos());   
     }
 
     @Test

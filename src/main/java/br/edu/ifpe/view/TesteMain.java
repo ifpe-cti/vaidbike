@@ -30,6 +30,7 @@ import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -116,11 +117,17 @@ public class TesteMain {
 
         Endereco ENDERECO = new Endereco("estado", "cidade",
             "cep", "bairro", "logradouro");
-        
-      Endereco ENDERECO1 = new Endereco("estado", "cidade",
-            "cep", "bairro", "logradouro");
+        ArrayList<Bike> bikes = new ArrayList();
+        bikes.add(new Bike("modelo", "tipo", "cor", null));
+      Usuario usuario = new Usuario(
+            "login", "senha", "nome", "08558176400", "sexo",
+            LocalDate.now(), ENDERECO, "telefone", "email", 
+              bikes);
       
-        System.out.println(ENDERECO.equals(ENDERECO1));
+      UsuarioHibernate.getInstance().inserir(usuario);
+      Usuario us = (Usuario) UsuarioHibernate.getInstance().recuperar("08558176400");
+        System.out.println(us.getBikes().equals(bikes));
 */
+
     }
 }
