@@ -54,7 +54,9 @@ public class Usuario implements Serializable {
     private String senha;
     @Column(length = 20, nullable = false)
     private String nome;
-    @Column(length = 15, nullable = false, unique = true)
+
+    @Column(length = 15, nullable = true, unique = false)
+
     private String cpf;
     @Column(length = 5, nullable = true)
     private String sexo;
@@ -62,9 +64,11 @@ public class Usuario implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cod_endereco", nullable = false)
     private Endereco endereco;
-    @Column(length = 15, unique = true, nullable = false)
+
+    @Column(length = 15, unique = false, nullable = true)
     private String telefone;
-    @Column(length = 20, unique = true, nullable = false)
+    @Column(length = 20, unique = false, nullable = true)
+
     private String email;
     @OneToMany(targetEntity = Bike.class,
             fetch = FetchType.EAGER, cascade = CascadeType.ALL)
