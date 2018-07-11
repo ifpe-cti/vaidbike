@@ -26,9 +26,12 @@ package br.edu.ifpe.view;
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
+import br.edu.ifpe.model.classes.Pagamento;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.hibernate.LocacaoHibernate;
+import br.edu.ifpe.model.hibernate.PagamentoHibernate;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -101,10 +104,15 @@ public class TesteMain {
         
         Locacao LOCACAO
                 = new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now());
+        
+         Pagamento pagamento = 
+            new Pagamento("tipo", new BigDecimal("20.00"),LOCACAO);
+         
         UsuarioHibernate.getInstance().inserir(USUARIO1);
         UsuarioHibernate.getInstance().inserir(USUARIO2);
         LocacaoHibernate.getInstance().inserir(LOCACAO);
+        PagamentoHibernate.getInstance().inserir(pagamento);
         
-        System.out.println(LocacaoHibernate.getInstance().recuperar(2).equals(LOCACAO));
+        System.out.println(PagamentoHibernate.getInstance().recuperar(1).getValor() + "\n" + pagamento.getValor());
     }
 }

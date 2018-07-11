@@ -39,28 +39,26 @@ import org.hibernate.cfg.Configuration;
  */
 public class PagamentoHibernate implements PagamentoDao {
 
-    private SessionFactory sessions;
-    private static PagamentoHibernate instance;
+    private final SessionFactory SESSIONS;
+    private static  PagamentoHibernate instance;
     private final Logger LOGGER;
 
     public static PagamentoHibernate getInstance() {
-
-        if (instance != null) {
+        if (instance == null) {
             instance = new PagamentoHibernate();
         }
         return instance;
-
     }
 
-    public PagamentoHibernate() {
+    private PagamentoHibernate() {
         Configuration cfg = new Configuration().configure();
-        this.sessions = cfg.buildSessionFactory();
+        this.SESSIONS = cfg.buildSessionFactory();
         this.LOGGER = Logger.getLogger(PagamentoHibernate.class);
     }
 
     @Override
     public void inserir(Pagamento pagamento) {
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
         Transaction transaction = session.beginTransaction();
         try {
             session.save(pagamento);
@@ -76,13 +74,11 @@ public class PagamentoHibernate implements PagamentoDao {
 
     @Override
     public Pagamento recuperar(Integer codigo) {
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
 
         try {
-
             return (Pagamento) session.createQuery("From Pagamento where"
                     + " id_pagamento=" + codigo).list().get(0);
-
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao recuperar um pagamento"
                     + "\n" + e.getMessage());
@@ -94,8 +90,7 @@ public class PagamentoHibernate implements PagamentoDao {
 
     @Override
     public List<Pagamento> listarTodos() {
-
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
         try {
             return (List) session.createQuery("from Pagamento").list();
         } catch (Exception e) {
@@ -106,13 +101,11 @@ public class PagamentoHibernate implements PagamentoDao {
             session.close();
         }
         return null;
-
     }
 
     @Override
     public void deletar(Pagamento pagamento) {
-
-        Session session = this.sessions.openSession();
+        Session session = this.SESSIONS.openSession();
         Transaction transaction = session.beginTransaction();
 
         try {
@@ -128,8 +121,19 @@ public class PagamentoHibernate implements PagamentoDao {
     }
 
     @Override
-    public void alterar(Pagamento d) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void alterar(Pagamento pagamento) {
+       Session session = this.SESSIONS.openSession();
+       Transaction transaction = session.beginTransaction();
+       
+       try{
+           session.update(pagamento);
+           transaction.commit();
+       }catch(Exception alterarPagamentoException){
+           LOGGER.error("Ocorreu um problema ao deletar um Pagamento "
+                    + "\n" + alterarPagamentoException.getMessage());
+           transaction.rollback();
+       }finally{
+           session.close();
+       }
     }
-
 }

@@ -46,17 +46,14 @@ public class Pagamento implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pagamento")
     private Integer codigo;
-
-    @Column(length = 15, nullable = true)
+    @Column(length = 15, nullable = false)
     private String tipo;
-
-    @Column(length = 10, scale = 2, precision = 10, nullable = true)
+    @Column(length = 10, scale = 2, precision = 10, nullable = false)
     private BigDecimal valor;
-
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cod_locacao", nullable = true)
+    @JoinColumn(name = "cod_locacao", nullable = false)
     private Locacao locacao;
-
+    
     @Deprecated
     public Pagamento() {
 
@@ -95,25 +92,21 @@ public class Pagamento implements Serializable {
         result = (HASH * result) + codigo.hashCode();
         result = (HASH * result) + tipo.hashCode();
         result = (HASH * result) + valor.hashCode();
-        return (HASH * result) + locacao.hashCode();
+        return result += (HASH * result) + locacao.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+        if(!(obj instanceof Pagamento))
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        
+        if(!((Pagamento) obj).tipo.equals(this.tipo))
             return false;
-        }
-        final Pagamento other = (Pagamento) obj;
-        if (!Objects.equals(this.codigo, other.codigo)) {
+        
+        if(!((Pagamento) obj).valor.equals(this.valor))
             return false;
-        }
-        return true;
+        
+        return (((Pagamento) obj).locacao.equals(this.locacao));
     }
 
     @Override
