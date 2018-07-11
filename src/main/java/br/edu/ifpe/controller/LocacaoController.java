@@ -40,60 +40,62 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class LocacaoController {
 
-    private LocacaoModel instance;
+    private LocacaoModel instanceLocacaoModel;
     private Locacao cadLocacao;
     private Locacao selectedLocacao;
 
     public LocacaoController() {
-        this.instance = new LocacaoModel();
+        this.instanceLocacaoModel = new LocacaoModel();
         this.cadLocacao = new Locacao();
 
     }
 
     public String inserir() throws Exception {
         try {
-            this.instance.inserir(this.cadLocacao);
+            this.instanceLocacaoModel.inserir(this.cadLocacao);
             this.cadLocacao = new Locacao();
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Pagamento cadastrado com sucesso"));
+                    new FacesMessage("Locação cadastrada com sucesso!"));
             return "";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Pagamento cadastrado com sucesso"));
+                    new FacesMessage("Falha ao Cadastrar"));
             return "";
         }
 
     }
 
-    public void alterar() {
+    public void alterar() throws Exception {
+          this.instanceLocacaoModel.alterar(this.selectedLocacao);
     }
 
-    public Locacao recuperar(Integer codigo) {
-        return null;
+    public Locacao recuperar(Integer codigo) throws Exception {
+          return this.instanceLocacaoModel.recuperar(codigo);
     }
 
-    public void deletar() {
+    public void deletar() throws Exception {
+        this.instanceLocacaoModel.deletar(this.selectedLocacao);
 
     }
 
-    public List<Locacao> listarTodos() {
-        return null;
+    public List<Locacao> listarTodos() throws Exception {
+       return this.instanceLocacaoModel.listarTodos();
     }
 
-    public List<Locacao> retornarListaLocacao(Usuario cliente) {
-        return null;
+    public List<Locacao> retornarListaLocacaoCliente(Usuario cliente) throws Exception {
+        return this.instanceLocacaoModel.retornarListaLocacao(cliente);
     }
 
-    public List<Locacao> retornarListaLocatario(Usuario locatario) {
-        return null;
+    public List<Locacao> retornarListaLocatario(Usuario locatario) throws Exception {
+        return this.instanceLocacaoModel.retornarListaLocatario(locatario);
     }
 
     public LocacaoModel getInstance() {
-        return instance;
+        return instanceLocacaoModel;
     }
 
     public void setInstance(LocacaoModel instance) {
-        this.instance = instance;
+        this.instanceLocacaoModel = instance;
     }
 
     public Locacao getCadLocacao() {
