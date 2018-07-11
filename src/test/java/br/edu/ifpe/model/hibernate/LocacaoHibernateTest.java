@@ -1,18 +1,14 @@
 /*MIT License
-
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
-Adrielly Calado Sales, Luciano Campos de Lima Júnior.
-
+Adrielly Calado Sales, Lucas Mendes Cavalcanti.
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
-
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
-
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -42,23 +38,36 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class LocacaoHibernateTest {
-
+    UsuarioHibernate uh = new UsuarioHibernate();
     LocacaoHibernate lh = new LocacaoHibernate();
+    Usuario locatario = new Usuario("", "", "", "", "", null, null, "", "", null);
+    Usuario cliente = new Usuario("", "", "", "", "", null, null, "", "", null);
     
+      
+    
+    Locacao locacao = new Locacao(cliente, locatario, null, null);
+  
     
     @Test
+    public void deveInserirLocacaoDoBanco() {
+        uh.inserir(locatario);
+        uh.inserir(cliente);
+        lh.inserir(locacao);
+    }
+  
+    @Test
     public void deveRecuperarLocacaoDoBanco() {
-        
+       
         Assert.assertNotNull(lh.recuperar(1));
     }
 
     @Test
 
     public void deveAlterarLocacaoDoBanco() {
-        Locacao locacaoAlterada = lh.recuperar(1);
-        Locacao locacaoAntiga = locacaoAlterada;
-        locacaoAlterada.setDevolucao(new Date());
-        lh.alterar(locacaoAlterada);
+        Locacao locacaoAntiga = lh.recuperar(1);
+       
+        locacaoAntiga.setDevolucao(new Date());
+        lh.alterar(locacaoAntiga);
         Assert.assertNotEquals(locacaoAntiga, lh.recuperar(1));
     }
 
