@@ -57,7 +57,7 @@ public class LocacaoHibernateTest {
     @BeforeClass
      @Ignore
     public static void deveInserirLocacaoNoBanco() {
-        UsuarioHibernate usuarioHibernate = new UsuarioHibernate();
+        UsuarioHibernate usuarioHibernate = UsuarioHibernate.getInstance();
         LocacaoHibernateTest.locacaoHibernate.inserir(locacao);
     }
 

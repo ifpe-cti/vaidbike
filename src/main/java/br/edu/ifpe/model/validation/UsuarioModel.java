@@ -36,7 +36,7 @@ import br.edu.ifpe.model.interfacesDao.UsuarioDao;
 public class UsuarioModel {
 
     private final ValidarCpf VALIDACAOCPF = new ValidarCpf();
-    private final Dao<Usuario> DAO = new UsuarioHibernate();
+    private final Dao<Usuario> DAO = UsuarioHibernate.getInstance();
 
     public void inserir(Usuario usuario) throws Exception {
         if (VALIDACAOCPF.isCPF(usuario.getCpf()) == true) {
