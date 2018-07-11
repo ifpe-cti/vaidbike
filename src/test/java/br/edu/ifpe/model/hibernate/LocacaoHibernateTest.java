@@ -25,76 +25,71 @@ import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
-import java.util.Date;
-import org.junit.Assert;
+import java.util.List;
+import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.FixMethodOrder;
-import org.junit.Ignore;
-import org.junit.runners.MethodSorters;
 
 /**
  *
  * @author Carlos André <carloscordeiroconsultor@gmail.com>
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class LocacaoHibernateTest {
 
+    private static final LocacaoHibernate LOCACAOHIBERNATE
+            = LocacaoHibernate.getInstance();
 
+    private static final Endereco ENDERECO = new Endereco("estado", "cidade",
+            "cep", "bairro", "logradouro");
 
-    LocacaoHibernate lh = new LocacaoHibernate();
-  
-    
-    Locacao locacao = new Locacao(null, null, null, null);
+    private static final Usuario USUARIO1 = new Usuario(
+            "login", "senha", "nome", "28961303066", "sexo",
+            LocalDate.now(), ENDERECO, "telefone", "email",
+            new ArrayList<Bike>());
 
-        
- 
+    private static final Usuario USUARIO2 = new Usuario(
+            "login1", "senha1", "nome1", "28952871049", "sexo1",
+            LocalDate.now(), ENDERECO, "telefone1", "email1",
+            new ArrayList<Bike>());
 
-    
-@Test
-public void deveInserirLocacaoDoBanco() {
- 
+    private static final Locacao LOCACAO = 
+            new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now());
 
-        lh.inserir(locacao);
-
-        Assert.assertNotNull(lh.recuperar(1));
-}
-
-
+    @BeforeClass
+    public static void deveInserirLocacaoEUsuariosNoBanco() {
+        UsuarioHibernate.getInstance().inserir(USUARIO1);
+        UsuarioHibernate.getInstance().inserir(USUARIO2);
+        LOCACAOHIBERNATE.inserir(LOCACAO);
+    }
 
     @Test
     public void deveRecuperarLocacaoDoBanco() {
-
-        lh.inserir(locacao);
-        Assert.assertNotNull(lh.recuperar(1));
+        assertEquals("TC001",LOCACAO,LOCACAOHIBERNATE.recuperar(1));
     }
-
-
-    
 
     @Test
     public void deveAlterarLocacaoDoBanco() {
- 
-        lh.inserir(locacao);
-        
-        Locacao locacaonova = lh.recuperar(1);
-        locacaonova.setRetirada(new Date());
-        lh.alterar(locacaonova);
-        locacaonova = lh.recuperar(1);
-        Assert.assertNotNull(locacaonova.getRetirada());
+        LOCACAO.setDevolucao(LocalDate.of(2013, Month.JUNE, 20));
+        LOCACAO.setRetirada(LocalDate.of(2013, Month.APRIL, 20));
+        LOCACAOHIBERNATE.alterar(LOCACAO);
+        assertEquals("TC002",LOCACAO,LOCACAOHIBERNATE.recuperar(1));
     }
-   
     
-
     @Test
-    public void deveDeletarDoBanco() {
-        lh.inserir(locacao);
-        lh.inserir(locacao);
-        Locacao locacaoDeletada = lh.recuperar(2);
-        lh.deletar(locacaoDeletada);
-        Assert.assertNull(lh.recuperar(2));
+    public void deveRecuperarTodasAsLocacoesDoBanco(){
+        List<Locacao> locacacoes = new ArrayList();
+        locacacoes.add(LOCACAO);
+        
+        assertEquals("TC003",locacacoes,LOCACAOHIBERNATE.listarTodos());
     }
-
+    
+    @AfterClass
+    public static void deveDeletarDoBanco() {
+      LOCACAOHIBERNATE.deletar(LOCACAO);
+    }
 }

@@ -24,7 +24,7 @@ SOFTWARE.
 package br.edu.ifpe.model.classes;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +32,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
 
 /**
  *
@@ -52,18 +51,16 @@ public class Locacao implements Serializable {
     @JoinColumn(name = "cod_locatario")
     private Usuario locatario;
     @Column
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date retirada;
+    private LocalDate retirada;
     @Column
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date devolucao;
+    private LocalDate devolucao;
 
     @Deprecated
     public Locacao() {
     }
 
     public Locacao(Usuario cliente, Usuario locatario,
-            Date retirada, Date devolucao) {
+            LocalDate retirada, LocalDate devolucao) {
         this.cliente = cliente;
         this.locatario = locatario;
         this.retirada = retirada;
@@ -82,19 +79,19 @@ public class Locacao implements Serializable {
         return locatario;
     }
 
-    public Date getRetirada() {
+    public LocalDate getRetirada() {
         return retirada;
     }
 
-    public void setRetirada(Date retirada) {
+    public void setRetirada(LocalDate retirada) {
         this.retirada = retirada;
     }
 
-    public Date getDevolucao() {
+    public LocalDate getDevolucao() {
         return devolucao;
     }
 
-    public void setDevolucao(Date devolucao) {
+    public void setDevolucao(LocalDate devolucao) {
         this.devolucao = devolucao;
     }
 
@@ -111,25 +108,17 @@ public class Locacao implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Locacao)) {
+        if (!(obj instanceof Locacao)) 
             return false;
-        }
 
-        if (!((Locacao) obj).codigo.equals(this.codigo)) {
+        if (!((Locacao) obj).cliente.equals(this.cliente)) 
             return false;
-        }
 
-        if (!((Locacao) obj).cliente.equals(this.cliente)) {
+        if (!((Locacao) obj).locatario.equals(this.locatario)) 
             return false;
-        }
 
-        if (!((Locacao) obj).locatario.equals(this.locatario)) {
+        if (!((Locacao) obj).retirada.equals(this.retirada)) 
             return false;
-        }
-
-        if (!((Locacao) obj).retirada.equals(this.retirada)) {
-            return false;
-        }
 
         return (((Locacao) obj).devolucao.equals(this.devolucao));
     }
