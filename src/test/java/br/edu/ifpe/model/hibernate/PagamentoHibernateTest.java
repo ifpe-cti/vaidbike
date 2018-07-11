@@ -23,14 +23,19 @@ SOFTWARE.
  */
 package br.edu.ifpe.model.hibernate;
 
+import br.edu.ifpe.model.classes.Bike;
+import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Pagamento;
+import br.edu.ifpe.model.classes.Usuario;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -38,46 +43,58 @@ import org.junit.Ignore;
  */
 public class PagamentoHibernateTest {
 
-    private static PagamentoHibernate pagamentoHibernate;
-    private static Pagamento pagamento;
+    private static final PagamentoHibernate PAGAMENTOHIBERNATE = 
+            PagamentoHibernate.getInstance();
 
-    public PagamentoHibernateTest() {
+    private static final Endereco ENDERECO = new Endereco("estado", "cidade",
+            "cep", "bairro", "logradouro");
 
-        this.pagamento = new Pagamento();
-        this.pagamentoHibernate = new PagamentoHibernate();
+    private static final Usuario USUARIO1 = new Usuario(
+            "login", "senha", "nome", "28961303066", "sexo",
+            LocalDate.now(), ENDERECO, "telefone", "email",
+            new ArrayList<Bike>());
+
+    private static final Usuario USUARIO2 = new Usuario(
+            "login1", "senha1", "nome1", "28952871049", "sexo1",
+            LocalDate.now(), ENDERECO, "telefone1", "email1",
+            new ArrayList<Bike>());
+
+    private static final Locacao LOCACAO
+            = new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now());
+
+    private static Pagamento PAGAMENTO = 
+            new Pagamento("tipo", new BigDecimal("20.00"),LOCACAO);
+
+    @BeforeClass
+    public static void deveInserirNoBD() {
+        UsuarioHibernate.getInstance().inserir(USUARIO1);
+        UsuarioHibernate.getInstance().inserir(USUARIO2);
+        LocacaoHibernate.getInstance().inserir(LOCACAO);
+        PAGAMENTOHIBERNATE.inserir(PAGAMENTO);
     }
 
     @Test
-    public void testDeveInserir() {
-        pagamento = new Pagamento("tipo", new BigDecimal(10.5), new Locacao());
-        pagamentoHibernate.inserir(pagamento);
-        Pagamento result = pagamentoHibernate.recuperar(pagamento.getCodigo());
-        assertEquals(pagamento, result);
-
+    public void deveRecuperarDoBD(){
+        assertEquals("TC001",PAGAMENTO,PAGAMENTOHIBERNATE.recuperar(1));
     }
 
     @Test
-    public void testDeveRecuperarCodigo() {
-        pagamento = new Pagamento("tipo", new BigDecimal(10.5), new Locacao());
-        pagamentoHibernate.inserir(pagamento);
-        Pagamento result = pagamentoHibernate.recuperar(pagamento.getCodigo());
-        assertEquals(pagamento, result);
-
-    }
-
-    @Test
-    @Ignore
-    public void testDeveRecuperarTodosPagamentos() {
+    public void deveRecuperarTodosOsPagamentosDoBd() {
         List<Pagamento> pagamentos = new ArrayList();
-        pagamento = new Pagamento("tipo", new BigDecimal(10.5), new Locacao());
-        pagamentoHibernate.inserir(pagamento);
-        pagamentos.add(pagamento);
-        assertEquals(pagamentos, pagamentoHibernate.listarTodos());
+        pagamentos.add(PAGAMENTO);
+        
+        assertEquals("TC002",pagamentos,PAGAMENTOHIBERNATE.listarTodos());
     }
+    
     @Test
-    public void testDeveLimparBancoDados() {
-        Pagamento pagamento = new Pagamento("tipo", new BigDecimal(10.5), new Locacao());
-        pagamentoHibernate.deletar(pagamento);
+    public void deveAlterarPagamentoNoBD(){
+        PAGAMENTO.setValor(new BigDecimal("30.00"));
+        PAGAMENTOHIBERNATE.alterar(PAGAMENTO);
+        assertEquals("TC003",PAGAMENTO,PAGAMENTOHIBERNATE.recuperar(1));
     }
-     
+    
+    @AfterClass
+    public static void deveLimparOBancoDados() {
+        PAGAMENTOHIBERNATE.deletar(PAGAMENTO);
+    }    
 }
