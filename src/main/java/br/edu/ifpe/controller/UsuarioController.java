@@ -71,33 +71,35 @@ public class UsuarioController {
 
             } else {
                 user = null;
-                FacesContext.getCurrentInstance().addMessage(null, new
-                    FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no Login!",
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no Login!",
                         "Senha ou Login Inválidos"));
 
             }
         } else {
             user = null;
-            FacesContext.getCurrentInstance().addMessage(null, 
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no Login!",
-                    "Senha ou Login Inválidos"));
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no Login!",
+                            "Senha ou Login Inválidos"));
         }
 
         return rediricionarPagina;
     }
 
-    public String realizarLogout(){
+    public String realizarLogout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "";
     }
-    
-    
-    public String adicionarUsuario(String senha) throws Exception {
-        cadUsuario.setSenha(CriptografiaMD5.md5(senha));
-        this.instaceUsuarioModel.inserir(this.cadUsuario);
-        this.cadUsuario = new Usuario();
-        return " ";
 
+    public String adicionarUsuario(String senha) throws Exception {
+        try {
+            cadUsuario.setSenha(CriptografiaMD5.md5(senha));
+            this.instaceUsuarioModel.inserir(this.cadUsuario);
+            this.cadUsuario = new Usuario();
+            return " ";
+        } catch (Exception e) {
+
+            return " ";
+        }
     }
 
     public String deletarUsuario() throws Exception {
@@ -127,9 +129,10 @@ public class UsuarioController {
         return "";
     }
 
-    public void listarTodosUsuarios() throws Exception{
+    public void listarTodosUsuarios() throws Exception {
         instaceUsuarioModel.listarTodos();
     }
+
     public UsuarioModel getInstaceUsuarioModel() {
         return instaceUsuarioModel;
     }
