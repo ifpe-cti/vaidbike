@@ -28,9 +28,8 @@ import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Pagamento;
 import br.edu.ifpe.model.classes.Usuario;
-import br.edu.ifpe.model.hibernate.LocacaoHibernate;
-import br.edu.ifpe.model.hibernate.PagamentoHibernate;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
+import br.edu.ifpe.model.validation.UsuarioModel;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ import java.util.ArrayList;
  * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
  */
 public class TesteMain {
-    
+
     public static void main(String args[]) throws Exception {
 
         /*
@@ -108,11 +107,12 @@ public class TesteMain {
          Pagamento pagamento = 
             new Pagamento("tipo", new BigDecimal("20.00"),LOCACAO);
          
-        UsuarioHibernate.getInstance().inserir(USUARIO1);
-        UsuarioHibernate.getInstance().inserir(USUARIO2);
-        LocacaoHibernate.getInstance().inserir(LOCACAO);
-        PagamentoHibernate.getInstance().inserir(pagamento);
+        UsuarioModel usuarioModel = new UsuarioModel();
         
-        System.out.println(PagamentoHibernate.getInstance().recuperar(1).getValor() + "\n" + pagamento.getValor());
+        usuarioModel.inserir(USUARIO1);
+        
+        System.out.println(usuarioModel.recuperar(1));
+        
+         
     }
 }

@@ -162,7 +162,7 @@ public class UsuarioHibernate implements UsuarioDao {
         List<Usuario> usuarios = new ArrayList();
 
         try {
-            return (ArrayList) session.createQuery("from Usuario").list();
+            usuarios = session.createQuery("from Usuario").list();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao recuperar todos os Usuarios "
                     + "\n" + e.getMessage());
