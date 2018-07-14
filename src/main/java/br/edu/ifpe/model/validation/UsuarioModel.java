@@ -39,11 +39,11 @@ public class UsuarioModel {
     private final Dao<Usuario> DAO = UsuarioHibernate.getInstance();
 
     public void inserir(Usuario usuario) throws Exception {
-        if (VALIDACAOCPF.isCPF(usuario.getCpf()) == true) {
-            if (((UsuarioDao) DAO).recuperar(usuario.getCpf()) == null) {
-                DAO.inserir(usuario);
-            } else {
-                throw new Exception("Erro ao inserir o usuário, no UsuarioModel!");
+        if (VALIDACAOCPF.isCPF(usuario.getCpf())) {
+            if(((UsuarioDao) DAO).recuperar(usuario.getCpf()) == null ){
+                DAO.inserir(usuario);   
+            }else{
+                throw new Exception("Erro na validação de Cpf!");
             }
         } else {
             throw new Exception("Erro na validação de Cpf!");

@@ -26,18 +26,12 @@ package br.edu.ifpe.model.validation;
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Usuario;
-import br.edu.ifpe.model.hibernate.UsuarioHibernate;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -46,170 +40,105 @@ import org.junit.Test;
  * @author Lucas Mendes <lucas.mendes147@live.com>
  */
 public class UsuarioModelTest {
-//
-//    private static final Endereco ENDERECO = new Endereco("estado", "cidade",
-//            "cep", "bairro", "logradouro");
-//
-//    private static final UsuarioModel USUARIOMODEL = new UsuarioModel();
-//
-//    private static final Usuario USUARIO1 = new Usuario(
-//            "login", "senha", "nome", "28961303066", "sexo",
-//            LocalDate.now(), ENDERECO, "telefone", "email",
-//            new ArrayList<Bike>());
-//
-//    private static final Usuario USUARIO2 = new Usuario(
-//            "login1", "senha1", "nome1", "28952871049", "sexo1",
-//            LocalDate.now(), ENDERECO, "telefone1", "email1",
-//            new ArrayList<Bike>());
-//
-//    @BeforeClass
-//    public static void deveInserirUsuarioNoBD() throws Exception {
-//        USUARIOMODEL.inserir(USUARIO1);
-//        USUARIOMODEL.inserir(USUARIO2);
-//    }
-//
-//    @Test
-//    public void alterarUsuarioTest() throws Exception {
-//            Usuario usuarioOld = this.USUARIO1;
-//            usuarioOld.setNome("ALTERADO");
-//            usuarioOld.setLogin("ALTERADO");
-//            usuarioOld.setSenha("ALTERADO");
-//
-//            Assert.assertEquals("TC002", usuarioOld, USUARIOMODEL.recuperar
-//        (USUARIO1.getCodigo()));
-//    }
-//
-//    @Test
-//    public void deveRecuperarUsuarioIdTest() throws Exception {
-//        Assert.assertEquals("TC003", USUARIO1, 
-//                    USUARIOMODEL.recuperar(USUARIO1.getCodigo()));
-//    }
-//
-////    @Test
-////    public void deletarUsuarioTest() {
-////        try {
-////            Usuario del = new Usuario("loginDel", "senhaDel", "nomeDel", "cpfDel", "sexoDel",
-////                    data, ENDERECO, "telefoneDel", "emailDel",
-////                    new ArrayList<Bike>());
-////
-////            USUARIOMODEL.inserir(del);
-////            USUARIOMODEL.deletar(del);
-////            assertNotEquals("TC004", del, USUARIOMODEL.recuperar(del.getCodigo()));
-////        } catch (Exception e) {
-////        }
-////    }
-////
-////    @Test
-////    public void recuperarUsuarioCpfTest() {
-////        try {
-////            Assert.assertEquals("TC003", this.USUARIO1, USUARIOMODEL.recuperar(this.USUARIO1.getCpf()));
-////        } catch (Exception e) {
-////        }
-////    }
-////
-////    @Test
-////    public void recuperarTodosUsuariosTest() {
-////        List<Usuario> usuarios = new ArrayList();
-////        try {
-////            DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
-////            String sdata = "29-04-2018";
-////            data = df1.parse(sdata);
-////
-////            Usuario usuarioLista1 = new Usuario("login", "senha", "nome", "cpf", "sexo", data, ENDERECO,
-////                    "telefone", "email", new ArrayList<Bike>());
-////
-////            Usuario usuarioLista2 = new Usuario("login2", "senha2", "nome2", "cpf2", "sexo2", data, ENDERECO,
-////                    "telefone2", "email2", new ArrayList<Bike>());
-////
-////            usuarios.add(usuarioLista1);
-////            usuarios.add(usuarioLista2);
-////
-////            assertEquals("TC004", usuarios, (ArrayList) USUARIOMODEL.listarTodos());
-////        } catch (Exception e) {
-////        }
-////    }
-////
-////    @Test
-////    public void recuperarUsuarioLoginSenhaTest() {
-////        try {
-////            assertEquals("TC005", this.USUARIO2,
-////                    USUARIOMODEL.recuperar("login2", "senha2"));
-////        } catch (Exception e) {
-////        }
-////    }
-////
-////    @Test(expected = NullPointerException.class)
-////    public void inserirUsuarioIncorretoTest() throws Exception {
-////        USUARIOMODEL.inserir(new Usuario(null, null, null, null, null, null, null,
-////                null, null, null));
-////    }
-////
-////    @Test(expected = Exception.class)
-////    public void inserirUsuarioCpfIncorretoTest() throws Exception {
-////        USUARIOMODEL.inserir(new Usuario("login", "senha", "nome", "1234567890123", "sexo",
-////                 data, ENDERECO, "telefone", "email",
-////                 new ArrayList<Bike>()));
-////    }
-////
-////    @Test(expected = NullPointerException.class)
-////    public void alterarUsuarioInexistenteTest() throws Exception {
-////        USUARIOMODEL.alterar(new Usuario("alt", "alt", "alt", "alt", "alt", null, null,
-////                "alt", "alt", null));
-////    }
-////
-////    @Test(expected = NullPointerException.class)
-////    public void deletarUsuarioInexistenteTest() throws Exception {
-////        USUARIOMODEL.deletar(new Usuario("del", "del", "del", "del", "del", null, null,
-////                "del", "del", null));
-////    }
-////
-////    //    @Column(length = 15, nullable = false,unique = true)
-//////    private String login;
-//////    @Column(length = 12, nullable = false)
-//////    private String senha;
-//////    @Column(length = 20, nullable = false)
-//////    private String nome;
-//////    @Column(length = 15, nullable = false, unique = true)
-//////    private String cpf;
-//////    @Column(length = 5, nullable = true)
-//////    private String sexo;
-//////    private LocalDate dataNasc;
-//////    @OneToOne(cascade = CascadeType.ALL)
-//////    @JoinColumn(name = "cod_endereco", nullable = false)
-//////    private Endereco endereco;
-//////    @Column(length = 15, unique = true, nullable = false)
-//////    private String telefone;
-//////    @Column(length = 20, unique = true, nullable = false)
-//////    private String email;
-////    @Test(expected = NullPointerException.class)
-////    public void recuperarUsuarioCPFInexistenteTest() throws Exception {
-////        USUARIOMODEL.deletar(USUARIOMODEL.recuperar("123123"));
-////    }
-////
-////    @Test(expected = Exception.class)
-////    public void recuperarUsuarioLoginInexistenteTest() throws Exception {
-////        USUARIOMODEL.deletar(
-////                USUARIOMODEL.recuperar("loginInexistente", "senha"));
-////    }
-////
-////    @AfterClass
-////    public static void limparBD() {
-////        UsuarioModel usuarioModel = new UsuarioModel();
-////        try {
-////            DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
-////            String sdata = "29-04-2018";
-////            Date date = df1.parse(sdata);
-////            Endereco end = new Endereco("estado", "cidade", "cep", "bairro", "logradouro");
-////
-////            Usuario usuarioBD1 = new Usuario("login", "senha", "nome", "cpf", "sexo", date, end,
-////                    "telefone", "email", new ArrayList<Bike>());
-////
-////            Usuario usuarioBD2 = new Usuario("login2", "senha2", "nome2", "cpf2", "sexo2", date, end,
-////                    "telefone2", "email2", new ArrayList<Bike>());
-////
-////            usuarioModel.deletar(usuarioBD1);
-////            usuarioModel.deletar(usuarioBD2);
-////        } catch (Exception e) {
-////        }
-////    }
+
+    private static final Endereco ENDERECO = new Endereco("estado", "cidade",
+            "cep", "bairro", "logradouro");
+
+    private static final UsuarioModel USUARIOMODEL = new UsuarioModel();
+
+    private static final Usuario USUARIO1 = new Usuario(
+            "login", "senha", "nome", "28961303066", "sexo",
+            LocalDate.now(), ENDERECO, "telefone", "email",
+            new ArrayList<Bike>());
+
+    private static final Usuario USUARIO2 = new Usuario(
+            "login1", "senha1", "nome1", "28952871049", "sexo1",
+            LocalDate.now(), ENDERECO, "telefone1", "email1",
+            new ArrayList<Bike>());
+
+    @BeforeClass
+    public static void deveInserirUsuarioNoBD() throws Exception {
+        USUARIOMODEL.inserir(USUARIO1);
+        USUARIOMODEL.inserir(USUARIO2);
+    }
+
+    @Test
+    public void deveAlterarUsuarioTest() throws Exception {
+            USUARIO1.setEmail("ALTERADO");
+            USUARIO1.setLogin("ALTERADO");
+            
+            USUARIOMODEL.alterar(USUARIO1);
+            Assert.assertEquals("TC001", USUARIO1, USUARIOMODEL.recuperar
+        (USUARIO1.getCodigo()));
+    }
+
+    @Test
+    public void deveRecuperarUsuarioIdTest() throws Exception {
+        Assert.assertEquals("TC002", USUARIO1, 
+                    USUARIOMODEL.recuperar(1));
+    }
+    
+        @Test
+    public void deveRecuperarUsuarioCpfTest() throws Exception {
+            Assert.assertEquals("TC003", USUARIO1, 
+                    USUARIOMODEL.recuperar(this.USUARIO1.getCpf()));
+    }
+
+    @Test
+    public void deveRecuperarTodosUsuariosTest() throws Exception {
+        List<Usuario> usuarios = new ArrayList();
+        usuarios.add(USUARIO2);
+        usuarios.add(USUARIO1);
+        assertEquals("TC004",usuarios,USUARIOMODEL.listarTodos());
+    }
+
+    @Test
+    public void deveRecuperarUsuarioLoginSenhaTest() throws Exception {
+            assertEquals("TC005", USUARIO2,
+                 USUARIOMODEL.recuperar
+                        (USUARIO2.getLogin(), USUARIO2.getSenha()));
+    }
+    
+
+    @Test(expected = NullPointerException.class)
+    public void naoDeveinserirUsuarioIncorretoTest() throws Exception {
+        USUARIOMODEL.inserir(new Usuario(null, null, null, null, null, null,
+                null,null, null, null));        
+    }
+
+    @Test(expected = java.lang.Exception.class)
+    public void naoDeveInserirUsuarioCpfIncorretoTest() throws Exception {
+        USUARIOMODEL.inserir(new Usuario("login", "senha", "nome",
+                "1234567890123", "sexo",LocalDate.now(), ENDERECO, "telefone",
+                    "email",new ArrayList<Bike>()));
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void naoDeveAlterarUsuarioInexistenteTest() throws Exception {
+        USUARIOMODEL.alterar(new Usuario("alt", "alt", "alt", "alt", "alt", 
+                    null, null, "alt", "alt", null));      
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void naoDeveDeletarUsuarioInexistenteTest() throws Exception {
+        USUARIOMODEL.deletar(new Usuario("del", "del", "del", "del", "del", 
+                null, null, "del", "del", null));       
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void naoDeveRecuperarUsuarioCPFInexistenteTest() throws Exception {
+        USUARIOMODEL.deletar(USUARIOMODEL.recuperar("123123"));
+    }
+
+    @Test(expected = java.lang.Exception.class)
+    public void recuperarUsuarioLoginInexistenteTest() throws Exception {
+        USUARIOMODEL.deletar(
+                USUARIOMODEL.recuperar("loginInexistente", "senha"));       
+    }
+
+    @AfterClass
+    public static void deveLimparBD() throws Exception {
+        USUARIOMODEL.deletar(USUARIO1);
+        USUARIOMODEL.deletar(USUARIO2);
+    }
 }
