@@ -23,13 +23,12 @@ SOFTWARE.
  */
 package br.edu.ifpe.view;
 
+import br.edu.ifpe.controller.UsuarioController;
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Pagamento;
 import br.edu.ifpe.model.classes.Usuario;
-import br.edu.ifpe.model.hibernate.UsuarioHibernate;
-import br.edu.ifpe.model.validation.UsuarioModel;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -88,12 +87,13 @@ public class TesteMain {
       Usuario us = (Usuario) UsuarioHibernate.getInstance().recuperar("08558176400");
         System.out.println(us.getBikes().equals(bikes));
          */
+       /* 
         Endereco ENDERECO = new Endereco("estado", "cidade",
                 "cep", "bairro", "logradouro");
         
         Usuario USUARIO1 = new Usuario(
-                "login", "senha", "nome", "28961303066", "sexo",
-                LocalDate.now(), ENDERECO, "telefone", "email",
+                "1", "1", "2", "08558176400", "4",
+                LocalDate.now(), ENDERECO, "6", "7",
                 new ArrayList<Bike>());
         
         Usuario USUARIO2 = new Usuario(
@@ -107,12 +107,12 @@ public class TesteMain {
          Pagamento pagamento = 
             new Pagamento("tipo", new BigDecimal("20.00"),LOCACAO);
          
-        UsuarioModel usuarioModel = new UsuarioModel();
-        
-        usuarioModel.inserir(USUARIO1);
-        
-        System.out.println(usuarioModel.recuperar(1));
-        
-         
+
+        UsuarioController uc = new UsuarioController();
+        uc.setEnd(ENDERECO);
+        uc.setCadUsuario(USUARIO1);
+        System.out.println(uc.getCadUsuario());
+        uc.registrarUsuario();
+        */
     }
 }
