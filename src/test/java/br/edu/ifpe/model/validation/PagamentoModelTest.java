@@ -24,8 +24,10 @@ SOFTWARE.
 
 package br.edu.ifpe.model.validation;
 
+import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Pagamento;
+import br.edu.ifpe.model.hibernate.PagamentoHibernate;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +39,8 @@ import org.junit.Ignore;
  * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 public class PagamentoModelTest {
-    
-    private PagamentoModel pagamentoModel;
+    /*
+  private PagamentoModel pagamentoModel;
     private Pagamento pagamento;
     
     public PagamentoModelTest() {
@@ -48,6 +50,7 @@ public class PagamentoModelTest {
     
     
     @Test
+    @Ignore
     public void testInserir() throws Exception{
         pagamento = new Pagamento("tipo",new BigDecimal (10.5) , new Locacao());
         pagamentoModel = new PagamentoModel();
@@ -56,6 +59,7 @@ public class PagamentoModelTest {
     }
 
     @Test
+    @Ignore
     public void testRecuperar() throws Exception {
         
         pagamento = new Pagamento("tipo",new BigDecimal (10.5) , new Locacao());
@@ -81,4 +85,6 @@ public class PagamentoModelTest {
         pagamentoModel.inserir
             (new Pagamento("tipo",new BigDecimal (10.5) , null));
     }
+    
+    */
 }

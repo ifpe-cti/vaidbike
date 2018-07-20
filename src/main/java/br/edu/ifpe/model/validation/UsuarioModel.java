@@ -35,14 +35,20 @@ import br.edu.ifpe.model.interfacesDao.UsuarioDao;
  */
 public class UsuarioModel {
 
-    private final ValidarCpf VALIDACAOCPF = new ValidarCpf();
-    private final Dao<Usuario> DAO = UsuarioHibernate.getInstance();
+    private static ValidarCpf VALIDACAOCPF;
+    private static Dao<Usuario> DAO;
+    private static UsuarioModel instance = null;
+
+    public UsuarioModel() {
+        this.VALIDACAOCPF = new ValidarCpf();
+        DAO = UsuarioHibernate.getInstance();
+    }
 
     public void inserir(Usuario usuario) throws Exception {
         if (VALIDACAOCPF.isCPF(usuario.getCpf())) {
-            if(((UsuarioDao) DAO).recuperar(usuario.getCpf()) == null ){
-                DAO.inserir(usuario);   
-            }else{
+            if (((UsuarioDao) DAO).recuperar(usuario.getCpf()) == null) {
+                DAO.inserir(usuario);
+            } else {
                 throw new Exception("Erro na validação de Cpf!");
             }
         } else {
@@ -60,7 +66,8 @@ public class UsuarioModel {
 
     public Usuario recuperar(Integer codigo) throws Exception {
         if (codigo == null) {
-            throw new Exception("Codigo do Usuário não existe, no UsuarioModel");
+            throw new Exception
+                ("Codigo do Usuário não existe, no UsuarioModel");
         }
         return ((UsuarioDao) DAO).recuperar(codigo);
     }
@@ -86,7 +93,8 @@ public class UsuarioModel {
         List<Usuario> usuarios = ((UsuarioDao) DAO).listarTodos();
 
         if (usuarios == null) {
-            throw new Exception("Erro ao recuperar a lista de usuários no model");
+            throw new Exception
+                ("Erro ao recuperar a lista de usuários no model");
         } else {
             return usuarios;
         }
@@ -95,7 +103,6 @@ public class UsuarioModel {
     public Usuario recuperar(String login, String senha) throws Exception {
 
         Usuario usuario = ((UsuarioDao) DAO).recuperar(login, senha);
-
         if (usuario == null) {
             throw new Exception("Erro ao recuperar o Login do"
                     + " usuário no UsuarioModel!");

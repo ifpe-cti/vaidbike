@@ -54,20 +54,17 @@ public class Usuario implements Serializable {
     private String senha;
     @Column(length = 20, nullable = false)
     private String nome;
-
-    @Column(length = 15, nullable = true, unique = false)
-
+    @Column(length = 15, nullable = false, unique = false)
     private String cpf;
-    @Column(length = 5, nullable = true)
+    @Column(length = 15, nullable = false)
     private String sexo;
     private LocalDate dataNasc;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cod_endereco", nullable = false)
     private Endereco endereco;
-
-    @Column(length = 15, unique = false, nullable = true)
+    @Column(length = 15, unique = true, nullable = true)
     private String telefone;
-    @Column(length = 20, unique = false, nullable = true)
+    @Column(length = 20, unique = true, nullable = true)
 
     private String email;
     @OneToMany(targetEntity = Bike.class,
@@ -94,8 +91,12 @@ public class Usuario implements Serializable {
         this.bikes = bikes;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
 
     public String getLogin() {
@@ -126,6 +127,10 @@ public class Usuario implements Serializable {
         return cpf;
     }
 
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getSexo() {
         return sexo;
     }
@@ -136,6 +141,10 @@ public class Usuario implements Serializable {
 
     public LocalDate getDataNasc() {
         return dataNasc;
+    }
+
+    public void setDataNasc(LocalDate dataNasc) {
+        this.dataNasc = dataNasc;
     }
 
     public Endereco getEndereco() {
@@ -170,6 +179,8 @@ public class Usuario implements Serializable {
         this.bikes = bikes;
     }
 
+    
+   
     @Override
     public int hashCode() {
         final int HASH = 13;
