@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--MIT License
+
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
+Adrielly Calado Sales, Lucas Mendes Cavalcanti. 
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view contentType="text/html">
+        <h:head>
+
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Login</title>
+            </f:facet>
+
+        </h:head>
+
+        <h:body>
+
+            <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+
+                <h2 style=" 
+                    color: #CD3333;
+                    text-align: center;
+                    font-weight: bold;
+                    font-family: Comic Sans MS;
+                    font-size:40px;"> VaidBike</h2>
+
+            </p:layoutUnit>
+
+            <h:graphicImage library="images" name="bike.png" width="100%" height="100%" />
+
+            <p:dialog visible="true"  header="Entre"  resizable="false" closable="false">
+                <h:form id="formLogar">
+
+                    <h:panelGrid style="margin: 0 auto;">
+                        <h:outputText styleClass="fa fa-bicycle fa-5x"/>
+                    </h:panelGrid>
+
+                    <h:panelGrid cellspacing="10">
+                        Digite seu E-mail e Senha para ter acesso ao sistema:                    
+
+                        <p:inputText placeholder=" E-mail" value="#{a}" 
+                                     size="40" required="true" requiredMessage="Campo Login é obrigatório"/>
+
+                        <p:password placeholder=" Senha" value="#{a}" 
+                                    size="40" required="true" requiredMessage="Campo Senha é obrigatório"/>
+                    </h:panelGrid>
+
+                    <div align="center"  >
+                        <p:commandButton value="Logar"
+                                         action="#{a}" />
+                    </div>
+
+                    <br/>
+
+                    <p:separator />
+
+                    <h:panelGrid cellspacing="10">
+                        Não tem conta?                    
+                        <a href="/" style="text-decoration:none"><font color="#104E8B">Cadastre-se</font></a>
+                    </h:panelGrid>
+
+                </h:form>
+            </p:dialog>
+
+            <p:layoutUnit position="center">
+                <h5 style=" 
+                    color: #CD3333;
+                    text-align: left;
+                    font-weight: bold;
+                    font-family: Comic Sans MS;
+                    font-size:15px;">
+                    @2018 VaidBike Technologies - Política de privacidade  |  Termos e Condições
+                </h5>
+            </p:layoutUnit>
+
+
+        </h:body>
+    </f:view>
+</html>
