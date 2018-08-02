@@ -30,7 +30,7 @@ A monetização virá através de "comissões" pelos aluguéis das bicicletas, e
 pela intermediação do serviço.
 
 ## Diagrama de Classes
-![DiagramaClasse](docs/vaidbike-classes.png)
+![DiagramaClasse](docs/uml/vaidbike-classes.png)
 
 ## Ferramental utilizado
 - NetBeans
