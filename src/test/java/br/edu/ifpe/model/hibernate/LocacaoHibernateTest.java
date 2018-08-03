@@ -38,7 +38,6 @@ import org.junit.Test;
  *
  * @author Carlos André <carloscordeiroconsultor@gmail.com>
  */
-
 public class LocacaoHibernateTest {
 
     private static final LocacaoHibernate LOCACAOHIBERNATE
@@ -57,8 +56,8 @@ public class LocacaoHibernateTest {
             LocalDate.now(), ENDERECO, "telefone1", "email1",
             new ArrayList<Bike>());
 
-    private static final Locacao LOCACAO = 
-            new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now());
+    private static final Locacao LOCACAO
+            = new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now());
 
     @BeforeClass
     public static void deveInserirLocacaoEUsuariosNoBanco() {
@@ -69,7 +68,7 @@ public class LocacaoHibernateTest {
 
     @Test
     public void deveRecuperarLocacaoDoBanco() {
-        assertEquals("TC001",LOCACAO,LOCACAOHIBERNATE.recuperar(1));
+        assertEquals("TC001", LOCACAO, LOCACAOHIBERNATE.recuperar(1));
     }
 
     @Test
@@ -77,19 +76,19 @@ public class LocacaoHibernateTest {
         LOCACAO.setDevolucao(LocalDate.of(2013, Month.JUNE, 20));
         LOCACAO.setRetirada(LocalDate.of(2013, Month.APRIL, 20));
         LOCACAOHIBERNATE.alterar(LOCACAO);
-        assertEquals("TC002",LOCACAO,LOCACAOHIBERNATE.recuperar(1));
+        assertEquals("TC002", LOCACAO, LOCACAOHIBERNATE.recuperar(1));
     }
-    
+
     @Test
-    public void deveRecuperarTodasAsLocacoesDoBanco(){
+    public void deveRecuperarTodasAsLocacoesDoBanco() {
         List<Locacao> locacacoes = new ArrayList();
         locacacoes.add(LOCACAO);
-        
-        assertEquals("TC003",locacacoes,LOCACAOHIBERNATE.listarTodos());
+
+        assertEquals("TC003", locacacoes, LOCACAOHIBERNATE.listarTodos());
     }
-    
+
     @AfterClass
     public static void deveDeletarDoBanco() {
-      LOCACAOHIBERNATE.deletar(LOCACAO);
+        LOCACAOHIBERNATE.deletar(LOCACAO);
     }
 }
