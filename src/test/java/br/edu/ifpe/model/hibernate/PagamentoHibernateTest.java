@@ -43,8 +43,8 @@ import org.junit.BeforeClass;
  */
 public class PagamentoHibernateTest {
 
-    private static final PagamentoHibernate PAGAMENTOHIBERNATE = 
-            PagamentoHibernate.getInstance();
+    private static final PagamentoHibernate PAGAMENTOHIBERNATE
+            = PagamentoHibernate.getInstance();
 
     private static final Endereco ENDERECO = new Endereco("estado", "cidade",
             "cep", "bairro", "logradouro");
@@ -62,8 +62,8 @@ public class PagamentoHibernateTest {
     private static final Locacao LOCACAO
             = new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now());
 
-    private static Pagamento PAGAMENTO = 
-            new Pagamento("tipo", new BigDecimal("20.00"),LOCACAO);
+    private static Pagamento PAGAMENTO
+            = new Pagamento("tipo", new BigDecimal("20.00"), LOCACAO);
 
     @BeforeClass
     public static void deveInserirNoBD() {
@@ -74,27 +74,27 @@ public class PagamentoHibernateTest {
     }
 
     @Test
-    public void deveRecuperarDoBD(){
-        assertEquals("TC001",PAGAMENTO,PAGAMENTOHIBERNATE.recuperar(1));
+    public void deveRecuperarDoBD() {
+        assertEquals("TC001", PAGAMENTO, PAGAMENTOHIBERNATE.recuperar(1));
     }
 
     @Test
     public void deveRecuperarTodosOsPagamentosDoBd() {
         List<Pagamento> pagamentos = new ArrayList();
         pagamentos.add(PAGAMENTO);
-        
-        assertEquals("TC002",pagamentos,PAGAMENTOHIBERNATE.listarTodos());
+
+        assertEquals("TC002", pagamentos, PAGAMENTOHIBERNATE.listarTodos());
     }
-    
+
     @Test
-    public void deveAlterarPagamentoNoBD(){
+    public void deveAlterarPagamentoNoBD() {
         PAGAMENTO.setValor(new BigDecimal("30.00"));
         PAGAMENTOHIBERNATE.alterar(PAGAMENTO);
-        assertEquals("TC003",PAGAMENTO,PAGAMENTOHIBERNATE.recuperar(1));
+        assertEquals("TC003", PAGAMENTO, PAGAMENTOHIBERNATE.recuperar(1));
     }
-    
+
     @AfterClass
     public static void deveLimparOBancoDados() {
         PAGAMENTOHIBERNATE.deletar(PAGAMENTO);
-    }    
+    }
 }
