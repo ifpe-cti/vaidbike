@@ -23,62 +23,85 @@
 
         <h:graphicImage library="images" name="bike.png" width="100%" height="100%" />
 
-        <h:form id = "form">
+        <h:form id = "cadUsuario">
             <p:dialog id="dialUsuario" visible="true" resizable="false" closable="false" modal="false"
                       widgetVar="widDialUsuario" header="Cadastro do Usuário">
                 <p:tab>
-                    <p:panelGrid columns="2" columnClasses="label, values">
+                    <p:panelGrid columns="3" columnClasses="label, values">
+
+                        <h:outputText value="Nome Completo*: " />
+                        <p:inputText id="txtNome" value="#{usuarioController.cadUsuario.nome}"
+                                     required="true" requiredMessage="Campo Obrigatório!"/>
+                        <p:message for='txtNome' />
 
 
-                        <h:outputText value="Nome Completo*:" />
-                        <p:inputText value="#{usuarioController.cadUsuario.nome}" required="true" label="Firstname"/>
+                        <h:outputText value="CPF*: "/>
+                        <p:inputMask id="txtCPF" value="#{usuarioController.cadUsuario.cpf}" 
+                                     mask="99999999999" 
+                                     required="true" requiredMessage="Campo Obrigatório!"/>
 
-                        <h:outputText value="CPF*:"/>
-                        <p:inputText id="txtCPF" value="#{usuarioController.cadUsuario.cpf}" required="true"/>
+                        <p:message for='txtCPF' />
 
-                        <h:outputText value="Data de Nascimento*:"/>
-                         
-                        <p:calendar id="dataNasc" 
-                                    value="#{usuarioController.cadUsuario.dataNasc}" 
-                                    pattern="dd/MM/yyyy" mask="true" converter="localDateConverter"
-                                    style="width: 100%;"/>
+                        <h:outputText value="Data de Nascimento*: "/>
+                        <p:calendar id="txtDataNasc" 
+                                    value="#{usuarioController.cadUsuario.dataNasc}"
+                                    pattern="dd/MM/yyyy" 
+                                    mask="true" converter="localDateConverter" style="width: 100%;" 
+                                    required="true" requiredMessage="Campo Obrigatório!"/>
+                        <p:message for='txtDataNasc' />
 
-                        <h:outputText value="Sexo*:"/>
+                        <h:outputText value="Sexo*: " />
                         <p:selectOneMenu id="txtSexo" value="#{usuarioController.cadUsuario.sexo}" required="true" 
                                          requiredMessage="Favor informar o sexo">
                             <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
                             <f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
                             <f:selectItem itemLabel="Escolha"/>
-                        </p:selectOneMenu>  
+                        </p:selectOneMenu> 
+                        <p:message for='txtSexo'/>
+
                     </p:panelGrid>
+
                     <p:commandButton value="Avançar" 
-                                     oncomplete="PF('widDialEndereco').show()" onclick="PF('widDialUsuario').hide()"/>
+                                     oncomplete="PF('widDialEndereco').show()" 
+                                     onclick="PF('widDialUsuario').hide()"/>
+
                 </p:tab> 
             </p:dialog>
+
         </h:form>
 
-        <h:form>
+        <h:form id="cadEndereco">
             <p:dialog id="dialEndereco" visible="false" closable="false" resizable="false" modal="false"
                       widgetVar="widDialEndereco" header="Cadastro do Endereço">
 
                 <p:tab>
-                    <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:panelGrid columns="3" columnClasses="label, value">
 
-                        <h:outputText value="Logradouro: *" />
-                        <p:inputText value="#{usuarioController.end.logradouro}" />
+                        <h:outputText value="Logradouro*: " />
+                        <p:inputText id="txtLog" value="#{usuarioController.end.logradouro}"  
+                                     required="true" requiredMessage="Campo Obrigatório!"/>
+                        <p:message for='txtLog' />
 
-                        <h:outputText value="Bairro: *" />
-                        <p:inputText value="#{usuarioController.end.bairro}" />
+                        <h:outputText value="Bairro*: " />
+                        <p:inputText id="txtBairro" value="#{usuarioController.end.bairro}" 
+                                     required="true" requiredMessage="Campo Obrigatório!"/>
+                        <p:message for='txtBairro' />
 
-                        <h:outputText value="Cidade: *" />
-                        <p:inputText value="#{usuarioController.end.cidade}" />
+                        <h:outputText value="Cidade*: " />
+                        <p:inputText id="txtCidade" value="#{usuarioController.end.cidade}"
+                                     required="true" requiredMessage="Campo Obrigatório!"/>
+                        <p:message for='txtCidade' />
 
-                        <h:outputText value="CEP: *" />
-                        <p:inputText value="#{usuarioController.end.cep}" />
 
-                        <h:outputText value="Estado(UF): *" />
+                        <h:outputText value="CEP*: "/>
+                        <p:inputMask id="txtCEP" value="#{usuarioController.end.cep}" mask="99999-999" 
+                                     required="true" requiredMessage="Campo Obrigatório!"/>
+                        <p:message for='txtCEP' />
+
+
+                        <h:outputText value="Estado(UF)*: " />
                         <p:selectOneMenu id="txtEstado" value="#{usuarioController.end.estado}" required="true" 
-                                         requiredMessage="Favor informar o sexo">
+                                         requiredMessage="Informe o Estado!">
                             <f:selectItem itemLabel="Escolha"/>
                             <f:selectItem itemValue="ac" itemLabel="Acre-AC"/>
                             <f:selectItem itemValue="al" itemLabel="Alagoas-AL"/>
@@ -105,12 +128,16 @@
                             <f:selectItem itemValue="se" itemLabel="Sergipe-SE"/>
                             <f:selectItem itemValue="to" itemLabel="Tocantins-TO"/>
                         </p:selectOneMenu> 
+                        <p:message for='txtEstado' />
                     </h:panelGrid>
 
                     <p:commandButton value="Voltar" 
-                                     oncomplete="PF('widDialUsuario').show()" onclick="PF('widDialEndereco').hide()"/>
+                                     oncomplete="PF('widDialUsuario').show()" 
+                                     onclick="PF('widDialEndereco').hide()"/>
+
                     <p:commandButton value="Avançar" 
-                                     oncomplete="PF('widDialContato').show()" onclick="PF('widDialEndereco').hide()" />
+                                     oncomplete="PF('widDialContato').show()" 
+                                     onclick="PF('widDialEndereco').hide()" />
 
                 </p:tab> 
             </p:dialog>
@@ -118,38 +145,52 @@
 
 
 
-        <h:form>
+        <h:form id="cadContato">
             <p:dialog id="dialContato" visible="false" closable="false" resizable="false" modal="false"
                       widgetVar="widDialContato" header="Dados para Contato/Login"> 
 
                 <p:tab>
 
-                    <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:panelGrid columns="3" columnClasses="label, value">
 
-                        <h:outputText value="Telefone: " />
-                        <p:inputText value="#{usuarioController.cadUsuario.telefone}"/>
+                        <h:outputText value="Telefone*: " />
+                        <p:inputMask id="txtPhone" value="#{usuarioController.cadUsuario.telefone}" 
+                                     mask="(99) 9.9999-9999" 
+                                     required="true" requiredMessage="Campo Obrigatório!"/>
+                        <p:message for='txtPhone' />
 
-                        <h:outputText value="Email: *" />
-                        <p:inputText value="#{usuarioController.cadUsuario.email }" required="true" label="Email"/>
 
-                        <h:outputText value="Login: " />
-                        <p:inputText value="#{usuarioController.cadUsuario.login}"/>
+                        <h:outputText value="Email*: " />
+                        <p:inputText id="txtEmail" value="#{usuarioController.cadUsuario.email }" label="Email"
+                                     required="true" requiredMessage="Campo Obrigatório!"/>
+                        <p:message for='txtEmail' />
 
-                        <h:outputText value="Senha: " />
-                        <p:inputText value="#{usuarioController.cadUsuario.senha}"/>
+                        <h:outputText value="Login*: " />
+                        <p:inputText id="txtLogin" value="#{usuarioController.cadUsuario.login}" 
+                                     required="true" requiredMessage="Campo Obrigatório!"/>
+                        <p:message for='txtLogin' />
+
+                        <h:outputText value="Senha*: " />
+                        <p:password id="txtSenha" value="#{usuarioController.cadUsuario.senha}" 
+                                    required="true" requiredMessage="Adicione a senha!" />
+
+
                     </h:panelGrid>
 
                     <p:commandButton value="Voltar" 
-                                     oncomplete="PF('widDialEndereco').show()" onclick="PF('widDialContato').hide()"/>
+                                     oncomplete="PF('widDialEndereco').show()" 
+                                     onclick="PF('widDialContato').hide()"/>
+
                     <p:commandButton value="Confirmar" 
                                      oncomplete="PF('widDialConfirmar').show()" 
-                                     onclick="PF('widDialContato').hide()" update="apresentar"/>
+                                     onclick="PF('widDialContato').hide()"
+                                     update="cadApresentar"/>
                 </p:tab>
             </p:dialog>
         </h:form>
 
 
-        <h:form id="apresentar">
+        <h:form id="cadApresentar">
             <p:dialog id="dialConfirmar" visible="false" closable="false" resizable="false" 
                       widgetVar="widDialConfirmar" header="Confere Aí!">
 
@@ -192,13 +233,12 @@
                         <h:outputText value="Email: " />
                         <h:outputText value="#{usuarioController.cadUsuario.email}" styleClass="outputLabel"/>
 
-                        <h:outputText value="Senha: " />
-                        <h:outputText value="#{usuarioController.cadUsuario.senha}" styleClass="outputLabel"/>
 
                     </p:panelGrid>
 
                     <p:commandButton value="Cadastrar Usuario" 
-                                     onclick="PF('widDialConfirmar').hide()" action="#{usuarioController.registrarUsuario()}"/>
+                                     onclick="PF('widDialConfirmar').hide()"
+                                     action="#{usuarioController.registrarUsuario()}"/>
 
                 </p:tab>
             </p:dialog>                 
