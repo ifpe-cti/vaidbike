@@ -29,6 +29,8 @@ import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Pagamento;
 import br.edu.ifpe.model.classes.Usuario;
+import br.edu.ifpe.model.hibernate.UsuarioHibernate;
+import br.edu.ifpe.model.validation.UsuarioModel;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -87,7 +89,7 @@ public class TesteMain {
       Usuario us = (Usuario) UsuarioHibernate.getInstance().recuperar("08558176400");
         System.out.println(us.getBikes().equals(bikes));
          */
-       /* 
+ /* 
         Endereco ENDERECO = new Endereco("estado", "cidade",
                 "cep", "bairro", "logradouro");
         
@@ -113,6 +115,12 @@ public class TesteMain {
         uc.setCadUsuario(USUARIO1);
         System.out.println(uc.getCadUsuario());
         uc.registrarUsuario();
-        */
+     
+       
+       Usuario us = (Usuario) UsuarioHibernate.getInstance().recuperar("4", "aa6abe049e8d78001ead578c62426901");
+       UsuarioModel um = new UsuarioModel();
+       UsuarioController uc = new UsuarioController();
+       String us = uc.realizarLogin("4", "4");
+       System.out.println(us);*/
     }
 }

@@ -62,16 +62,17 @@ SOFTWARE.
                     <h:panelGrid cellspacing="10">
                         Digite seu E-mail e Senha para ter acesso ao sistema:                    
 
-                        <p:inputText placeholder=" E-mail" value="#{a}" 
-                                     size="40" required="true" requiredMessage="Campo Login é obrigatório"/>
+                        <p:inputText placeholder="Login" binding="#{Login}" 
+                                     size="40" required="true"  maxlength="12"
+                                     requiredMessage="Campo Login é obrigatório"/>
 
-                        <p:password placeholder=" Senha" value="#{a}" 
+                        <p:password placeholder=" Senha" binding="#{Senha}"  maxlength="12"
                                     size="40" required="true" requiredMessage="Campo Senha é obrigatório"/>
                     </h:panelGrid>
 
                     <div align="center"  >
                         <p:commandButton value="Logar"
-                                         action="#{a}" />
+                                         action="#{usuarioController.realizarLogin(Senha.value, Login.value)}" />
                     </div>
 
                     <br/>
@@ -80,7 +81,7 @@ SOFTWARE.
 
                     <h:panelGrid cellspacing="10">
                         Não tem conta?                    
-                        <a href="/" style="text-decoration:none"><font color="#104E8B">Cadastre-se</font></a>
+                        <a href="cadastrarUsuario.xhtml" style="text-decoration:none"><font color="#104E8B">Cadastre-se</font></a>
                     </h:panelGrid>
 
                 </h:form>
