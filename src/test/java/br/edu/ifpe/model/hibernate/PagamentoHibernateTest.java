@@ -50,12 +50,12 @@ public class PagamentoHibernateTest {
             "cep", "bairro", "logradouro");
 
     private static final Usuario USUARIO1 = new Usuario(
-            "login", "senha", "nome", "28961303066", "sexo",
+            "senha", "nome", "28961303066", "sexo",
             LocalDate.now(), ENDERECO, "telefone", "email",
             new ArrayList<Bike>());
 
     private static final Usuario USUARIO2 = new Usuario(
-            "login1", "senha1", "nome1", "28952871049", "sexo1",
+            "senha1", "nome1", "28952871049", "sexo1",
             LocalDate.now(), ENDERECO, "telefone1", "email1",
             new ArrayList<Bike>());
 

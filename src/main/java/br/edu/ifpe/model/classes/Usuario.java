@@ -48,8 +48,6 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer codigo;
-    @Column(length = 15, nullable = false, unique = true)
-    private String login;
     @Column(length = 40,nullable = false)
     private String senha;
     @Column(length = 20, nullable = false)
@@ -76,10 +74,10 @@ public class Usuario implements Serializable {
 
     }
 
-    public Usuario(String login, String senha, String nome, String cpf,
+    public Usuario(String senha, String nome, String cpf,
             String sexo, LocalDate dataNasc, Endereco endereco, String telefone,
             String email, List<Bike> bikes) {
-        this.login = login;
+        
         this.senha = senha;
         this.nome = nome;
         this.cpf = cpf;
@@ -97,14 +95,6 @@ public class Usuario implements Serializable {
 
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getSenha() {
@@ -186,7 +176,6 @@ public class Usuario implements Serializable {
         final int HASH = 13;
         int result = 1;
         result = (HASH * result) + codigo.hashCode();
-        result = (HASH * result) + login.hashCode();
         result = (HASH * result) + senha.hashCode();
         result = (HASH * result) + nome.hashCode();
         result = (HASH * result) + cpf.hashCode();
@@ -203,10 +192,6 @@ public class Usuario implements Serializable {
         if (!(obj instanceof Usuario)) {
             return false;
         }
-
-        if (!((Usuario) obj).login.equals(this.login)) 
-            return false;
-
         if (!((Usuario) obj).senha.equals(this.senha))
             return false;
 
@@ -233,7 +218,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "codigo=" + codigo + ", login=" + login + ", senha="
+        return "Usuario{" + "codigo=" + codigo + ", senha="
                 + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo
                 + ", dataNasc=" + dataNasc + ", endereco=" + endereco
                 + ", telefone=" + telefone + ", email=" + email + ", bikes="
