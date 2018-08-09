@@ -24,6 +24,8 @@ SOFTWARE.
 package br.edu.ifpe.model.classes;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,6 +47,8 @@ public class Bike implements Serializable {
     private Integer codigo;
     @Column(length = 18)
     private String modelo;
+    @Column(length = 10)
+    private BigDecimal valor;
     @Column(length = 20)
     private String tipo;
     @Column(length = 10)
@@ -57,23 +61,46 @@ public class Bike implements Serializable {
     public Bike() {
     }
 
-    public Bike(String modelo, String tipo, String cor, Usuario usuario) {
+    public Bike(Integer codigo, String modelo, BigDecimal valor, 
+            String tipo, String cor, Usuario usuario) {
+        this.codigo = codigo;
         this.modelo = modelo;
+        this.valor = valor;
         this.tipo = tipo;
         this.cor = cor;
         this.usuario = usuario;
     }
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
 
     public String getModelo() {
         return modelo;
     }
 
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
     public String getTipo() {
         return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getCor() {
@@ -94,33 +121,53 @@ public class Bike implements Serializable {
 
     @Override
     public int hashCode() {
-        final int HASH = 7;
-        int result = 1;
-        result = (HASH * result) + codigo.hashCode();
-        result = (HASH * result) + ((modelo == null) ? 0 : modelo.hashCode());
-        result = (HASH * result) + ((tipo == null) ? 0 : tipo.hashCode());
-        result = (HASH * result) + ((cor == null) ? 0 : cor.hashCode());
-        return (HASH * result) + usuario.hashCode();
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.codigo);
+        hash = 97 * hash + Objects.hashCode(this.modelo);
+        hash = 97 * hash + Objects.hashCode(this.valor);
+        hash = 97 * hash + Objects.hashCode(this.tipo);
+        hash = 97 * hash + Objects.hashCode(this.cor);
+        hash = 97 * hash + Objects.hashCode(this.usuario);
+        return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Bike)) 
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
-
-        if (!((Bike) obj).modelo.equals(this.modelo)) 
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-
-        if (!((Bike) obj).tipo.equals(this.tipo)) 
+        }
+        final Bike other = (Bike) obj;
+        if (!Objects.equals(this.modelo, other.modelo)) {
             return false;
-
-        return (((Bike) obj).cor.equals(this.cor));
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        if (!Objects.equals(this.cor, other.cor)) {
+            return false;
+        }
+        if (!Objects.equals(this.codigo, other.codigo)) {
+            return false;
+        }
+        if (!Objects.equals(this.valor, other.valor)) {
+            return false;
+        }
+       
+        return true;
     }
+    
 
     @Override
     public String toString() {
-        return "Bike{" + "codigo=" + codigo
-                + ", modelo=" + modelo + ", tipo=" + tipo
-                + ", cor=" + cor + ", usuario=" + usuario + '}';
+        return "Bike{" + "codigo=" + codigo + ", modelo=" + modelo + ", valor="
+                + valor + ", tipo=" + tipo + ", cor=" + cor
+                + ", usuario=" + usuario + '}';
     }
+
 }
