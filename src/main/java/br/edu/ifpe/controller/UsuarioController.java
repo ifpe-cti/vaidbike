@@ -24,6 +24,7 @@ public class UsuarioController {
         this.instaceUSUARIOMODEL = new UsuarioModel();
     }
 
+     
     public Usuario getUsuarioLogado() {
         return (Usuario) FacesContext.getCurrentInstance().getExternalContext()
                 .getSessionMap().get("usuarioLogado");
@@ -34,16 +35,17 @@ public class UsuarioController {
                 .getSessionMap().put("usuarioLogado", usuarioLogado);
     }
 
-    public String realizarLogin(String senha, String login) throws Exception {
+    public String realizarLogin(String senha, String email) throws Exception {
         Usuario user = null;
         String rediricionarPagina = "";
         senha = CriptografiaMD5.md5(senha);
-        user = instaceUSUARIOMODEL.recuperar(login, senha);
+        user = instaceUSUARIOMODEL.recuperar(email, senha);
 
         if (user != null) {
 
             if (user.getSenha().equalsIgnoreCase(senha)) {
-                rediricionarPagina = "index.xhtml";
+                 this.setUsuarioLogado(user);
+                rediricionarPagina = "menuUsuario.xhtml";
 
             } else {
                 user = null;
@@ -62,13 +64,15 @@ public class UsuarioController {
         return rediricionarPagina;
     }
 
-    public void registrarUsuario() throws Exception {
+    public String registrarUsuario() throws Exception {
 
         cadUsuario.setSenha(CriptografiaMD5.md5(cadUsuario.getSenha()));
         cadUsuario.setEndereco(end);
         this.instaceUSUARIOMODEL.inserir(this.cadUsuario);
         this.end = new Endereco();
         this.cadUsuario = new Usuario();
+        
+        return "login.xhtml";
 
     }
 
