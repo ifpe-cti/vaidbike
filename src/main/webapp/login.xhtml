@@ -23,6 +23,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -->
 <!DOCTYPE html>
+
+<!-- @author Milena Macedo <milenasantosmcd@gmail.com> -->
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
@@ -62,7 +65,7 @@ SOFTWARE.
                     <h:panelGrid cellspacing="10">
                         Digite seu E-mail e Senha para ter acesso ao sistema:                    
 
-                        <p:inputText placeholder="Login" binding="#{Login}" 
+                        <p:inputText placeholder="Login" binding="#{Email}" 
                                      size="40" required="true"  maxlength="12"
                                      requiredMessage="Campo Login é obrigatório"/>
 
@@ -72,7 +75,7 @@ SOFTWARE.
 
                     <div align="center"  >
                         <p:commandButton value="Logar"
-                                         action="#{usuarioController.realizarLogin(Senha.value, Login.value)}" />
+                                         action="#{usuarioController.realizarLogin(Senha.value, Email.value)}" />
                     </div>
 
                     <br/>
@@ -81,7 +84,8 @@ SOFTWARE.
 
                     <h:panelGrid cellspacing="10">
                         Não tem conta?                    
-                        <a href="cadastrarUsuario.xhtml" style="text-decoration:none"><font color="#104E8B">Cadastre-se</font></a>
+                        <a href="cadastrarUsuario.xhtml" style="text-decoration:none">
+                            <font color="#104E8B">Cadastre-se</font></a>
                     </h:panelGrid>
 
                 </h:form>

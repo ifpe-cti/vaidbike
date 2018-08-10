@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- @author Milena Macedo <milenasantosmcd@gmail.com> -->
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="false">
+
+                    <h2 style=" 
+                        color: #CD3333;
+                        text-align: center;
+                        font-weight: bold;
+                        font-family: Comic Sans MS;
+                        font-size:30px;"> VaidBike</h2>
+
+                </p:layoutUnit>
+
+
+
+                <p:layoutUnit position="west" size="200" >
+
+
+                    <p:menu>
+
+                        <p:submenu label="Minha conta">
+
+                        </p:submenu>
+
+                    </p:menu> 
+                    <p:menu toggleable="true">
+                        <p:submenu  label="Configurações">
+                            <p:menuitem value=" Meus dados " url="mostrarDadosUsuario.xhtml" icon="ui-icon-person"/>
+                            <p:menuitem value="Alterar dados" url="" icon="ui-icon-arrowrefresh-1-w" />
+
+
+
+
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+
+                    <ui:insert name="co"/>
+
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
+

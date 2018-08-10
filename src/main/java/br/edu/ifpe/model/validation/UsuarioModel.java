@@ -94,9 +94,9 @@ public class UsuarioModel {
         }
     }
 
-    public Usuario recuperar(String login, String senha) throws Exception {
+    public Usuario recuperar(String email, String senha) throws Exception {
 
-        Usuario usuario = ((UsuarioDao) DAO).recuperar(login, senha);
+        Usuario usuario = ((UsuarioDao) DAO).recuperar(email, senha);
         if (usuario == null) {
             throw new Exception("Erro ao recuperar o Login do"
                     + " usuário no UsuarioModel!");

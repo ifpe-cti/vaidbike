@@ -33,6 +33,6 @@ public interface UsuarioDao extends Dao<Usuario> {
 
     public Usuario recuperar(String cpf);
 
-    public Usuario recuperar(String login, String senha);
+    public Usuario recuperar(String email, String senha);
 
 }
