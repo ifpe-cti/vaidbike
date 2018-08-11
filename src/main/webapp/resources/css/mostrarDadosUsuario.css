@@ -1,7 +1,7 @@
 /*MIT License
 
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
-Adrielly Calado Sales, Lucas Mendes Cavalcanti.
+Adrielly Calado Sales, Lucas Mendes Cavalcanti. 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,34 +20,13 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
- */
-package br.edu.ifpe.model.validation;
+*/
+/* 
+    Created on : 10/08/2018, 22:37:26
+    Author     : Milena
+*/
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
-
-
-/**
- *
- * @author Lucas Mendes <lucas.mendes147@live.com>
- */
-public class ValidarCpfTest {
-    /*
-    @Test
-    public void testarCpfInvalido(){
-        assertFalse(ValidarCpf.isCPF("5226623135"));
-    }
+.no-border {
+    border-style: hidden !important;
     
-    @Test
-    public void testarCpfValido(){
-        assertTrue(ValidarCpf.isCPF("37621958030"));
-    }
-    
-    @Test
-    public void testarImprimirCpf(){
-        String cpf = ValidarCpf.imprimeCPF("37621958030");
-        assertEquals("TC001","376.219.580-30",cpf);
-    }*/
 }

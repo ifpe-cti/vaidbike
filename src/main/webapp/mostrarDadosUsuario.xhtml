@@ -35,8 +35,15 @@ SOFTWARE.
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-        <title>Dados</title>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>dados</title>
+        </f:facet>
+
+        <link rel="StyleSheet" type="text/css" href="resources/css/mostrarDadosUsuario.css" media="screen" />
+
     </h:head>
+
     <h:body>
         <c:if test="${usuarioController.usuarioLogado == null}">
             <script>location.href = "login.xhtml";</script>
@@ -53,73 +60,117 @@ SOFTWARE.
                                  selection="#{usuarioController.selectedUsuario=usuarioController.usuarioLogado}">
 
                         <f:facet name="header">
-                            Dados:
+
                         </f:facet>
 
-                        <p:column>
-                            <f:facet name="header">Nome</f:facet>
-                                #{item.nome}
-                        </p:column> 
 
-                        <p:column>
-                            <f:facet name="header">CPF</f:facet>
-                                #{item.cpf}
-                        </p:column>
-
-                        <p:column>
-                            <f:facet name="header">Data Nascimento</f:facet>
-                                #{item.dataNasc}
-                        </p:column>
 
                     </p:dataTable>
 
-                    <p:commandButton value="Visualizar" oncomplete="PF('widDialVisualizaUsuario').show()"
-                                     icon="fa fa-search" update="formApresentaUsuario" />
+                    <br/>
+                    <h:outputText value="Meus Dados" 
+                                  style="color: black; 
+                                  font-size:30px;
+                                  margin-left: 2em ;
 
-                    <p:dialog id="dialVisualizaUsuario" visible="false"  header="Usuáro Cadastrado"
-                              resizable="false" widgetVar="widDialVisualizaUsuario"  >
-
-                        <p:panelGrid columns="2">
-
-                            <h:outputText value="Nome:"/>
-                            <h:outputText value="#{usuarioController.selectedUsuario.nome}"/>
-
-                            <h:outputText value="CPF:"/>
-                            <h:outputText value="#{usuarioController.selectedUsuario.cpf}"/>
-
-                            <h:outputText value="Data de Nascimento:"/>
-                            <h:outputText value="#{usuarioController.selectedUsuario.dataNasc}"/>
-
-                            <h:outputText value="Sexo:"/>
-                            <h:outputText value="#{usuarioController.selectedUsuario.sexo}"/>
-
-                            <h:outputText value="Telefone:"/>
-                            <h:outputText value="#{usuarioController.selectedUsuario.telefone}"/>
-
-                            <h:outputText value="E-mail:"/>
-                            <h:outputText value="#{usuarioController.selectedUsuario.telefone}"/>
+                                  font-weight: bold;
+                                  font-family: Comic Sans MS;" /> 
+                    <br/>
+                    <p:separator/>
 
 
-                            <h:outputText value="Estado:"/>
-                            <h:outputText value="#{usuarioController.selectedUsuario.endereco.estado}"/>
 
-                            <h:outputText value="Cidade:"/>
-                            <h:outputText value="#{usuarioController.selectedUsuario.endereco.cidade}"/>
+                    <p:panelGrid  columns="2" columnClasses="no-border, no-border" >
 
-                            <h:outputText value="Bairro:"/>
-                            <h:outputText value="#{usuarioController.selectedUsuario.endereco.bairro}"/>
+                        <h:outputText value="Dados Pessoais" 
+                                      style="color: #ff0000; 
+                                      font-size:20px;
+                                      margin-left:2.5em ;
+                                      font-weight: bold;
+                                      font-family: Comic Sans MS;" /> 
+                        <br/><br/>
 
-                            <h:outputText value="CEP:"/>
-                            <h:outputText value="#{usuarioController.selectedUsuario.endereco.cep}"/>
+                        <h:outputText value="Nome " style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.selectedUsuario.nome}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
 
-                            <h:outputText value="Logradouro:"/>
-                            <h:outputText value="#{usuarioController.selectedUsuario.endereco.logradouro}"/>
+                        <h:outputText value="CPF" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.selectedUsuario.cpf}" 
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+                        <h:outputText value="Data de Nascimento" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.selectedUsuario.dataNasc}" 
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+                        <h:outputText value="Sexo" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.selectedUsuario.sexo}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
 
 
-                        </p:panelGrid>
 
-                    </p:dialog>
+                    </p:panelGrid>
+                    <p:separator/>
+
+                    <p:panelGrid columns="2" columnClasses="no-border, no-border"> 
+
+                        <h:outputText value="Endereço" 
+                                      style="color: #ff0000; 
+                                      font-size:20px;
+                                      margin-left:2.5em ;
+                                      font-weight: bold;
+                                      font-family: Comic Sans MS;" /> 
+                        <br/><br/><br/>
+
+                        <h:outputText value="Estado" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.selectedUsuario.endereco.estado}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+                        <h:outputText value="Cidade" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.selectedUsuario.endereco.cidade}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+                        <h:outputText value="CEP" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.selectedUsuario.endereco.cep}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+
+                        <h:outputText value="Logradouro" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.selectedUsuario.endereco.logradouro}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+                        <h:outputText value="Bairro" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.selectedUsuario.endereco.bairro}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+
+
+
+                    </p:panelGrid>
+                    <p:separator/>
+                    <p:panelGrid columns="2" columnClasses="no-border, no-border">
+
+                        <h:outputText value="Dados da Conta" 
+                                      style="color: #ff0000; 
+                                      font-size:20px;
+                                      margin-left:2.5em ;
+                                      font-weight: bold;
+                                      font-family: Comic Sans MS;" /> 
+                        <br/><br/><br/>
+                        <h:outputText value="Telefone" style="font-weight: bold; margin-left:5em ;" />
+                        <h:outputText value="#{usuarioController.selectedUsuario.telefone}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+                        <h:outputText value="E-mail" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.selectedUsuario.email}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+
+
+                    </p:panelGrid> 
+                    <br/><br/><br/>
+
                 </h:form>
+
+
             </ui:define>
         </ui:composition> 
     </h:body>

@@ -42,7 +42,7 @@ import org.junit.BeforeClass;
  * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 public class PagamentoHibernateTest {
-
+/*
     private static final PagamentoHibernate PAGAMENTOHIBERNATE
             = PagamentoHibernate.getInstance();
 
@@ -96,5 +96,5 @@ public class PagamentoHibernateTest {
     @AfterClass
     public static void deveLimparOBancoDados() {
         PAGAMENTOHIBERNATE.deletar(PAGAMENTO);
-    }
+    }*/
 }

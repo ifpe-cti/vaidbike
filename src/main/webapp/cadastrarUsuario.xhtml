@@ -1,4 +1,27 @@
 <?xml version='1.0' encoding='UTF-8' ?>
+<!--MIT License
+
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
+Adrielly Calado Sales, Lucas Mendes Cavalcanti. 
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -12,7 +35,7 @@
         <title>Cadastro</title>
     </h:head>
     <h:body>
-  
+
         <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
 
             <h2 style=" 
@@ -106,30 +129,30 @@
                         <p:selectOneMenu id="txtEstado" value="#{usuarioController.end.estado}" required="true" 
                                          requiredMessage="Informe o Estado!">
                             <f:selectItem itemLabel="Escolha"/>
-                            <f:selectItem itemValue="ac" itemLabel="Acre-AC"/>
-                            <f:selectItem itemValue="al" itemLabel="Alagoas-AL"/>
-                            <f:selectItem itemValue="ap" itemLabel="Amapá-AP"/>
-                            <f:selectItem itemValue="am" itemLabel="Amazonas-AM"/>
-                            <f:selectItem itemValue="ba" itemLabel="Bahia-BA"/>
-                            <f:selectItem itemValue="ce" itemLabel="Ceará-CE"/>
-                            <f:selectItem itemValue="df" itemLabel="Distrito Federal-DF"/>
-                            <f:selectItem itemValue="es" itemLabel="Espírito Santo-ES"/>
-                            <f:selectItem itemValue="go" itemLabel="Goiás-GO"/>
-                            <f:selectItem itemValue="ma" itemLabel="Maranhão-MA"/>
-                            <f:selectItem itemValue="mt" itemLabel="Mato Grosso-MT"/>
-                            <f:selectItem itemValue="ms" itemLabel="Mato Grosso do Sul-MS"/>
-                            <f:selectItem itemValue="pa" itemLabel="Pará-PA"/>
-                            <f:selectItem itemValue="pb" itemLabel="Paraíba-PB"/>
-                            <f:selectItem itemValue="pe" itemLabel="Pernambuco-PE"/>
-                            <f:selectItem itemValue="rj" itemLabel="Rio de Janeiro-RJ"/>
-                            <f:selectItem itemValue="rn" itemLabel="Rio Grande do Norte-RN"/>
-                            <f:selectItem itemValue="rs" itemLabel="Rio Grande do Sul-RS"/>
-                            <f:selectItem itemValue="ro" itemLabel="Rondônia-RO"/>
-                            <f:selectItem itemValue="rr" itemLabel="Roraima-RR"/>
-                            <f:selectItem itemValue="sc" itemLabel="Santa Catarina-SC"/>
-                            <f:selectItem itemValue="sp" itemLabel="São Paulo-SP"/>
-                            <f:selectItem itemValue="se" itemLabel="Sergipe-SE"/>
-                            <f:selectItem itemValue="to" itemLabel="Tocantins-TO"/>
+                            <f:selectItem itemValue="Acre" itemLabel="Acre-AC"/>
+                            <f:selectItem itemValue="Alagoas" itemLabel="Alagoas-AL"/>
+                            <f:selectItem itemValue="Amapá" itemLabel="Amapá-AP"/>
+                            <f:selectItem itemValue="Amazonas" itemLabel="Amazonas-AM"/>
+                            <f:selectItem itemValue="Bahia" itemLabel="Bahia-BA"/>
+                            <f:selectItem itemValue="Ceará" itemLabel="Ceará-CE"/>
+                            <f:selectItem itemValue="Distrito Federal" itemLabel="Distrito Federal-DF"/>
+                            <f:selectItem itemValue="Espírito Santo" itemLabel="Espírito Santo-ES"/>
+                            <f:selectItem itemValue="Goiás" itemLabel="Goiás-GO"/>
+                            <f:selectItem itemValue="Maranhão" itemLabel="Maranhão-MA"/>
+                            <f:selectItem itemValue="Mato Grosso" itemLabel="Mato Grosso-MT"/>
+                            <f:selectItem itemValue="Mato Grosso do Sul" itemLabel="Mato Grosso do Sul-MS"/>
+                            <f:selectItem itemValue="Pará" itemLabel="Pará-PA"/>
+                            <f:selectItem itemValue="Paraíba" itemLabel="Paraíba-PB"/>
+                            <f:selectItem itemValue="Pernambuco" itemLabel="Pernambuco-PE"/>
+                            <f:selectItem itemValue="Rio de Janeiro" itemLabel="Rio de Janeiro-RJ"/>
+                            <f:selectItem itemValue="Rio Grande do Norte" itemLabel="Rio Grande do Norte-RN"/>
+                            <f:selectItem itemValue="Rio Grande do Sul" itemLabel="Rio Grande do Sul-RS"/>
+                            <f:selectItem itemValue="Rondônia" itemLabel="Rondônia-RO"/>
+                            <f:selectItem itemValue="Roraima" itemLabel="Roraima-RR"/>
+                            <f:selectItem itemValue="Santa Catarina" itemLabel="Santa Catarina-SC"/>
+                            <f:selectItem itemValue="São Paulo" itemLabel="São Paulo-SP"/>
+                            <f:selectItem itemValue="Sergipe" itemLabel="Sergipe-SE"/>
+                            <f:selectItem itemValue="Tocantins" itemLabel="Tocantins-TO"/>
                         </p:selectOneMenu> 
                         <p:message for='txtEstado' />
                     </h:panelGrid>
@@ -163,10 +186,12 @@
                         <p:message for='txtPhone' />
 
                         <h:outputText value="Email*: " />
-                        <p:inputText id="txtEmail" value="#{usuarioController.cadUsuario.email }" label="Email"
-                                     required="true" requiredMessage="Campo Obrigatório!"/>
+                        <h:inputText id="txtEmail" value="#{usuarioController.cadUsuario.email }" label="Email"
+                                     required="true" requiredMessage="Campo Obrigatório!">
+                            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                        </h:inputText>
                         <p:message for='txtEmail' />
-                     
+
                         <h:outputText value="Senha*: " />
                         <p:password id="txtSenha" value="#{usuarioController.cadUsuario.senha}" 
                                     required="true" requiredMessage="Adicione a senha!" />
