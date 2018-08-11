@@ -1,5 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--MIT License
+
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
+Adrielly Calado Sales, Lucas Mendes Cavalcanti. 
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <!-- @author Milena Macedo <milenasantosmcd@gmail.com> -->
 
@@ -16,50 +40,51 @@
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <title>PrimeFaces</title>
             </f:facet>
+            <link rel="StyleSheet" type="text/css" href="resources/css/mostrarDadosUsuario.css" media="screen" />
+
         </h:head>
 
         <h:body>
 
             <p:layout fullPage="true">
 
-                <p:layoutUnit position="north" size="100" resizable="false" closable="false" collapsible="false">
+                <p:layoutUnit style="background-image: url(resources/images/bike.png) " position="north" size="150" >
 
                     <h2 style=" 
                         color: #CD3333;
                         text-align: center;
                         font-weight: bold;
                         font-family: Comic Sans MS;
-                        font-size:30px;"> VaidBike</h2>
+                        font-size:40px;"> <h:graphicImage library="images" name="bike.png" width="5%" height="5%" />
+
+                        VaidBike
+                        <h:graphicImage library="images" name="bike.png" width="5%" height="5%" />
+
+
+                    </h2>
+
+
 
                 </p:layoutUnit>
 
 
-
-                <p:layoutUnit position="west" size="200" >
-
+                <p:layoutUnit position="west" size="200" style="background-image: url(resources/images/bike.png) ">
 
                     <p:menu>
-
-                        <p:submenu label="Minha conta">
-
+                        <p:submenu label="Minha conta"  style="font-size: 20px ;">
                         </p:submenu>
-
                     </p:menu> 
+
                     <p:menu toggleable="true">
-                        <p:submenu  label="Configurações">
-                            <p:menuitem value=" Meus dados " url="mostrarDadosUsuario.xhtml" icon="ui-icon-person"/>
-                            <p:menuitem value="Alterar dados" url="" icon="ui-icon-arrowrefresh-1-w" />
-
-
-
-
-
+                        <p:submenu  label="Configurações" style="font-size: 15px ;">
+                            <p:menuitem value=" Meus dados " style="font-size: 15px ;" url="mostrarDadosUsuario.xhtml" icon="ui-icon-person"/>
+                            <p:menuitem value="Alterar dados" style="font-size: 15px ;"  url="" icon="ui-icon-arrowrefresh-1-w" />
                         </p:submenu>
-
                     </p:menu>
-                </p:layoutUnit>
 
-                <p:layoutUnit position="center">
+                </p:layoutUnit >
+
+                <p:layoutUnit position="center" style="background-image: url(resources/images/bike.png) ">
 
                     <ui:insert name="co"/>
 
