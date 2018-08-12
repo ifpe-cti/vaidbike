@@ -30,3 +30,7 @@ SOFTWARE.
     border-style: hidden !important;
     
 }
+
+.panelgrid tr, panelgrid td{
+    border: hidden !important;
+}

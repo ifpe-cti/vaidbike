@@ -24,7 +24,6 @@ public class UsuarioController {
         this.instaceUSUARIOMODEL = new UsuarioModel();
     }
 
-     
     public Usuario getUsuarioLogado() {
         return (Usuario) FacesContext.getCurrentInstance().getExternalContext()
                 .getSessionMap().get("usuarioLogado");
@@ -44,7 +43,7 @@ public class UsuarioController {
         if (user != null) {
 
             if (user.getSenha().equalsIgnoreCase(senha)) {
-                 this.setUsuarioLogado(user);
+                this.setUsuarioLogado(user);
                 rediricionarPagina = "menuUsuario.xhtml";
 
             } else {
@@ -65,14 +64,21 @@ public class UsuarioController {
     }
 
     public String registrarUsuario() throws Exception {
+        String ret = "";
+        try {
+            cadUsuario.setSenha(CriptografiaMD5.md5(cadUsuario.getSenha()));
+            cadUsuario.setEndereco(end);
+            this.instaceUSUARIOMODEL.inserir(this.cadUsuario);
+            this.end = new Endereco();
+            this.cadUsuario = new Usuario();
+            ret = "login.xhtml";
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha!",
+                            "Dados Inválidos"));
+        }
 
-        cadUsuario.setSenha(CriptografiaMD5.md5(cadUsuario.getSenha()));
-        cadUsuario.setEndereco(end);
-        this.instaceUSUARIOMODEL.inserir(this.cadUsuario);
-        this.end = new Endereco();
-        this.cadUsuario = new Usuario();
-        
-        return "login.xhtml";
+        return ret;
 
     }
 
