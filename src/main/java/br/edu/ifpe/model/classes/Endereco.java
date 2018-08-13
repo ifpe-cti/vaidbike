@@ -113,8 +113,6 @@ public class Endereco implements Serializable {
         this.logradouro = logradouro;
     }
 
-
-
     @Override
     public int hashCode() {
         final int HASH = 7;
@@ -124,7 +122,7 @@ public class Endereco implements Serializable {
         result = (HASH * result) + cidade.hashCode();
         result = (HASH * result) + ((cep == null) ? 0 : cep.hashCode());
         result = (HASH * result) + bairro.hashCode();
-        return result + logradouro.hashCode();
+        return result += logradouro.hashCode();
     }
 
     @Override
