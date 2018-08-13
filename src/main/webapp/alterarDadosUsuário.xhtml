@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <c:if test="${usuarioController.usuarioLogado == null}">
+            <script>location.href = "login.xhtml";</script>
+        </c:if>
+        
+        <ui:composition template="menuUsuario.xhtml">
+             <ui:define name="co" >
+                 
+                  <p:growl id="gro" sticky="true" showDetail="true" showSummary="true"/>
+                  
+                 <h:form id="cadUser">
+                     <p:dataTable id="tableUsuario" var="item" value="#{usuarioController.usuarioLogado}"
+                                 rowKey="#{item.codigo}" selectionMode="single" 
+                                 selection="#{usuarioController.selectedUsuario=usuarioController.usuarioLogado}">
+
+                        <f:facet name="header">
+
+                        </f:facet>
+
+
+
+                    </p:dataTable>
+
+                <br/><br/>
+                <h:outputText value="COMPLETE OS SEUS DADOS" 
+                              style="color: #ff0000; 
+                              font-size:25px;
+                              margin-left:14.5em ;
+                              font-weight: bold;
+                              font-family: Comic Sans MS;
+                              " /> 
+
+                <br/><br/>
+                <h:outputText value="Dados Pessoais" 
+                              style="color: #ff0000; 
+                              font-size:20px;
+                              margin-left:18em ;
+                              font-weight: bold;
+                              font-family: Comic Sans MS;
+                              " /> 
+                <br/><br/>
+                <p:panelGrid  columns="3" styleClass="panelgrid" style="margin-left:18em;">
+
+
+
+                    <h:outputText value="Nome " style="font-weight: bold; margin-left:5em ;"/>
+                    <p:inputText id="txtNome" value="#{usuarioController.selectedUsuario.nome}"
+                                 required="true" requiredMessage="Campo Obrigatório!"
+                                 style="font-weight: bold;"/>
+                    <p:message for='txtNome' />
+
+                    <h:outputText value="CPF" style="font-weight: bold; margin-left:5em ;"/>
+                    <p:inputMask id="txtCPF" value="#{usuarioController.selectedUsuario.cpf}" 
+                                 mask="99999999999" style="font-weight: bold;"
+                                 required="true" requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtCPF' />
+
+                    <h:outputText value="Data de Nascimento" style="font-weight: bold; margin-left:5em ;"/>
+                    <p:calendar id="txtDataNasc" 
+                                value="#{usuarioController.selectedUsuario.dataNasc}"
+                                pattern="dd/MM/yyyy"
+                                mask="true" converter="localDateConverter" style="width: 100%;" 
+                                required="true" requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtDataNasc' />
+
+                    <h:outputText value="Sexo" style="font-weight: bold; margin-left:5em ;"/>
+                    <p:selectOneMenu id="txtSexo" value="#{usuarioController.selectedUsuario.sexo}" required="true" 
+                                     requiredMessage="Favor informar o sexo"
+                                     style="font-weight: bold;">
+                        <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
+                        <f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
+                        <f:selectItem itemLabel="Escolha"/>
+                    </p:selectOneMenu>
+                    <p:message for='txtSexo'/>
+
+
+
+                </p:panelGrid>
+                <br/><br/><br/>
+                <h:outputText value="Endereço" 
+                              style="color: #ff0000; 
+                              font-size:20px;
+                              margin-left:18em ;
+                              font-weight: bold;
+                              font-family: Comic Sans MS;
+                              " /> 
+                <br/><br/><br/>
+                <p:panelGrid columns="3" styleClass="panelgrid" style="margin-left:18em;"> 
+
+
+
+                    <h:outputText value="Estado" style="font-weight: bold; margin-left:5em ;"/>
+                    <p:selectOneMenu id="txtEstado" value="#{usuarioController.selectedUsuario.endereco.estado}" required="true" 
+                                     requiredMessage="Informe o Estado!"
+                                     style="font-weight: bold;">
+                        <f:selectItem itemLabel="Escolha"/>
+                        <f:selectItem itemValue="Acre" itemLabel="Acre-AC"/>
+                        <f:selectItem itemValue="Alagoas" itemLabel="Alagoas-AL"/>
+                        <f:selectItem itemValue="Amapá" itemLabel="Amapá-AP"/>
+                        <f:selectItem itemValue="Amazonas" itemLabel="Amazonas-AM"/>
+                        <f:selectItem itemValue="Bahia" itemLabel="Bahia-BA"/>
+                        <f:selectItem itemValue="Ceará" itemLabel="Ceará-CE"/>
+                        <f:selectItem itemValue="Distrito Federal" itemLabel="Distrito Federal-DF"/>
+                        <f:selectItem itemValue="Espírito Santo" itemLabel="Espírito Santo-ES"/>
+                        <f:selectItem itemValue="Goiás" itemLabel="Goiás-GO"/>
+                        <f:selectItem itemValue="Maranhão" itemLabel="Maranhão-MA"/>
+                        <f:selectItem itemValue="Mato Grosso" itemLabel="Mato Grosso-MT"/>
+                        <f:selectItem itemValue="Mato Grosso do Sul" itemLabel="Mato Grosso do Sul-MS"/>
+                        <f:selectItem itemValue="Pará" itemLabel="Pará-PA"/>
+                        <f:selectItem itemValue="Paraíba" itemLabel="Paraíba-PB"/>
+                        <f:selectItem itemValue="Pernambuco" itemLabel="Pernambuco-PE"/>
+                        <f:selectItem itemValue="Rio de Janeiro" itemLabel="Rio de Janeiro-RJ"/>
+                        <f:selectItem itemValue="Rio Grande do Norte" itemLabel="Rio Grande do Norte-RN"/>
+                        <f:selectItem itemValue="Rio Grande do Sul" itemLabel="Rio Grande do Sul-RS"/>
+                        <f:selectItem itemValue="Rondônia" itemLabel="Rondônia-RO"/>
+                        <f:selectItem itemValue="Roraima" itemLabel="Roraima-RR"/>
+                        <f:selectItem itemValue="Santa Catarina" itemLabel="Santa Catarina-SC"/>
+                        <f:selectItem itemValue="São Paulo" itemLabel="São Paulo-SP"/>
+                        <f:selectItem itemValue="Sergipe" itemLabel="Sergipe-SE"/>
+                        <f:selectItem itemValue="Tocantins" itemLabel="Tocantins-TO"/>
+                    </p:selectOneMenu> 
+                    <p:message for='txtEstado' />
+
+
+                    <h:outputText value="Cidade" style="font-weight: bold; margin-left:5em ;"/>
+                    <p:inputText id="txtCidade" value="#{usuarioController.selectedUsuario.endereco.cidade}"
+                                 style="font-weight: bold;"
+                                 required="true" requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtCidade' />
+
+                    <h:outputText value="CEP" style="font-weight: bold; margin-left:5em ;"/>
+                    <p:inputMask id="txtCEP" value="#{usuarioController.selectedUsuario.endereco.cep}" mask="99999-999"
+                                 style="font-weight: bold;"
+                                 required="true" requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtCEP' />
+
+
+                    <h:outputText value="Logradouro" style="font-weight: bold; margin-left:5em ;"/>
+                    <p:inputText id="txtLog" value="#{usuarioController.selectedUsuario.endereco.logradouro}" 
+                                 style="font-weight: bold;"
+                                 required="true" requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtLog' />
+
+                    <h:outputText value="Bairro" style="font-weight: bold; margin-left:5em ;"/>
+                    <p:inputText id="txtBairro" value="#{usuarioController.selectedUsuario.endereco.bairro}" 
+                                 style="font-weight: bold"
+                                 required="true" requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtBairro' />
+
+                </p:panelGrid>
+
+                <br/><br/><br/>
+
+                <h:outputText value="Dados da Conta" 
+                              style="color: #ff0000; 
+                              font-size:20px;
+                              margin-left:18em ;
+                              font-weight: bold;
+                              font-family: Comic Sans MS;
+                              " /> 
+
+                <br/><br/><br/>
+
+                <p:panelGrid columns="3" styleClass="panelgrid" style="margin-left:18em;">
+
+                    <h:outputText value="Telefone" style="font-weight: bold; margin-left:5em ;" />
+                    <p:inputMask id="txtPhone" value="#{usuarioController.selectedUsuario.telefone}" 
+                                 mask="(99) 9.9999-9999"  style="font-weight: bold;" 
+                                 required="true" requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtPhone' />
+
+                    <h:outputText value="E-mail" style="font-weight: bold; margin-left:5em ;"/>
+                    <h:inputText id="txtEmail" value="#{usuarioController.selectedUsuario.email }" 
+                                 label="Email"  style="font-weight: bold;"
+                                 required="true" requiredMessage="Campo Obrigatório!">
+                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                    </h:inputText>
+                    <p:message for='txtEmail' />
+                    <h:outputText value="Senha " style="font-weight: bold; margin-left:5em ;" />
+
+                    <p:password id="txtSenha" value="#{usuarioController.selectedUsuario.senha}" 
+                                required="true" requiredMessage="Adicione a senha!" 
+                                style="font-weight: bold;" 
+                                feedback="true" 
+                                promptLabel="Digite a senha" weakLabel="Força da senha : Fraca" 
+                                goodLabel="Força da senha : Média" strongLabel="Força da senha : Forte"
+                                match="txtSenha" />
+                    
+                </p:panelGrid> 
+
+                <br/><br/><br/>
+
+                <p:commandButton value="Alterar dados" style=" margin-left:20em ;"
+                                 onclick="PF('widDialConfirmar').hide()" 
+                                 action="#{usuarioController.alterarUsuario()}"/>
+
+                <br/><br/><br/>
+
+            </h:form>
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+             </ui:define>
+            </ui:composition>
+    </h:body>
+</html>
+

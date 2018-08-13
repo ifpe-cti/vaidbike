@@ -82,6 +82,11 @@ public class UsuarioController {
 
     }
 
+    public String alterarUsuario() throws Exception {
+        instaceUSUARIOMODEL.alterar(this.selectedUsuario);
+        return "menuUsuario.xhtml";
+    }
+
     public Usuario getCadUsuario() {
         return cadUsuario;
     }
