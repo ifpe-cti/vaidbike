@@ -39,20 +39,23 @@ import org.junit.Test;
  * @author Carlos André <carloscordeiroconsultor@gmail.com>
  */
 public class LocacaoHibernateTest {
-/*
+
     private static final LocacaoHibernate LOCACAOHIBERNATE
             = LocacaoHibernate.getInstance();
 
     private static final Endereco ENDERECO = new Endereco("estado", "cidade",
             "cep", "bairro", "logradouro");
 
+    private static final Endereco ENDERECO1 = new Endereco("e", "c",
+            "cc", "b", "l");
+
     private static final Usuario USUARIO1 = new Usuario(
-             "senha", "nome", "28961303066", "sexo",
-            LocalDate.now(), ENDERECO, "telefone", "email",
+            "senha", "nome", "28961303066", "sexo",
+            LocalDate.now(), ENDERECO1, "telefone", "email",
             new ArrayList<Bike>());
 
     private static final Usuario USUARIO2 = new Usuario(
-             "senha1", "nome1", "28952871049", "sexo1",
+            "senha1", "nome1", "28952871049", "sexo1",
             LocalDate.now(), ENDERECO, "telefone1", "email1",
             new ArrayList<Bike>());
 
@@ -68,7 +71,8 @@ public class LocacaoHibernateTest {
 
     @Test
     public void deveRecuperarLocacaoDoBanco() {
-        assertEquals("TC001", LOCACAO, LOCACAOHIBERNATE.recuperar(1));
+        List<Locacao> locacoes = LOCACAOHIBERNATE.listarTodos();
+        assertEquals("TC001", LOCACAO,locacoes.get(locacoes.size() - 1));
     }
 
     @Test
@@ -76,7 +80,8 @@ public class LocacaoHibernateTest {
         LOCACAO.setDevolucao(LocalDate.of(2013, Month.JUNE, 20));
         LOCACAO.setRetirada(LocalDate.of(2013, Month.APRIL, 20));
         LOCACAOHIBERNATE.alterar(LOCACAO);
-        assertEquals("TC002", LOCACAO, LOCACAOHIBERNATE.recuperar(1));
+        List<Locacao> locacoes = LOCACAOHIBERNATE.listarTodos();
+        assertEquals("TC002", LOCACAO, locacoes.get(locacoes.size() - 1));        
     }
 
     @Test
@@ -90,5 +95,5 @@ public class LocacaoHibernateTest {
     @AfterClass
     public static void deveDeletarDoBanco() {
         LOCACAOHIBERNATE.deletar(LOCACAO);
-    }*/
+    }
 }

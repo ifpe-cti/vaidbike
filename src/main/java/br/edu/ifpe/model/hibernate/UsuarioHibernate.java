@@ -74,16 +74,16 @@ public class UsuarioHibernate implements UsuarioDao {
     }
 
     @Override
-    public Usuario recuperar(String email, String senha) {
+    public Usuario recuperar(String login, String senha) {
         Session session = this.SESSIONS.openSession();
         Usuario usuario = null;
 
         try {
             usuario = (Usuario) session.createQuery(
-                    "From Usuario where email= '" + email
-                    + "' and senha= '" + senha + "'").list().get(0);
+                    "From Usuario where login = '" + login
+                    + "' and senha = '" + senha + "'").list().get(0);
         } catch (Exception e) {
-            LOGGER.error("Ocorreu um problema ao recuperar o Usuario por email e senha!"
+            LOGGER.error("Ocorreu um problema ao recuperar o Usuario por login"
                     + "\n" + e.getMessage());
         } finally {
             session.close();
@@ -132,7 +132,7 @@ public class UsuarioHibernate implements UsuarioDao {
             return (Usuario) session.createQuery("From Usuario where id_usuario="
                     + codigo).list().get(0);
         } catch (Exception e) {
-            LOGGER.error("Ocorreu um problema ao recuperar o Usuario por código."
+            LOGGER.error("Ocorreu um problema ao recuperar o Usuario por cpf"
                     + "\n" + e.getMessage());
             return null;
         } finally {
