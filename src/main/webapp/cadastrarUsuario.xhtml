@@ -211,7 +211,6 @@ SOFTWARE.
                     <h:inputText id="txtEmail" value="#{usuarioController.cadUsuario.email }" 
                                  label="Email"  style="font-weight: bold;"
                                  required="true" requiredMessage="Campo Obrigatório!">
-                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
                     </h:inputText>
                     <p:message for='txtEmail' />
                     <h:outputText value="Senha " style="font-weight: bold; margin-left:5em ;" />

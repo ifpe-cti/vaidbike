@@ -80,7 +80,7 @@ public class UsuarioHibernate implements UsuarioDao {
 
         try {
             usuario = (Usuario) session.createQuery(
-                    "From Usuario where login = '" + login
+                    "From Usuario where email= '" + login
                     + "' and senha = '" + senha + "'").list().get(0);
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao recuperar o Usuario por login"
