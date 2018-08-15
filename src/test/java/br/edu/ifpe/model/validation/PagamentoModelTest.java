@@ -21,70 +21,78 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-
 package br.edu.ifpe.model.validation;
 
+import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Pagamento;
-import br.edu.ifpe.model.hibernate.PagamentoHibernate;
+import br.edu.ifpe.model.classes.Usuario;
+import br.edu.ifpe.model.hibernate.LocacaoHibernate;
+import br.edu.ifpe.model.hibernate.UsuarioHibernate;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
+import org.junit.BeforeClass;
+
 /**
  *
  * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 public class PagamentoModelTest {
     /*
-  private PagamentoModel pagamentoModel;
-    private Pagamento pagamento;
+    private static final PagamentoModel PAGAMENTOMODEL = new PagamentoModel();
     
-    public PagamentoModelTest() {
-        pagamentoModel = new PagamentoModel();
-        pagamento = new Pagamento("tipo",new BigDecimal (10.5) , new Locacao());  
-    }
-    
-    
-    @Test
-    @Ignore
-    public void testInserir() throws Exception{
-        pagamento = new Pagamento("tipo",new BigDecimal (10.5) , new Locacao());
-        pagamentoModel = new PagamentoModel();
-        pagamentoModel.inserir(pagamento);
-       
+    private static final Endereco ENDERECO = new Endereco("estado", "cidade",
+            "cep", "bairro", "logradouro");
+
+    private static final Endereco ENDERECO1 = new Endereco("e", "c",
+            "cc", "b", "l");
+
+    private static final Usuario USUARIO1 = new Usuario(
+            "login", "senha", "nome", "28961303066", "sexo",
+            LocalDate.now(), ENDERECO1, "telefone", "email",
+            new ArrayList<Bike>());
+
+    private static final Usuario USUARIO2 = new Usuario(
+            "login1", "senha1", "nome1", "28952871049", "sexo1",
+            LocalDate.now(), ENDERECO, "telefone1", "email1",
+            new ArrayList<Bike>());
+
+    private static final Locacao LOCACAO
+            = new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now()); 
+
+    private static Pagamento PAGAMENTO = 
+            new Pagamento("tipo", new BigDecimal("20.00"),LOCACAO);
+
+      @BeforeClass
+    public static void deveInserirNoBD() throws Exception {
+        UsuarioHibernate.getInstance().inserir(USUARIO1);
+        UsuarioHibernate.getInstance().inserir(USUARIO2);
+        LocacaoHibernate.getInstance().inserir(LOCACAO);
+        PAGAMENTOMODEL.inserir(PAGAMENTO);
     }
 
     @Test
-    @Ignore
-    public void testRecuperar() throws Exception {
+    public void deveRecuperarDoBD() throws Exception{
+        assertEquals("TC001",PAGAMENTO,PAGAMENTOMODEL.recuperar(1));
+    }
+
+    @Test
+    public void deveRecuperarTodosOsPagamentosDoBd() throws Exception {
+        List<Pagamento> pagamentos = new ArrayList();
+        pagamentos.add(PAGAMENTO);
         
-        pagamento = new Pagamento("tipo",new BigDecimal (10.5) , new Locacao());
-        pagamentoModel.inserir(pagamento);
-        Pagamento result = pagamentoModel.recuperar(pagamento.getCodigo());
-        assertEquals(pagamento, result);
-       
-    }
-
-    @Test
-    @Ignore
-    public void testListarTodos() throws Exception {
-         List<Pagamento> pagamentos = new ArrayList();
-        pagamento = new Pagamento("tipo",new BigDecimal (10.5) , new Locacao());
-        pagamentoModel.inserir(pagamento);
-        pagamentos.add(pagamento);
-        assertEquals( pagamentos, pagamentoModel.listarTodos());
+        assertEquals("TC002",pagamentos,PAGAMENTOMODEL.listarTodos());
     }
     
-    @Test(expected = Exception.class)
-    @Ignore
-    public void inserirUsuarioCpfIncorretoTest() throws Exception{
-        pagamentoModel.inserir
-            (new Pagamento("tipo",new BigDecimal (10.5) , null));
-    }
-    
+    @AfterClass
+    public static void deveLimparOBancoDados() {
+        PAGAMENTOMODEL.deletar(PAGAMENTO);
+    } 
     */
 }

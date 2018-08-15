@@ -36,33 +36,37 @@ import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 
 /**
  *
  * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 public class PagamentoHibernateTest {
-/*
+
     private static final PagamentoHibernate PAGAMENTOHIBERNATE
             = PagamentoHibernate.getInstance();
 
     private static final Endereco ENDERECO = new Endereco("estado", "cidade",
             "cep", "bairro", "logradouro");
 
+    private static final Endereco ENDERECO1 = new Endereco("e", "c",
+            "cc", "b", "l");
+
     private static final Usuario USUARIO1 = new Usuario(
-            "senha", "nome", "28961303066", "sexo",
-            LocalDate.now(), ENDERECO, "telefone", "email",
+             "senha", "nome", "28961303066", "sexo",
+            LocalDate.now(), ENDERECO1, "telefone", "email",
             new ArrayList<Bike>());
 
     private static final Usuario USUARIO2 = new Usuario(
-            "senha1", "nome1", "28952871049", "sexo1",
+             "senha1", "nome1", "28952871049", "sexo1",
             LocalDate.now(), ENDERECO, "telefone1", "email1",
             new ArrayList<Bike>());
 
     private static final Locacao LOCACAO
             = new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now());
 
-    private static Pagamento PAGAMENTO
+    private static Pagamento pagamento
             = new Pagamento("tipo", new BigDecimal("20.00"), LOCACAO);
 
     @BeforeClass
@@ -70,31 +74,34 @@ public class PagamentoHibernateTest {
         UsuarioHibernate.getInstance().inserir(USUARIO1);
         UsuarioHibernate.getInstance().inserir(USUARIO2);
         LocacaoHibernate.getInstance().inserir(LOCACAO);
-        PAGAMENTOHIBERNATE.inserir(PAGAMENTO);
+        PAGAMENTOHIBERNATE.inserir(pagamento);
     }
 
     @Test
     public void deveRecuperarDoBD() {
-        assertEquals("TC001", PAGAMENTO, PAGAMENTOHIBERNATE.recuperar(1));
+        List<Pagamento> pagamentos = PAGAMENTOHIBERNATE.listarTodos();
+        assertEquals("TC001", pagamento, pagamentos.get(pagamentos.size() - 1));
     }
 
     @Test
     public void deveRecuperarTodosOsPagamentosDoBd() {
         List<Pagamento> pagamentos = new ArrayList();
-        pagamentos.add(PAGAMENTO);
+        pagamentos.add(pagamento);
 
         assertEquals("TC002", pagamentos, PAGAMENTOHIBERNATE.listarTodos());
     }
 
     @Test
     public void deveAlterarPagamentoNoBD() {
-        PAGAMENTO.setValor(new BigDecimal("30.00"));
-        PAGAMENTOHIBERNATE.alterar(PAGAMENTO);
-        assertEquals("TC003", PAGAMENTO, PAGAMENTOHIBERNATE.recuperar(1));
+        pagamento.setValor(new BigDecimal("30.00"));
+        PAGAMENTOHIBERNATE.alterar(pagamento);
+        List<Pagamento> pagamentos = PAGAMENTOHIBERNATE.listarTodos();
+        assertEquals("TC003", pagamento, pagamentos.get(pagamentos.size() - 1));
     }
 
     @AfterClass
     public static void deveLimparOBancoDados() {
-        PAGAMENTOHIBERNATE.deletar(PAGAMENTO);
-    }*/
+        PAGAMENTOHIBERNATE.deletar(pagamento);
+    }
+
 }

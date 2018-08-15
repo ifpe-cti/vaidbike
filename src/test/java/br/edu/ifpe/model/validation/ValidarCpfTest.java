@@ -34,20 +34,19 @@ import org.junit.Test;
  * @author Lucas Mendes <lucas.mendes147@live.com>
  */
 public class ValidarCpfTest {
-    /*
     @Test
-    public void testarCpfInvalido(){
+    public void deveRetornarCpfInvalido(){
         assertFalse(ValidarCpf.isCPF("5226623135"));
     }
     
     @Test
-    public void testarCpfValido(){
+    public void deveRetornarCpfValido(){
         assertTrue(ValidarCpf.isCPF("37621958030"));
     }
     
     @Test
-    public void testarImprimirCpf(){
+    public void deveImprimirCpf(){
         String cpf = ValidarCpf.imprimeCPF("37621958030");
         assertEquals("TC001","376.219.580-30",cpf);
-    }*/
+    }
 }

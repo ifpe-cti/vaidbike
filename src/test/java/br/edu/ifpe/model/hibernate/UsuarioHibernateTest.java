@@ -31,85 +31,88 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  *
  * @author Lucas Mendes <lucas.mendes147@live.com>
  */
+
 public class UsuarioHibernateTest {
-/*
+
     private static final Endereco ENDERECO = new Endereco("estado", "cidade",
             "cep", "bairro", "logradouro");
-    
+
+    private static final Endereco ENDERECO1 = new Endereco("e", "c",
+            "cc", "b", "l");
+
     private static final UsuarioHibernate USUARIOHIBERNATE
             = UsuarioHibernate.getInstance();
-    
-    private static final Usuario USUARIO1 = new Usuario(
-            "login", "senha", "nome", "28961303066", "sexo",
-            LocalDate.now(), ENDERECO, "telefone", "email",
+
+    private static Usuario usuario1 = new Usuario(
+             "senha", "nome", "28961303066", "sexo",
+            LocalDate.now(), ENDERECO1, "telefone", "email",
             new ArrayList<Bike>());
-    
+
     private static final Usuario USUARIO2 = new Usuario(
-            "login1", "senha1", "nome1", "28952871049", "sexo1",
+             "senha1", "nome1", "28952871049", "sexo1",
             LocalDate.now(), ENDERECO, "telefone1", "email1",
             new ArrayList<Bike>());
 
     @BeforeClass
     public static void deveInserirUsuario() {
-        USUARIOHIBERNATE.inserir(USUARIO1);
+        USUARIOHIBERNATE.inserir(usuario1);
         USUARIOHIBERNATE.inserir(USUARIO2);
     }
+    
 
     @Test
-    public void deveRecuperarUsuarioTest() {
-        assertEquals("TC001", USUARIO1, 
-                USUARIOHIBERNATE.recuperar(1));
+    public void deveRecuperarTodosUsuariosTest() {
+        ArrayList<Usuario> usuarios = new ArrayList();
+        ArrayList<Usuario> usuariosRecuperadosDoBanco
+                = (ArrayList<Usuario>) USUARIOHIBERNATE.listarTodos();
+
+        if (usuariosRecuperadosDoBanco.get(0).equals(usuario1)) {
+            usuarios.add(usuario1);
+            usuarios.add(USUARIO2);
+        } else {
+            usuarios.add(USUARIO2);
+            usuarios.add(usuario1);
+        }
+
+        assertEquals("TC005", usuarios, usuariosRecuperadosDoBanco);
     }
-
+    
     @Test
-    public void deveAlterarUsuarioTest() {
-        USUARIO1.setEmail("email alterado");
-        USUARIO1.setLogin("login alterado");
-        USUARIOHIBERNATE.alterar(USUARIO1);
+    public void deveRecuperarUsuarioPorId(){
+        List<Usuario>usuarios = USUARIOHIBERNATE.listarTodos();
         
-        assertEquals("TC002",USUARIO1,
-                USUARIOHIBERNATE.recuperar("28961303066"));
+        if(usuarios.get(usuarios.size() - 1).equals(usuario1)){
+            assertEquals("TC002", usuario1,usuarios.get(usuarios.size() - 1));
+        }else{
+            assertEquals("TC002", USUARIO2,usuarios.get(usuarios.size() - 1));
+        }
     }
-
+    
     @Test
     public void deveRecuperarPorCpfUsuarioTest() {
-        assertEquals("TC003", USUARIO2, 
+        assertEquals("TC003", USUARIO2,
                 USUARIOHIBERNATE.recuperar("28952871049"));
     }
 
     @Test
-    @Ignore
-    public void recuperarTodosUsuariosTest() {
-        ArrayList<Usuario> usuarios = new ArrayList();
-        usuarios.add(USUARIO1);
-        usuarios.add(USUARIO2);
-        
-        assertEquals("TC004",usuarios,USUARIOHIBERNATE.listarTodos());   
+    public void deveAletarUsuarioTest() {
+        usuario1.setEmail("eee");
+        usuario1.setSenha("llll");
+        USUARIOHIBERNATE.alterar(usuario1);
+        assertEquals("TC003", usuario1,
+                USUARIOHIBERNATE.recuperar("28961303066"));
     }
 
-    @Test
-    public void deveDeletarUsuarioDoBDTest() {
-        List<Usuario> usuarios = new ArrayList();
-        
-        usuarios.add(USUARIO1);
-        usuarios.add(USUARIO2);
-        
-        USUARIOHIBERNATE.deletar(USUARIO1);
-        assertNotEquals("TC005",USUARIOHIBERNATE.listarTodos() , usuarios);       
-    }
-    
     @AfterClass
     public static void deveLimparOBanco() {
+        USUARIOHIBERNATE.deletar(usuario1);
         USUARIOHIBERNATE.deletar(USUARIO2);
     }
-*/
 }

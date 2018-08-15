@@ -41,15 +41,15 @@ public class Endereco implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_endereco")
     private Integer codigo;
-    @Column(length = 12, nullable = false)
+    @Column(length = 45, nullable = false)
     private String estado;
-    @Column(length = 20, nullable = false)
+    @Column(length = 45, nullable = false)
     private String cidade;
     @Column(length = 12)
     private String cep;
-    @Column(length = 17, nullable = false)
+    @Column(length = 20, nullable = false)
     private String bairro;
-    @Column(length = 25, nullable = false)
+    @Column(length = 45, nullable = false)
     private String logradouro;
 
     @Deprecated
@@ -113,8 +113,6 @@ public class Endereco implements Serializable {
         this.logradouro = logradouro;
     }
 
-
-
     @Override
     public int hashCode() {
         final int HASH = 7;
@@ -124,7 +122,7 @@ public class Endereco implements Serializable {
         result = (HASH * result) + cidade.hashCode();
         result = (HASH * result) + ((cep == null) ? 0 : cep.hashCode());
         result = (HASH * result) + bairro.hashCode();
-        return result + logradouro.hashCode();
+        return result += logradouro.hashCode();
     }
 
     @Override
