@@ -14,7 +14,6 @@ import javax.faces.context.FacesContext;
 public class UsuarioController {
 
     private Usuario cadUsuario;
-    private Usuario selectedUsuario;
     private Endereco end;
     private final UsuarioModel instaceUSUARIOMODEL;
 
@@ -83,8 +82,9 @@ public class UsuarioController {
     }
 
     public String alterarUsuario() throws Exception {
-        instaceUSUARIOMODEL.alterar(this.selectedUsuario);
-        return "menuUsuario.xhtml";
+        getUsuarioLogado().setSenha(CriptografiaMD5.md5(getUsuarioLogado().getSenha()));
+        instaceUSUARIOMODEL.alterar(getUsuarioLogado());
+        return "mostrarDadosUsuario.xhtml";
     }
 
     public Usuario getCadUsuario() {
@@ -102,13 +102,4 @@ public class UsuarioController {
     public void setEnd(Endereco end) {
         this.end = end;
     }
-
-    public Usuario getSelectedUsuario() {
-        return selectedUsuario;
-    }
-
-    public void setSelectedUsuario(Usuario selectedUsuario) {
-        this.selectedUsuario = selectedUsuario;
-    }
-
 }

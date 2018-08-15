@@ -32,7 +32,9 @@ SOFTWARE.
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+          
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <f:view contentType="text/html">
         <h:head>
@@ -45,10 +47,16 @@ SOFTWARE.
         </h:head>
 
         <h:body>
+                <c:if test="${usuarioController.usuarioLogado == null}">
+                    <script>location.href = "login.xhtml";</script>
+                </c:if>
+            
+                
+                
+                 <p:layout fullPage="true">
 
-            <p:layout fullPage="true">
-
-                <p:layoutUnit style="background-image: url(resources/images/bike.png) " position="north" size="100" >
+               
+                 <p:layoutUnit style="background-image: url(resources/images/bike.png) " position="north" size="100" >
                     <div style=" position:absolute ; width: 1350px; height: 80px; background: #cc0000;"> 
 
                         <h2 style=" 
@@ -87,13 +95,13 @@ SOFTWARE.
 
                 <p:layoutUnit position="center" style="background-image: url(resources/images/bike.png) ">
 
+                    
                     <ui:insert name="co"/>
-
-
+                  
                 </p:layoutUnit>
 
             </p:layout>
-
+                
         </h:body>
 
     </f:view>

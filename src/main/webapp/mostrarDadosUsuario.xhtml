@@ -55,18 +55,7 @@ SOFTWARE.
                 <p:growl id="gro" sticky="true" showDetail="true" showSummary="true"/>
 
                 <h:form id="formApresentaUsuario">
-                    <p:dataTable id="tableUsuario" var="item" value="#{usuarioController.usuarioLogado}"
-                                 rowKey="#{item.codigo}" selectionMode="single" 
-                                 selection="#{usuarioController.selectedUsuario=usuarioController.usuarioLogado}">
-
-                        <f:facet name="header">
-
-                        </f:facet>
-
-
-
-                    </p:dataTable>
-
+                  
                     <br/>
                     <h:outputText value="Meus Dados" 
                                   style="color: black; 
@@ -91,19 +80,19 @@ SOFTWARE.
                         <br/><br/>
 
                         <h:outputText value="Nome " style="font-weight: bold; margin-left:5em ;"/>
-                        <h:outputText value="#{usuarioController.selectedUsuario.nome}"
+                        <h:outputText value="#{usuarioController.usuarioLogado.nome}"
                                       style="font-weight: bold; margin-left:3em ;"/>
 
                         <h:outputText value="CPF" style="font-weight: bold; margin-left:5em ;"/>
-                        <h:outputText value="#{usuarioController.selectedUsuario.cpf}" 
+                        <h:outputText value="#{usuarioController.usuarioLogado.cpf}" 
                                       style="font-weight: bold; margin-left:3em ;"/>
 
                         <h:outputText value="Data de Nascimento" style="font-weight: bold; margin-left:5em ;"/>
-                        <h:outputText value="#{usuarioController.selectedUsuario.dataNasc}" 
+                        <h:outputText value="#{usuarioController.usuarioLogado.dataNasc}" 
                                       style="font-weight: bold; margin-left:3em ;"/>
 
                         <h:outputText value="Sexo" style="font-weight: bold; margin-left:5em ;"/>
-                        <h:outputText value="#{usuarioController.selectedUsuario.sexo}"
+                        <h:outputText value="#{usuarioController.usuarioLogado.sexo}"
                                       style="font-weight: bold; margin-left:3em ;"/>
 
 
@@ -122,23 +111,23 @@ SOFTWARE.
                         <br/><br/><br/>
 
                         <h:outputText value="Estado" style="font-weight: bold; margin-left:5em ;"/>
-                        <h:outputText value="#{usuarioController.selectedUsuario.endereco.estado}"
+                        <h:outputText value="#{usuarioController.usuarioLogado.endereco.estado}"
                                       style="font-weight: bold; margin-left:3em ;"/>
 
                         <h:outputText value="Cidade" style="font-weight: bold; margin-left:5em ;"/>
-                        <h:outputText value="#{usuarioController.selectedUsuario.endereco.cidade}"
+                        <h:outputText value="#{usuarioController.usuarioLogado.endereco.cidade}"
                                       style="font-weight: bold; margin-left:3em ;"/>
                         <h:outputText value="CEP" style="font-weight: bold; margin-left:5em ;"/>
-                        <h:outputText value="#{usuarioController.selectedUsuario.endereco.cep}"
+                        <h:outputText value="#{usuarioController.usuarioLogado.endereco.cep}"
                                       style="font-weight: bold; margin-left:3em ;"/>
 
 
                         <h:outputText value="Logradouro" style="font-weight: bold; margin-left:5em ;"/>
-                        <h:outputText value="#{usuarioController.selectedUsuario.endereco.logradouro}"
+                        <h:outputText value="#{usuarioController.usuarioLogado.endereco.logradouro}"
                                       style="font-weight: bold; margin-left:3em ;"/>
 
                         <h:outputText value="Bairro" style="font-weight: bold; margin-left:5em ;"/>
-                        <h:outputText value="#{usuarioController.selectedUsuario.endereco.bairro}"
+                        <h:outputText value="#{usuarioController.usuarioLogado.endereco.bairro}"
                                       style="font-weight: bold; margin-left:3em ;"/>
 
 
@@ -156,11 +145,11 @@ SOFTWARE.
                                       font-family: Comic Sans MS;" /> 
                         <br/><br/><br/>
                         <h:outputText value="Telefone" style="font-weight: bold; margin-left:5em ;" />
-                        <h:outputText value="#{usuarioController.selectedUsuario.telefone}"
+                        <h:outputText value="#{usuarioController.usuarioLogado.telefone}"
                                       style="font-weight: bold; margin-left:3em ;"/>
 
                         <h:outputText value="E-mail" style="font-weight: bold; margin-left:5em ;"/>
-                        <h:outputText value="#{usuarioController.selectedUsuario.email}"
+                        <h:outputText value="#{usuarioController.usuarioLogado.email}"
                                       style="font-weight: bold; margin-left:3em ;"/>
 
 
