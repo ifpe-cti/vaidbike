@@ -24,6 +24,7 @@ SOFTWARE.
 package br.edu.ifpe.model.classes;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,6 +44,8 @@ public class Bike implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_bike")
     private Integer codigo;
+    @Column
+    private BigDecimal valor;
     @Column(length = 18)
     private String modelo;
     @Column(length = 20)
@@ -57,13 +60,22 @@ public class Bike implements Serializable {
     public Bike() {
     }
 
-    public Bike(String modelo, String tipo, String cor, Usuario usuario) {
+    public Bike(String modelo,BigDecimal valor ,String tipo, String cor, Usuario usuario) {
         this.modelo = modelo;
+        this.valor=valor;
         this.tipo = tipo;
         this.cor = cor;
         this.usuario = usuario;
     }
 
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+    
     public int getCodigo() {
         return codigo;
     }
