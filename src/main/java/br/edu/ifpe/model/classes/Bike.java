@@ -25,6 +25,7 @@ package br.edu.ifpe.model.classes;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -106,33 +107,56 @@ public class Bike implements Serializable {
 
     @Override
     public int hashCode() {
-        final int HASH = 7;
-        int result = 1;
-        result = (HASH * result) + codigo.hashCode();
-        result = (HASH * result) + ((modelo == null) ? 0 : modelo.hashCode());
-        result = (HASH * result) + ((tipo == null) ? 0 : tipo.hashCode());
-        result = (HASH * result) + ((cor == null) ? 0 : cor.hashCode());
-        return (HASH * result) + usuario.hashCode();
+        int hash = 5;
+        hash = 19 * hash + Objects.hashCode(this.codigo);
+        hash = 19 * hash + Objects.hashCode(this.valor);
+        hash = 19 * hash + Objects.hashCode(this.modelo);
+        hash = 19 * hash + Objects.hashCode(this.tipo);
+        hash = 19 * hash + Objects.hashCode(this.cor);
+        hash = 19 * hash + Objects.hashCode(this.usuario);
+        return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Bike)) 
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
-
-        if (!((Bike) obj).modelo.equals(this.modelo)) 
+        }
+        if (getClass() != obj.getClass()) {
             return false;
-
-        if (!((Bike) obj).tipo.equals(this.tipo)) 
+        }
+        final Bike other = (Bike) obj;
+        if (!Objects.equals(this.modelo, other.modelo)) {
             return false;
-
-        return (((Bike) obj).cor.equals(this.cor));
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        if (!Objects.equals(this.cor, other.cor)) {
+            return false;
+        }
+        if (!Objects.equals(this.codigo, other.codigo)) {
+            return false;
+        }
+        if (!Objects.equals(this.valor, other.valor)) {
+            return false;
+        }
+        if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Bike{" + "codigo=" + codigo
-                + ", modelo=" + modelo + ", tipo=" + tipo
-                + ", cor=" + cor + ", usuario=" + usuario + '}';
+        return "Bike{" + "codigo=" + codigo + ", valor=" + valor 
+                + ", modelo=" + modelo + ", tipo=" + tipo + ", cor=" + cor
+                + ", usuario=" + usuario + '}';
     }
+
+ 
+  
 }
