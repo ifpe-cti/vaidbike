@@ -1,9 +1,12 @@
 package br.edu.ifpe.controller;
 
 import br.edu.ifpe.controller.md5.CriptografiaMD5;
+import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.validation.UsuarioModel;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -15,11 +18,15 @@ public class UsuarioController {
 
     private Usuario cadUsuario;
     private Endereco end;
+    private Bike bike;
+    private List<Bike> list;
     private final UsuarioModel instaceUSUARIOMODEL;
 
     public UsuarioController() {
+        this.bike = new Bike();
         this.end = new Endereco();
-        cadUsuario = new Usuario();
+        this.cadUsuario = new Usuario();
+        this.list = new ArrayList<>();
         this.instaceUSUARIOMODEL = new UsuarioModel();
     }
 
@@ -87,6 +94,29 @@ public class UsuarioController {
         return "mostrarDadosUsuario.xhtml";
     }
 
+    public String cadastrarBike() throws Exception {
+        String ret = "";
+        try {
+
+            this.bike.setUsuario(getUsuarioLogado());
+            list.add(this.bike);
+
+            getUsuarioLogado().setBikes(list);
+
+            instaceUSUARIOMODEL.alterar(getUsuarioLogado());
+
+            bike = new Bike();
+            ret = "menuUsuario.xhtml";
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha!",
+                            "Dados Inválidos"));
+        }
+
+        return ret;
+
+    }
+
     public Usuario getCadUsuario() {
         return cadUsuario;
     }
@@ -102,4 +132,13 @@ public class UsuarioController {
     public void setEnd(Endereco end) {
         this.end = end;
     }
+
+    public Bike getBike() {
+        return bike;
+    }
+
+    public void setBike(Bike bike) {
+        this.bike = bike;
+    }
+
 }
