@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <c:if test="${usuarioController.usuarioLogado == null}">
+            <script>location.href = "login.xhtml";</script>
+        </c:if>
+
+        <ui:composition template="menuUsuario.xhtml">
+            <ui:define name="center" >
+
+                <h:form id="alterarBikes">
+
+                    <br/><br/>
+
+                    <br/><br/><br/>
+
+                    <h:outputText value="Dados da Bike" 
+                                  style="color: #ff0000; 
+                                  font-size:20px;
+                                  margin-left:18em ;
+                                  font-weight: bold;
+                                  font-family: Comic Sans MS;
+                                  " /> 
+                    <br/><br/>
+                    <p:panelGrid  columns="3" styleClass="panelgrid" style="margin-left:18em;">
+                        <h:outputText value="Modelo " style="font-weight: bold; margin-left:5em ;"/>
+                        <p:inputText id="txtModelo" value="#{usuarioController.bike.modelo}"
+                                     required="true" requiredMessage="Campo Obrigatório!"
+                                     style="font-weight: bold;"/>
+
+                        <p:message for='txtModelo' />
+                        <h:outputText value="Cor " style="font-weight: bold; margin-left:5em ;"/>
+                        <p:inputText id="txtCor" value="#{usuarioController.bike.cor}"
+                                     required="true" requiredMessage="Campo Obrigatório!"
+                                     style="font-weight: bold;"/>
+
+                        <p:message for='txtCor' />
+                        <h:outputText value="Tipo" style="font-weight: bold; margin-left:5em ;"/>
+                        <p:selectOneMenu id="txtTipo" value="#{usuarioController.bike.tipo}" required="true" 
+                                         requiredMessage="Campo Obrigatório!"
+                                         style="font-weight: bold;">
+                            <f:selectItem itemValue="Infantil" itemLabel="Infantil"/>
+                            <f:selectItem itemValue="Adulto" itemLabel="Adulto"/>
+                            <f:selectItem itemLabel="Escolha"/>
+                        </p:selectOneMenu>
+                        <p:message for='txtTipo'/>
+                        <h:outputText value="Valor " style="font-weight: bold; margin-left:5em ;"/>
+                        <p:inputText id="txtValor" value="#{usuarioController.bike.valor}"
+                                     required="true" requiredMessage="Campo Obrigatório!"
+                                     style="font-weight: bold;"/>
+                        <p:message for='txtValor' />
+                    </p:panelGrid>
+                    <br/><br/><br/>
+
+
+                    <p:commandButton value="Alterar dados" style=" margin-left:20em ;"
+                                     onclick="PF('widDialConfirmar').hide()" 
+                                     action="#{usuarioController.alterarBike()}"/>
+
+                    <br/><br/><br/>
+
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+
+
+
+    </h:body>           
+</html>

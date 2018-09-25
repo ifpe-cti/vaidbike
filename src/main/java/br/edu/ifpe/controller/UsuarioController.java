@@ -19,14 +19,14 @@ public class UsuarioController {
     private Usuario cadUsuario;
     private Endereco end;
     private Bike bike;
-    private List<Bike> list;
+    private List<Bike> bikes;
     private final UsuarioModel instaceUSUARIOMODEL;
 
     public UsuarioController() {
         this.bike = new Bike();
         this.end = new Endereco();
         this.cadUsuario = new Usuario();
-        this.list = new ArrayList<>();
+        this.bikes = new ArrayList<>();
         this.instaceUSUARIOMODEL = new UsuarioModel();
     }
 
@@ -93,15 +93,22 @@ public class UsuarioController {
         instaceUSUARIOMODEL.alterar(getUsuarioLogado());
         return "mostrarDadosUsuario.xhtml";
     }
+    
+    public String alterarBike() throws Exception {
+        getUsuarioLogado().setBikes(bikes);
+        instaceUSUARIOMODEL.alterar(getUsuarioLogado());
+        return "";
+    }
 
-    public String cadastrarBike() throws Exception {
+    public String cadastrarBike() {
         String ret = "";
         try {
 
             this.bike.setUsuario(getUsuarioLogado());
-            list.add(this.bike);
+            
+            bikes.add(this.bike);
 
-            getUsuarioLogado().setBikes(list);
+            getUsuarioLogado().setBikes(bikes);
 
             instaceUSUARIOMODEL.alterar(getUsuarioLogado());
 
