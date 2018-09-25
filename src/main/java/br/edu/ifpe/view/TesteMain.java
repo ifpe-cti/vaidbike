@@ -114,21 +114,7 @@ public class TesteMain {
        UsuarioController uc = new UsuarioController();
        String us = uc.realizarLogin("4", "4");
        System.out.println(us);*/
-    
- Endereco ENDERECO = new Endereco("estado", "cidade",
-                "cep", "bairro", "logradouro");
-
-        Usuario USUARIO1 = new Usuario
-        ("senha", "nome", "cpf", "sexo", LocalDate.now(), ENDERECO, "telefone", "email", new ArrayList<Bike>());
-          UsuarioHibernate.getInstance().inserir(USUARIO1);
-          
-          List<Bike> bikes = new ArrayList();
-          
-          bikes.add(new Bike("modelo", BigDecimal.ZERO, "tipo", "cor", USUARIO1));
-          bikes.add(new Bike("modelo", BigDecimal.ZERO, "tipo1", "cor1", USUARIO1));
-          USUARIO1.setBikes(bikes);
-          UsuarioHibernate.getInstance().alterar(USUARIO1);
-    
+        System.out.println(UsuarioHibernate.getInstance().listarTodasAsBikes(UsuarioHibernate.getInstance().recuperar("cpf")).toString());
 
 }
 }

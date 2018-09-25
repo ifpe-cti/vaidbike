@@ -23,7 +23,9 @@ SOFTWARE.
  */
 package br.edu.ifpe.model.interfacesDao;
 
+import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Usuario;
+import java.util.List;
 
 /**
  *
@@ -34,5 +36,6 @@ public interface UsuarioDao extends Dao<Usuario> {
     public Usuario recuperar(String cpf);
 
     public Usuario recuperar(String login, String senha);
-
+    
+    List<Bike> listarTodasAsBikes(Usuario usuario);
 }
