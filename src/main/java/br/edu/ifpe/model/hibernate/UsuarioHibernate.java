@@ -180,7 +180,8 @@ public class UsuarioHibernate implements UsuarioDao {
         List<Bike> bikes = new ArrayList();
 
         try {
-            bikes = session.createQuery("from bike Where cod_usuario = " + usuario.getCodigo()).list();
+            bikes = (List )session.createQuery
+                ("From Bike where cod_usuario = " + usuario.getCodigo()).list();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao recuperar todos os Usuarios "
                     + "\n" + e.getMessage());

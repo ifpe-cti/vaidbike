@@ -57,7 +57,8 @@ public class Bike implements Serializable {
     public Bike() {
     }
 
-    public Bike(String modelo, BigDecimal valor, String tipo, String cor, Usuario usuario) {
+    public Bike(String modelo, BigDecimal valor, String tipo,
+            String cor, Usuario usuario) {
         this.modelo = modelo;
         this.valor = valor;
         this.tipo = tipo;
@@ -111,54 +112,37 @@ public class Bike implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 19 * hash + Objects.hashCode(this.codigo);
-        hash = 19 * hash + Objects.hashCode(this.valor);
-        hash = 19 * hash + Objects.hashCode(this.modelo);
-        hash = 19 * hash + Objects.hashCode(this.tipo);
-        hash = 19 * hash + Objects.hashCode(this.cor);
-        hash = 19 * hash + Objects.hashCode(this.usuario);
-        return hash;
+        final int HASH = 13;
+        int result = 1;
+        result += (HASH * result) + codigo.hashCode();
+        result += (HASH * result) + valor.hashCode();
+        result += (HASH * result) + modelo.hashCode();
+        result += (HASH * result) + tipo.hashCode();
+        return result += (HASH * result) + cor.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+        if (!((obj) instanceof Bike)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        
+        if (!((Bike) obj).valor.equals(this.valor))
             return false;
-        }
-        final Bike other = (Bike) obj;
-        if (!Objects.equals(this.modelo, other.modelo)) {
+        
+        if (!((Bike) obj).modelo.equals(this.modelo))
             return false;
-        }
-        if (!Objects.equals(this.tipo, other.tipo)) {
+        
+        if (!((Bike) obj).tipo.equals(this.tipo))
             return false;
-        }
-        if (!Objects.equals(this.cor, other.cor)) {
-            return false;
-        }
-        if (!Objects.equals(this.codigo, other.codigo)) {
-            return false;
-        }
-        if (!Objects.equals(this.valor, other.valor)) {
-            return false;
-        }
-        if (!Objects.equals(this.usuario, other.usuario)) {
-            return false;
-        }
-        return true;
+        
+        return ((Bike) obj).cor.equals(this.cor);
     }
 
     @Override
     public String toString() {
-        return "Bike{" + "codigo=" + codigo + ", valor=" + valor
-                + ", modelo=" + modelo + ", tipo=" + tipo + ", cor=" + cor
-                + ", usuario=" + usuario + '}';
+        return "Bike{" + "codigo=" + codigo + ", valor=" + valor + ", modelo="
+                + modelo + ", tipo=" + tipo + ", cor=" + cor + '}';
     }
 
 }

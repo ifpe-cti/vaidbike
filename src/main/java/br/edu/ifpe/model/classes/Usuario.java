@@ -214,7 +214,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "codigo=" + codigo + ", senha="
+        return "Usuario{" + "senha="
                 + senha + ", nome=" + nome + ", cpf=" + cpf + ", sexo=" + sexo
                 + ", dataNasc=" + dataNasc + ", endereco=" + endereco
                 + ", telefone=" + telefone + ", email=" + email + ", bikes="

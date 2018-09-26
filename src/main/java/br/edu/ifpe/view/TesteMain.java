@@ -39,7 +39,6 @@ import java.util.List;
 public class TesteMain {
 
     public static void main(String args[]) throws Exception {
-
         /*
         Usuario u = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
                "sexo", new Date(), end, "telefone", "email", bikes);
@@ -66,10 +65,6 @@ public class TesteMain {
         Pagamento pagamento = new Pagamento("com a bunda", BigDecimal.ZERO, locacao);
         ph.inserir(pagamento);
         
-        
-        
-
-       
 
         uh.inserir(usuario);
 
@@ -86,14 +81,18 @@ public class TesteMain {
       Usuario us = (Usuario) UsuarioHibernate.getInstance().recuperar("08558176400");
         System.out.println(us.getBikes().equals(bikes));
          */
- /* 
+        /* 
         
         
-       
-        Usuario USUARIO2 = new Usuario(
-                "login1", "senha1", "nome1", "28952871049", "sexo1",
-                LocalDate.now(), ENDERECO, "telefone1", "email1",
-                new ArrayList<Bike>());
+       Usuario usuario1 = new Usuario(
+             "senha", "nome", "28961303066", "sexo",
+            LocalDate.now(), ENDERECO1, "telefone", "email",
+            new ArrayList<Bike>());
+
+      Usuario USUARIO2 = new Usuario(
+             "senha1", "nome1", "28952871049", "sexo1",
+            LocalDate.now(), ENDERECO, "telefone1", "email1",
+            new ArrayList<Bike>());
         
         Locacao LOCACAO
                 = new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now());
@@ -113,8 +112,24 @@ public class TesteMain {
        UsuarioModel um = new UsuarioModel();
        UsuarioController uc = new UsuarioController();
        String us = uc.realizarLogin("4", "4");
-       System.out.println(us);*/
-        System.out.println(UsuarioHibernate.getInstance().listarTodasAsBikes(UsuarioHibernate.getInstance().recuperar("cpf")).toString());
-
+       System.out.println(us);
+     Endereco ENDERECO = new Endereco("estado", "cidade",
+            "cep", "bairro", "logradouro");
+    Usuario usuario1 = new Usuario(
+            "senha", "nome", "28961303066", "sexo",
+            LocalDate.now(), ENDERECO, "telefone", "email",
+            new ArrayList<Bike>());
+    
+        UsuarioHibernate.getInstance().inserir(usuario1);
+        
+        List<Bike> bikes = new ArrayList();
+        
+        bikes.add(new Bike("modelo", BigDecimal.ZERO, "tipo", "cor", usuario1));
+        bikes.add(new Bike("modelo1", BigDecimal.ZERO, "tipo1", "cor1", usuario1));
+        usuario1.setBikes(bikes);
+        UsuarioHibernate.getInstance().alterar(usuario1);
+        */
+        System.out.println(UsuarioHibernate.getInstance().listarTodasAsBikes
+        (UsuarioHibernate.getInstance().recuperar("2")));
 }
 }
