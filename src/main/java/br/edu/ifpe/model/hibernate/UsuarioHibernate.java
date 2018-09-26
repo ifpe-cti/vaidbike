@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package br.edu.ifpe.model.hibernate;
 
+import br.edu.ifpe.model.classes.Bike;
 import java.util.ArrayList;
 import java.util.List;
 import br.edu.ifpe.model.classes.Usuario;
@@ -170,6 +171,22 @@ public class UsuarioHibernate implements UsuarioDao {
         } finally {
             session.close();
             return usuarios;
+        }
+    }
+
+    @Override
+    public List<Bike> listarTodasAsBikes(Usuario usuario) {
+        Session session = this.SESSIONS.openSession();
+        List<Bike> bikes = new ArrayList();
+
+        try {
+            bikes = session.createQuery("from bike Where cod_usuario = " + usuario.getCodigo()).list();
+        } catch (Exception e) {
+            LOGGER.error("Ocorreu um problema ao recuperar todos os Usuarios "
+                    + "\n" + e.getMessage());
+        } finally {
+            session.close();
+            return bikes;
         }
     }
 
