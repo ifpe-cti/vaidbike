@@ -52,20 +52,29 @@ public class Bike implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cod_usuario")
     private Usuario usuario;
+    private boolean disponivel;
 
     @Deprecated
     public Bike() {
     }
 
-    public Bike(String modelo, BigDecimal valor, String tipo,
-            String cor, Usuario usuario) {
-        this.modelo = modelo;
+    public Bike(BigDecimal valor, String modelo, String tipo, String cor, Usuario usuario, boolean disponivel) {
+        
+        
         this.valor = valor;
+        this.modelo = modelo;
         this.tipo = tipo;
         this.cor = cor;
         this.usuario = usuario;
+        this.disponivel = disponivel;
     }
 
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+  
+    
     public BigDecimal getValor() {
         return valor;
     }
@@ -74,24 +83,20 @@ public class Bike implements Serializable {
         this.valor = valor;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public String getModelo() {
+        return modelo;
     }
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
     public String getTipo() {
         return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getCor() {
@@ -110,39 +115,67 @@ public class Bike implements Serializable {
         this.usuario = usuario;
     }
 
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
     @Override
     public int hashCode() {
-        final int HASH = 13;
-        int result = 1;
-        result += (HASH * result) + codigo.hashCode();
-        result += (HASH * result) + valor.hashCode();
-        result += (HASH * result) + modelo.hashCode();
-        result += (HASH * result) + tipo.hashCode();
-        return result += (HASH * result) + cor.hashCode();
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.codigo);
+        hash = 97 * hash + Objects.hashCode(this.valor);
+        hash = 97 * hash + Objects.hashCode(this.modelo);
+        hash = 97 * hash + Objects.hashCode(this.tipo);
+        hash = 97 * hash + Objects.hashCode(this.cor);
+        hash = 97 * hash + Objects.hashCode(this.usuario);
+        hash = 97 * hash + (this.disponivel ? 1 : 0);
+        return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (!((obj) instanceof Bike)) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        
-        if (!((Bike) obj).valor.equals(this.valor))
+        if (getClass() != obj.getClass()) {
             return false;
-        
-        if (!((Bike) obj).modelo.equals(this.modelo))
+        }
+        final Bike other = (Bike) obj;
+        if (this.disponivel != other.disponivel) {
             return false;
-        
-        if (!((Bike) obj).tipo.equals(this.tipo))
+        }
+        if (!Objects.equals(this.modelo, other.modelo)) {
             return false;
-        
-        return ((Bike) obj).cor.equals(this.cor);
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        if (!Objects.equals(this.cor, other.cor)) {
+            return false;
+        }
+        if (!Objects.equals(this.codigo, other.codigo)) {
+            return false;
+        }
+        if (!Objects.equals(this.valor, other.valor)) {
+            return false;
+        }
+        if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
+        return true;
     }
 
     @Override
     public String toString() {
-        return "Bike{" + "codigo=" + codigo + ", valor=" + valor + ", modelo="
-                + modelo + ", tipo=" + tipo + ", cor=" + cor + '}';
+        return "Bike{" + "codigo=" + codigo + ", valor=" + valor + ", modelo=" + modelo + ", tipo=" + tipo + ", cor=" + cor + ", usuario=" + usuario + ", disponivel=" + disponivel + '}';
     }
 
+    
 }
