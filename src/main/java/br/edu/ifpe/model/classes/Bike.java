@@ -58,7 +58,8 @@ public class Bike implements Serializable {
     public Bike() {
     }
 
-    public Bike(BigDecimal valor, String modelo, String tipo, String cor, Usuario usuario, boolean disponivel) {
+    public Bike(BigDecimal valor, String modelo, String tipo, String cor,
+                Usuario usuario, boolean disponivel) {
         
         
         this.valor = valor;
@@ -125,56 +126,44 @@ public class Bike implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.codigo);
-        hash = 97 * hash + Objects.hashCode(this.valor);
-        hash = 97 * hash + Objects.hashCode(this.modelo);
-        hash = 97 * hash + Objects.hashCode(this.tipo);
-        hash = 97 * hash + Objects.hashCode(this.cor);
-        hash = 97 * hash + Objects.hashCode(this.usuario);
-        hash = 97 * hash + (this.disponivel ? 1 : 0);
-        return hash;
+         final int HASH = 13;
+        BigDecimal valor, String modelo, String tipo, String cor, Usuario usuario, boolean disponivel
+        int result = 1;
+        result += (HASH * result) + codigo.hashCode();
+        result += (HASH * result) + valor.hashCode();
+        result += (HASH * result) + modelo.hashCode();
+        result += (HASH * result) + tipo.hashCode();
+        result += (HASH * result) + usuario.hashCode();
+        result += (HASH * result) + disponivel.hashCode();
+        return result += (HASH * result) + cor.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+        if (!((obj) instanceof Bike)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
+        
+        if (!((Bike) obj).valor.equals(this.valor))
             return false;
-        }
-        final Bike other = (Bike) obj;
-        if (this.disponivel != other.disponivel) {
+        
+        if (!((Bike) obj).modelo.equals(this.modelo))
             return false;
-        }
-        if (!Objects.equals(this.modelo, other.modelo)) {
+        
+        if (!((Bike) obj).tipo.equals(this.tipo))
             return false;
-        }
-        if (!Objects.equals(this.tipo, other.tipo)) {
+        
+        if (!((Bike) obj).usuario.equals(this.usuario))
             return false;
-        }
-        if (!Objects.equals(this.cor, other.cor)) {
-            return false;
-        }
-        if (!Objects.equals(this.codigo, other.codigo)) {
-            return false;
-        }
-        if (!Objects.equals(this.valor, other.valor)) {
-            return false;
-        }
-        if (!Objects.equals(this.usuario, other.usuario)) {
-            return false;
-        }
-        return true;
+        
+        return ((Bike) obj).cor.equals(this.cor);
     }
 
     @Override
     public String toString() {
-        return "Bike{" + "codigo=" + codigo + ", valor=" + valor + ", modelo=" + modelo + ", tipo=" + tipo + ", cor=" + cor + ", usuario=" + usuario + ", disponivel=" + disponivel + '}';
+        return "Bike{" + "codigo=" + codigo + ", valor=" + valor + ", 
+            modelo=" + modelo + ", tipo=" + tipo + ", cor=" + cor + ", usuario="
+                + usuario + ", disponivel=" + disponivel + '}';
     }
 
     
