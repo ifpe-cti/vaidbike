@@ -2,7 +2,10 @@ language: java
 sudo: false
 services:
   - postgresql
- postgres:
+addons:
+  postgresql: "9.3"
+  redis-server: true
+postgres:
   adapter: postgresql
   database: VaidBike
   username: postgres
@@ -17,5 +20,3 @@ jdk:
 script:
   - set -e
   - mvn clean package
-  
-  
