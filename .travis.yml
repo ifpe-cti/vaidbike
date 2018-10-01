@@ -2,8 +2,13 @@ language: java
 sudo: false
 services:
   - postgresql
-before_install:
-  - psql -c 'create database VaidBike;' -U postgres
+ postgres:
+  adapter: postgresql
+  database: VaidBike
+  username: postgres
+before_script:
+  - "psql -c 'create database VaidBike;' -U postgres"
+  - "rake db:migrate"
 cache:
   directories:
     - "$HOME/.m2"
@@ -12,4 +17,5 @@ jdk:
 script:
   - set -e
   - mvn clean package
-
+  
+  
