@@ -134,7 +134,6 @@ public class Bike implements Serializable {
         result += (HASH * result) + modelo.hashCode();
         result += (HASH * result) + tipo.hashCode();
         result += (HASH * result) + usuario.hashCode();
-        result += (HASH * result) + disponivel.hashCode();
         return result += (HASH * result) + cor.hashCode();
     }
 
