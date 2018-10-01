@@ -161,8 +161,8 @@ public class Bike implements Serializable {
 
     @Override
     public String toString() {
-        return "Bike{" + "codigo=" + codigo + ", valor=" + valor + ", 
-            modelo=" + modelo + ", tipo=" + tipo + ", cor=" + cor + ", usuario="
+        return "Bike{" + "codigo=" + codigo + ", valor=" + valor + ",  modelo="
+            + modelo + ", tipo=" + tipo + ", cor=" + cor + ", usuario="
                 + usuario + ", disponivel=" + disponivel + '}';
     }
 
