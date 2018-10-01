@@ -52,6 +52,7 @@ public class Bike implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cod_usuario")
     private Usuario usuario;
+    @Column
     private boolean disponivel;
 
     @Deprecated
@@ -126,8 +127,7 @@ public class Bike implements Serializable {
 
     @Override
     public int hashCode() {
-         final int HASH = 13;
-        BigDecimal valor, String modelo, String tipo, String cor, Usuario usuario, boolean disponivel
+        final int HASH = 13;
         int result = 1;
         result += (HASH * result) + codigo.hashCode();
         result += (HASH * result) + valor.hashCode();
