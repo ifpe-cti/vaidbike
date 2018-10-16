@@ -81,7 +81,7 @@ public class TesteMain {
       Usuario us = (Usuario) UsuarioHibernate.getInstance().recuperar("08558176400");
         System.out.println(us.getBikes().equals(bikes));
          */
-        /* 
+ /* 
         
         
        Usuario usuario1 = new Usuario(
@@ -128,8 +128,19 @@ public class TesteMain {
         bikes.add(new Bike("modelo1", BigDecimal.ZERO, "tipo1", "cor1", usuario1));
         usuario1.setBikes(bikes);
         UsuarioHibernate.getInstance().alterar(usuario1);
-        */
+        
         System.out.println(UsuarioHibernate.getInstance().listarTodasAsBikes
         (UsuarioHibernate.getInstance().recuperar("2")));
-}
+
+         */
+
+        Endereco ENDERECO = new Endereco("estado", "cidade",
+                "cep", "bairro", "logradouro");
+        Usuario usuario1 = new Usuario(
+                "senha", "nome", "11847302025", "sexo",
+                LocalDate.now(), ENDERECO, "telefone", "email",
+                new ArrayList<Bike>());
+
+        UsuarioHibernate.getInstance().inserir(usuario1);
+    }
 }

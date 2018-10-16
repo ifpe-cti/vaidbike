@@ -19,7 +19,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
-
 package br.edu.ifpe.model.hibernate;
 
 import br.edu.ifpe.model.classes.Bike;
@@ -27,6 +26,8 @@ import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +36,10 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
+/*
  *
  * @author Carlos André <carloscordeiroconsultor@gmail.com>
- 
+ */
 public class LocacaoHibernateTest {
 
     private static final LocacaoHibernate LOCACAOHIBERNATE
@@ -61,7 +62,8 @@ public class LocacaoHibernateTest {
             new ArrayList<Bike>());
 
     private static final Locacao LOCACAO
-            = new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now());
+            = new Locacao(USUARIO1, USUARIO2,
+                    LocalDateTime.now(), LocalDateTime.now());
 
     @BeforeClass
     public static void deveInserirLocacaoEUsuariosNoBanco() {
@@ -73,16 +75,21 @@ public class LocacaoHibernateTest {
     @Test
     public void deveRecuperarLocacaoDoBanco() {
         List<Locacao> locacoes = LOCACAOHIBERNATE.listarTodos();
-        assertEquals("TC001", LOCACAO,locacoes.get(locacoes.size() - 1));
+        assertEquals("TC001", LOCACAO, locacoes.get(locacoes.size() - 1));
     }
 
     @Test
     public void deveAlterarLocacaoDoBanco() {
-        LOCACAO.setDevolucao(LocalDate.of(2013, Month.JUNE, 20));
-        LOCACAO.setRetirada(LocalDate.of(2013, Month.APRIL, 20));
+        LOCACAO.setDevolucao(
+                LocalDateTime.of(LocalDate.of(2013, Month.JUNE, 20),
+                        LocalTime.of(10, 10)));
+        LOCACAO.setRetirada
+                (LocalDateTime.of(LocalDate.of(2013, Month.JUNE, 20),
+                        LocalTime.of(13, 13)));
+                
         LOCACAOHIBERNATE.alterar(LOCACAO);
         List<Locacao> locacoes = LOCACAOHIBERNATE.listarTodos();
-        assertEquals("TC002", LOCACAO, locacoes.get(locacoes.size() - 1));        
+        assertEquals("TC002", LOCACAO, locacoes.get(locacoes.size() - 1));
     }
 
     @Test
@@ -98,4 +105,3 @@ public class LocacaoHibernateTest {
         LOCACAOHIBERNATE.deletar(LOCACAO);
     }
 }
-*/

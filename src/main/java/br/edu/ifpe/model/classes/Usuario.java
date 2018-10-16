@@ -25,6 +25,7 @@ package br.edu.ifpe.model.classes;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -85,6 +86,10 @@ public class Usuario implements Serializable {
         this.telefone = telefone;
         this.email = email;
         this.bikes = bikes;
+    }
+
+    public Usuario(String login, String senha, String nome, String string, String sexo, LocalDate now, Endereco ENDERECO1, String telefone, String email, ArrayList<Bike> arrayList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Integer getCodigo() {

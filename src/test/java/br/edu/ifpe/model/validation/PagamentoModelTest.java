@@ -32,6 +32,7 @@ import br.edu.ifpe.model.hibernate.LocacaoHibernate;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.AfterClass;
@@ -44,7 +45,7 @@ import org.junit.BeforeClass;
  * @author Milena Macedo <milenasantosmcd@gmail.com>
  */
 public class PagamentoModelTest {
-    /*
+    
     private static final PagamentoModel PAGAMENTOMODEL = new PagamentoModel();
     
     private static final Endereco ENDERECO = new Endereco("estado", "cidade",
@@ -53,25 +54,26 @@ public class PagamentoModelTest {
     private static final Endereco ENDERECO1 = new Endereco("e", "c",
             "cc", "b", "l");
 
-    private static final Usuario USUARIO1 = new Usuario(
-            "login", "senha", "nome", "28961303066", "sexo",
+     private static Usuario usuario1 = new Usuario(
+             "senha", "nome", "48137057072", "sexo",
             LocalDate.now(), ENDERECO1, "telefone", "email",
             new ArrayList<Bike>());
 
     private static final Usuario USUARIO2 = new Usuario(
-            "login1", "senha1", "nome1", "28952871049", "sexo1",
+             "senha1", "nome1", "00952962047", "sexo1",
             LocalDate.now(), ENDERECO, "telefone1", "email1",
             new ArrayList<Bike>());
 
     private static final Locacao LOCACAO
-            = new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now()); 
+            = new Locacao(usuario1, USUARIO2, LocalDateTime.now(),
+                    LocalDateTime.now()); 
 
     private static Pagamento PAGAMENTO = 
             new Pagamento("tipo", new BigDecimal("20.00"),LOCACAO);
 
       @BeforeClass
     public static void deveInserirNoBD() throws Exception {
-        UsuarioHibernate.getInstance().inserir(USUARIO1);
+        UsuarioHibernate.getInstance().inserir(usuario1);
         UsuarioHibernate.getInstance().inserir(USUARIO2);
         LocacaoHibernate.getInstance().inserir(LOCACAO);
         PAGAMENTOMODEL.inserir(PAGAMENTO);
@@ -79,7 +81,10 @@ public class PagamentoModelTest {
 
     @Test
     public void deveRecuperarDoBD() throws Exception{
-        assertEquals("TC001",PAGAMENTO,PAGAMENTOMODEL.recuperar(1));
+        int quantidadePagamentos = PAGAMENTOMODEL.listarTodos().size();
+        int indice = PAGAMENTOMODEL.listarTodos().get
+                    (quantidadePagamentos - 1).getCodigo();
+        assertEquals("TC001",PAGAMENTO,PAGAMENTOMODEL.recuperar(indice));
     }
 
     @Test
@@ -91,8 +96,8 @@ public class PagamentoModelTest {
     }
     
     @AfterClass
-    public static void deveLimparOBancoDados() {
+    public static void deveLimparOBancoDados() throws Exception {
         PAGAMENTOMODEL.deletar(PAGAMENTO);
     } 
-    */
+
 }

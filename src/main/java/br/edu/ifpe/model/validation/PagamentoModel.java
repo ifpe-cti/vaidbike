@@ -25,9 +25,11 @@ package br.edu.ifpe.model.validation;
 
 import java.util.List;
 import br.edu.ifpe.model.classes.Pagamento;
+import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.hibernate.PagamentoHibernate;
 import br.edu.ifpe.model.interfacesDao.Dao;
 import br.edu.ifpe.model.interfacesDao.PagamentoDao;
+import br.edu.ifpe.model.interfacesDao.UsuarioDao;
 
 /**
  *
@@ -69,4 +71,14 @@ public class PagamentoModel {
         }
 
     }
+
+    public void deletar(Pagamento pagamento) throws Exception {
+        if (((PagamentoDao) DAO).recuperar(pagamento.getCodigo()) != null) {
+            DAO.deletar(pagamento);
+        } else {
+            throw new Exception("Erro ao deletar Pagamento, na classe "
+                    + "PagamentoModel!");
+        }
+    }
+
 }
