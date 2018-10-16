@@ -93,19 +93,28 @@ public class UsuarioController {
         instaceUSUARIOMODEL.alterar(getUsuarioLogado());
         return "mostrarDadosUsuario.xhtml";
     }
-    
+
     public String alterarBike() throws Exception {
-        getUsuarioLogado().setBikes(bikes);
+        int index=-1;
+        for(int i=0;i<getUsuarioLogado().getBikes().size();i++){
+            if (getUsuarioLogado().getBikes().get(i).getCodigo() == bike.getCodigo()) {
+                index = i;
+            }
+        }
+        if (index != -1) {
+        getUsuarioLogado().getBikes().set(index, bike);
+        
+        //getUsuarioLogado().setBikes(bikes);
         instaceUSUARIOMODEL.alterar(getUsuarioLogado());
-        return "";
+        }
+        return "listarBike.xhtml";
     }
 
     public String cadastrarBike() {
         String ret = "";
         try {
-
             this.bike.setUsuario(getUsuarioLogado());
-            
+
             bikes.add(this.bike);
 
             getUsuarioLogado().setBikes(bikes);
@@ -122,6 +131,18 @@ public class UsuarioController {
 
         return ret;
 
+    }
+
+    public List<Bike> listarBikes() throws Exception {
+      /*  List<Bike> bikesUsuarioLogado = getUsuarioLogado().getBikes();
+        
+        for(Bike bik : bikesUsuarioLogado){
+            if(bik.hashCode() == bike.hashCode()){
+                this.bike = bik;
+            }
+        }*/
+                
+        return  this.instaceUSUARIOMODEL.listarBikes(getUsuarioLogado());
     }
 
     public Usuario getCadUsuario() {

@@ -24,7 +24,11 @@ SOFTWARE.
 package br.edu.ifpe.model.classes;
 
 import java.io.Serializable;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,6 +37,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  *
@@ -52,16 +57,16 @@ public class Locacao implements Serializable {
     @JoinColumn(name = "cod_locatario")
     private Usuario locatario;
     @Column
-    private LocalDate retirada;
+    private LocalDateTime retirada;
     @Column
-    private LocalDate devolucao;
+    private LocalDateTime devolucao;
 
     @Deprecated
     public Locacao() {
     }
 
     public Locacao(Usuario cliente, Usuario locatario,
-            LocalDate retirada, LocalDate devolucao) {
+            LocalDateTime retirada, LocalDateTime devolucao) {
         this.cliente = cliente;
         this.locatario = locatario;
         this.retirada = retirada;
@@ -80,20 +85,30 @@ public class Locacao implements Serializable {
         return locatario;
     }
 
-    public LocalDate getRetirada() {
+    public LocalDateTime getRetirada() {
         return retirada;
     }
 
-    public void setRetirada(LocalDate retirada) {
+    public void setRetirada(LocalDateTime retirada) {
         this.retirada = retirada;
     }
 
-    public LocalDate getDevolucao() {
+    public LocalDateTime getDevolucao() {
         return devolucao;
     }
 
-    public void setDevolucao(LocalDate devolucao) {
+    public void setDevolucao(LocalDateTime devolucao) {
         this.devolucao = devolucao;
+    }
+    
+    public Long getTempoLocacao(){
+        
+        Instant retInst = this.retirada.toInstant(ZoneOffset.UTC);
+        Instant devInst = this.devolucao.toInstant(ZoneOffset.UTC);
+        
+        Duration dur = Duration.between(retInst, devInst);
+        
+        return dur.toHours();
     }
 
     @Override
@@ -130,4 +145,16 @@ public class Locacao implements Serializable {
                 + cliente + ", locatario=" + locatario
                 + ", retirada=" + retirada + ", devolucao=" + devolucao + '}';
     }
+    
+    public static void main(String[] args) {
+        Locacao loc = new Locacao();
+        
+        LocalDateTime dateTime = LocalDateTime.now();
+        loc.setDevolucao(dateTime.plusHours(20));
+        loc.setRetirada(dateTime);
+        
+        System.out.println(loc.getTempoLocacao());
+                
+    }
+    
 }
