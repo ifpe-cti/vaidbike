@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Agendamentos</title>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="menuUsuario.xhtml">
+            <ui:define name="center" >
+
+
+                <h:form id="formListarBike">
+                    <p:dataTable var="item"   
+                                  rowKey="#{item.codigo}" 
+                                 selectionMode="single"  
+                                 value="#{usuarioController.listarBikes()}">
+                         <f:facet name="header">
+                            Lista de Bikes
+                        </f:facet>
+                        <p:column headerText="Modelo">
+                            <h:outputText value="#{item.modelo}" />
+                        </p:column>
+                         <p:column headerText="Tipo">
+                             <h:outputText value="#{item.tipo}" />
+                        </p:column>
+
+                    </p:dataTable>
+
+                    
+
+                    <p:commandButton value="Visualizar" oncomplete="PF('widDialVisualizaAgen').show()"
+                                     update=":formListarBike" icon="fa fa-search"/>
+
+                    <p:dialog id="dialVisualizarBike" visible="false"  header="Informações da Bike"
+                              resizable="false" widgetVar="widDialVisualizaAgen">
+                        <p:panelGrid columns="2">
+                          
+
+                            <h:outputText value="Modelo:"/>
+                            <h:outputText value="#{usuarioController.bike.modelo}"/>
+
+                            <h:outputText value="Cor:"/>
+                            <h:outputText value="#{usuarioController.bike.cor}"/>
+
+                            <h:outputText value="Valor:"/>
+                            <h:outputText value="#{usuarioController.bike.valor}"/>
+
+                            <h:outputText value="Tipo:"/>
+                            <h:outputText value="#{usuarioController.bike.tipo}"/>
+
+                        </p:panelGrid>
+
+                    </p:dialog>
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

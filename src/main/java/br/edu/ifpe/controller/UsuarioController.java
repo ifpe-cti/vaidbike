@@ -93,19 +93,17 @@ public class UsuarioController {
         instaceUSUARIOMODEL.alterar(getUsuarioLogado());
         return "mostrarDadosUsuario.xhtml";
     }
-    
-    public String alterarBike() throws Exception {
+
+    public void alterarBike() throws Exception {
         getUsuarioLogado().setBikes(bikes);
         instaceUSUARIOMODEL.alterar(getUsuarioLogado());
-        return "";
     }
 
     public String cadastrarBike() {
         String ret = "";
         try {
-
             this.bike.setUsuario(getUsuarioLogado());
-            
+
             bikes.add(this.bike);
 
             getUsuarioLogado().setBikes(bikes);
@@ -122,6 +120,18 @@ public class UsuarioController {
 
         return ret;
 
+    }
+
+    public List<Bike> listarBikes() throws Exception {
+      /*  List<Bike> bikesUsuarioLogado = getUsuarioLogado().getBikes();
+        
+        for(Bike bik : bikesUsuarioLogado){
+            if(bik.hashCode() == bike.hashCode()){
+                this.bike = bik;
+            }
+        }*/
+                
+        return  this.instaceUSUARIOMODEL.listarBikes(getUsuarioLogado());
     }
 
     public Usuario getCadUsuario() {

@@ -23,6 +23,7 @@ SOFTWARE.
  */
 package br.edu.ifpe.model.validation;
 
+import br.edu.ifpe.model.classes.Bike;
 import java.util.List;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
@@ -100,6 +101,18 @@ public class UsuarioModel {
         }
     }
 
+     public List<Bike> listarBikes(Usuario user) throws Exception{
+         
+         List<Bike> bike = ((UsuarioDao) DAO).listarTodasAsBikes(user);
+     
+          if (bike == null) {
+            throw new Exception
+                ("Erro ao recuperar a lista de usuários no model");
+        } else {
+            return bike;
+        }
+    }
+     
     public Usuario recuperar(String login, String senha) throws Exception {
 
         Usuario usuario = ((UsuarioDao) DAO).recuperar(login, senha);
@@ -110,4 +123,5 @@ public class UsuarioModel {
             return usuario;
         }
     }
+   
 }
