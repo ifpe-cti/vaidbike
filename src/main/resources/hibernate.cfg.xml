@@ -50,7 +50,7 @@ Contributor(s):
         jdbc:postgresql://localhost:5432/VaidBike</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">ifpe</property>
-    <property name="hibernate.hbm2ddl.auto">create</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="br.edu.ifpe.model.classes.Bike"/>
     <mapping class="br.edu.ifpe.model.classes.Endereco"/>
     <mapping class="br.edu.ifpe.model.classes.Usuario"/>

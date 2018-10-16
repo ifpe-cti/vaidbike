@@ -94,9 +94,20 @@ public class UsuarioController {
         return "mostrarDadosUsuario.xhtml";
     }
 
-    public void alterarBike() throws Exception {
-        getUsuarioLogado().setBikes(bikes);
+    public String alterarBike() throws Exception {
+        int index=-1;
+        for(int i=0;i<getUsuarioLogado().getBikes().size();i++){
+            if (getUsuarioLogado().getBikes().get(i).getCodigo() == bike.getCodigo()) {
+                index = i;
+            }
+        }
+        if (index != -1) {
+        getUsuarioLogado().getBikes().set(index, bike);
+        
+        //getUsuarioLogado().setBikes(bikes);
         instaceUSUARIOMODEL.alterar(getUsuarioLogado());
+        }
+        return "listarBike.xhtml";
     }
 
     public String cadastrarBike() {

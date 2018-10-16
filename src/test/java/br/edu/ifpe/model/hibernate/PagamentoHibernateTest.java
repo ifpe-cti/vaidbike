@@ -41,7 +41,7 @@ import org.junit.Ignore;
 /**
  *
  * @author Milena Macedo <milenasantosmcd@gmail.com>
- */
+ 
 public class PagamentoHibernateTest {
 
     private static final PagamentoHibernate PAGAMENTOHIBERNATE
@@ -105,3 +105,4 @@ public class PagamentoHibernateTest {
     }
 
 }
+*/

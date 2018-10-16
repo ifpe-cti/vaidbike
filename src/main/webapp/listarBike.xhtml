@@ -18,30 +18,44 @@
 
                 <h:form id="formListarBike">
                     <p:dataTable var="item"   
-                                  rowKey="#{item.codigo}" 
+                                 rowKey="#{item.codigo}" 
                                  selectionMode="single"  
-                                 value="#{usuarioController.listarBikes()}">
-                         <f:facet name="header">
+                                 value="#{usuarioController.listarBikes()}"
+                                 selection="#{usuarioController.bike}">
+                        <f:facet name="header">
                             Lista de Bikes
                         </f:facet>
                         <p:column headerText="Modelo">
                             <h:outputText value="#{item.modelo}" />
                         </p:column>
-                         <p:column headerText="Tipo">
-                             <h:outputText value="#{item.tipo}" />
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{item.tipo}" />
+
                         </p:column>
+                        <p:column headerText="Opções">
+
+                            <p:commandButton value="Visualizar" 
+                                             oncomplete="PF('widDialVisualizaAgen').show()"
+                                             update=":formListarBike" icon="fa fa-search"
+                                             />
+
+                            <p:commandButton value="Alterar dados"
+                                             action="alterarBike.xhtml"
+                                             icon="fa fa-paint-brush"
+                                             />
+                            
+                           
+                        </p:column>
+
 
                     </p:dataTable>
 
-                    
 
-                    <p:commandButton value="Visualizar" oncomplete="PF('widDialVisualizaAgen').show()"
-                                     update=":formListarBike" icon="fa fa-search"/>
 
                     <p:dialog id="dialVisualizarBike" visible="false"  header="Informações da Bike"
                               resizable="false" widgetVar="widDialVisualizaAgen">
                         <p:panelGrid columns="2">
-                          
+
 
                             <h:outputText value="Modelo:"/>
                             <h:outputText value="#{usuarioController.bike.modelo}"/>
@@ -58,6 +72,48 @@
                         </p:panelGrid>
 
                     </p:dialog>
+<!--
+
+                        <p:dialog id="dialAlterarBike" visible="false"  header="Informações da Bike"
+                                  resizable="false" widgetVar="widDialAlterarBike">
+                            <p:panelGrid columns="2">
+
+
+                                <h:outputText value="Modelo:"/>
+                                <p:inputText id="txtModelo" value="#{usuarioController.bike.modelo}"
+                                             required="true" requiredMessage="Campo Obrigatório!"
+                                             style="font-weight: bold;"/>
+                                <p:message for='txtModelo' />
+
+                                <h:outputText value="Cor:"/>
+                                <p:inputText id="txtCor" value="#{usuarioController.bike.cor}"
+                                             required="true" requiredMessage="Campo Obrigatório!"
+                                             style="font-weight: bold;"/>
+
+                                <h:outputText value="Valor:"/>
+                                <p:inputText id="txtValor" value="#{usuarioController.bike.valor}"
+                                             required="true" requiredMessage="Campo Obrigatório!"
+                                             style="font-weight: bold;"/>
+                                <p:message for='txtValor' />
+
+                                <h:outputText value="Tipo:"/>
+                                <h:outputText value="Tipo" style="font-weight: bold; margin-left:5em ;"/>
+                                <p:selectOneMenu id="txtTipo" value="#{usuarioController.bike.tipo}"
+                                                 required="true" 
+                                                 requiredMessage="Campo Obrigatório!"
+                                                 style="font-weight: bold;">
+                                    <f:selectItem itemValue="Infantil" itemLabel="Infantil"/>
+                                    <f:selectItem itemValue="Adulto" itemLabel="Adulto"/>
+                                    <f:selectItem itemLabel="Escolha"/>
+                                </p:selectOneMenu>
+                                <p:message for='txtTipo'/>
+
+
+                            </p:panelGrid>
+
+
+                        </p:dialog>-->
+
                 </h:form>
 
             </ui:define>

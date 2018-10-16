@@ -37,7 +37,7 @@ import org.junit.Test;
 /**
  *
  * @author Lucas Mendes <lucas.mendes147@live.com>
- */
+
 
 public class UsuarioHibernateTest {
 
@@ -116,3 +116,4 @@ public class UsuarioHibernateTest {
         USUARIOHIBERNATE.deletar(USUARIO2);
     }
 }
+ */
