@@ -134,11 +134,11 @@ public class TesteMain {
 
          */
 
-        Endereco ENDERECO = new Endereco("estado", "cidade",
-                "cep", "bairro", "logradouro");
+        Endereco ENDERECO = new Endereco("estadosdfsd", "cidadsdfsde",
+                "cesdfsdp", "baisdfsdfrro", "lograsdfsdfdouro");
         Usuario usuario1 = new Usuario(
-                "senha", "nome", "11847302025", "sexo",
-                LocalDate.now(), ENDERECO, "telefone", "email",
+                "senhagg", "nomeggg", "11847302025", "sexoggg",
+                LocalDate.now(), ENDERECO, "telefonggge", "emagggil",
                 new ArrayList<Bike>());
 
         UsuarioHibernate.getInstance().inserir(usuario1);

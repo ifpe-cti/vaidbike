@@ -49,12 +49,6 @@
                                      style="font-weight: bold;"/>
                         <p:message for='txtNome' />
 
-                        <h:outputText value="CPF" style="font-weight: bold; margin-left:5em ;"/>
-                        <p:inputMask id="txtCPF" value="#{usuarioController.usuarioLogado.cpf}" 
-                                     mask="99999999999" style="font-weight: bold;"
-                                     required="true" requiredMessage="Campo Obrigatório!"/>
-                        <p:message for='txtCPF' />
-
                         <h:outputText value="Data de Nascimento" style="font-weight: bold; margin-left:5em ;"/>
                         <p:calendar id="txtDataNasc" 
                                     value="#{usuarioController.usuarioLogado.dataNasc}"

@@ -58,11 +58,18 @@ public class UsuarioModel {
     }
 
     public void alterar(Usuario usuario) throws Exception {
-        if (((UsuarioDao) DAO).recuperar(usuario.getCodigo()) != null) {
-            DAO.alterar(usuario);
+        if (VALIDACAOCPF.isCPF(usuario.getCpf())) {
+            if (((UsuarioDao) DAO).recuperar(usuario.getCodigo()) != null) {
+                DAO.alterar(usuario);
+            } else {
+                throw new Exception
+                    ("Erro ao alterar o usuário, no UsuarioModel!");
+            }
+
         } else {
-            throw new Exception("Erro ao alterar o usuário, no UsuarioModel!");
+            throw new Exception("Erro na validação de Cpf!");
         }
+
     }
 
     public Usuario recuperar(Integer codigo) throws Exception {
@@ -101,18 +108,18 @@ public class UsuarioModel {
         }
     }
 
-     public List<Bike> listarBikes(Usuario user) throws Exception{
-         
-         List<Bike> bike = ((UsuarioDao) DAO).listarTodasAsBikes(user);
-     
-          if (bike == null) {
+    public List<Bike> listarBikes(Usuario user) throws Exception {
+
+        List<Bike> bike = ((UsuarioDao) DAO).listarTodasAsBikes(user);
+
+        if (bike == null) {
             throw new Exception
                 ("Erro ao recuperar a lista de usuários no model");
         } else {
             return bike;
         }
     }
-     
+
     public Usuario recuperar(String login, String senha) throws Exception {
 
         Usuario usuario = ((UsuarioDao) DAO).recuperar(login, senha);
@@ -123,5 +130,5 @@ public class UsuarioModel {
             return usuario;
         }
     }
-   
+
 }

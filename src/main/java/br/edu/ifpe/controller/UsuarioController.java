@@ -40,33 +40,34 @@ public class UsuarioController {
                 .getSessionMap().put("usuarioLogado", usuarioLogado);
     }
 
-    public String realizarLogin(String senha, String email) throws Exception {
+    public String realizarLogin(String senha, String email) {
         Usuario user = null;
         String rediricionarPagina = "";
-        senha = CriptografiaMD5.md5(senha);
-        user = instaceUSUARIOMODEL.recuperar(email, senha);
 
-        if (user != null) {
+        try {
+            senha = CriptografiaMD5.md5(senha);
+            user = instaceUSUARIOMODEL.recuperar(email, senha);
 
-            if (user.getSenha().equalsIgnoreCase(senha)) {
-                this.setUsuarioLogado(user);
-                rediricionarPagina = "menuUsuario.xhtml";
+            if (user != null) {
 
-            } else {
-                user = null;
-                FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no Login!",
-                                "Senha ou Login Inválidos"));
+                if (user.getSenha().equals(senha)) {
+                    this.setUsuarioLogado(user);
+                    rediricionarPagina = "menuUsuario.xhtml";
 
+                } else {
+                    rediricionarPagina = "index.xhtml";
+                }
             }
-        } else {
-            user = null;
+        } catch (Exception realizarLoginException) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha no Login!",
-                            "Senha ou Login Inválidos"));
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Falha no Login!", "Senha ou Login Inválidos"));
+            rediricionarPagina = "index.xhtml";
+
+        } finally {
+            return rediricionarPagina;
         }
 
-        return rediricionarPagina;
     }
 
     public String registrarUsuario() throws Exception {
@@ -88,26 +89,44 @@ public class UsuarioController {
 
     }
 
-    public String alterarUsuario() throws Exception {
-        getUsuarioLogado().setSenha(CriptografiaMD5.md5(getUsuarioLogado().getSenha()));
-        instaceUSUARIOMODEL.alterar(getUsuarioLogado());
-        return "mostrarDadosUsuario.xhtml";
+    public String alterarUsuario() {
+        try {
+            getUsuarioLogado().setSenha
+                    (CriptografiaMD5.md5(getUsuarioLogado().getSenha()));
+            instaceUSUARIOMODEL.alterar(getUsuarioLogado());
+
+        } catch (Exception alterarUsuarioException) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha!",
+                            "Dados Inválidos"));
+        } finally {
+            return "mostrarDadosUsuario.xhtml";
+        }
     }
 
-    public String alterarBike() throws Exception {
-        int index=-1;
-        for(int i=0;i<getUsuarioLogado().getBikes().size();i++){
-            if (getUsuarioLogado().getBikes().get(i).getCodigo() == bike.getCodigo()) {
-                index = i;
+    public String alterarBike() {
+        try {
+            int index = -1;
+            for (int i = 0; i < getUsuarioLogado().getBikes().size(); i++) {
+                if (getUsuarioLogado().getBikes().get(i).getCodigo() 
+                            == bike.getCodigo()) {
+                    index = i;
+                }
             }
+            if (index != -1) {
+                getUsuarioLogado().getBikes().set(index, bike);
+
+                //getUsuarioLogado().setBikes(bikes);
+                instaceUSUARIOMODEL.alterar(getUsuarioLogado());
+            }
+
+        } catch (Exception alterarBikeException) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha!",
+                            "Dados Inválidos"));
+        } finally {
+            return "listarBike.xhtml";
         }
-        if (index != -1) {
-        getUsuarioLogado().getBikes().set(index, bike);
-        
-        //getUsuarioLogado().setBikes(bikes);
-        instaceUSUARIOMODEL.alterar(getUsuarioLogado());
-        }
-        return "listarBike.xhtml";
     }
 
     public String cadastrarBike() {
@@ -134,15 +153,25 @@ public class UsuarioController {
     }
 
     public List<Bike> listarBikes() throws Exception {
-      /*  List<Bike> bikesUsuarioLogado = getUsuarioLogado().getBikes();
+         List<Bike> bikes = new ArrayList();
+        try{
+            bikes = this.instaceUSUARIOMODEL.listarBikes(getUsuarioLogado());
+            
+        }catch(Exception listarBikeException){
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha!",
+                            "Algo inesperado ocorreu ao recuperar as bikes"));
+        }finally{
+            return bikes;
+        }
+        /*  List<Bike> bikesUsuarioLogado = getUsuarioLogado().getBikes();
         
         for(Bike bik : bikesUsuarioLogado){
             if(bik.hashCode() == bike.hashCode()){
                 this.bike = bik;
             }
         }*/
-                
-        return  this.instaceUSUARIOMODEL.listarBikes(getUsuarioLogado());
+        
     }
 
     public Usuario getCadUsuario() {
