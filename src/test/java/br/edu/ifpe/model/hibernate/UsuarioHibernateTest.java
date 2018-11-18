@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -69,19 +70,11 @@ public class UsuarioHibernateTest {
 
     @Test
     public void deveRecuperarTodosUsuariosTest() {
-        ArrayList<Usuario> usuarios = new ArrayList();
-        ArrayList<Usuario> usuariosRecuperadosDoBanco
+       ArrayList<Usuario> usuariosRecuperadosDoBanco
                 = (ArrayList<Usuario>) USUARIOHIBERNATE.listarTodos();
-
-        if (usuariosRecuperadosDoBanco.get(0).equals(usuario1)) {
-            usuarios.add(usuario1);
-            usuarios.add(USUARIO2);
-        } else {
-            usuarios.add(USUARIO2);
-            usuarios.add(usuario1);
-        }
-
-        assertEquals("TC005", usuarios, usuariosRecuperadosDoBanco);
+        
+        assertTrue("TC001",usuariosRecuperadosDoBanco.contains(USUARIO2));
+        assertTrue("TC002",usuariosRecuperadosDoBanco.contains(usuario1));
     }
     
     @Test

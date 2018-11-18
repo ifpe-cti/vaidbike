@@ -75,7 +75,7 @@ public class LocacaoHibernateTest {
     @Test
     public void deveRecuperarLocacaoDoBanco() {
         List<Locacao> locacoes = LOCACAOHIBERNATE.listarTodos();
-        assertEquals("TC001", LOCACAO, locacoes.get(locacoes.size() - 1));
+        assertEquals("TC001", LOCACAO, locacoes.get(locacoes.size() -1 ));
     }
 
     @Test

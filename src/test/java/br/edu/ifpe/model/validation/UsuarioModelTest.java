@@ -32,6 +32,7 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -83,10 +84,11 @@ public class UsuarioModelTest {
 
     @Test
     public void deveRecuperarTodosUsuariosTest() throws Exception {
-        List<Usuario> usuarios = new ArrayList();
-        usuarios.add(USUARIO2);
-        usuarios.add(usuario1);
-        assertEquals("TC003", usuarios, USUARIOMODEL.listarTodos());
+     ArrayList<Usuario> usuariosRecuperadosDoBanco
+                = (ArrayList<Usuario>) USUARIOMODEL.listarTodos();
+        
+        assertTrue("TC003",usuariosRecuperadosDoBanco.contains(USUARIO2));
+        assertTrue("TC004",usuariosRecuperadosDoBanco.contains(usuario1));
     }
 
     @Test(expected = NullPointerException.class)
