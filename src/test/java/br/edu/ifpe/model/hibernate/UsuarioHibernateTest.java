@@ -78,17 +78,6 @@ public class UsuarioHibernateTest {
     }
     
     @Test
-    public void deveRecuperarUsuarioPorId(){
-        List<Usuario>usuarios = USUARIOHIBERNATE.listarTodos();
-        
-        if(usuarios.get(usuarios.size() - 1).equals(usuario1)){
-            assertEquals("TC002", usuario1,usuarios.get(usuarios.size() - 1));
-        }else{
-            assertEquals("TC002", USUARIO2,usuarios.get(usuarios.size() - 1));
-        }
-    }
-    
-    @Test
     public void deveRecuperarPorCpfUsuarioTest() {
         assertEquals("TC003", USUARIO2,
                 USUARIOHIBERNATE.recuperar("28952871049"));

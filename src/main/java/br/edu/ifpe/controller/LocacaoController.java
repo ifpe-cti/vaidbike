@@ -50,7 +50,7 @@ public class LocacaoController {
 
     }
 
-    public String inserir() throws Exception {
+    public String inserir() {
         try {
             this.instanceLocacaoModel.inserir(this.cadLocacao);
             this.cadLocacao = new Locacao();
@@ -78,8 +78,18 @@ public class LocacaoController {
 
     }
 
-    public List<Locacao> listarTodos() throws Exception {
-       return this.instanceLocacaoModel.listarTodos();
+    public List<Locacao> listarTodos() {
+        List<Locacao> locacoes = null;
+        try{
+            locacoes = this.instanceLocacaoModel.listarTodos();
+        }catch(Exception listarTodasAsLocacoesException){
+            FacesContext.getCurrentInstance().addMessage
+                    (null, new FacesMessage
+                            ("Ocorreu um erro ao recuperar as locações."));          
+        }finally{
+            return locacoes;
+        }
+        
     }
 
     public List<Locacao> retornarListaLocacaoCliente(Usuario cliente) throws Exception {

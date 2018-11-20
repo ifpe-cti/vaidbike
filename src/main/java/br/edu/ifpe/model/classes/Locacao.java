@@ -60,6 +60,8 @@ public class Locacao implements Serializable {
     private LocalDateTime retirada;
     @Column
     private LocalDateTime devolucao;
+    @Column
+    private boolean disponivel;
 
     @Deprecated
     public Locacao() {
@@ -71,6 +73,7 @@ public class Locacao implements Serializable {
         this.locatario = locatario;
         this.retirada = retirada;
         this.devolucao = devolucao;
+        this.disponivel = true;
     }
 
     public Integer getCodigo() {
@@ -100,6 +103,14 @@ public class Locacao implements Serializable {
     public void setDevolucao(LocalDateTime devolucao) {
         this.devolucao = devolucao;
     }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
     
     public Long getTempoLocacao(){
         
@@ -115,10 +126,10 @@ public class Locacao implements Serializable {
     public int hashCode() {
         final int HASH = 11;
         int result = 1;
-        result = (HASH * result) + codigo.hashCode();
-        result = (HASH * result) + cliente.hashCode();
-        result = (HASH * result) + locatario.hashCode();
-        result = (HASH * result) + retirada.hashCode();
+        result += (HASH * result) + codigo.hashCode();
+        result += (HASH * result) + cliente.hashCode();
+        result += (HASH * result) + locatario.hashCode();
+        result += (HASH * result) + retirada.hashCode();
         return (HASH * result) + devolucao.hashCode();
     }
 
@@ -136,15 +147,19 @@ public class Locacao implements Serializable {
         if (!((Locacao) obj).retirada.equals(this.retirada)) 
             return false;
 
-        return (((Locacao) obj).devolucao.equals(this.devolucao));
+        if (!((Locacao) obj).devolucao.equals(this.devolucao))
+            return false;
+        
+        return ((Locacao) obj).disponivel == this.disponivel;
     }
 
     @Override
     public String toString() {
-        return "Locacao{" + "codigo=" + codigo + ", cliente="
-                + cliente + ", locatario=" + locatario
-                + ", retirada=" + retirada + ", devolucao=" + devolucao + '}';
+        return "Locacao{" + "cliente=" + cliente + ", locatario=" + locatario +
+                    ", retirada=" + retirada + ", devolucao=" + devolucao + 
+                        ", disponivel=" + disponivel + '}';
     }
+
     
     public static void main(String[] args) {
         Locacao loc = new Locacao();

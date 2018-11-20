@@ -164,7 +164,8 @@ public class LocacaoHibernate implements LocacaoDao {
         List<Locacao> locacoes = new ArrayList();
 
         try {
-            locacoes = (List) session.createQuery("from Locacao").list();
+            locacoes = (List) session.createQuery
+                ("FROM Locacao WHERE disponivel = true").list();
         } catch (Exception e) {
             LOGGER.error("Ocorreu um erro ao listar todas as locações"
                     + "\n" + e.getMessage());

@@ -25,12 +25,13 @@ package br.edu.ifpe.view;
 
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
+import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
-import br.edu.ifpe.model.hibernate.UsuarioHibernate;
-import java.math.BigDecimal;
+import br.edu.ifpe.model.validation.LocacaoModel;
+import br.edu.ifpe.model.validation.UsuarioModel;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -133,14 +134,52 @@ public class TesteMain {
         (UsuarioHibernate.getInstance().recuperar("2")));
 
          */
-
+            
+         /* --------------------------------------------------------------------------------
         Endereco ENDERECO = new Endereco("estadosdfsd", "cidadsdfsde",
                 "cesdfsdp", "baisdfsdfrro", "lograsdfsdfdouro");
-        Usuario usuario1 = new Usuario(
-                "senhagg", "nomeggg", "11847302025", "sexoggg",
-                LocalDate.now(), ENDERECO, "telefonggge", "emagggil",
+        
+        Usuario USUARIO1 = new Usuario(
+                "senha", "nome", "28961303066", "sexo",
+                LocalDate.now(), ENDERECO, "telefone", "email",
                 new ArrayList<Bike>());
 
-        UsuarioHibernate.getInstance().inserir(usuario1);
+        Usuario USUARIO2 = new Usuario(
+                "senha1", "nome1", "28952871049", "sexo1",
+                LocalDate.now(), ENDERECO, "telefone1", "email1",
+                new ArrayList<Bike>());
+        UsuarioModel um = new UsuarioModel();
+        
+        um.inserir(USUARIO2);
+        um.inserir(USUARIO1);
+
+        Locacao LOCACAO
+                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+        LOCACAO.setDisponivel(false);
+        Locacao LOCACAO1
+                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+        Locacao LOCACAO2
+                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+        Locacao LOCACAO3
+                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+        Locacao LOCACAO4
+                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+        Locacao LOCACAO5
+                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+        LOCACAO5.setDisponivel(false);
+        
+        LocacaoModel lm = new LocacaoModel();
+        
+        lm.inserir(LOCACAO);
+        lm.inserir(LOCACAO2);
+        lm.inserir(LOCACAO3);
+        lm.inserir(LOCACAO4);
+        lm.inserir(LOCACAO5);
+        
+        for(Locacao l : lm.listarTodos()){
+            System.out.println(l + "\n\n\n");
+        }
+        
+        */
     }
 }
