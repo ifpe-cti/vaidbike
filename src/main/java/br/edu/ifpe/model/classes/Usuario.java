@@ -88,10 +88,6 @@ public class Usuario implements Serializable {
         this.bikes = bikes;
     }
 
-    public Usuario(String login, String senha, String nome, String string, String sexo, LocalDate now, Endereco ENDERECO1, String telefone, String email, ArrayList<Bike> arrayList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public Integer getCodigo() {
         return codigo;
     }
@@ -176,15 +172,15 @@ public class Usuario implements Serializable {
     public int hashCode() {
         final int HASH = 13;
         int result = 1;
-        result = (HASH * result) + codigo.hashCode();
-        result = (HASH * result) + senha.hashCode();
-        result = (HASH * result) + nome.hashCode();
-        result = (HASH * result) + cpf.hashCode();
-        result = (HASH * result) + sexo.hashCode();
-        result = (HASH * result) + dataNasc.hashCode();
-        result = (HASH * result) + endereco.hashCode();
-        result = (HASH * result) + telefone.hashCode();
-        result = (HASH * result) + email.hashCode();
+        result += (HASH * result) + codigo.hashCode();
+        result += (HASH * result) + senha.hashCode();
+        result += (HASH * result) + nome.hashCode();
+        result += (HASH * result) + cpf.hashCode();
+        result += (HASH * result) + sexo.hashCode();
+        result += (HASH * result) + dataNasc.hashCode();
+        result += (HASH * result) + endereco.hashCode();
+        result += (HASH * result) + telefone.hashCode();
+        result += (HASH * result) + email.hashCode();
         return result += (HASH * result) + bikes.hashCode();
     }
 

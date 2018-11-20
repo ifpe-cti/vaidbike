@@ -55,14 +55,14 @@ public class UsuarioController {
                     rediricionarPagina = "menuUsuario.xhtml";
 
                 } else {
-                    rediricionarPagina = "index.xhtml";
+                    rediricionarPagina = "telaInicial.xhtml";
                 }
             }
         } catch (Exception realizarLoginException) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "Falha no Login!", "Senha ou Login Inválidos"));
-            rediricionarPagina = "index.xhtml";
+            rediricionarPagina = "telaInicial.xhtml";
 
         } finally {
             return rediricionarPagina;

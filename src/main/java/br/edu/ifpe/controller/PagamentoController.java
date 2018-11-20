@@ -47,12 +47,18 @@ public class PagamentoController {
     }
 
     public String inserir() throws Exception {
-        this.instance.inserir(this.cadPagamento);
-        this.cadPagamento = new Pagamento();
-        FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Pagamento cadastrado com sucesso"));
-
-        return "";
+        try {
+            this.instance.inserir(this.cadPagamento);
+            this.cadPagamento = new Pagamento();
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Pagamento realizado com sucesso"));
+        } catch (Exception realizarPagamentoException) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Ocorreu um erro ao realizar o pagamento"));
+        } finally {
+            return "";
+        }
+        
     }
 
     public PagamentoModel getInstance() {
