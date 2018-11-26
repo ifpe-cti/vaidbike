@@ -30,6 +30,7 @@ import br.edu.ifpe.model.classes.Pagamento;
 import br.edu.ifpe.model.classes.Usuario;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.AfterClass;
@@ -41,7 +42,8 @@ import org.junit.Ignore;
 /**
  *
  * @author Milena Macedo <milenasantosmcd@gmail.com>
- 
+ */
+
 public class PagamentoHibernateTest {
 
     private static final PagamentoHibernate PAGAMENTOHIBERNATE
@@ -63,8 +65,8 @@ public class PagamentoHibernateTest {
             LocalDate.now(), ENDERECO, "telefone1", "email1",
             new ArrayList<Bike>());
 
-    private static final Locacao LOCACAO
-            = new Locacao(USUARIO1, USUARIO2, LocalDate.now(), LocalDate.now());
+   private static final Locacao LOCACAO = new Locacao
+            (USUARIO1, USUARIO2, LocalDateTime.now(), LocalDateTime.now());
 
     private static Pagamento pagamento
             = new Pagamento("tipo", new BigDecimal("20.00"), LOCACAO);
@@ -84,14 +86,6 @@ public class PagamentoHibernateTest {
     }
 
     @Test
-    public void deveRecuperarTodosOsPagamentosDoBd() {
-        List<Pagamento> pagamentos = new ArrayList();
-        pagamentos.add(pagamento);
-
-        assertEquals("TC002", pagamentos, PAGAMENTOHIBERNATE.listarTodos());
-    }
-
-    @Test
     public void deveAlterarPagamentoNoBD() {
         pagamento.setValor(new BigDecimal("30.00"));
         PAGAMENTOHIBERNATE.alterar(pagamento);
@@ -105,4 +99,3 @@ public class PagamentoHibernateTest {
     }
 
 }
-*/

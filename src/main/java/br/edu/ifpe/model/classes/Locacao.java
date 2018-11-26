@@ -51,17 +51,15 @@ public class Locacao implements Serializable {
     @Column(name = "id_locacao")
     private Integer codigo;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cod_cliente")
+    @JoinColumn(name = "cod_cliente",nullable = false)
     private Usuario cliente;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cod_locatario")
+    @JoinColumn(name = "cod_locatario",nullable = false)
     private Usuario locatario;
-    @Column
+    @Column(nullable = false)
     private LocalDateTime retirada;
-    @Column
+    @Column(nullable = false)
     private LocalDateTime devolucao;
-    @Column
-    private boolean disponivel;
 
     @Deprecated
     public Locacao() {
@@ -73,7 +71,6 @@ public class Locacao implements Serializable {
         this.locatario = locatario;
         this.retirada = retirada;
         this.devolucao = devolucao;
-        this.disponivel = true;
     }
 
     public Integer getCodigo() {
@@ -82,6 +79,10 @@ public class Locacao implements Serializable {
 
     public Usuario getCliente() {
         return cliente;
+    }
+
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
     }
 
     public Usuario getLocatario() {
@@ -102,14 +103,6 @@ public class Locacao implements Serializable {
 
     public void setDevolucao(LocalDateTime devolucao) {
         this.devolucao = devolucao;
-    }
-
-    public boolean isDisponivel() {
-        return disponivel;
-    }
-
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
     }
     
     public Long getTempoLocacao(){
@@ -146,30 +139,15 @@ public class Locacao implements Serializable {
 
         if (!((Locacao) obj).retirada.equals(this.retirada)) 
             return false;
-
-        if (!((Locacao) obj).devolucao.equals(this.devolucao))
-            return false;
         
-        return ((Locacao) obj).disponivel == this.disponivel;
+        return ((Locacao) obj).devolucao.equals(this.devolucao);
     }
 
     @Override
     public String toString() {
-        return "Locacao{" + "cliente=" + cliente + ", locatario=" + locatario +
-                    ", retirada=" + retirada + ", devolucao=" + devolucao + 
-                        ", disponivel=" + disponivel + '}';
-    }
-
-    
-    public static void main(String[] args) {
-        Locacao loc = new Locacao();
-        
-        LocalDateTime dateTime = LocalDateTime.now();
-        loc.setDevolucao(dateTime.plusHours(20));
-        loc.setRetirada(dateTime);
-        
-        System.out.println(loc.getTempoLocacao());
-                
+        return "Locacao{" + "codigo=" + codigo + ", cliente=" + cliente + 
+                ", locatario=" + locatario + ", retirada=" + retirada + 
+                ", devolucao=" + devolucao + '}';
     }
     
 }

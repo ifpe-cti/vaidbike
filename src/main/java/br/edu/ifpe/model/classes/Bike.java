@@ -49,9 +49,6 @@ public class Bike implements Serializable {
     private String tipo;
     @Column(length = 10)
     private String cor;
-    @ManyToOne
-    @JoinColumn(name = "cod_usuario")
-    private Usuario usuario;
     @Column
     private boolean disponivel;  
 
@@ -59,13 +56,11 @@ public class Bike implements Serializable {
     public Bike() {
     }
 
-    public Bike( BigDecimal valor, String modelo, String tipo, String cor, Usuario usuario, boolean disponivel) {
-        
+    public Bike( BigDecimal valor, String modelo, String tipo, String cor) {     
         this.valor = valor;
         this.modelo = modelo;
         this.tipo = tipo;
         this.cor = cor;
-        this.usuario = usuario;
         this.disponivel = disponivel;
     }
 
@@ -107,14 +102,6 @@ public class Bike implements Serializable {
         this.cor = cor;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     public boolean isDisponivel() {
         return disponivel;
     }
@@ -131,7 +118,6 @@ public class Bike implements Serializable {
         hash = 13 * hash + Objects.hashCode(this.modelo);
         hash = 13 * hash + Objects.hashCode(this.tipo);
         hash = 13 * hash + Objects.hashCode(this.cor);
-        hash = 13 * hash + Objects.hashCode(this.usuario);
         hash = 13 * hash + (this.disponivel ? 1 : 0);
         return hash;
     }
@@ -166,17 +152,14 @@ public class Bike implements Serializable {
         if (!Objects.equals(this.valor, other.valor)) {
             return false;
         }
-        if (!Objects.equals(this.usuario, other.usuario)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Bike{" + "codigo=" + codigo + ", valor=" + valor + ", modelo=" + modelo + ", tipo=" + tipo + ", cor=" + cor + ", usuario=" + usuario + ", disponivel=" + disponivel + '}';
+        return "Bike{" + "codigo=" + codigo + ", valor=" + valor + 
+                ", modelo=" + modelo + ", tipo=" + tipo + ", cor=" + cor + 
+                ", disponivel=" + disponivel + '}';
     }
-
-
 
 }

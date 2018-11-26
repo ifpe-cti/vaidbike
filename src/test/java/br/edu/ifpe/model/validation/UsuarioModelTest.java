@@ -26,6 +26,7 @@ package br.edu.ifpe.model.validation;
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Usuario;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,17 +52,28 @@ public class UsuarioModelTest {
     private static final UsuarioModel USUARIOMODEL = new UsuarioModel();
 
     private static Usuario usuario1 = new Usuario(
-             "senha", "nome", "28961303066", "sexo",
+            "senha", "nome", "28961303066", "sexo",
             LocalDate.now(), ENDERECO1, "telefone", "email",
             new ArrayList<Bike>());
 
     private static final Usuario USUARIO2 = new Usuario(
-             "senha1", "nome1", "28952871049", "sexo1",
+            "senha1", "nome1", "28952871049", "sexo1",
             LocalDate.now(), ENDERECO, "telefone1", "email1",
             new ArrayList<Bike>());
 
     @BeforeClass
     public static void deveInserirUsuarioNoBD() throws Exception {
+        List<Bike> bikes = new ArrayList();
+        bikes.add(new Bike(new BigDecimal(25), "modelo", "tipo", "cor"));
+        bikes.add(new Bike(new BigDecimal(45), "modelo1", "tipo1", "cor1"));
+        bikes.add(new Bike(new BigDecimal(65), "modelo2", "tipo2", "cor2"));
+        usuario1.setBikes(bikes);
+
+        List<Bike> bikes2 = new ArrayList();
+        bikes2.add(new Bike(new BigDecimal(11), "m", "t", "c"));
+        bikes2.add(new Bike(new BigDecimal(111), "mo", "ti", "co"));
+        bikes2.add(new Bike(new BigDecimal(111), "mod", "tip", "coor"));
+        USUARIO2.setBikes(bikes2);
         USUARIOMODEL.inserir(usuario1);
         USUARIOMODEL.inserir(USUARIO2);
     }
@@ -72,7 +84,7 @@ public class UsuarioModelTest {
         usuario1.setSenha("ALTERADO");
 
         USUARIOMODEL.alterar(usuario1);
-        Assert.assertEquals("TC001", usuario1, 
+        Assert.assertEquals("TC001", usuario1,
                 USUARIOMODEL.recuperar(usuario1.getCpf()));
     }
 
@@ -84,35 +96,35 @@ public class UsuarioModelTest {
 
     @Test
     public void deveRecuperarTodosUsuariosTest() throws Exception {
-     ArrayList<Usuario> usuariosRecuperadosDoBanco
+        ArrayList<Usuario> usuariosRecuperadosDoBanco
                 = (ArrayList<Usuario>) USUARIOMODEL.listarTodos();
-        
-        assertTrue("TC003",usuariosRecuperadosDoBanco.contains(USUARIO2));
-        assertTrue("TC004",usuariosRecuperadosDoBanco.contains(usuario1));
+
+        assertTrue("TC003", usuariosRecuperadosDoBanco.contains(USUARIO2));
+        assertTrue("TC004", usuariosRecuperadosDoBanco.contains(usuario1));
     }
 
     @Test(expected = NullPointerException.class)
     public void naoDeveinserirUsuarioIncorretoTest() throws Exception {
-        USUARIOMODEL.inserir(new Usuario( null, null, null, null, null,
+        USUARIOMODEL.inserir(new Usuario(null, null, null, null, null,
                 null, null, null, null));
     }
 
     @Test(expected = java.lang.Exception.class)
     public void naoDeveInserirUsuarioCpfIncorretoTest() throws Exception {
-        USUARIOMODEL.inserir(new Usuario( "senha", "nome",
+        USUARIOMODEL.inserir(new Usuario("senha", "nome",
                 "1234567890123", "sexo", LocalDate.now(), ENDERECO, "telefone",
                 "email", new ArrayList<Bike>()));
     }
 
     @Test(expected = java.lang.Exception.class)
     public void naoDeveAlterarUsuarioInexistenteTest() throws Exception {
-        USUARIOMODEL.alterar(new Usuario( "alt", "alt", "alt", "alt",
+        USUARIOMODEL.alterar(new Usuario("alt", "alt", "alt", "alt",
                 null, null, "alt", "alt", null));
     }
 
     @Test(expected = java.lang.Exception.class)
     public void naoDeveDeletarUsuarioInexistenteTest() throws Exception {
-        USUARIOMODEL.deletar(new Usuario( "del", "del", "del", "del",
+        USUARIOMODEL.deletar(new Usuario("del", "del", "del", "del",
                 null, null, "del", "del", null));
     }
 

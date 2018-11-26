@@ -26,6 +26,7 @@ package br.edu.ifpe.model.hibernate;
 import br.edu.ifpe.model.classes.Bike;
 import br.edu.ifpe.model.classes.Endereco;
 import br.edu.ifpe.model.classes.Usuario;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class UsuarioHibernateTest {
 
     private static final Endereco ENDERECO1 = new Endereco("e", "c",
             "cc", "b", "l");
-
+    
     private static final UsuarioHibernate USUARIOHIBERNATE
             = UsuarioHibernate.getInstance();
 
@@ -63,6 +64,18 @@ public class UsuarioHibernateTest {
 
     @BeforeClass
     public static void deveInserirUsuario() {
+        List<Bike> bikes = new ArrayList();
+        bikes.add(new Bike(new BigDecimal(25), "modelo", "tipo", "cor"));
+        bikes.add(new Bike(new BigDecimal(45), "modelo1", "tipo1", "cor1"));
+        bikes.add(new Bike(new BigDecimal(65), "modelo2", "tipo2", "cor2"));
+        usuario1.setBikes(bikes);
+        
+        List<Bike> bikes2 = new ArrayList();
+        bikes2.add(new Bike(new BigDecimal(11), "m", "t", "c"));
+        bikes2.add(new Bike(new BigDecimal(111), "mo", "ti", "co"));
+        bikes2.add(new Bike(new BigDecimal(111), "mod", "tip", "coor"));
+        USUARIO2.setBikes(bikes2);
+        
         USUARIOHIBERNATE.inserir(usuario1);
         USUARIOHIBERNATE.inserir(USUARIO2);
     }
