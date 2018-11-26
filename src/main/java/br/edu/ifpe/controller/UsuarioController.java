@@ -132,7 +132,7 @@ public class UsuarioController {
     public String cadastrarBike() {
         String ret = "";
         try {
-            this.bike.setUsuario(getUsuarioLogado());
+//            this.bike.setUsuario(getUsuarioLogado());
 
             bikes.add(this.bike);
 
