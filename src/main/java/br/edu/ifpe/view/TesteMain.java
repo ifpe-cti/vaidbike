@@ -1,10 +1,10 @@
-﻿/*MIT License
+/*MIT License
 
-Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
-Adrielly Calado Sales, Lucas Mendes Cavalcanti.
+Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva,
+Adrielly Calado Sales, Lucas Mendes Cavalcanti. 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated docuhentation files (the "Software"), to deal
+of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -23,28 +23,13 @@ SOFTWARE.
  */
 package br.edu.ifpe.view;
 
-import br.edu.ifpe.model.classes.Bike;
-import br.edu.ifpe.model.classes.Endereco;
-import br.edu.ifpe.model.classes.Locacao;
-import br.edu.ifpe.model.classes.Pagamento;
-import br.edu.ifpe.model.classes.Usuario;
-import br.edu.ifpe.model.hibernate.LocacaoHibernate;
-import br.edu.ifpe.model.hibernate.PagamentoHibernate;
-import br.edu.ifpe.model.validation.UsuarioModel;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
- * @author Carlos Cordeiro - carloscordeiroconsultor@gmail.com
+ * @author Lucas Mendes <lucas.mendes147@live.com>
  */
 public class TesteMain {
-
-    public static void main(String args[]) throws Exception {
-        /*
+       public static void main(String args[]){
+          /*
         Usuario u = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
                "sexo", new Date(), end, "telefone", "email", bikes);
         Usuario u2 = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
