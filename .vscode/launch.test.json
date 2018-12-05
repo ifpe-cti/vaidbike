@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "VaidBike",
+                "projectName": "VaidBike",
+                "workingDirectory": "c:\\Users\\Jarvis\\Documents\\NetBeansProjects\\vaidbike",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "VaidBike",
+                "projectName": "VaidBike",
+                "workingDirectory": "c:\\Users\\Jarvis\\Documents\\NetBeansProjects\\vaidbike",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
