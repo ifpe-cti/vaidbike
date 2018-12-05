@@ -63,16 +63,16 @@ public class UsuarioModelTest {
 
     @BeforeClass
     public static void deveInserirUsuarioNoBD() throws Exception {
-        List<Bike> bikes = new ArrayList();
-        bikes.add(new Bike(new BigDecimal(25), "modelo", "tipo", "cor"));
-        bikes.add(new Bike(new BigDecimal(45), "modelo1", "tipo1", "cor1"));
-        bikes.add(new Bike(new BigDecimal(65), "modelo2", "tipo2", "cor2"));
+       List<Bike> bikes = new ArrayList();
+        bikes.add(new Bike(new BigDecimal(25), "modelo", "tipo", "cor",usuario1));
+        bikes.add(new Bike(new BigDecimal(45), "modelo1", "tipo1", "cor1",usuario1));
+        bikes.add(new Bike(new BigDecimal(65), "modelo2", "tipo2", "cor2",usuario1));
         usuario1.setBikes(bikes);
-
+        
         List<Bike> bikes2 = new ArrayList();
-        bikes2.add(new Bike(new BigDecimal(11), "m", "t", "c"));
-        bikes2.add(new Bike(new BigDecimal(111), "mo", "ti", "co"));
-        bikes2.add(new Bike(new BigDecimal(111), "mod", "tip", "coor"));
+        bikes2.add(new Bike(new BigDecimal(11), "m", "t", "c",USUARIO2));
+        bikes2.add(new Bike(new BigDecimal(111), "mo", "ti", "co",USUARIO2));
+        bikes2.add(new Bike(new BigDecimal(111), "mod", "tip", "coor",USUARIO2));
         USUARIO2.setBikes(bikes2);
         USUARIOMODEL.inserir(usuario1);
         USUARIOMODEL.inserir(USUARIO2);

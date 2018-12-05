@@ -133,7 +133,7 @@ public class UsuarioController {
         String ret = "";
         try {
 //            this.bike.setUsuario(getUsuarioLogado());
-
+            bike.setUsuario(this.getUsuarioLogado());
             bikes.add(this.bike);
 
             getUsuarioLogado().setBikes(bikes);
@@ -152,7 +152,7 @@ public class UsuarioController {
 
     }
 
-    public List<Bike> listarBikes() throws Exception {
+    public List<Bike> listarBikes() {
          List<Bike> bikes = new ArrayList();
         try{
             bikes = this.instaceUSUARIOMODEL.listarBikes(getUsuarioLogado());

@@ -118,8 +118,7 @@ public class TesteMain {
        UsuarioController uc = new UsuarioController();
        String us = uc.realizarLogin("4", "4");
        System.out.println(us);
-     Endereco ENDERECO = new Endereco("estado", "cidade",
-            "cep", "bairro", "logradouro");
+     
     Usuario usuario1 = new Usuario(
             "senha", "nome", "28961303066", "sexo",
             LocalDate.now(), ENDERECO, "telefone", "email",
@@ -171,41 +170,8 @@ public class TesteMain {
         
          */
  /*
-        Bike bike1 = new Bike(new BigDecimal("90"), "modelo1", "tipo", "cor");
-        Bike bike2 = new Bike(new BigDecimal("90"), "modelo2", "tipo2", "cor2");
-        Bike bike3 = new Bike(new BigDecimal("90"), "modelo3", "tipo3", "cor");
-        Bike bike4 = new Bike(new BigDecimal("90"), "modelo4", "tipo4", "cor");
-        Bike bike5 = new Bike(new BigDecimal("90"), "modelo5", "tipo5", "cor");
-        Bike bike6 = new Bike(new BigDecimal("90"), "modelo5", "tipo5", "cor");
-        Bike bike7 = new Bike(new BigDecimal("90"), "modelo5", "tipo5", "cor");
-
-        List<Bike> bikes = new ArrayList();
-        List<Bike> bikes2 = new ArrayList();
-
-        bikes2.add(bike6);
-        bikes2.add(bike7);
-
-
-        
-        um.inserir(USUARIO2);
-        um.inserir(USUARIO1);
-      
-
-        USUARIO1.setBikes(bikes);
-        USUARIO2.setBikes(bikes2);
-       
-        //um.alterar(USUARIO1);
-        Usuario user = um.recuperar("28952871049");
-        user.setBikes(bikes2);
-        um.alterar(user);
-       
-         */
-        PagamentoHibernate PAGAMENTOHIBERNATE
-                = PagamentoHibernate.getInstance();
-        LocacaoHibernate locacaoHibernate = LocacaoHibernate.getInstance();
-        Endereco ENDERECO = new Endereco("estadosdfsd", "cidadsdfsde",
-                "cesdfsdp", "baisdfsdfrro", "lograsdfsdfdouro");
-
+        Endereco ENDERECO = new Endereco("estado", "cidade",
+                "cep", "bairro", "logradouro");
         Usuario USUARIO1 = new Usuario(
                 "senha", "nome", "28961303066", "sexo",
                 LocalDate.now(), ENDERECO, "telefone", "email",
@@ -215,8 +181,56 @@ public class TesteMain {
                 "senha1", "nome1", "28952871049", "sexo1",
                 LocalDate.now(), ENDERECO, "telefone1", "email1",
                 new ArrayList<Bike>());
-        UsuarioModel um = new UsuarioModel();
+        Bike bike1 = new Bike(new BigDecimal("90"), "modelo1", "tipo", "cor", USUARIO1);
+        Bike bike2 = new Bike(new BigDecimal("90"), "modelo2", "tipo2", "cor2", USUARIO1);
+        Bike bike3 = new Bike(new BigDecimal("90"), "modelo3", "tipo3", "cor", USUARIO1);
+        Bike bike4 = new Bike(new BigDecimal("90"), "modelo4", "tipo4", "cor", USUARIO2);
+        Bike bike5 = new Bike(new BigDecimal("90"), "modelo5", "tipo5", "cor", USUARIO2);
+        Bike bike6 = new Bike(new BigDecimal("90"), "modelo5", "tipo5", "cor", USUARIO2);
+        Bike bike7 = new Bike(new BigDecimal("90"), "modelo5", "tipo5", "cor", USUARIO2);
 
+        List<Bike> bikes = new ArrayList();
+        List<Bike> bikes2 = new ArrayList();
+
+        bikes.add(bike1);
+        bikes.add(bike2);
+        bikes.add(bike3);
+        bikes2.add(bike4);
+        bikes2.add(bike5);
+        bikes2.add(bike6);
+        bikes2.add(bike7);
+
+        um.inserir(USUARIO2);
+        um.inserir(USUARIO1);
+
+        USUARIO1.setBikes(bikes);
+        USUARIO2.setBikes(bikes2);
+
+        um.alterar(USUARIO1);
+        Usuario user = um.recuperar("28952871049");
+        user.setBikes(bikes2);
+        um.alterar(user);
+        */
+        UsuarioModel um = new UsuarioModel();
+        List<Bike> bikesR = um.listarBikes(um.recuperar("08558176400"));
+
+        for (Bike b : bikesR) {
+            System.out.println(b);
+        }
+
+        /*
+         
+        PagamentoHibernate PAGAMENTOHIBERNATE
+                = PagamentoHibernate.getInstance();
+        LocacaoHibernate locacaoHibernate = LocacaoHibernate.getInstance();
+        Endereco ENDERECO = new Endereco("estadosdfsd", "cidadsdfsde",
+                "cesdfsdp", "baisdfsdfrro", "lograsdfsdfdouro");
+
+       
+        
+        
+       
+       
         Locacao LOCACAO = new Locacao(USUARIO1, USUARIO2, LocalDateTime.now(), LocalDateTime.now());
         locacaoHibernate.inserir(LOCACAO);
 
@@ -229,5 +243,6 @@ public class TesteMain {
         List<Locacao> locacoes = locacaoHibernate.listarTodos();
         
         System.out.println(locacoes);
+         */
     }
 }

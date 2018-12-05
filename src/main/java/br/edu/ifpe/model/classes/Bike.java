@@ -24,6 +24,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,25 +52,28 @@ public class Bike implements Serializable {
     private String cor;
     @Column
     private boolean disponivel;  
+    @ManyToOne(fetch = FetchType.EAGER,targetEntity = Usuario.class)
+    @JoinColumn(name = "cod_usuario")
+    private Usuario usuario;
 
     @Deprecated
     public Bike() {
     }
 
-    public Bike( BigDecimal valor, String modelo, String tipo, String cor) {     
+    public Bike(BigDecimal valor, String modelo, String tipo, String cor, 
+            Usuario usuario) {
         this.valor = valor;
         this.modelo = modelo;
         this.tipo = tipo;
         this.cor = cor;
-        this.disponivel = disponivel;
+        this.usuario = usuario;
+        this.disponivel = true;
     }
 
     public Integer getCodigo() {
         return codigo;
     }
 
-   
-    
     public BigDecimal getValor() {
         return valor;
     }
@@ -109,6 +113,14 @@ public class Bike implements Serializable {
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    } 
 
     @Override
     public int hashCode() {
@@ -152,12 +164,15 @@ public class Bike implements Serializable {
         if (!Objects.equals(this.valor, other.valor)) {
             return false;
         }
+        if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Bike{" + "codigo=" + codigo + ", valor=" + valor + 
+        return "Bike{" + ", valor=" + valor + 
                 ", modelo=" + modelo + ", tipo=" + tipo + ", cor=" + cor + 
                 ", disponivel=" + disponivel + '}';
     }

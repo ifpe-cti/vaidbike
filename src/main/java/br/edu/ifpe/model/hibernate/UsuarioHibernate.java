@@ -130,8 +130,9 @@ public class UsuarioHibernate implements UsuarioDao {
         Session session = this.SESSIONS.openSession();
 
         try {
-            return (Usuario) session.createQuery("From Usuario where id_usuario="
-                    + codigo).list().get(0);
+            return (Usuario) session.createQuery
+                    ("From Usuario where id_usuario="+ codigo)
+                        .list().get(0);
         } catch (Exception e) {
             LOGGER.error("Ocorreu um problema ao recuperar o Usuario por cpf"
                     + "\n" + e.getMessage());
@@ -180,12 +181,14 @@ public class UsuarioHibernate implements UsuarioDao {
         List<Bike> bikes = new ArrayList();
 
         try {
-            bikes = (List )session.createQuery
-                ("From Bike where cod_usuario = " + usuario.getCodigo()).list();
+            bikes = (List)session.createQuery
+                ("FROM Bike WHERE cod_usuario = " + usuario.getCodigo()).list();
         } catch (Exception e) {
-            LOGGER.error("Ocorreu um problema ao recuperar todos os Usuarios "
-                    + "\n" + e.getMessage());
+            LOGGER.error
+                ("Ocorreu um problema ao recuperar todas as bikes de um Usuario"
+                        + "\n" + e.getMessage());
         } finally {
+                  
             session.close();
             return bikes;
         }

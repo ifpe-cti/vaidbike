@@ -81,8 +81,9 @@ public class LocacaoModel {
 
         List<Locacao> locacao = ((LocacaoDao) DAO).listarTodos();
 
-        if (locacao == null) {
-            throw new Exception("Erro ao recuperar a lista de Locação no model");
+        if (locacao.isEmpty() || locacao == null) {
+            throw new Exception
+                    ("Erro ao recuperar a lista de Locação no model");
         } else {
             return locacao;
         }
