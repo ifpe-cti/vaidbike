@@ -1,4 +1,4 @@
-/*MIT License
+﻿/*MIT License
 
 Copyright (c) 2018 Milena dos Santos Macedo, Carlos André Cordeiro da Silva, 
 Adrielly Calado Sales, Lucas Mendes Cavalcanti.
@@ -210,14 +210,14 @@ public class TesteMain {
         Usuario user = um.recuperar("28952871049");
         user.setBikes(bikes2);
         um.alterar(user);
-        */
+        
         UsuarioModel um = new UsuarioModel();
         List<Bike> bikesR = um.listarBikes(um.recuperar("08558176400"));
 
         for (Bike b : bikesR) {
             System.out.println(b);
         }
-
+	*/
         /*
          
         PagamentoHibernate PAGAMENTOHIBERNATE
