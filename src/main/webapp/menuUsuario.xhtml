@@ -76,7 +76,8 @@ SOFTWARE.
 
 
                 <p:layoutUnit position="west" size="245" style="background-image: url(resources/images/bike.png) ">
-
+<h:form>
+                            
                     <p:menu>
                        
                           <p:submenu label="Minha conta"  style="font-size: 20px ;">
@@ -95,9 +96,12 @@ SOFTWARE.
                                         url="mostrarDadosUsuario.xhtml" icon="ui-icon-person"/>
                             <p:menuitem value="Alterar dados" style="font-size: 15px ;"
                                         url="alterarDadosUsuario.xhtml" icon="ui-icon-arrowrefresh-1-w" />
+                            <p:menuitem value="Logout" style="font-size: 15px ;"
+                                        action="#{usuarioController.logout()}" icon="ui-icon-arrowrefresh-1-w" />
+                          
                         </p:submenu>
                     </p:menu>
-
+  </h:form>
                 </p:layoutUnit >
 
                 <p:layoutUnit position="center" style="background-image: url(resources/images/bike.png) ">

@@ -151,6 +151,13 @@ public class UsuarioController {
         return ret;
 
     }
+    
+    public String logout() {
+        
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        
+        return "login.xhtml?faces-redirect=true";
+    }
 
     public List<Bike> listarBikes() {
          List<Bike> bikes = new ArrayList();
