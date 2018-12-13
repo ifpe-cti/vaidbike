@@ -26,7 +26,6 @@ package br.edu.ifpe.model.classes;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import javax.persistence.CascadeType;
@@ -37,7 +36,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.criteria.CriteriaBuilder;
 
 /**
  *
@@ -58,6 +56,7 @@ public class Locacao implements Serializable {
     private Usuario locatario;
     @Column(nullable = false)
     private LocalDateTime retirada;
+    
     @Column(nullable = false)
     private LocalDateTime devolucao;
 
@@ -148,6 +147,10 @@ public class Locacao implements Serializable {
         return "Locacao{" + "codigo=" + codigo + ", cliente=" + cliente + 
                 ", locatario=" + locatario + ", retirada=" + retirada + 
                 ", devolucao=" + devolucao + '}';
+    }
+
+    public void setDisponivel(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

@@ -33,7 +33,7 @@ SOFTWARE.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-          
+
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <f:view contentType="text/html">
@@ -47,18 +47,12 @@ SOFTWARE.
         </h:head>
 
         <h:body>
-                <c:if test="${usuarioController.usuarioLogado == null}">
-                    <script>location.href = "login.xhtml";</script>
-                </c:if>
-            
-                
-                
-                 <p:layout fullPage="true">
-
-               
-                 <p:layoutUnit style="background-image: url(resources/images/bike.png) " position="north" size="100" >
+            <c:if test="${usuarioController.usuarioLogado == null}">
+                <script>location.href = "login.xhtml";</script>
+            </c:if>
+            <p:layout fullPage="true">
+                <p:layoutUnit style="background-image: url(resources/images/bike.png) " position="north" size="100" >
                     <div style=" position:absolute ; width: 1350px; height: 80px; background: #cc0000;"> 
-
                         <h2 style=" 
                             color:white;
                             text-align: center;
@@ -66,53 +60,52 @@ SOFTWARE.
                             font-family: Comic Sans MS;
                             font-size:25px;"> 
                             VaidBike
-
-
                         </h2>
-
                     </div>
 
                 </p:layoutUnit>
 
 
                 <p:layoutUnit position="west" size="245" style="background-image: url(resources/images/bike.png) ">
-<h:form>
-                            
-                    <p:menu>
-                       
-                          <p:submenu label="Minha conta"  style="font-size: 20px ;">
-                             <p:menuitem value="Cadastrar Bike " style="font-size: 15px ;" 
-                                        url="cadastrarBike.xhtml" icon="fa fa-refresh"/>
-                      
-                           
-                             <p:menuitem value="Mostrar Bike " style="font-size: 15px ;" 
-                                        url="listarBike.xhtml" icon="fa fa-refresh"/>
-                        </p:submenu>
-                    </p:menu> 
+                    <h:form>
 
-                    <p:menu toggleable="true">
-                        <p:submenu  label="Configurações" style="font-size: 15px ;">
-                            <p:menuitem value=" Meus dados " style="font-size: 15px ;" 
-                                        url="mostrarDadosUsuario.xhtml" icon="ui-icon-person"/>
-                            <p:menuitem value="Alterar dados" style="font-size: 15px ;"
-                                        url="alterarDadosUsuario.xhtml" icon="ui-icon-arrowrefresh-1-w" />
-                            <p:menuitem value="Logout" style="font-size: 15px ;"
-                                        action="#{usuarioController.logout()}" icon="ui-icon-arrowrefresh-1-w" />
-                          
-                        </p:submenu>
-                    </p:menu>
-  </h:form>
+                        <p:menu>
+
+                            <p:submenu label="Minha conta"  style="font-size: 20px ;">
+                                <p:menuitem value="Cadastrar Bike " style="font-size: 15px ;" 
+                                            url="cadastrarBike.xhtml" icon="fa fa-refresh"/>
+
+
+                                <p:menuitem value="Mostrar Bike " style="font-size: 15px ;" 
+                                            url="listarBike.xhtml" icon="fa fa-refresh"/>
+                                <p:menuitem value="Locacao " style="font-size: 15px ;" 
+                                            url="listarTodasBikes.xhtml" icon="fa fa-refresh"/>
+                            </p:submenu>
+                        </p:menu> 
+
+                        <p:menu toggleable="true">
+                            <p:submenu  label="Configurações" style="font-size: 15px ;">
+                                <p:menuitem value=" Meus dados " style="font-size: 15px ;" 
+                                            url="mostrarDadosUsuario.xhtml" icon="ui-icon-person"/>
+                                <p:menuitem value="Alterar dados" style="font-size: 15px ;"
+                                            url="alterarDadosUsuario.xhtml" icon="ui-icon-arrowrefresh-1-w" />
+                                <p:menuitem value="Logout" style="font-size: 15px ;"
+                                            action="#{usuarioController.logout()}" icon="ui-icon-arrowrefresh-1-w" />
+
+                            </p:submenu>
+                        </p:menu>
+                    </h:form>
                 </p:layoutUnit >
 
                 <p:layoutUnit position="center" style="background-image: url(resources/images/bike.png) ">
 
-                    
+
                     <ui:insert name="center"/>
-                  
+
                 </p:layoutUnit>
 
             </p:layout>
-                
+
         </h:body>
 
     </f:view>

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="menuUsuario.xhtml">
+            <ui:define name="center" >
+                <h:outputText value="Dados da Locação" 
+                              style="color: #ff0000; 
+                              font-size:20px;
+                              margin-left:18em ;
+                              margin-top:08em ;
+                              font-weight: bold;
+                              font-family: Comic Sans MS;
+
+                              " /> 
+                <br/><br/>
+                <p:panelGrid  columns="3" styleClass="panelgrid" style="margin-left:10em;">
+
+                    <h:outputText value="Data de Retirada" style="font-weight: bold; margin-left:5em ;"/>
+                    <p:calendar id="txtDataRetirada" 
+                                value="#{locacaoController.cadLocacao.retirada}"
+                                pattern="dd/MM/yyyy hh:mm:ss"
+                                mask="true" converter="facesConverterLocalDateTime" style="width: 100%;" 
+                                required="true" requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtDataRetirada' />
+                    
+                    <h:outputText value="Data de Devolução" style="font-weight: bold; margin-left:5em ;"/>
+                    <p:calendar id="txtDataDevolução" 
+                                value="#{locacaoController.cadLocacao.devolucao}"
+                                pattern="dd/MM/yyyy hh:mm:ss"
+                                mask="true" converter="facesConverterLocalDateTime" style="width: 100%;" 
+                                required="true" requiredMessage="Campo Obrigatório!"/>
+                    <p:message for='txtDataDevolução' />
+
+
+
+                </p:panelGrid>
+                <br/><br/>
+                <h:outputText value="Negócio" 
+                              style="color: #ff0000; 
+                              font-size:20px;
+                              margin-left:20em ;
+                              margin-top:08em ;
+                              font-weight: bold;
+                              font-family: Comic Sans MS;
+
+                              " /> 
+                <br/><br/>
+                <p:panelGrid  columns="2" styleClass="panelgrid" columnClasses="no-border, no-border" style="margin-left:10em;" >
+                    <h:outputText value="Nome do Locatário" style="font-weight: bold; margin-left:5em ;"/>
+                    <h:outputText value="#{usuarioController.bike.usuario.nome}"
+                                  style="font-weight: bold; margin-left:3em ;"/>
+                    <h:outputText value="Seu Nome  " style="font-weight: bold; margin-left:5em ;"/>
+                    <h:outputText value="#{usuarioController.usuarioLogado.nome}"
+                                  style="font-weight: bold; margin-left:3em ;"/>
+
+                </p:panelGrid>
+                <h:form>
+                    <p:commandButton value="Alugar" style=" margin-left:20em ;"
+                                 onclick="PF('widDialConfirmar').hide()" 
+                                 action="#{locacaoController.inserir()}"/>
+                </h:form>
+                 
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

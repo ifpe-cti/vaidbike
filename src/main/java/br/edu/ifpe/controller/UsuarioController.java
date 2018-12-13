@@ -181,6 +181,19 @@ public class UsuarioController {
         
     }
 
+     public List<Bike> listarTodasBikes() {
+         List<Bike> bikes = new ArrayList();
+        try{
+            bikes = this.instaceUSUARIOMODEL.listarTodasAsBikes(getUsuarioLogado());
+            
+        }catch(Exception listarBikeException){
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Falha!",
+                            "Algo inesperado ocorreu ao recuperar as bikes"));
+        }finally{
+            return bikes;
+        }
+     }
     public Usuario getCadUsuario() {
         return cadUsuario;
     }

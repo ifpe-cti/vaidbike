@@ -176,7 +176,7 @@ public class UsuarioHibernate implements UsuarioDao {
     }
 
     @Override
-    public List<Bike> listarTodasAsBikes(Usuario usuario) {
+    public List<Bike> listarBikesDoUsuario(Usuario usuario) {
         Session session = this.SESSIONS.openSession();
         List<Bike> bikes = new ArrayList();
 
@@ -194,4 +194,23 @@ public class UsuarioHibernate implements UsuarioDao {
         }
     }
 
+    @Override
+    public List<Bike> listarTodasBikes(Usuario usuario) {
+        Session session = this.SESSIONS.openSession();
+        List<Bike> bikes = new ArrayList();
+
+
+        try {
+            bikes = (List)session.createQuery
+                ("FROM Bike WHERE cod_usuario not in("+usuario.getCodigo()+")").list();
+        } catch (Exception e) {
+            LOGGER.error
+                ("Ocorreu um problema ao recuperar todas as bikes de um Usuario"
+                        + "\n" + e.getMessage());
+        } finally {
+                  
+            session.close();
+            return bikes;
+        }
+    }
 }
