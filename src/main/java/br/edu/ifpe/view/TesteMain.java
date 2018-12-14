@@ -23,12 +23,18 @@ SOFTWARE.
  */
 package br.edu.ifpe.view;
 
+import br.edu.ifpe.model.classes.Locacao;
+import br.edu.ifpe.model.classes.Usuario;
+import br.edu.ifpe.model.hibernate.UsuarioHibernate;
+import br.edu.ifpe.model.validation.LocacaoModel;
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Lucas Mendes <lucas.mendes147@live.com>
  */
 public class TesteMain {
-       public static void main(String args[]){
+       public static void main(String args[]) throws Exception{
           /*
         Usuario u = new Usuario("MilenaCliente", "mirassica", "12345", "cpfnovo",
                "sexo", new Date(), end, "telefone", "email", bikes);
@@ -116,7 +122,7 @@ public class TesteMain {
         bikes.add(new Bike("modelo", BigDecimal.ZERO, "tipo", "cor", usuario1));
         bikes.add(new Bike("modelo1", BigDecimal.ZERO, "tipo1", "cor1", usuario1));
         usuario1.setBikes(bikes);
-        UsuarioHibernate.getInstance().alterar(usuario1);
+        UsuarioHibernatealterar(usuario1);
         
         System.out.println(UsuarioHibernate.getInstance().listarTodasAsBikes
         (UsuarioHibernate.getInstance().recuperar("2")));
@@ -126,9 +132,15 @@ public class TesteMain {
  /* --------------------------------------------------------------------------------
      
 
-        Locacao LOCACAO
+      */ 
+Usuario USUARIO2 = new Usuario();
+      
+Usuario USUARIO1 = new Usuario();
+USUARIO2 = UsuarioHibernate.getInstance().recuperar(88);
+USUARIO1 = UsuarioHibernate.getInstance().recuperar(15);
+
+ Locacao LOCACAO
                 = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
-        LOCACAO.setDisponivel(false);
         Locacao LOCACAO1
                 = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
         Locacao LOCACAO2
@@ -139,7 +151,6 @@ public class TesteMain {
                 = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
         Locacao LOCACAO5
                 = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
-        LOCACAO5.setDisponivel(false);
         
         LocacaoModel lm = new LocacaoModel();
         
@@ -153,7 +164,7 @@ public class TesteMain {
             System.out.println(l + "\n\n\n");
         }
         
-         */
+         
  /*
         Endereco ENDERECO = new Endereco("estado", "cidade",
                 "cep", "bairro", "logradouro");
@@ -229,5 +240,7 @@ public class TesteMain {
         
         System.out.println(locacoes);
          */
+        
+        
     }
 }

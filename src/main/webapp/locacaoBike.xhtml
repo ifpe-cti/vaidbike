@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <c:if test="${usuarioController.usuarioLogado == null}">
+            <script>location.href = "login.xhtml";</script>
+        </c:if>
+        <ui:composition template="menuUsuario.xhtml">
+            <ui:define name="center" >
+               <h:form id="formApresentaUsuario">
+                    <br/>
+                    <h:outputText value="Bike" 
+                                  style="color: black; 
+                                  font-size:30px;
+                                  margin-left: 2em ;
+
+                                  font-weight: bold;
+                                  font-family: Comic Sans MS;" /> 
+                    <br/>
+                    <p:separator/>
+                    <p:panelGrid  columns="2" columnClasses="no-border, no-border" >
+
+                        <h:outputText value="Dados da Bike " 
+                                      style="color: #ff0000; 
+                                      font-size:20px;
+                                      margin-left:2.5em ;
+                                      font-weight: bold;
+                                      font-family: Comic Sans MS;" /> 
+                        <br/><br/>
+
+                        <h:outputText value="Modelo " style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.bike.modelo}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+                        
+                        <h:outputText value="Cor" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.bike.cor}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+                        <h:outputText value="Tipo " style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.bike.tipo}" 
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+                        <h:outputText value="Valor da Bike " style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.bike.valor}" 
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+                        
+
+                    </p:panelGrid>
+                    
+
+                    <p:panelGrid columns="2" columnClasses="no-border, no-border"> 
+
+                        <h:outputText value="Dados do Dono" 
+                                      style="color: #ff0000; 
+                                      font-size:20px;
+                                      margin-left:2.5em ;
+                                      font-weight: bold;
+                                      font-family: Comic Sans MS;" /> 
+                        <br/><br/><br/>
+
+                        <h:outputText value="Nome " style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.bike.usuario.nome}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+                        <h:outputText value="Sexo" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.bike.usuario.sexo}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+                        <h:outputText value="Data Nascimento" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.bike.usuario.dataNasc}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+  
+                        <h:outputText value="Telefone" style="font-weight: bold; margin-left:5em ;" />
+                        <h:outputText value="#{usuarioController.bike.usuario.telefone}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+                        <h:outputText value="E-mail" style="font-weight: bold; margin-left:5em ;"/>
+                        <h:outputText value="#{usuarioController.bike.usuario.email}"
+                                      style="font-weight: bold; margin-left:3em ;"/>
+
+                         
+
+                    </p:panelGrid> 
+                   
+                    
+                </h:form>
+                <br/><br/>
+                 <h:form style="text-align: match-parent">
+                          <p:commandButton value="Alugar" style="height: 30px; width: 120px; text-align:center;"
+                                              action ="locacao.xhtml"/>
+                    </h:form>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

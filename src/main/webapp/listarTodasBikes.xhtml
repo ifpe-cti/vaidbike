@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <ui:composition template="menuUsuario.xhtml">
+            <ui:define name="center" >
+
+
+                <h:form id="formListarBike">
+                    <p:dataTable var="item"   
+                                 rowKey="#{item.codigo}" 
+                                 selectionMode="single"  
+                                 value="#{usuarioController.listarTodasBikes()}"
+                                 selection="#{usuarioController.bike}">
+                        <f:facet name="header">
+                            Lista de Bikes
+                        </f:facet>
+                        <p:column headerText="Modelo">
+                            <h:outputText value="#{item.modelo}" />
+                        </p:column>
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{item.tipo}" />
+
+                        </p:column>
+                        <p:column headerText="Opções">
+
+                          
+
+                            <p:commandButton style="height: 30px; width: 120px; text-align:center;"
+                                              action ="locacaoBike.xhtml" icon="fa fa-search" value="Detalhes" 
+                                             />
+                        </p:column>
+                    </p:dataTable>
+
+                </h:form>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
