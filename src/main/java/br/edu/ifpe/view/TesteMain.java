@@ -27,8 +27,11 @@ import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.hibernate.UsuarioHibernate;
 import br.edu.ifpe.model.validation.LocacaoModel;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 /**
  *
  * @author Lucas Mendes <lucas.mendes147@live.com>
@@ -132,7 +135,7 @@ public class TesteMain {
  /* --------------------------------------------------------------------------------
      
 
-      */ 
+      
 Usuario USUARIO2 = new Usuario();
       
 Usuario USUARIO1 = new Usuario();
@@ -162,9 +165,20 @@ USUARIO1 = UsuarioHibernate.getInstance().recuperar(15);
         
         for(Locacao l : lm.listarTodos()){
             System.out.println(l + "\n\n\n");
-        }
-        
-         
+        }*/
+ 
+ String date = "2017-03-08 12:30:54";
+
+DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+LocalDateTime dateTime = LocalDateTime.parse(date, format);
+
+ 
+
+System.out.println("origional date as string: " + date);
+
+System.out.println("generated LocalDateTime: " + dateTime);
+
  /*
         Endereco ENDERECO = new Endereco("estado", "cidade",
                 "cep", "bairro", "logradouro");
@@ -243,4 +257,6 @@ USUARIO1 = UsuarioHibernate.getInstance().recuperar(15);
         
         
     }
+
+   
 }

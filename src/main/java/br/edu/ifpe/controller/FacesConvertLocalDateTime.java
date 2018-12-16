@@ -43,7 +43,6 @@ public class FacesConvertLocalDateTime implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String stringValue) {
         
-        System.out.println(context+" "+component +" "+ stringValue+"\n\n\n\n\n\n\n\n\n\n\n\n\n\n ---------------------");
         
         if (null == stringValue || stringValue.isEmpty()) {
             return null;

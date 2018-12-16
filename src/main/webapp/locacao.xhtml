@@ -27,7 +27,7 @@
                     <p:calendar id="txtDataRetirada" 
                                 value="#{locacaoController.cadLocacao.retirada}"
                                 pattern="dd/MM/yyyy hh:mm:ss"
-                                mask="true" converter="facesConverterLocalDateTime" style="width: 100%;" 
+                                mask="true" style="width: 100%;" 
                                 required="true" requiredMessage="Campo Obrigatório!"/>
                     <p:message for='txtDataRetirada' />
                     
@@ -35,11 +35,13 @@
                     <p:calendar id="txtDataDevolução" 
                                 value="#{locacaoController.cadLocacao.devolucao}"
                                 pattern="dd/MM/yyyy hh:mm:ss"
-                                mask="true" converter="facesConverterLocalDateTime" style="width: 100%;" 
+                                mask="true" style="width: 100%;" 
                                 required="true" requiredMessage="Campo Obrigatório!"/>
                     <p:message for='txtDataDevolução' />
 
-
+<p:outputLabel for="datetime" value="Datetime:" />
+        <p:calendar id="datetime" value="#{calendarView.date10}" pattern="MM/dd/yyyy HH:mm:ss" />
+      
 
                 </p:panelGrid>
                 <br/><br/>
@@ -53,12 +55,14 @@
 
                               " /> 
                 <br/><br/>
-                <p:panelGrid  columns="2" styleClass="panelgrid" columnClasses="no-border, no-border" style="margin-left:10em;" >
-                    <h:outputText value="Nome do Locatário" style="font-weight: bold; margin-left:5em ;"/>
-                    <h:outputText value="#{usuarioController.bike.usuario.nome}"
+                <p:panelGrid  columns="3" styleClass="panelgrid" columnClasses="no-border, no-border" style="margin-left:10em;" >
+                    
+                    
+                    <h:outputText value="#{locacaoController.cadLocacao.setLocatario(usuarioController.bike.usuario)}"
                                   style="font-weight: bold; margin-left:3em ;"/>
-                    <h:outputText value="Seu Nome  " style="font-weight: bold; margin-left:5em ;"/>
-                    <h:outputText value="#{usuarioController.usuarioLogado.nome}"
+                    
+                    
+                    <h:outputText value="#{locacaoController.cadLocacao.setLocatario(usuarioController.usuarioLogado)}"
                                   style="font-weight: bold; margin-left:3em ;"/>
 
                 </p:panelGrid>

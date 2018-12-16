@@ -29,6 +29,8 @@ import javax.faces.bean.SessionScoped;
 import br.edu.ifpe.model.classes.Locacao;
 import br.edu.ifpe.model.classes.Usuario;
 import br.edu.ifpe.model.validation.LocacaoModel;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -52,6 +54,20 @@ public class LocacaoController {
 
     public String inserir() {
         try {
+            
+
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            
+            String devolucao = (cadLocacao.getDevolucao()).format(format);
+            String retirada = (cadLocacao.getRetirada()).format(format);
+          
+            LocalDateTime dateTimeDevolucao = LocalDateTime.parse(devolucao, format);
+            LocalDateTime dateTimeRetirada = LocalDateTime.parse(retirada, format);
+            
+            cadLocacao.setDevolucao(dateTimeDevolucao);
+            cadLocacao.setRetirada(dateTimeRetirada);
+            
+            
             this.instanceLocacaoModel.inserir(this.cadLocacao);
             this.cadLocacao = new Locacao();
             FacesContext.getCurrentInstance().addMessage(null,
@@ -64,6 +80,7 @@ public class LocacaoController {
         }
 
     }
+    
 
     public void alterar() throws Exception {
           this.instanceLocacaoModel.alterar(this.selectedLocacao);
@@ -123,4 +140,5 @@ public class LocacaoController {
     public void setSelectedLocacao(Locacao selectedLocacao) {
         this.selectedLocacao = selectedLocacao;
     }
+   
 }
