@@ -84,6 +84,11 @@ public class Locacao implements Serializable {
         this.cliente = cliente;
     }
 
+    public void setLocatario(Usuario locatario) {
+        this.locatario = locatario;
+    }
+    
+
     public Usuario getLocatario() {
         return locatario;
     }
