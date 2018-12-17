@@ -52,42 +52,38 @@ public class LocacaoController {
 
     }
 
-    public String inserir() {
+    public String inserir(String dataRetirada, String dataDevolucao) {
         try {
-            
 
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            
-            String devolucao = (cadLocacao.getDevolucao()).format(format);
-            String retirada = (cadLocacao.getRetirada()).format(format);
-          
-            LocalDateTime dateTimeDevolucao = LocalDateTime.parse(devolucao, format);
-            LocalDateTime dateTimeRetirada = LocalDateTime.parse(retirada, format);
-            
+
+            LocalDateTime dateTimeDevolucao = LocalDateTime.parse(dataDevolucao, format);
+            LocalDateTime dateTimeRetirada = LocalDateTime.parse(dataRetirada, format);
+
             cadLocacao.setDevolucao(dateTimeDevolucao);
             cadLocacao.setRetirada(dateTimeRetirada);
-            
-            
+
             this.instanceLocacaoModel.inserir(this.cadLocacao);
+
             this.cadLocacao = new Locacao();
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Locação cadastrada com sucesso!"));
             return "";
         } catch (Exception e) {
+            e.printStackTrace();
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Falha ao Cadastrar"));
             return "";
         }
 
     }
-    
 
     public void alterar() throws Exception {
-          this.instanceLocacaoModel.alterar(this.selectedLocacao);
+        this.instanceLocacaoModel.alterar(this.selectedLocacao);
     }
 
     public Locacao recuperar(Integer codigo) throws Exception {
-          return this.instanceLocacaoModel.recuperar(codigo);
+        return this.instanceLocacaoModel.recuperar(codigo);
     }
 
     public void deletar() throws Exception {
@@ -97,16 +93,15 @@ public class LocacaoController {
 
     public List<Locacao> listarTodos() {
         List<Locacao> locacoes = null;
-        try{
+        try {
             locacoes = this.instanceLocacaoModel.listarTodos();
-        }catch(Exception listarTodasAsLocacoesException){
-            FacesContext.getCurrentInstance().addMessage
-                    (null, new FacesMessage
-                            ("Ocorreu um erro ao recuperar as locações."));          
-        }finally{
+        } catch (Exception listarTodasAsLocacoesException) {
+            FacesContext.getCurrentInstance().addMessage(null, 
+                    new FacesMessage("Ocorreu um erro ao recuperar as locações."));
+        } finally {
             return locacoes;
         }
-        
+
     }
 
     public List<Locacao> retornarListaLocacaoCliente(Usuario cliente) throws Exception {
@@ -140,5 +135,4 @@ public class LocacaoController {
     public void setSelectedLocacao(Locacao selectedLocacao) {
         this.selectedLocacao = selectedLocacao;
     }
-   
 }

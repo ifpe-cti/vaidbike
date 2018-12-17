@@ -134,40 +134,41 @@ public class TesteMain {
 
  /* --------------------------------------------------------------------------------
      
-
-      
-Usuario USUARIO2 = new Usuario();
-      
-Usuario USUARIO1 = new Usuario();
-USUARIO2 = UsuarioHibernate.getInstance().recuperar(88);
-USUARIO1 = UsuarioHibernate.getInstance().recuperar(15);
-
- Locacao LOCACAO
-                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
-        Locacao LOCACAO1
-                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
-        Locacao LOCACAO2
-                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
-        Locacao LOCACAO3
-                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
-        Locacao LOCACAO4
-                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
-        Locacao LOCACAO5
-                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
-        
-        LocacaoModel lm = new LocacaoModel();
-        
-        lm.inserir(LOCACAO);
-        lm.inserir(LOCACAO2);
-        lm.inserir(LOCACAO3);
-        lm.inserir(LOCACAO4);
-        lm.inserir(LOCACAO5);
-        
-        for(Locacao l : lm.listarTodos()){
-            System.out.println(l + "\n\n\n");
-        }*/
- 
- String date = "2017-03-08 12:30:54";
+*/
+//     
+//Usuario USUARIO2 = new Usuario();
+//      
+//Usuario USUARIO1 = new Usuario();
+//USUARIO2 = UsuarioHibernate.getInstance().recuperar(1);
+//USUARIO1 = UsuarioHibernate.getInstance().recuperar(2);
+//
+// Locacao LOCACAO
+//                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+//        Locacao LOCACAO1
+//                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+//        Locacao LOCACAO2
+//                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+//        Locacao LOCACAO3
+//                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+//        Locacao LOCACAO4
+//                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+//        Locacao LOCACAO5
+//                = new Locacao(USUARIO2, USUARIO1, LocalDateTime.now(), LocalDateTime.now());
+//        
+//        LocacaoModel lm = new LocacaoModel();
+//        
+//        lm.inserir(LOCACAO);
+//        lm.inserir(LOCACAO2);
+//        lm.inserir(LOCACAO3);
+//        lm.inserir(LOCACAO4);
+//        lm.inserir(LOCACAO5);
+//        
+//        for(Locacao l : lm.listarTodos()){
+//            System.out.println(l + "\n\n\n");
+//        }
+// 
+/*
+ String date = "";
 
 DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -178,7 +179,7 @@ LocalDateTime dateTime = LocalDateTime.parse(date, format);
 System.out.println("origional date as string: " + date);
 
 System.out.println("generated LocalDateTime: " + dateTime);
-
+*/
  /*
         Endereco ENDERECO = new Endereco("estado", "cidade",
                 "cep", "bairro", "logradouro");
