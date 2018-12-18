@@ -106,7 +106,7 @@ public class LocacaoModel {
             throws Exception {
 
         List<Locacao> locacaoLocatario
-                = ((LocacaoDao) DAO).retornarListaLocacao(locatario);
+                = ((LocacaoDao) DAO).retornarListaLocatario(locatario);
 
         if (locacaoLocatario == null) {
             throw new Exception("Erro ao recuperar a lista  de "
@@ -115,5 +115,4 @@ public class LocacaoModel {
             return locacaoLocatario;
         }
     }
-
 }
